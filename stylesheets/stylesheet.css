@@ -37,12 +37,12 @@ a {
   .btn {
     padding: 0.9rem 1rem; } }
 
-@media screen and (min-width: 60em) and (max-width: 64em) {
+@media screen and (min-width: 42em) and (max-width: 64em) {
   .btn {
     padding: 0.9rem 0.9rem;
     font-size: 0.9rem; } }
 
-@media screen and (max-width: 80em) {
+@media screen and (max-width: 64em) {
   .btn {
     display: block;
     width: 100%;
