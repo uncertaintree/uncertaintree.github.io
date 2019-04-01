@@ -4,9 +4,8 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond';
   src: url("../holgersennhennreulen/EB Garamond.ttf") format('truetype');
-    font-weight: bold;
     font-style: normal;
   line-height: 1.5;
   color: #606c71; }
