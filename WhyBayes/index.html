@@ -19,144 +19,24 @@
     </section>
 
 <section class="main-content">
- 
-  Bayesian statistics is an analytical framework increasingly used in many different (most?) research areas. 
-  
-<p>But, <b>why Bayes?</b></p>
-  I don't know if Bayesian statistics is the only valid way of performing statistical inference - I believe I'd need a 
-  full-time position on the theory of science to maybe having a chance for answering this question.
-  <p>
-  R. McElreath on <b> Deflationary statistics</b>, Statistical Rethinking, p. 32: 
-  <blockquote>
-  "It may be that Bayesian inference is the best general purpose method of inference known. 
-  However, Bayesian inference is much less powerful than we’d like it to be. There is no approach 
-  to inference that provides universal guarantees. No branch of applied mathematics has unfettered 
-  access to reality, because math is not discovered, like the proton. Instead it is invented, like the shovel."
-  </blockquote>
-  As this may not be fully convincing yet, Ben Lambert's 
-  <a href="https://benlambertdotcom.files.wordpress.com/2016/05/bayesian-course-1-vfinal-vfinal.pdf">'Big World&nbsp;&ndash;&nbsp;What is inference?&nbsp;&ndash;&nbsp;Small World'</a> 
-  at least convinces me:
-  <p>
-  <b>Big World</b>
-  <blockquote>
-  "Consider an observable characteristic we are trying to explain, for example the heights of 5 randomly chosen individuals.
-  <p>
-  Assume that there exists a true process T that generates the heights of all individuals in our sample.
-  <p>
-  There is variability in the observables outputted by T; this can either be ontological (for example 
-  due to the inherent variability in picking our random sample), or epistemological (for example, because 
-  we lack knowledge of the genetics and environmental factors that affect growth).
-  <p>
-  Imagine a set of all conceivable processes that could result in our sample of height observations, 
-  which we call the 'Big World'."
-  </blockquote>
-  
-  <b>What is inference?</b>
-  
-  <blockquote>
-  Motivation: update our knowledge of T in light of data, and use the updated knowledge to estimate quantities ofinterest.
-    
-    -  In our height example we might want to estimate the mean height of the entire population having 
-    witnessed our sample of 5 individuals.
-    
-   Method: 
-   <ul>
-   <li>Find areas of the Big World that are closest to T; ideally we would find T itself!</li>
-   <li>Estimate quantities of interest using these subsets of theSmall World.</li>
+ <ul>
+   <li>Holger Sennhenn-Reulen: <a href="https://">
+       Why Bayes?</a></li>
+   <li>Michael Goldstein: <a href="https://projecteuclid.org/download/pdf_1/euclid.ba/1340371036">
+       Subjective Bayesian Analysis: Principles and Practice</a></li>
+   <li>Author: <a href="https://greenteapress.com/wp/think-bayes/">
+       Think Bayes</a></li>
+   <li>Ben Lambert: <a href="https://ben-lambert.com/a-students-guide-to-bayesian-statistics/">
+       A students guide to bayesian statistics</a></li>
+   <li>Helga Wagner, Gero Walter: <a href="http://thomas.userweb.mwn.de/Lehre/wise1011/Bayes_1011/">
+       Einführung in die Bayessche Statistik</a></li>
+   <li>O'Hagan: <a href="https://www.tandfonline.com/doi/pdf/10.1080/00031305.2018.1518265?needAccess=true">
+       Expert Knowledge Elicitation: Subjective but Scientific</a></li>
+   <!--<li>Author: <a href="https://">
+       Title</a></li>
+   <li>Author: <a href="https://">
+       Title</a></li>-->
    </ul>
-  </blockquote>
-  
-  <b>Small World</b>
-  <blockquote>
-  "The Small World is still too big for our purposes. 
-  We usually have some knowledge about which areas of the Small World are nearest to T."
-  </blockquote>
-  But it is nevertheless the way in which I want to perform statistical inference.
-  <p>
-  ... and because of:
-  <ul>
-  <li>Bayesian interpretation of the probabilty concept.</li>
-  <li>Inclusion of one's current state of knowledge into the inference process by specification of a probabilistic distributon - called the 'prior'.</li>
-  <li>Inference process as updating one's prior by evidence coming from new data leading to a new version of the probabilistic distributon - now called the 'posterior'.</li>
-  <li>Post estimation calculations using samples from the posterior.</li>
-  </ul>
-   
-    Bayesian statistics uses the language of probability to express our uncertainty about scientific questions by exploitation 
-  of the data we collect from the world to update our view on those scientific questions.
-  
-    
-    <p>
-Michael Goldstein: Subjective Bayesian Analysis: Principles and Practice: https://projecteuclid.org/download/pdf_1/euclid.ba/1340371036
-<p>
-  Mariëlle Zondervan-Zwijnenburg et al. (2017): Where Do Priors Come From? Applying Guidelines to Construct Informative Priors in Small Sample Research https://www.tandfonline.com/doi/full/10.1080/15427609.2017.1370966
-<p>
-  Think Bayes: https://greenteapress.com/wp/think-bayes/
-  <p>
-  https://ben-lambert.com/a-students-guide-to-bayesian-statistics/
-  <p>
-  Helga Wagner und Gero Walter: 
-  Einführung in die Bayessche Statistik: http://thomas.userweb.mwn.de/Lehre/wise1011/Bayes_1011/
-<p>
-  O'Hagan: Expert Knowledge Elicitation: Subjective but Scientific https://www.tandfonline.com/doi/pdf/10.1080/00031305.2018.1518265?needAccess=true
-<p>
-  Gemischtes: Karl Broman on statistical consulting: https://kbroman.org/blog/2013/04/02/thoughts-on-statistical-consulting/
-<p>
-Gemischtes: Raspberry Pi Gitea: https://pimylifeup.com/raspberry-pi-gitea/
-  
-  <!--
-<b>Warum Bayes?</b> Irgendwie erscheint das ja alles immer wieder sehr elegant mit der Bayesinferenz, man kann alles als 
-  probabilitisches Modell aufschreiben und durch die Äquivalenz von priori mal likelihood ergibt sich dann posteriori. 
-  Und plötzlich wird es auch noch wahnsinnig praktisch, da man mithilfe von Markov Chaon Monte Carlo Ziehungen mit ziemlich 
-  einfachen Berechnungen nach der Schätzung noch Inferenzaussagen für alle Parameter in den inhaltlich sinnvollsten Transformationen 
-  und Paameterkombinationen ausrechnen kann. 
-  <p>
-  Und dann kann die Priori auch noch Infos enthalten über alles was ich bis zu meiner neuen Studie bereits wusste - 
-  das wird häufig unter den Tisch gekehrt und als zu subjecktiv angezweifelt, scheint aber schon auch durchaus 
-  wichtig (ichael Goldstein: Subjective Bayesian Analysis: Principles and Practice: https://projecteuclid.org/download/pdf_1/euclid.ba/1340371036). 
-  <p>
-  Und dann sind da ja noch diese Diskussionen bezühlich der 'Krise der Statistik':  
-  Durch die Beobachtung der Diskussionen in Webblogs (hauptsächlich dem von Andrew Gelman) und wissenschaftlichen 
-  Beiträgen rund um diese Frage - also von welchem Blickwinkel aus man statistische Inferenz angehen sollte -, komme ich 
-  auch mehr und mehr zu der Überzeugung, dass sich auch in meiner Arbeit als angewandter Statistiker an der 
-  <a href="https://www.nw-fva.de/"><b>Nordwestdeutschen Forstlichen Versuchsanstalt (NW-FVA)</b></a> 
-  bei Anwendungen mit Beobachtungen von nur  
-  überschaubar vielen Beobachtungseinheiten - Wo hört das auf? - die Bayesianischen statistischen Verfahren 
-  als natürlicher ergeben - natürlicher in der Weise als dass neue wissenschaftliche Erkenntnisse immer nur 'Updates' 
-  des bisherigen Wissens sind. 
-  <p>
-  Mit dieser Seite möchte ich alles sammeln was ich dafür benötige um selber darin besser zu werden, auch noch etwas
-  Orientierung darin finden wann ich besser vorschlagen sollte den Bayesianischen Weg einzuschlagen, und wann nicht, und aber auch 
-  KollegInnen Hilfe und Unterstützung zukommen lassen.
-<p>
-Es gibt immer mehr Indizien dafür dass wir mit den klassichen statistischen Verfahren - auch 
-  'frequentistische Statistik' genannt - nicht das ideale Werkzeug in der Hand halten um wissenschaftlichen 
-  Fortschritt zu erzielen. Insbesondere allgemeine wissenschaftliche Praktiken im Umgang mit dieser 
-  Inferenzschule lassen großen Zweifel daran laut werden ob nicht ein allgemeiner Kulturwandel nötig wäre
-  (https://www.nature.com/articles/d41586-019-00857-9). 
-  Leider sieht es aber derzeit so aus als dass die meisten von uns nichts anderes gelernt haben, und/oder es nur 
-  schwer fällt von den bisherigen Gewohnheiten loszulassen. 
-  Ich möchte mit dieser Seite mir auch selbst dabei helfen meine eigenen immer wieder abgeschrittenen Pfade zu verlassen - 
-  damit einhergehend auch hier und da meine Komfortzone -: "... change is sometimes painful. But it happens every day." 
-  [Carl Sagan]. 
-  <b>Und dann gibt es da noch die folgende anschauliche Motivation für subjektive Bayesinferenz: [aus Michael Goldstein: Subjective Bayesian Analysis: Principles and Practice: https://projecteuclid.org/download/pdf_1/euclid.ba/1340371036]</b> 
-  Eine Person A behauptet sie können erschmecken ob in einer Tasse Kaffee zuerst die Milche, oder zuerst der Kaffee hineingegeben 
-  wurde. 
-  Es werden ihr in einer Studie verblindet 10 verschiedene Tassen angeboten, von denen Person A neun mal richtig liegt (X = 9).
-  Eine weitere Person B behauptet, dass Sie in die Zukunft blicken kann und möchte dies mit der erfolgreichen Vorhersage eines
-  Münzwurfexperiments belegen. Person B hatte vorher keinen Bezug zur verwendeten Münze von welcher annehmen können dass 
-  sie fair ist. Weiterhin sieht Person B nicht den Münzwurf selbst, kann also keine mechanischen Berechnungen zum Ausgang des 
-  Münzwurfs durchführen, wie etwa durch die Ausgangslage der Münze etc.
-  Person B liegt in neun von zehn Münzwurfen richtig (X = 9). 
-  Michael Goldestein schreibt nun: "Within the traditional view of statistics, we might accept the same formalism for the two 
-  experiments, namely that, for each experiment, each assessment is independent with probabilityp of success. 
-  In each case, X has a binomial distribution parameters 10 and p, where p=1/2 corresponds to pure guessing. 
-  Within the traditional approach, the likelihood is the same, the point null is the same if we carry out a test for whether 
-  p=1/2, and confidence intervals for p will be the same."
-  Jedoch könnte man doch eigentlich ziemlich überzeugt davon sein dass es eine Möglichkeit dafür gibt dass man sich durch 
-  viel Training die Fähigkeit aneignen kann dass man einen unterschiedlichen Geschmack des Kaffee-Milch-Gemsichs erkennt. 
-  Für die Fähigkeit von Person B scheint das schon deutlich weniger plausibel. 
-  Müssten wir nicht dieses Vorwissen miteinbeziehen wenn wir Schlussfolgerungen für p ausarbeiten?
--->
 
 <footer class="site-footer">
   <a href="https://holgersennhennreulen.github.io/">&larr; (Back to Home)</a>
