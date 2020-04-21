@@ -60,6 +60,7 @@ a {
   /*background-color: #016144;*/
   background-color: #fff; 
   /*background-image: linear-gradient(120deg, #016144, #f5dd42); }*/
+  border-bottom: solid 1px #eff0f1; 
   }
 
 @media screen and (min-width: 64em) {
