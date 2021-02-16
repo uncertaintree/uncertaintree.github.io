@@ -30,32 +30,37 @@ a:active {
 <title>Uncertaintree: Notizen zur Normalverteilung. </title>
 </head>
 <body>
-<h1 class="title toc-ignore">Uncertaintree: Notizen zur Normalverteilung.</h1>
+<h1 class="title toc-ignore">Notizen zur Normalverteilung.</h1>
 <h4 class="author">Holger Sennhenn-Reulen [<a href="http://uncertaintree.github.io">uncertaintree.github.io</a>]</h4>
 <h4 class="date">16. Februar 2021</h4>
   
   Wenn eine Zufallsvariable sowohl positive als auch negative stetige Werte annehmen kann, so ist die Normalverteilung hauefig das erste Modell das uns in den Sinn kommt um den unbekannten, datengenerierenden Prozess zu beschreiben. 
   <p>
   Haeufig wird die Normalverteilung auch auf Groessen angewandt die ausschliesslich positiv - seltener auch ausschliesslich negativ sind -, und das kann auch eine pragmatische Wahl sein und haengt davon ab wie sich die Quantile dann in der Anwendung in den ungueltigen Wertebereich hinein verlagern. 
-    Haeufig kann aber eine andere Verteilungsform, wie etwa die Gamma-verteilung, hier die bessere Modellierungsleistung liefern. 
-    <p>
-      Die Normalverteilung hat zwei Parameter, \(\mu\) fuer den Erwartungswert - das ist der Lageparameter -, und \(\sigma\) fuer die Standardabweichung - das ist der Skalierungsparameter. 
-      Die umgekehrte Standardabweichung, \(1/\sigma\) ist auch als Praezision bekannt. 
-      <p>
-        Wenn eine Zufallsvariable \(Y\) als der Normalverteilung folgend angenommen wird, so schreiben wir:
-        $$
-        Y\sim\text{Normal}(\mu,\sigma^2),
-        $$
-        und sagen: Die Zufallsvariable Y folgt einer Normalverteilung mit Erwartungswert mu und varianz sigma Quadrat. 
-        <p>
-When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
- <p>
-   R-code:
-   <pre>
-   foo <- function(x, y){
-     x + y
-     }
-    </pre>
-    </body>
+  Haeufig kann aber eine andere Verteilungsform, wie etwa die Gamma-verteilung, hier die bessere Modellierungsleistung liefern. 
+  <p>
+  Die Normalverteilung hat zwei Parameter, \(\mu\) fuer den Erwartungswert - das ist der Lageparameter -, und \(\sigma\) fuer die Standardabweichung - das ist der Skalierungsparameter. 
+  Die umgekehrte Standardabweichung, \(1/\sigma\) ist auch als Praezision bekannt. 
+  <p>
+  Wenn eine Zufallsvariable \(Y\) als der Normalverteilung folgend angenommen wird, so schreiben wir:
+  $$
+  Y\sim\text{Normal}(\mu,\sigma^2),
+  $$
+  und sagen: Die Zufallsvariable Y folgt einer Normalverteilung mit Erwartungswert mu und varianz sigma Quadrat. 
+  <p>
+  <a href="https://www.r-project.org/">R</a>-code:
+  <pre>
+mu <- 3
+sigma <- 1.27
+x_seq <- seq(-5, 5, by = .01)
+par(las = 1, bty = "n", mgp = c(2.5, .7, 0), mar = c(3.5, 3.5, 1.5, 0) + .1)
+main_title <- expression(paste("Normal", 
+                               group("(",list(mu==3, sigma^2==1.27^2),")")))
+plot(x = x_seq, y = dnorm(x = x_seq, mean = mu, sd = sigma), type = "l", 
+     xlab = "x", ylab = "Dichte von X an der Stelle x", main = main_title)
+y_lab <- expression(paste("W'keit f\u00fcr ", X <= x))
+plot(x = x_seq, y = pnorm(q = x_seq, mean = mu, sd = sigma), type = "l", 
+     xlab = "x", ylab = y_lab, main = main_title, ylim = c(0, 1))
+  </pre>
+  </body>
 </html>
