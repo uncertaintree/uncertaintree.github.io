@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R</title>
+  <meta name="description" content="Introduction to R" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#about-this-course"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="1" data-path=""><a href="#introduction-what-is-r"><i class="fa fa-check"></i><b>1</b> Introduction: What is R?</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#data"><i class="fa fa-check"></i><b>2</b> Data</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#drought"><i class="fa fa-check"></i>Drought</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#vectors"><i class="fa fa-check"></i><b>3</b> Vectors</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>July 09, 2021 (Version 0.0.1)</em></p>
+</div>
+<div id="about-this-course" class="section level1 unnumbered">
+<h1>About this course</h1>
+<p>This course introduces basic R-programming skills as a fundament for succesfull applied statistical modeling in R.</p>
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+</div>
+<div id="introduction-what-is-r" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction: What is R?</h1>
+<p>…</p>
+</div>
+<div id="data" class="section level1">
+<h1><span class="header-section-number">2</span> Data</h1>
+<p>We will use two data-sets within this course.</p>
+<div id="drought" class="section level2 unnumbered">
+<h2>Drought</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">bair &lt;-<span class="st"> </span><span class="kw">c</span>(.<span class="dv">505</span>, <span class="fl">.648</span>, <span class="fl">.523</span>, <span class="fl">.426</span>, <span class="fl">.64</span>, <span class="fl">.5</span>, <span class="fl">.257</span>, <span class="fl">.866</span>, <span class="fl">.434</span>, <span class="fl">.368</span>, <span class="fl">.54</span>, <span class="fl">.923</span>, <span class="fl">.702</span>, </a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">          <span class="fl">.615</span>, <span class="fl">1.013</span>, <span class="fl">.807</span>, <span class="fl">.262</span>, <span class="fl">.887</span>, <span class="fl">1.281</span>, <span class="fl">1.125</span>, <span class="fl">.99</span>, <span class="fl">1.2</span>, <span class="fl">.983</span>, <span class="fl">.697</span>, <span class="fl">.606</span>, </a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">          <span class="fl">.718</span>, <span class="fl">.48</span>, <span class="fl">.822</span>, <span class="fl">.944</span>, <span class="fl">.77</span>, <span class="fl">1.036</span>, <span class="fl">1.23</span>, <span class="fl">.68</span>, <span class="fl">.985</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">elev &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">335</span>, <span class="dv">460</span>, <span class="dv">480</span>, <span class="dv">515</span>, <span class="dv">540</span>, <span class="dv">650</span>, <span class="dv">680</span>, <span class="dv">715</span>, <span class="dv">730</span>, <span class="dv">835</span>, <span class="dv">860</span>, <span class="dv">960</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">          <span class="dv">1020</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1150</span>, <span class="dv">1170</span>, <span class="dv">1190</span>, <span class="dv">1350</span>, <span class="dv">1400</span>, <span class="dv">1500</span>, <span class="dv">1540</span>,</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">          <span class="dv">475</span>, <span class="dv">480</span>, <span class="fl">507.5</span>, <span class="dv">580</span>, <span class="dv">750</span>, <span class="dv">780</span>, <span class="dv">800</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1200</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">species &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>,</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">             <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">drought &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">bair =</span> bair,</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">                 <span class="dt">elev =</span> elev,</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">                 <span class="dt">species =</span> species)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">summary</span>(drought)</a></code></pre></div>
+<pre><code>##       bair             elev          species  
+##  Min.   :0.2570   Min.   : 335.0   Beech :11  
+##  1st Qu.:0.5272   1st Qu.: 597.5   Spruce:23  
+##  Median :0.7100   Median : 847.5              
+##  Mean   :0.7489   Mean   : 888.3              
+##  3rd Qu.:0.9732   3rd Qu.:1150.0              
+##  Max.   :1.2810   Max.   :1540.0</code></pre>
+<p>A first plot:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">pch_here &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">17</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">col_here &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">diverging_hcl</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">pal =</span> <span class="st">&quot;Lisbon&quot;</span>)[<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">16</span>)]</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">plot</span>(drought<span class="op">$</span>elev, drought<span class="op">$</span>bair, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">     <span class="dt">xlab =</span> <span class="st">&quot;Elevation [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Basal area increment ratio [</span><span class="ch">\\</span><span class="st">%]&quot;</span>, </a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">     <span class="dt">pch =</span> pch_here[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Spruce&quot;</span>)], </a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">     <span class="dt">col =</span> col_here[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Spruce&quot;</span>)])</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">1000</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">pch =</span> pch_here, <span class="dt">col =</span> col_here, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">       <span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<p><img src="intro_to_R_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+</div>
+<div id="vectors" class="section level1">
+<h1><span class="header-section-number">3</span> Vectors</h1>
+<p><strong>Definition (Vector):</strong> A <em>vector</em> in R is …</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>)</a></code></pre></div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R.pdf", "PDF"]],
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+</body>
+
+</html>
