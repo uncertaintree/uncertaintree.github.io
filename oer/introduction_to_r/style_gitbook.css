@@ -25,7 +25,7 @@ a {
 }
 @media screen and (min-width: 32rem) and (max-width: 48rem) {
   html {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 body{
