@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R: Session 02</title>
+  <meta name="description" content="Introduction to R: Session 02" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R: Session 02" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R: Session 02" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="1" data-path=""><a href="#store-graphics"><i class="fa fa-check"></i><b>1</b> Store graphics</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#generic-plot-function-plotx-y-type-..."><i class="fa fa-check"></i><b>2</b> Generic plot-function <code>plot(x, y, type, ...)</code></a><ul>
+<li class="chapter" data-level="2.1" data-path=""><a href="#frequently-used-arguments-with-plot"><i class="fa fa-check"></i><b>2.1</b> Frequently used arguments with <code>plot()</code></a></li>
+<li class="chapter" data-level="2.2" data-path=""><a href="#example-plot"><i class="fa fa-check"></i><b>2.2</b> Example <code>plot()</code></a></li>
+<li class="chapter" data-level="2.3" data-path=""><a href="#example-plot...-type-l"><i class="fa fa-check"></i><b>2.3</b> Example <code>plot(..., type = &quot;l&quot;)</code></a></li>
+<li class="chapter" data-level="2.4" data-path=""><a href="#example-plot...-type-b"><i class="fa fa-check"></i><b>2.4</b> Example <code>plot(..., type = &quot;b&quot;)</code></a></li>
+<li class="chapter" data-level="2.5" data-path=""><a href="#example-plot...-type-o"><i class="fa fa-check"></i><b>2.5</b> Example <code>plot(..., type = &quot;o&quot;)</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#graphic-modules"><i class="fa fa-check"></i><b>3</b> Graphic-‘modules’</a><ul>
+<li class="chapter" data-level="3.1" data-path=""><a href="#example-lines"><i class="fa fa-check"></i><b>3.1</b> Example <code>lines()</code></a></li>
+<li class="chapter" data-level="3.2" data-path=""><a href="#example-plot...-type-n-grid-and-points"><i class="fa fa-check"></i><b>3.2</b> Example <code>plot(..., type = &quot;n&quot;)</code>, <code>grid()</code> and <code>points()</code></a></li>
+<li class="chapter" data-level="3.3" data-path=""><a href="#example-lines-abline-and-lines...-type-s"><i class="fa fa-check"></i><b>3.3</b> Example <code>lines()</code>, <code>abline()</code> and <code>lines(..., type = &quot;s&quot;)</code></a></li>
+<li class="chapter" data-level="3.4" data-path=""><a href="#example-polygon"><i class="fa fa-check"></i><b>3.4</b> Example <code>polygon()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path=""><a href="#legend"><i class="fa fa-check"></i><b>4</b> <code>legend()</code></a><ul>
+<li class="chapter" data-level="4.1" data-path=""><a href="#example-legend"><i class="fa fa-check"></i><b>4.1</b> Example <code>legend()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path=""><a href="#further-plot-types"><i class="fa fa-check"></i><b>5</b> Further plot types</a><ul>
+<li class="chapter" data-level="5.1" data-path=""><a href="#boxplot"><i class="fa fa-check"></i><b>5.1</b> <code>boxplot()</code></a><ul>
+<li class="chapter" data-level="5.1.1" data-path=""><a href="#examples"><i class="fa fa-check"></i><b>5.1.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path=""><a href="#stripchart"><i class="fa fa-check"></i><b>5.2</b> <code>stripchart()</code></a><ul>
+<li class="chapter" data-level="5.2.1" data-path=""><a href="#example"><i class="fa fa-check"></i><b>5.2.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path=""><a href="#hist"><i class="fa fa-check"></i><b>5.3</b> <code>hist()</code></a><ul>
+<li class="chapter" data-level="5.3.1" data-path=""><a href="#example-1"><i class="fa fa-check"></i><b>5.3.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path=""><a href="#density"><i class="fa fa-check"></i><b>5.4</b> <code>density()</code></a><ul>
+<li class="chapter" data-level="5.4.1" data-path=""><a href="#example-hist-and-density"><i class="fa fa-check"></i><b>5.4.1</b> Example <code>hist()</code> and <code>density()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path=""><a href="#contour-und-filled.contour"><i class="fa fa-check"></i><b>5.5</b> <code>contour()</code> und <code>filled.contour()</code></a><ul>
+<li class="chapter" data-level="5.5.1" data-path=""><a href="#example-contour"><i class="fa fa-check"></i><b>5.5.1</b> Example <code>contour()</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path=""><a href="#example-filled.contour"><i class="fa fa-check"></i><b>5.5.2</b> Example <code>filled.contour()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path=""><a href="#mosaicplot"><i class="fa fa-check"></i><b>5.6</b> <code>mosaicplot()</code></a><ul>
+<li class="chapter" data-level="5.6.1" data-path=""><a href="#example-2"><i class="fa fa-check"></i><b>5.6.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path=""><a href="#quantile-quantile-plot"><i class="fa fa-check"></i><b>5.7</b> Quantile-quantile plot</a><ul>
+<li class="chapter" data-level="5.7.1" data-path=""><a href="#examples-1"><i class="fa fa-check"></i><b>5.7.1</b> Examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path=""><a href="#organization-of-the-graphics-window-with-par-and-layout"><i class="fa fa-check"></i><b>6</b> Organization of the graphics window with <code>par ()</code> and <code>layout ()</code></a><ul>
+<li class="chapter" data-level="6.1" data-path=""><a href="#example-layout"><i class="fa fa-check"></i><b>6.1</b> Example <code>layout()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path=""><a href="#colours"><i class="fa fa-check"></i><b>7</b> Colours</a><ul>
+<li class="chapter" data-level="7.1" data-path=""><a href="#example-viridis"><i class="fa fa-check"></i><b>7.1</b> Example <code>viridis()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path=""><a href="#mathematical-notation-in-graphics"><i class="fa fa-check"></i><b>8</b> Mathematical notation in graphics</a><ul>
+<li class="chapter" data-level="8.1" data-path=""><a href="#example-3"><i class="fa fa-check"></i><b>8.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path=""><a href="#lattice-graphics-for-grouped-clustered-data"><i class="fa fa-check"></i><b>9</b> <code>lattice</code> Graphics for grouped / clustered data</a><ul>
+<li class="chapter" data-level="9.1" data-path=""><a href="#example-4"><i class="fa fa-check"></i><b>9.1</b> Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path=""><a href="#ggplot"><i class="fa fa-check"></i><b>10</b> <code>ggplot</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R: Session 02</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R: Session 02</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>Oktober 22, 2021 (Version 0.1)</em></p>
+</div>
+<!--# About this course{-}
+This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="data" class="section level1 unnumbered">
+<h1>Data</h1>
+<!--We will use two data-sets within this course. 
+
+### Drought {-}
+
+Data basis: Fischer, R., Dobbertin, M., Granke, O., et al., 2006. The condition of forests in Europe. 2006
+Executive report. UNECE, Hamburg.
+
+
+```r
+bair <- c(.505, .648, .523, .426, .64, .5, .257, .866, .434, .368, .54, .923, .702, 
+          .615, 1.013, .807, .262, .887, 1.281, 1.125, .99, 1.2, .983, .697, .606, 
+          .718, .48, .822, .944, .77, 1.036, 1.23, .68, .985)
+elev <- c(335, 460, 480, 515, 540, 650, 680, 715, 730, 835, 860, 960,
+          1020, 1025, 1100, 1150, 1150, 1170, 1190, 1350, 1400, 1500, 1540,
+          475, 480, 507.5, 580, 750, 780, 800, 1025, 1100, 1150, 1200)
+species <- c("Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Beech", "Beech", "Beech", "Beech",
+             "Beech", "Beech", "Beech", "Beech", "Beech", "Beech", "Beech")
+drought <- data.frame(bair = bair,
+                      elev = elev,
+                      species = species)
+summary(drought)
+```
+
+```
+##       bair             elev          species  
+##  Min.   :0.2570   Min.   : 335.0   Beech :11  
+##  1st Qu.:0.5272   1st Qu.: 597.5   Spruce:23  
+##  Median :0.7100   Median : 847.5              
+##  Mean   :0.7489   Mean   : 888.3              
+##  3rd Qu.:0.9732   3rd Qu.:1150.0              
+##  Max.   :1.2810   Max.   :1540.0
+```
+For further context information, another source working on and interpereting this data (p. 202-203): 
+
+Matthias Dobbertin, Markus Neumann, Hans-Werner Schroeck, Chapter 10 - Tree Growth Measurements in Long-Term Forest Monitoring in Europe,
+Editor(s): Marco Ferretti, Richard Fischer,
+Developments in Environmental Science,
+Elsevier,
+Volume 12,
+2013,
+Pages 183-204,
+[https://doi.org/10.1016/B978-0-08-098222-9.00010-8](https://doi.org/10.1016/B978-0-08-098222-9.00010-8)
+
+### Frost {-}
+
+<!--Datenbasis: Deutscher Wetterdienst, hier dargestellte Werte selbst aus Tageseinzelwerten erzeugt.
+Data basis: Deutscher Wetterdienst, values shown here were generated over individual values by myself.
+
+Direct download links for data basis (Stations Id 1691, Goettingen): 
+
+- [historical data)](ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/tageswerte_KL_01691_19270101_20201231_hist.zip)
+- [recent data)](ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_01691_akt.zip)
+
+Some definitions:
+
+- Budburst is estimated based on first day with degree days > 220 (begin counting on March, 20). 
+- End of 1st development stage is estimated based on first day with degree days > 320 (begin counting on March, 20). 
+- Definition frost event: $\min\left(\text{Temp}_{50\text{cm}}\right) < -1.95°\text{C}$
+
+
+```r
+frost <- data.frame(year = 1947:2021, 
+                    n_frost = c(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 
+                                0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                                0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 
+                                3, 2, 0, 0, 0, 0, 0, 0, 1, 5, 0), 
+                    bud_burst = as.Date(c(-19230, -18867, -18503, -18127, -17758, -17408, -17034, 
+                                          -16661, -16293, -15929, -15566, -15202, -14847, -14475, 
+                                          -14121, -13744, -13384, -13017, -12647, -12291, -11917, 
+                                          -11563, -11191, -10821, -10462, -10092, -9720, -9361, 
+                                          -8997, -8635, -8261, -7896, -7530, -7164, -6808, -6436, 
+                                          -6078, -5705, -5347, -4981, -4619, -4254, -3883, -3524, 
+                                          -3145, -2788, -2437, -2060, -1694, -1322, -958, -602, 
+                                          -237, 124, 499, 864, 1222, 1592, 1957, 2321, 2681, 3055, 
+                                          3408, 3789, 4137, 4513, 4877, 5234, 5610, 5976, 6345, 
+                                          6691, 7074, 7435, 7812), 
+                                        origin = as.Date("2000-01-01")),
+                    end_1st_dev_stage = as.Date(c(-19222, -18859, -18489, -18118, -17746, -17397, 
+                                                  -17026, -16650, -16280, -15921, -15552, -15192, 
+                                                  -14837, -14464, -14104, -13726, -13370, -13006, 
+                                                  -12633, -12281, -11905, -11545, -11180, -10808, 
+                                                  -10455, -10078, -9710, -9349, -8984, -8623, -8248, 
+                                                  -7886, -7521, -7151, -6799, -6427, -6068, -5691, 
+                                                  -5338, -4972, -4601, -4246, -3875, -3513, -3131, 
+                                                  -2780, -2426, -2050, -1679, -1311, -944, -594, 
+                                                  -225, 132, 510, 873, 1235, 1608, 1972, 2332, 2694, 
+                                                  3067, 3422, 3802, 4152, 4525, 4891, 5250, 5623, 
+                                                  5988, 6354, 6703, 7086, 7450, 7824), 
+                                                origin = as.Date("2000-01-01")))
+frost$may1st <- as.Date(paste0(frost$year, "-05-01"))
+frost$bud_burst_days_since_may1st <- julian(frost$bud_burst, origin = as.Date("2000-01-01")) - 
+  julian(frost$may1st, origin = as.Date("2000-01-01"))
+frost$end_1st_dev_stage_days_since_may1st <- julian(frost$end_1st_dev_stage, 
+                                                    origin = as.Date("2000-01-01")) - 
+  julian(frost$may1st, origin = as.Date("2000-01-01"))
+summary(frost)
+```
+
+```
+##       year         n_frost       bud_burst          end_1st_dev_stage   
+##  Min.   :1947   Min.   :0.00   Min.   :1947-05-09   Min.   :1947-05-17  
+##  1st Qu.:1966   1st Qu.:0.00   1st Qu.:1965-11-11   1st Qu.:1965-11-23  
+##  Median :1984   Median :0.00   Median :1984-05-19   Median :1984-06-02  
+##  Mean   :1984   Mean   :0.32   Mean   :1984-05-12   Mean   :1984-05-24  
+##  3rd Qu.:2002   3rd Qu.:0.00   3rd Qu.:2002-11-09   3rd Qu.:2002-11-20  
+##  Max.   :2021   Max.   :5.00   Max.   :2021-05-22   Max.   :2021-06-03  
+##      may1st           bud_burst_days_since_may1st
+##  Min.   :1947-05-01   Min.   :-4.00              
+##  1st Qu.:1965-10-30   1st Qu.: 8.00              
+##  Median :1984-05-01   Median :11.00              
+##  Mean   :1984-04-30   Mean   :11.69              
+##  3rd Qu.:2002-10-30   3rd Qu.:16.00              
+##  Max.   :2021-05-01   Max.   :23.00              
+##  end_1st_dev_stage_days_since_may1st
+##  Min.   : 8.00                      
+##  1st Qu.:20.00                      
+##  Median :24.00                      
+##  Mean   :23.47                      
+##  3rd Qu.:28.50                      
+##  Max.   :36.00
+```
+
+
+
+# Beispieldaten-->
+<p>Today, we will use a different examplary dataset, based on <code>spati2</code>, shipping with <code>lmfor</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;lmfor&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">data</span>(spati2)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">df &lt;-<span class="st"> </span>spati2</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">rm</span>(spati2)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">d_breaks_cut &lt;-<span class="st"> </span><span class="kw">quantile</span>(df<span class="op">$</span>d, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>))</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">df<span class="op">$</span>d_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(df<span class="op">$</span>d, <span class="dt">breaks =</span> d_breaks_cut, <span class="dt">include.lowest =</span> T)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">dd &lt;-<span class="st"> </span><span class="kw">ddply</span>(df, <span class="kw">c</span>(<span class="st">&quot;d_cut&quot;</span>), summarise, <span class="dt">h_mean =</span> <span class="kw">mean</span>(h),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">            <span class="dt">h_q25 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.25</span>),</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">            <span class="dt">h_q75 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.75</span>))</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">dd<span class="op">$</span>d_lb &lt;-<span class="st"> </span>d_breaks_cut[<span class="op">-</span><span class="kw">length</span>(d_breaks_cut)]</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">dd<span class="op">$</span>d_ub &lt;-<span class="st"> </span>d_breaks_cut[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">dd<span class="op">$</span>b_mean &lt;-<span class="st"> </span><span class="kw">apply</span>(dd[, <span class="kw">c</span>(<span class="st">&quot;d_lb&quot;</span>, <span class="st">&quot;d_ub&quot;</span>)], <span class="dt">MAR =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> mean)</a></code></pre></div>
+</div>
+<div id="store-graphics" class="section level1">
+<h1><span class="header-section-number">1</span> Store graphics</h1>
+<p><strong>File format:</strong></p>
+<ul>
+<li><code>pdf()</code>: ‘portable document format’</li>
+<li><code>jpeg()</code>: ‘joint photographic experts group’</li>
+<li><code>tiff()</code>: ‘tagged image file format’</li>
+<li><code>png()</code>: ‘portable network graphics’</li>
+<li>…</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><code>width</code>: width (for <code>pdf</code> in inches)</li>
+<li><code>height</code>: height (for<code>pdf</code> in inches)</li>
+<li><code>onefile</code>: logical value (should several graphics as separate pages in one file?)</li>
+<li>…</li>
+</ul>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">pdf</span>(<span class="dt">file=</span><span class="st">&#39;&lt;file name&gt;.pdf&#39;</span>, <span class="dt">height =</span> <span class="dv">6</span>, <span class="dt">width =</span> <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">...</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">dev.off</span>()</a></code></pre></div>
+</div>
+<div id="generic-plot-function-plotx-y-type-..." class="section level1">
+<h1><span class="header-section-number">2</span> Generic plot-function <code>plot(x, y, type, ...)</code></h1>
+<p><strong>Das <code>type</code> Argument:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><code>type</code></th>
+<th align="left">Plot element</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>type = &quot;p&quot;</code></td>
+<td align="left"><strong>P</strong> points (default value), scatter plot</td>
+</tr>
+<tr class="even">
+<td align="left"><code>type = &quot;l&quot;</code></td>
+<td align="left">Connecting <strong>l</strong>ine</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>type = &quot;b&quot;</code></td>
+<td align="left"><strong>B</strong>oth (dots and connecting lines), but not on top of each other</td>
+</tr>
+<tr class="even">
+<td align="left"><code>type = &quot;o&quot;</code></td>
+<td align="left">On top of each other (<strong>O</strong>verplotted): Points with connecting lines</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>type = &quot;n&quot;</code></td>
+<td align="left"><strong>N</strong>othing, e.g. if you first create a grid with <code>grid()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>type = &quot;s&quot;</code></td>
+<td align="left"><strong>S</strong>tep function</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>...</code></td>
+<td align="left">See also <code>?plot</code></td>
+</tr>
+</tbody>
+</table>
+<div id="frequently-used-arguments-with-plot" class="section level2">
+<h2><span class="header-section-number">2.1</span> Frequently used arguments with <code>plot()</code></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Argument</th>
+<th align="left">Plot element</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>axes</code></td>
+<td align="left">Should axes be drawn?</td>
+</tr>
+<tr class="even">
+<td align="left"><code>las = 1</code></td>
+<td align="left">All tick labels horizontal?</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>xlim, ylim</code></td>
+<td align="left">Limit of the axes</td>
+</tr>
+<tr class="even">
+<td align="left"><code>xlab, ylab</code></td>
+<td align="left">Labeling of the axes</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bty</code></td>
+<td align="left">Type of box around the plot window</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cex</code></td>
+<td align="left">Size factor of the plot symbols</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>cex.axis</code>,<code>cex.lab</code>, <code>cex.main</code></td>
+<td align="left">Size factor of some parts of the plot</td>
+</tr>
+<tr class="even">
+<td align="left"><code>col</code></td>
+<td align="left">Color of the displayed data (see section on colors)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>lty</code></td>
+<td align="left">Line style (integer)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>lwd</code></td>
+<td align="left">Line width (real value, $  geq 0 $)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>main</code></td>
+<td align="left">Main heading</td>
+</tr>
+<tr class="even">
+<td align="left"><code>pch</code></td>
+<td align="left">Symbol for points (integer)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-plot" class="section level2">
+<h2><span class="header-section-number">2.2</span> Example <code>plot()</code></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">     <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint, <span class="co"># rgb(red = 0, green = 0.38, blue = 0.27, alpha = 0.8),</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">     <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(df<span class="op">$</span>h)))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="example-plot...-type-l" class="section level2">
+<h2><span class="header-section-number">2.3</span> Example <code>plot(..., type = &quot;l&quot;)</code></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">plot</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> paint, <span class="co"># rgb(0, 0.38, 0.27),</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Center of dbh class [m]&quot;</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">     <span class="dt">ylab =</span> <span class="st">&quot;Arith. mean tree height [m]&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>)))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="example-plot...-type-b" class="section level2">
+<h2><span class="header-section-number">2.4</span> Example <code>plot(..., type = &quot;b&quot;)</code></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">plot</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="example-plot...-type-o" class="section level2">
+<h2><span class="header-section-number">2.5</span> Example <code>plot(..., type = &quot;o&quot;)</code></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">plot</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+</div>
+<div id="graphic-modules" class="section level1">
+<h1><span class="header-section-number">3</span> Graphic-‘modules’</h1>
+<p>The remaining examples for <code>type = &quot;n&quot;</code> and <code>type = &quot;s&quot;</code> follow in next examples …</p>
+<p>First: <strong>Functions that help us add something to a graphic</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Plot element</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>axis ()</code></td>
+<td align="left">Adds an axis</td>
+</tr>
+<tr class="even">
+<td align="left"><code>lines ()</code></td>
+<td align="left">Adds a line between points</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>points ()</code></td>
+<td align="left">Adds points</td>
+</tr>
+<tr class="even">
+<td align="left"><code>curve ()</code></td>
+<td align="left">Connects points with a smooth curve</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>abline ()</code></td>
+<td align="left">Adds a straight line (horizontal, vertical, slope and y-intercept)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>grid ()</code></td>
+<td align="left">Adds a grid (defined by tickmarks)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>legend ()</code></td>
+<td align="left">Adds a legend (example on the next slide)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>polygon ()</code></td>
+<td align="left">Adds a filled polygon</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>text ()</code></td>
+<td align="left">Adds text</td>
+</tr>
+<tr class="even">
+<td align="left"><code>mtext ()</code></td>
+<td align="left">Adds text in the plot margins</td>
+</tr>
+</tbody>
+</table>
+<div id="example-lines" class="section level2">
+<h2><span class="header-section-number">3.1</span> Example <code>lines()</code></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">lines</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="example-plot...-type-n-grid-and-points" class="section level2">
+<h2><span class="header-section-number">3.2</span> Example <code>plot(..., type = &quot;n&quot;)</code>, <code>grid()</code> and <code>points()</code></h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">     <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">grid</span>(<span class="dt">col =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">points</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="example-lines-abline-and-lines...-type-s" class="section level2">
+<h2><span class="header-section-number">3.3</span> Example <code>lines()</code>, <code>abline()</code> and <code>lines(..., type = &quot;s&quot;)</code></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">tmp &lt;-<span class="st"> </span><span class="kw">table</span>(df<span class="op">$</span>h)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">tmp1 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">names</span>(tmp))</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">tmp2 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(tmp)</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">0</span>, tmp1), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">cumsum</span>(tmp2)<span class="op">/</span><span class="kw">length</span>(df<span class="op">$</span>h)), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;Empirical cumulative density&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">col =</span> paint)</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="fl">0.8</span>, <span class="fl">0.8</span>, <span class="fl">0.8</span>))</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">0</span>, tmp1), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">cumsum</span>(tmp2)<span class="op">/</span><span class="kw">length</span>(df<span class="op">$</span>h)), <span class="dt">type =</span> <span class="st">&quot;s&quot;</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="example-polygon" class="section level2">
+<h2><span class="header-section-number">3.4</span> Example <code>polygon()</code></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">paint_a &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>,</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">     <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">polygon</span>(<span class="kw">c</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, <span class="kw">rev</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>)), <span class="kw">c</span>(dd<span class="op">$</span>h_q25, <span class="kw">rev</span>(dd<span class="op">$</span>h_q75)),</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">        <span class="dt">col =</span> paint_a, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="kw">points</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">0.1</span>, <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>))</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="kw">lines</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">col =</span> paint, <span class="dt">lwd =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+</div>
+</div>
+<div id="legend" class="section level1">
+<h1><span class="header-section-number">4</span> <code>legend()</code></h1>
+<ul>
+<li>Adds explanation for plot elements.</li>
+<li>Position either by <code>x</code>- and <code>y</code>-coordinates, or by specifying <code>&quot;topleft&quot;</code>, <code>&quot;bottomleft&quot;</code>, <code>&quot;topright&quot;</code> or <code>&quot;bottomright&quot;</code></li>
+<li>Optional with boundary box.</li>
+<li>Argument <code>legend</code>: vector with explanations.</li>
+<li>Further arguments define colors, plot symbols, line widths, …</li>
+</ul>
+<div id="example-legend" class="section level2">
+<h2><span class="header-section-number">4.1</span> Example <code>legend()</code></h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>,</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">     <span class="dt">col =</span> paint, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">lines</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">col =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">1</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="ot">NA</span>), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">       <span class="dt">col =</span> <span class="kw">c</span>(paint, <span class="kw">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)),</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">       <span class="kw">c</span>(<span class="st">&quot;Obs.&quot;</span>, <span class="st">&quot;Arithm. mean&quot;</span>))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
+</div>
+</div>
+<div id="further-plot-types" class="section level1">
+<h1><span class="header-section-number">5</span> Further plot types</h1>
+<div id="boxplot" class="section level2">
+<h2><span class="header-section-number">5.1</span> <code>boxplot()</code></h2>
+<p>A <strong>box plot</strong> shows:</p>
+<ul>
+<li>The median as a thick horizontal line,</li>
+<li>the first (<span class="math inline">\(Q_1\)</span>) and third quartile (<span class="math inline">\(Q_3\)</span>) as upper and lower box limits,</li>
+<li>‘fences’ calculated by:
+<span class="math display">\[
+\text{upper fence limit} = \min\left(\max(x),Q_3+1.5\cdot\text{IQA}\right),
+\]</span>
+other
+<span class="math display">\[
+\text {lower fence edge} = \max\left(\min(x),Q_1-1.5\cdot\text{IQA}\right),
+\]</span>
+with interquartile range <span class="math inline">\(\text{IQA} = \vert Q_3-Q_1 \vert\)</span>, as well as</li>
+<li>Points outside the fences.</li>
+</ul>
+<p><strong>Use</strong> with argument <code>x</code> as a variable or formula:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">boxplot</span>(x, ..., <span class="dt">varwidth =</span> F, names, <span class="dt">border =</span> <span class="kw">par</span>(<span class="st">&quot;fg&quot;</span>), <span class="dt">col =</span> <span class="ot">NULL</span>, <span class="dt">log =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">        <span class="dt">horizontal =</span> F, <span class="dt">add =</span> F)</a></code></pre></div>
+<div id="examples" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Examples</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">boxplot</span>(df<span class="op">$</span>h, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">frame =</span> F, <span class="dt">las =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">        <span class="dt">col =</span> paint)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">length</span>(<span class="kw">levels</span>(df<span class="op">$</span>d_cut)), <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">tmp &lt;-<span class="st"> </span><span class="kw">levels</span>(df<span class="op">$</span>d_cut)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">6.2</span>, <span class="fl">4.1</span>, <span class="dv">0</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">boxplot</span>(h <span class="op">~</span><span class="st"> </span>d_cut, <span class="dt">data =</span> df, <span class="dt">varwidth =</span> T, <span class="dt">names =</span> tmp, <span class="dt">frame =</span> F, <span class="dt">las =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">        <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, </a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">        <span class="dt">col =</span> paint)<span class="co">## rgb(0, 0.38, 0.27, alpha = 0.5))</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw">mtext</span>(<span class="dv">1</span>, <span class="dt">text =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">line =</span> <span class="fl">5.1</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+</div>
+<div id="stripchart" class="section level2">
+<h2><span class="header-section-number">5.2</span> <code>stripchart()</code></h2>
+<p><code>stripcharts</code> can be helpful additions to box plots, especially with small samples:</p>
+<p>“<code>stripchart</code> produces one dimensional scatter plots […] of the given data. These plots are a good alternative to boxplots when sample sizes are small.” (Quote taken from <code>?stripchart</code>)</p>
+<ul>
+<li>The argument <code>method</code> specifies by which method superimposed points should be made distinguishable, in particular <code>method = &quot;jitter&quot;</code> or <code>method = &quot;stack&quot;</code>.</li>
+</ul>
+<div id="example" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Example</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">tmp &lt;-<span class="st"> </span><span class="kw">levels</span>(df<span class="op">$</span>d_cut)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">sdf &lt;-<span class="st"> </span><span class="kw">subset</span>(df, d_cut <span class="op">==</span><span class="st"> &quot;(26.9,51]&quot;</span>)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw">boxplot</span>(sdf<span class="op">$</span>h, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">cex =</span> <span class="dv">0</span>, <span class="dt">frame =</span> F, <span class="dt">las =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">        <span class="dt">col =</span> paint)</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">stripchart</span>(sdf<span class="op">$</span>h, <span class="dt">add =</span> T, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>,</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">           <span class="dt">jitter =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+</div>
+<div id="hist" class="section level2">
+<h2><span class="header-section-number">5.3</span> <code>hist()</code></h2>
+<p>A histogram divides the value range of the sample into (preset equidistant) intervals and then shows the absolute frequency of the observations within these intervals through the heights of areas.
+The histogram thus provides a rough estimate for the probability density function.</p>
+<ul>
+<li>The argument <code>breaks</code> defines the values of the interval limits or the number of intervals.</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">hist</span>(x, ..., breaks, <span class="dt">freq =</span> <span class="ot">NULL</span>, main, xlim, xlab, ylab, <span class="dt">axes =</span> <span class="ot">TRUE</span>, bty, col)</a></code></pre></div>
+<div id="example-1" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Example</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">hist</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">col =</span> paint,</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">     <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abs. frequency&quot;</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+</div>
+<div id="density" class="section level2">
+<h2><span class="header-section-number">5.4</span> <code>density()</code></h2>
+<ul>
+<li><code>density ()</code> provides a continuous estimate of the probability density function.</li>
+<li>A kernel function is defined at each observation point, the weights of these functions are estimated, and the sum of the kernel functions multiplied by the weights is then returned at each point as an estimator.</li>
+<li>Overlapping a kernel function with areas for which the underlying size is not defined, positive density estimates can arise as artifacts that would be correctly equal to <span class="math inline">\(0\)</span>.</li>
+<li><code>density ()</code> only returns information about the calculated estimate, the plot then works separately.</li>
+<li>A kernel density estimate is a statistical model with a few assumptions, but pretends to be just a simple descriptive graphic.</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">obj &lt;-<span class="st"> </span><span class="kw">density</span>(x, ..., n, from, to, na.rm)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">plot</span>(obj)</a></code></pre></div>
+<div id="example-hist-and-density" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Example <code>hist()</code> and <code>density()</code></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="fl">2.5</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">tmp1 &lt;-<span class="st"> </span><span class="kw">density</span>(df<span class="op">$</span>h); tmp2 &lt;-<span class="st"> </span><span class="kw">hist</span>(df<span class="op">$</span>h, <span class="dt">plot =</span> F)</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">x_lim &lt;-<span class="st"> </span><span class="kw">range</span>(<span class="kw">c</span>(df<span class="op">$</span>h, tmp1<span class="op">$</span>x)); y_lim &lt;-<span class="st"> </span><span class="kw">range</span>(<span class="kw">c</span>(tmp1<span class="op">$</span>y, tmp2<span class="op">$</span>density))</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw">hist</span>(df<span class="op">$</span>h, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">freq =</span> F, <span class="dt">xlim =</span> x_lim, <span class="dt">ylim =</span> y_lim,</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">     <span class="dt">xlab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Probability density&quot;</span>,</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">     <span class="dt">col =</span> paint, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="kw">lines</span>(tmp1<span class="op">$</span>x, tmp1<span class="op">$</span>y, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-22-1.png" width="576" /></p>
+</div>
+</div>
+<div id="contour-und-filled.contour" class="section level2">
+<h2><span class="header-section-number">5.5</span> <code>contour()</code> und <code>filled.contour()</code></h2>
+<p>Three-dimensional information can be represented by contour lines with <code>contour()</code>.</p>
+<p>Some preliminary work for the examples on the next two slides:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">mu_seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dt">length =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">sd_seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">length =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">gr &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(mu_seq, sd_seq)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">z &lt;-<span class="st"> </span><span class="kw">apply</span>(gr, <span class="dt">MAR =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">           <span class="dt">FUN =</span> <span class="cf">function</span>(x, y){</a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">             <span class="kw">mean</span>(<span class="kw">dnorm</span>(<span class="dt">x =</span> y, <span class="dt">mean =</span> x[<span class="dv">1</span>], <span class="dt">sd =</span> x[<span class="dv">2</span>], <span class="dt">log =</span> T))},</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">           <span class="dt">y =</span> df<span class="op">$</span>h)</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">z &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">length</span>(mu_seq), <span class="dt">ncol =</span> <span class="kw">length</span>(sd_seq), z)</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co"># library(&quot;RColorBrewer&quot;)</span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="co"># library(&quot;scales&quot;)</span></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="co"># nwfva_palette_1 &lt;- gradient_n_pal(c(&quot;#7C4113&quot;,&quot;#90BD88&quot;,&quot;#004E92&quot;))(seq(0, 1,le = 50))</span></a></code></pre></div>
+<div id="example-contour" class="section level3">
+<h3><span class="header-section-number">5.5.1</span> Example <code>contour()</code></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw">contour</span>(<span class="dt">x =</span> mu_seq, <span class="dt">y =</span> sd_seq<span class="op">^</span><span class="dv">2</span>, <span class="dt">z =</span> z, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">        <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(mu)), <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(sigma<span class="op">^</span><span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">        <span class="dt">col =</span> paint, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw">points</span>(<span class="kw">mean</span>(df<span class="op">$</span>h), <span class="kw">var</span>(df<span class="op">$</span>h), <span class="dt">pch =</span> <span class="dv">16</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="example-filled.contour" class="section level3">
+<h3><span class="header-section-number">5.5.2</span> Example <code>filled.contour()</code></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">filled.contour</span>(<span class="dt">x =</span> mu_seq, <span class="dt">y =</span> sd_seq<span class="op">^</span><span class="dv">2</span>, <span class="dt">z =</span> z, <span class="dt">col =</span> paint,</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">               <span class="dt">levels =</span> <span class="kw">seq</span>(<span class="kw">floor</span>(<span class="kw">min</span>(z)), <span class="kw">ceiling</span>(<span class="kw">max</span>(z)), <span class="dt">length =</span> <span class="dv">50</span>), <span class="dt">las =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">               <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(mu)), <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(sigma<span class="op">^</span><span class="dv">2</span>)))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+</div>
+<div id="mosaicplot" class="section level2">
+<h2><span class="header-section-number">5.6</span> <code>mosaicplot()</code></h2>
+<p>Two-dimensional frequency tables can be displayed with <code>mosaicplot()</code>.</p>
+<p>Some preliminary work for the following example:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">df<span class="op">$</span>h_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(df<span class="op">$</span>h, <span class="dt">breaks =</span> <span class="kw">quantile</span>(df<span class="op">$</span>h, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>)),</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">               <span class="dt">include.lowest =</span> T)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">df<span class="op">$</span>h_cut &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>h_cut, <span class="dt">levels =</span> <span class="kw">rev</span>(<span class="kw">levels</span>(df<span class="op">$</span>h_cut)))</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">tab &lt;-<span class="st"> </span><span class="kw">table</span>(df<span class="op">$</span>d_cut, df<span class="op">$</span>h_cut)</a></code></pre></div>
+<div id="example-2" class="section level3">
+<h3><span class="header-section-number">5.6.1</span> Example</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">length</span>(<span class="kw">levels</span>(df<span class="op">$</span>h_cut)), <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="kw">mosaicplot</span>(tab, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">           <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">col =</span> paint, <span class="dt">off =</span> <span class="dv">2</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+</div>
+<div id="quantile-quantile-plot" class="section level2">
+<h2><span class="header-section-number">5.7</span> Quantile-quantile plot</h2>
+<ul>
+<li>Compares two samples (one sample and one distribution) by their quantiles.</li>
+<li>Each observation defines a quantile.</li>
+<li>Similar distributions should result in straight diagonal.</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">qqnorm</span>(y, ylim, <span class="dt">main =</span> <span class="st">&quot;Normal Q-Q Plot&quot;</span>,</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">       <span class="dt">xlab =</span> <span class="st">&quot;Theoretical Quantiles&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Sample Quantiles&quot;</span>,</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">       <span class="dt">plot.it =</span> <span class="ot">TRUE</span>, <span class="dt">datax =</span> <span class="ot">FALSE</span>, ...)</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="kw">qqline</span>(y, <span class="dt">datax =</span> <span class="ot">FALSE</span>, ...)</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="kw">qqplot</span>(x, y, <span class="dt">plot.it =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="kw">deparse</span>(<span class="kw">substitute</span>(x)),</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">       <span class="dt">ylab =</span> <span class="kw">deparse</span>(<span class="kw">substitute</span>(y)), ...)</a></code></pre></div>
+<div id="examples-1" class="section level3">
+<h3><span class="header-section-number">5.7.1</span> Examples</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">boxplot</span>(x, <span class="dt">horizontal =</span> T)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="kw">hist</span>(x)</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">d &lt;-<span class="st"> </span><span class="kw">density</span>(x)</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="kw">plot</span>(d)</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">d3 &lt;-<span class="st"> </span><span class="kw">density</span>(x, <span class="dt">kernel =</span> <span class="st">&quot;tri&quot;</span>, <span class="dt">bw =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="kw">lines</span>(d3, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+</div>
+</div>
+</div>
+<div id="organization-of-the-graphics-window-with-par-and-layout" class="section level1">
+<h1><span class="header-section-number">6</span> Organization of the graphics window with <code>par ()</code> and <code>layout ()</code></h1>
+<ul>
+<li>The function <code>par()</code> holds – based on a list – all relevant parameters for the graphics window.</li>
+<li>Overview through <code>?par</code></li>
+<li><code>dev.off()</code> restores the original values.</li>
+</ul>
+<p>The following combination (‘multiple frames’ and changing the ‘margin specifications’) is often used:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">4.1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a></code></pre></div>
+<p><code>layout()</code> is a further helpful too in order to organise severel graphics in one device.</p>
+<div id="example-layout" class="section level2">
+<h2><span class="header-section-number">6.1</span> Example <code>layout()</code></h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">paint_a &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co">#par(mar = c(4.1, 4.1, 0.5, 1.1))</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>)), <span class="dt">heights =</span> <span class="kw">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>))</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="kw">hist</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abs. frequency&quot;</span>,</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">     <span class="dt">col =</span> paint_a, <span class="dt">border =</span> paint)</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="kw">hist</span>(df<span class="op">$</span>h, <span class="dt">xlab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abs. frequency&quot;</span>,</a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">     <span class="dt">col =</span> paint_a, <span class="dt">border =</span> paint)</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> paint_a,</a>
+<a class="sourceLine" id="cb28-11" data-line-number="11">     <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+</div>
+<div id="colours" class="section level1">
+<h1><span class="header-section-number">7</span> Colours</h1>
+<ul>
+<li>Colors are changed by the argument <code>col = &quot;name&quot;</code>.</li>
+<li>The function <code>colors ()</code> contains already defined standard colors.</li>
+<li>The function <code>palette ()</code> contains the color palette that is used when <code>col</code> is specified by a numeric value.</li>
+<li><code>rgb</code> generates colors by mixing red, green and blue components (with the possibility of <strong>alpha</strong> shading} through the argument <code>alpha</code>).</li>
+<li>In this course I mostly use the (very rich) package <code>colorspace</code> ([JSS article] (<a href="https://www.jstatsoft.org/index.php/jss/article/view/v096i01/1395" class="uri">https://www.jstatsoft.org/index.php/jss/article/view/v096i01/1395</a>)).</li>
+<li>Alternatively, package <code>viridis</code> supports the search for optimal colors in terms of taking into account most types of color blindness, as well as the maximum contrast in gray-scale printing of colored graphics.</li>
+</ul>
+<div id="example-viridis" class="section level2">
+<h2><span class="header-section-number">7.1</span> Example <code>viridis()</code></h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;viridis&quot;</span>)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">df<span class="op">$</span>dmean_rounded &lt;-<span class="st"> </span><span class="kw">round</span>(df<span class="op">$</span>dmean)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">cols &lt;-<span class="st"> </span><span class="kw">viridis</span>(<span class="dt">n =</span> <span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">max</span>(df<span class="op">$</span>dmean_rounded) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(df<span class="op">$</span>dmean_rounded), <span class="dt">alpha =</span> <span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">cols &lt;-<span class="st"> </span><span class="kw">rev</span>(cols)</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="kw">layout</span>(<span class="dt">widths =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="fl">0.1</span>), <span class="dt">mat =</span> <span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb29-8" data-line-number="8">     <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>,</a>
+<a class="sourceLine" id="cb29-9" data-line-number="9">     <span class="dt">col =</span> cols[<span class="kw">as.numeric</span>(<span class="kw">as.factor</span>(df<span class="op">$</span>dmean_rounded))])</a>
+<a class="sourceLine" id="cb29-10" data-line-number="10"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb29-11" data-line-number="11"><span class="kw">plot</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(cols)), <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cols), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb29-12" data-line-number="12">     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb29-13" data-line-number="13"><span class="kw">axis</span>(<span class="dv">4</span>, <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb29-14" data-line-number="14">     <span class="kw">seq</span>(<span class="kw">min</span>(df<span class="op">$</span>dmean_rounded), <span class="kw">max</span>(df<span class="op">$</span>dmean_rounded), <span class="dt">length =</span> <span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb29-15" data-line-number="15"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cols)) {</a>
+<a class="sourceLine" id="cb29-16" data-line-number="16">  <span class="kw">polygon</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>), i <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">-0.5</span>), <span class="dt">border =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb29-17" data-line-number="17">          <span class="dt">col =</span> cols[i])</a>
+<a class="sourceLine" id="cb29-18" data-line-number="18">}</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+</div>
+<div id="mathematical-notation-in-graphics" class="section level1">
+<h1><span class="header-section-number">8</span> Mathematical notation in graphics</h1>
+<ul>
+<li>R offers limited possibilities for mathematical notation in graphics.</li>
+<li>Syntax similar to LaTeX</li>
+<li>The formulation is passed as an argument to the <code>expression()</code> function.</li>
+<li>For an overview of the (im) possibilities see <code>?plotmath</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>frac(a,b)</code></td>
+<td align="left">Fraction</td>
+</tr>
+<tr class="even">
+<td align="left"><code>[i]</code></td>
+<td align="left">Subscript</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>alpha, beta</code></td>
+<td align="left">Greek letters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sqrt(a)</code></td>
+<td align="left">Squarerootfunction</td>
+</tr>
+<tr class="odd">
+<td align="left">…</td>
+<td align="left">See <code>?plotmath</code></td>
+</tr>
+</tbody>
+</table>
+<div id="example-3" class="section level2">
+<h2><span class="header-section-number">8.1</span> Example</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">plot</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">axes =</span> F, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">txt1 &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Stand density: &quot;</span>, <span class="kw">frac</span>(<span class="st">&quot;No. individuals&quot;</span>,</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">                         <span class="st">&quot;Stand area&quot;</span>), <span class="st">&quot;   [&quot;</span>, N <span class="op">%.%</span><span class="st"> </span>ha<span class="op">^-</span><span class="dv">1</span>, <span class="st">&quot;]&quot;</span>))</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">txt2 &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Quadratic mean Stem diameter: &quot;</span>, <span class="kw">sqrt</span>(<span class="kw">frac</span>(</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">                         <span class="kw">sum</span>(d[i]<span class="op">^</span><span class="dv">2</span>, i <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, n),n)), <span class="st">&quot;   [&quot;</span>, cm<span class="op">^</span><span class="dv">2</span>, <span class="st">&quot;]&quot;</span>))</a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="kw">text</span>(<span class="dv">1</span>, <span class="fl">1.2</span>, txt1); <span class="kw">text</span>(<span class="dv">1</span>, <span class="fl">0.9</span>, txt2)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
+</div>
+<div id="lattice-graphics-for-grouped-clustered-data" class="section level1">
+<h1><span class="header-section-number">9</span> <code>lattice</code> Graphics for grouped / clustered data</h1>
+<ul>
+<li><code>library(&quot;lattice&quot;)</code></li>
+<li>Conveniently plot grouped data into a graph</li>
+<li>‘Lattice structure’ offers better division compared to <code>par(mfrow = c(i, j))</code></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th>Graphic type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>xyplot</code></td>
+<td>Scatter plot</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bwplot</code></td>
+<td>Box plot</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>barchart</code></td>
+<td>Bar plot</td>
+</tr>
+<tr class="even">
+<td align="left"><code>contourplot</code></td>
+<td>Contour lines (‘3D’)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>levelplot</code></td>
+<td>Filled contour lines</td>
+</tr>
+<tr class="even">
+<td align="left"><code>histogram</code></td>
+<td>Histogram</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>densityplot</code></td>
+<td>kernel density estimation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="cf">function</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">|</span><span class="st"> </span>g, data, parameters,...)</a></code></pre></div>
+<ul>
+<li>Plot of <code>x</code> against<code>y</code>,</li>
+<li>Grouped (individual plot windows) by <code>g</code>,</li>
+<li>Returns <code>trellis</code> object (no<code>base</code> plot),</li>
+<li>no ‘target variable’ <code>y</code> for<code>densityplot</code>, <code>bwplot</code> and<code>histogram</code>.</li>
+</ul>
+<div id="example-4" class="section level2">
+<h2><span class="header-section-number">9.1</span> Example:</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;lattice&quot;</span>)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">df<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>plot)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">paint_a &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="kw">xyplot</span>(h <span class="op">~</span><span class="st"> </span>d<span class="op">/</span><span class="dv">100</span> <span class="op">|</span><span class="st"> </span>plot, <span class="dt">data =</span> df, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, </a>
+<a class="sourceLine" id="cb32-6" data-line-number="6">       <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">col =</span> paint_a, </a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">       <span class="dt">par.strip.text =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>), </a>
+<a class="sourceLine" id="cb32-8" data-line-number="8">       <span class="dt">par.settings =</span> <span class="kw">list</span>(<span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> paint)))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+</div>
+</div>
+<div id="ggplot" class="section level1">
+<h1><span class="header-section-number">10</span> <code>ggplot</code></h1>
+<p>The basics to Grammar of Graphics in Session 05.</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_01.pdf", "PDF"]],
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
