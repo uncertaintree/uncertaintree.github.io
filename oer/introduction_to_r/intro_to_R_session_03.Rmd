@@ -1,0 +1,691 @@
+---
+date: "Oktober 26, 2021 (Version 0.1)"
+#author: "Holger Sennhenn-Reulen"
+title: "**Introduction to R: Session 03**"
+author: "Holger Sennhenn-Reulen^[Private webpage: [uncertaintree.github.io](https://uncertaintree.github.io)], Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)"
+publisher: "Me"
+site: bookdown::bookdown_site
+documentclass: scrartcl
+fontsize: 10pt
+bibliography: references.bib
+# biblio-style: "apalike"
+link-citations: yes
+output:
+  bookdown::gitbook:
+    highlight: monochrome
+    css: style_gitbook.css
+    citation_package: default
+    anchor_sections: FALSE
+    split_by: "none"
+    config:
+      toc:
+        collapse: subsubsection
+        scroll_highlight: yes
+        before: null
+        after: null
+      toolbar:
+        position: fixed
+      edit : null
+      download: [["intro_to_R_session_01.pdf", "PDF"]]
+      search: no
+      fontsettings: no
+      info: no
+      sharing: no
+  bookdown::pdf_book:
+    pandoc_args: --top-level-division=section
+    citation_package: natbib
+    highlight: monochrome
+    includes:
+      in_header: "preamble_gitbook.tex"
+---
+
+<!--`r if (knitr::is_html_output()) '# About this course{-}'`
+`r if (knitr::is_html_output()) 'This course introduces basic R-programming skills needed for applied statistical modeling in R.'`-->
+
+`r if (knitr::is_html_output()) 'All contents are licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).'`
+`r if (knitr::is_latex_output()) '\\vfill'`
+`r if (knitr::is_latex_output()) '\\begin{center}'`
+`r if (knitr::is_latex_output()) '\\begin{minipage}{.6\\textwidth}'`
+`r if (knitr::is_latex_output()) '\\textsf{All contents are licensed under CC BY-NC-ND 4.0 \\href{https://creativecommons.org/licenses/by-nc-nd/4.0/}{(Link)}.}'`
+`r if (knitr::is_latex_output()) '\\end{minipage}'`
+`r if (knitr::is_latex_output()) '\\end{center}'`
+`r if (knitr::is_latex_output()) '\\vfill'`
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Data {-}
+
+## Drought {-}
+
+Data basis: Fischer, R., Dobbertin, M., Granke, O., et al., 2006. The condition of forests in Europe. 2006
+Executive report. UNECE, Hamburg.
+
+```{r}
+bair <- c(.505, .648, .523, .426, .64, .5, .257, .866, .434, .368, .54, .923, .702, 
+          .615, 1.013, .807, .262, .887, 1.281, 1.125, .99, 1.2, .983, .697, .606, 
+          .718, .48, .822, .944, .77, 1.036, 1.23, .68, .985)
+elev <- c(335, 460, 480, 515, 540, 650, 680, 715, 730, 835, 860, 960,
+          1020, 1025, 1100, 1150, 1150, 1170, 1190, 1350, 1400, 1500, 1540,
+          475, 480, 507.5, 580, 750, 780, 800, 1025, 1100, 1150, 1200)
+species <- c("Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Beech", "Beech", "Beech", "Beech",
+             "Beech", "Beech", "Beech", "Beech", "Beech", "Beech", "Beech")
+drought <- data.frame(bair = bair,
+                      elev = elev,
+                      species = species)
+summary(drought)
+```
+For further context information, another source working on and interpereting this data (p. 202-203): 
+
+Matthias Dobbertin, Markus Neumann, Hans-Werner Schroeck, Chapter 10 - Tree Growth Measurements in Long-Term Forest Monitoring in Europe,
+Editor(s): Marco Ferretti, Richard Fischer,
+Developments in Environmental Science,
+Elsevier,
+Volume 12,
+2013,
+Pages 183-204,
+[https://doi.org/10.1016/B978-0-08-098222-9.00010-8](https://doi.org/10.1016/B978-0-08-098222-9.00010-8)
+
+### Frost {-}
+
+<!--Datenbasis: Deutscher Wetterdienst, hier dargestellte Werte selbst aus Tageseinzelwerten erzeugt.-->
+Data basis: Deutscher Wetterdienst, values shown here were generated over individual values by myself.
+
+Direct download links for data basis (Stations Id 1691, Goettingen): 
+
+- [historical data)](ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/tageswerte_KL_01691_19270101_20201231_hist.zip)
+- [recent data)](ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_01691_akt.zip)
+
+Some definitions:
+
+- Budburst is estimated based on first day with degree days > 220 (begin counting on March, 20). 
+- End of 1st development stage is estimated based on first day with degree days > 320 (begin counting on March, 20). 
+- Definition frost event: $\min\left(\text{Temp}_{50\text{cm}}\right) < -1.95°\text{C}$
+
+```{r}
+frost <- data.frame(year = 1947:2021, 
+                    n_frost = c(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 
+                                0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                                0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 
+                                3, 2, 0, 0, 0, 0, 0, 0, 1, 5, 0), 
+                    bud_burst = as.Date(c(-19230, -18867, -18503, -18127, -17758, -17408, -17034, 
+                                          -16661, -16293, -15929, -15566, -15202, -14847, -14475, 
+                                          -14121, -13744, -13384, -13017, -12647, -12291, -11917, 
+                                          -11563, -11191, -10821, -10462, -10092, -9720, -9361, 
+                                          -8997, -8635, -8261, -7896, -7530, -7164, -6808, -6436, 
+                                          -6078, -5705, -5347, -4981, -4619, -4254, -3883, -3524, 
+                                          -3145, -2788, -2437, -2060, -1694, -1322, -958, -602, 
+                                          -237, 124, 499, 864, 1222, 1592, 1957, 2321, 2681, 3055, 
+                                          3408, 3789, 4137, 4513, 4877, 5234, 5610, 5976, 6345, 
+                                          6691, 7074, 7435, 7812), 
+                                        origin = as.Date("2000-01-01")),
+                    end_1st_dev_stage = as.Date(c(-19222, -18859, -18489, -18118, -17746, -17397, 
+                                                  -17026, -16650, -16280, -15921, -15552, -15192, 
+                                                  -14837, -14464, -14104, -13726, -13370, -13006, 
+                                                  -12633, -12281, -11905, -11545, -11180, -10808, 
+                                                  -10455, -10078, -9710, -9349, -8984, -8623, -8248, 
+                                                  -7886, -7521, -7151, -6799, -6427, -6068, -5691, 
+                                                  -5338, -4972, -4601, -4246, -3875, -3513, -3131, 
+                                                  -2780, -2426, -2050, -1679, -1311, -944, -594, 
+                                                  -225, 132, 510, 873, 1235, 1608, 1972, 2332, 2694, 
+                                                  3067, 3422, 3802, 4152, 4525, 4891, 5250, 5623, 
+                                                  5988, 6354, 6703, 7086, 7450, 7824), 
+                                                origin = as.Date("2000-01-01")))
+frost$may1st <- as.Date(paste0(frost$year, "-05-01"))
+frost$bud_burst_days_since_may1st <- julian(frost$bud_burst, origin = as.Date("2000-01-01")) - 
+  julian(frost$may1st, origin = as.Date("2000-01-01"))
+frost$end_1st_dev_stage_days_since_may1st <- julian(frost$end_1st_dev_stage, 
+                                                    origin = as.Date("2000-01-01")) - 
+  julian(frost$may1st, origin = as.Date("2000-01-01"))
+summary(frost)
+```
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+<!--
+# Beispieldaten {-}
+
+```{r, echo = F, warning = F, message=FALSE}
+library("lmfor")
+library("plyr")
+data(spati2)
+d <- spati2
+rm(spati2)
+d_breaks_cut <- quantile(d$d, probs = seq(0, 1, by = 0.05))
+d$d_cut <- cut(d$d, breaks = d_breaks_cut, include.lowest = T)
+dd <- ddply(d, c("d_cut"), summarise, h_mean = mean(h),
+            h_q25 = quantile(h, probs = 0.25),
+            h_q75 = quantile(h, probs = 0.75))
+dd$d_lb <- d_breaks_cut[-length(d_breaks_cut)]
+dd$d_ub <- d_breaks_cut[-1]
+dd$b_mean <- apply(dd[, c("d_lb", "d_ub")], MAR = 1, FUN = mean)
+copy_original_par_mar <- par()$mar
+par(mar = c(5.1, 4.1, 0.1, 2.1))
+```
+-->
+
+# Objectives of control structures.
+
+**'Automation' of the repetition of structurally identical commands.**
+
+- Repetition of a command -- with parameter / quantities remaining the same or changing -- with a predetermined or flexible number of repetitions.
+- Conditional execution of various tasks.
+- Generalization of tasks by defining functions.
+- Combination of information in objects.
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Logical comparisons.
+
+Command   `TRUE` if:
+--------- --------------
+`==`      Equality
+`! =`     Inequality
+`>`, `>=` left side greater than (or equal to) the right side
+`<`, `<=` left side less than (or equal to) the right side
+`% in%`   Is left side in vector on right side?
+
+- `all ()` returns `TRUE` if all elements of the vector are `TRUE`.
+- `any ()` returns `TRUE` if at least one element of the vector is `TRUE`.
+- `is.na()` and `is.null()` return `TRUE` if the respective object (e.g. element of a vector) is `NA` or `NULL`.
+- a logical value can be negated with a preceding `!` (e.g. `!TRUE` is` FALSE`)
+- `which()` returns the index set (as an integer vector) if the logical comparison resulted in `TRUE`.
+
+## Exercises
+
+```{r, results='hide'}
+is.na(drought$bair)
+any(is.na(drought$bair))
+drought$bair > 0
+all(drought$bair > 0)
+drought$bair > 1
+any(drought$bair > 1)
+all(drought$bair > 1)
+which(drought$bair > 1)
+drought$bair[which(drought$bair > 1)]
+(tmp <- round(drought$bair, 1))
+c(.8, 1.2) %in% tmp
+c(.8, 1.2) %in% drought$bair
+which(tmp %in% c(.8, 1.2))
+drought$bair[which(tmp %in% c(.8, 1.2))]
+tmp <- c(drought$bair[1:5], NA)
+all(tmp > 0)
+any(is.na(tmp))
+which(is.na(tmp))
+all(tmp[-which(is.na(tmp))] > 0)
+mean(tmp)
+mean(tmp, na.rm = T)
+```
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Conditional execution
+
+## 'if-else'
+
+**Usage:**
+```{r, eval=F}
+if (Condition) {
+  ... ## Commands if Condition is TRUE
+} else {
+  ... ## Commands if Condition is FALSE
+}
+```
+
+- `TRUE` or `FALSE` condition necessary.
+- 'if-else'-sequences can be nested within one another.
+
+**Example together with the next topic.**
+
+## 'for'-loops
+
+'for' loops often offer a simple and pragmatic way to complete steps in data management / preparation.
+
+**Usage:**
+```{r, eval=F}
+for (index in vector) {
+  ... index ... ## Command that in some form depend on index.
+}
+```
+
+- New object `index` runs all elements in `vector`.
+- `index` remains constant during `... index ...`
+- `index` jumps to the next (if available) value of `vector` after running through `... index ...`.
+- `index` takes each value of `vector` once.
+- The number of iterations of `... index ...` is determined by the length of `vector`.
+
+## Example of a `for` loop
+
+```{r}
+tmp1 <- frost$bud_burst_days_since_may1st
+tmp2 <- frost$end_1st_dev_stage_days_since_may1st
+days_since_may1st <- min(tmp1):max(tmp2)
+rm(tmp1, tmp2)
+par(mar = c(3, 3, .1, .1), mgp = c(2, .5, 0), tcl = -.3)
+plot(frost$year, frost$bud_burst_days_since_may1st, type = "n",
+     ylim = range(days_since_may1st), bty = "n")
+for (index in 1:nrow(frost)) {
+  tmp_x <- rep(frost$year[index], times = 2)
+  tmp_y <- c(frost$bud_burst_days_since_may1st[index], 
+             frost$end_1st_dev_stage_days_since_may1st[index])
+  lines(x = tmp_x, y = tmp_y)
+}
+```
+
+## Example of a `for` loop with `if`
+
+Preparations:
+
+```{r}
+res <- data.frame(days_since_may1st = days_since_may1st, 
+                  n_at_risk = NA)
+```
+
+### Illustrating the loop index:
+
+```{r}
+paint <- colorspace::divergingx_hcl(n = nrow(res), pal = "Zissou")
+par(mar = c(3, 3, .1, .1), mgp = c(2, .5, 0), tcl = -.3)
+plot(1:nrow(res), res$days_since_may1st, col = paint, pch = 16, bty = "n", 
+     xlab = "for-loop index 'index'", ylab = "res$days_since_may1st at 'index'")
+```
+
+### An iteration 'by hand':
+
+```{r}
+par(mar = c(3, 3, .1, .1), mgp = c(2, .5, 0), tcl = -.3)
+plot(frost$year, frost$bud_burst_days_since_may1st, type = "n",
+     ylim = range(days_since_may1st), bty = "n")
+for (index in 1:nrow(frost)) { ## here, the uninteresting loop
+  tmp_x <- rep(frost$year[index], times = 2)
+  tmp_y <- c(frost$bud_burst_days_since_may1st[index], 
+             frost$end_1st_dev_stage_days_since_may1st[index])
+  lines(x = tmp_x, y = tmp_y)
+}
+index <- 1
+abline(h = res$days_since_may1st[index], lty = 2)
+## boolean 1 and 2:
+bool1 <- frost$bud_burst_days_since_may1st <= days_since_may1st[index]
+bool2 <- frost$end_1st_dev_stage_days_since_may1st >= days_since_may1st[index]
+which_true <- which(bool1 & bool2)
+points(frost$year[which_true], days_since_may1st[index], col = paint[index], pch = 16)
+res$n_at_risk[index] <- length(which_true)
+rm(index)
+```
+
+### A 'full' loop:
+
+```{r}
+par(mar = c(3, 3, .1, .1), mgp = c(2, .5, 0), tcl = -.3)
+plot(frost$year, frost$bud_burst_days_since_may1st, type = "n",
+     ylim = range(days_since_may1st), bty = "n")
+for (index in 1:nrow(frost)) { ## here, the uninteresting loop
+  tmp_x <- rep(frost$year[index], times = 2)
+  tmp_y <- c(frost$bud_burst_days_since_may1st[index], 
+             frost$end_1st_dev_stage_days_since_may1st[index])
+  lines(x = tmp_x, y = tmp_y)
+}
+for (index in 1:nrow(res)) { ## here, the interesting loop
+  abline(h = res$days_since_may1st[index], lty = 2)
+  bool1 <- frost$bud_burst_days_since_may1st <= days_since_may1st[index]
+  bool2 <- frost$end_1st_dev_stage_days_since_may1st >= days_since_may1st[index]
+  ## if any ... else ...
+  if (any(bool1 & bool2)) {
+    which_true <- which(bool1 & bool2)
+    points(frost$year[which_true], 
+           rep(days_since_may1st[index], times = length(which_true)), 
+           col = paint[index], pch = 16)
+    res$n_at_risk[index] <- length(which_true)
+  } else {
+    res$n_at_risk[index] <- 0
+  }
+}
+head(res, n = 10)
+```
+
+```{r}
+par(mar = c(3, 3, .1, .1), mgp = c(2, .5, 0), tcl = -.3)
+plot(res$days_since_may1st, res$n_at_risk, type = "o", pch = 16, bty = "n")
+grid()
+```
+
+<!--
+```{r}
+vektor <- levels(dd$d_cut)
+par(mfrow = c(2, 5)) ## Ziel: immer zwei Kategorien zusammenpacken.
+laenge <- 0 ## Hilfsobjekt: Starte mit 0.
+for (index in vektor) {
+  if (laenge == 0) {
+    index_vektor <- index
+    laenge <- 1 ## Hilfsobjekt: Setze auf 1.
+  } else {
+    index_vektor <- c(index_vektor, index)
+    d_hier <- subset(d, d_cut %in% index_vektor)
+    levels_kombiniert <- paste(index_vektor, collapse = " und ")
+    plot(d_hier$d/100, d_hier$h, xlim = range(d$d)/100, ylim = range(d$h),
+         pch = 16, col = rgb(0, 0.38, 0.27, alpha = 0.5), bty = "n",
+         main = levels_kombiniert, xlab = "Stammdurchmesser [m]",
+         ylab = "Baumh?he [m]", las = 1)
+    cat(paste0("Plot f?r ", levels_kombiniert, " erstellt.\n"))
+    laenge <- 0 ## Hilfsobjekt: Setze auf 0.
+  }
+}
+```
+-->
+
+## 'while'-loops.
+
+'while' loops are used less often in data management / preparation, but are more likely to be found in 'computationally intensive' applications (e.g. for optimizations).
+
+**Nutzung:**
+```{r, eval=F}
+index <- k ## 'k' here has to be smaller than 'K' in next line.
+while (index < K){
+  ...
+  index <- index + 1
+}
+```
+
+- `...` und die darauf folgende Zeile wird so lange wiederholt wie die Bedingung `TRUE` ist (also solange hier `k`$<$`K`)
+- flexible Anzahl an Wiederholungen.
+- stoppt unmittelbar nachdem die Bedingung nicht mehr eingehalten wird.
+- kann auch als eine 'for'-Schleife umgeschrieben werden.
+
+- The commands that '`...` stands for, and the following line, are repeated as long as the condition is `TRUE` (i.e. here as long as `k`$<$`K`).
+- flexible number of repetitions.
+- stops immediately after the condition is no longer met.
+<!--- can also be rewritten as a 'for' loop.-->
+
+**Example 1**
+
+```{r}
+accepted <- 0
+table(frost$n_frost > .5)
+sum(frost$n_frost > .5)
+P <- NULL
+n_iter <- 0
+while (accepted < 1000) {
+  p <- rbeta(n = 1, shape1 = 1/3, shape2 = 1/3)
+  y_tilde <- sample(x = c(TRUE, FALSE), size = nrow(frost), replace = T, 
+                    prob = c(p, 1 - p))
+  if (sum(y_tilde) == sum(frost$n_frost > .5)) {
+    accepted <- accepted + 1
+    P <- c(P, p)
+  }
+  n_iter <- n_iter + 1
+}
+length(P)
+n_iter
+length(P) / n_iter
+summary(P)
+```
+
+**Example 2**
+
+```{r}
+set.seed(123)
+x1 <- drought$elev - mean(drought$elev)
+x2 <- runif(nrow(drought), min = min(x1), max = max(x1))
+x2 <- x2 - mean(x2)
+y <- drought$bair#  - mean(drought$bair)
+f_y_work <- function(y, x1, x2, b0, b1, b2){-1 * (-2*y + 2*(b0 + b1*x1 + b2*x2))}
+b0 <- 0
+b1 <- 0
+b2 <- 0
+krit_diff <- 1 ## Initialisierung irgendwie so dass Bedingung am Anfang wahr ist.
+krit_alt <- sqrt(mean(c(y - (b0 + b1*x1 + b2*x2))^2))
+component <- NULL
+while (krit_diff > 0.0001) { ## Beginn der while-Schleife.
+  y_work <- f_y_work(y = y, x1 = x1, x2 = x2, 
+                     b0 = b0[length(b0)], b1 = b1[length(b1)], 
+                     b2 = b2[length(b2)])
+  lm_b0 <- lm(y_work ~ 1)
+  lm_b1 <- lm(y_work ~ -1 + x1)
+  lm_b2 <- lm(y_work ~ -1 + x2)
+  krit_b0 <- mean(lm_b0$residuals^2)
+  krit_b1 <- mean(lm_b1$residuals^2)
+  krit_b2 <- mean(lm_b2$residuals^2)
+  selected <- which.min(c(krit_b0, krit_b1, krit_b2))
+  update_weight <- rep(0, 3)
+  update_weight[selected] <- .01
+  b0 <- c(b0, b0[length(b0)] + update_weight[1] * coef(lm_b0))
+  b1 <- c(b1, b1[length(b1)] + update_weight[2] * coef(lm_b1))
+  b2 <- c(b2, b2[length(b2)] + update_weight[3] * coef(lm_b2))
+  component <- c(component, selected)
+  krit_neu <- sqrt(mean(c(y - (b0[length(b0)] + 
+                                 b1[length(b1)] * x1 + 
+                                 b2[length(b2)] * x2))^2))
+  krit_diff <- krit_alt - krit_neu ## Update!
+  krit_alt <- krit_neu
+} ## Ende der while-Schleife.
+table(component)
+par(mfrow = c(3, 1), mar = c(3, 3, 0, 0), las = 1, oma = c(0, 0, 0, 0), 
+    mgp = c(2, .4, 0), tcl = -.3)
+paint <- colorspace::divergingx_hcl(n = length(b0), pal = "Zissou")
+paint_a <- colorspace::divergingx_hcl(n = length(b0), pal = "Zissou", alpha = .1)
+plot(x1, y, pch = 16, bty = "n", las = 1, ylim = range(c(0, y)), bty = "n")
+for (index in 1:length(b0)) {
+  abline(a = b0[index], b = b1[index], col = paint_a[index])
+}
+plot(x2, y, pch = 16, bty = "n", las = 1, ylim = range(c(0, y)), bty = "n")
+for (index in 1:length(b0)) {
+  abline(a = b0[index], b = b2[index], col = paint_a[index])  
+}
+plot(as.numeric(as.factor(component)), yaxt = "n", ylab = "Component", 
+     col = paint, pch = 16, bty = "n")
+axis(2, at = 1:length(unique(component)), labels = levels(as.factor(component)), 
+     las = 1)
+```
+
+<!--
+% 'repeat'-Schleifen.}
+% Nutzung:
+% \begin{Verbatim}
+% repeat{
+%   CONTENT
+%   if(CONDITION)
+%     break
+% }
+% \end{Verbatim}
+% 
+% - theoretically endless repetition of a task
+% - parameter changes need to be done in the loop
+% - termining condition needed
+% - `break} ends the current subroutine
+-->
+
+## 'apply'-commands
+
+An 'apply'-command applies the same function to each of the elements of a data object.
+
+**Usage:**
+```{r, eval=F}
+apply(X, MARGIN, FUN, ...) ## For matrix X: Result is a list.
+lapply(X, FUN, ...) ## For list X: Result is a list.
+sapply(X, FUN, ...) ## For list X: Result is a vector or another 
+                    ## Data object that the result might be 'simplified' to.
+```
+
+- `apply` applies function (specified by `FUNCTION`) to each element of the respective dimension (defined with argument `MARGIN`) of `X`.
+- `MARGIN` equals `1` for line-by-line, and `2` for column-wise execution.
+- `...` for further arguments to `FUNCTION` (same for every element of` X`!).
+- For lists `X`, `MARGIN` cannot be selected because lists only have one dimension.
+
+### Exercises
+
+```{r, warning=FALSE}
+apply(drought, MARGIN = 2, FUN = function(x){sum(is.na(x))})
+apply(drought[, 1:2], MARGIN = 2, FUN = mean)
+apply(drought[, 1:2], MARGIN = 1, FUN = mean)
+apply(frost, MARGIN = 2, FUN = function(x){sum(is.na(x))})
+apply(frost[, c(1:2, 6:7)], MARGIN = 2, FUN = mean)
+lapply(frost[, c(1:2, 6:7)], FUN = mean)
+sapply(frost[, c(1:2, 6:7)], FUN = mean)
+```
+
+## Programming-'Workflow'.
+
+- Use loops as often as possible ('upwards!'), but avoid loops as often as necessary ('downwards'), because (very roughly (!) said):
+   - Loops read and write to the main memory in each iteration $\rightarrow$.
+   - Vectorized programming reads and writes only once: many functions take vectors as arguments and are therefore (often) faster.
+- For clearer code:
+   - vectorizing conditions:
+```{r, eval=F}
+result <- content1 * logical_comparison1 +
+          content2 * logical_comparison2 + ...
+```
+
+- Use an `apply` command if you want the function to do the same on every element.
+- But:
+   - Loops are easy and whoever masters them is already a king: It is better if R-Code gets something right slowly than quickly wrong!
+   - Loops cannot be avoided in iterative processes!
+   - Avoiding 'if-else' is not worth it under complex conditions!
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Define your own functions.
+
+**Why should I be able to define my own functions?**
+
+- Functions generalize command sequences and make it easier and easier to try something out under many different argument values / dates / ....
+- Functions keep the workspace clean (see next section on environments).
+- Functions facilitate the reproducibility of analyzes.
+- Functions make it easier for other users to access your work.
+- As can be seen from the `apply()` examples, it is very often necessary to be able to write your own little helper functions.
+Also for your own **orientation**: Always comment on the processes and steps in your code and in your functions to make it easier to understand the motivation and ideas behind it later.
+
+```{r, eval=F}
+name <- function(arg1, arg2, arg3 = TRUE, arg4 = 2, ...){
+  content
+  return(result)
+}
+```
+
+- The general rules for naming objects also apply to function arguments.
+- Arguments can have preset values (here `arg3` and` arg4`)
+- The last argument `...` (optional) is a special argument and can be used to pass unspecified arguments to function calls.
+- Arguments changed by `content` and objects created are in their own local environment.
+- The result is returned to the global environment with `return(result)`.
+
+## Naming conventions for arguments.
+
+Argument name  Inhalt
+-------------- -------
+`data`         Dataframe
+`x`, `y`, `z`  Vectors (most often with numerical elements)
+`n`            Sample size
+`formula`      Formula object
+...            ...
+
+- Use function and argument names that are based on existing R functions.
+- Make arguments as self-explanatory as possible by name.
+
+<!--
+% functions: options for function attributes}
+% - functions without attributes are possible (eg. `getwd()}, `ls()})
+% - attributes without default values have to be filled in
+% - default values are used if attributes is not specified in the call to the function
+-->
+
+## `content` and` result`.
+
+**The `content` block:**
+
+- Should make it possible to carry out many similar -- but different -- calculations and therefore define as few objects as possible to 'fixed values': alternatively, always try to define arguments with default values.
+- Falls back on the higher-level environment (or environments, if necessary) if it cannot find an object in the local environment (this is known as *scoping*).
+
+**The `result` object:**
+
+- Can be of any possible R object class (vector, list, data set, function (a function that itself returns a function is called *closure*), ...).
+- Is generated by calling the function and stored in the global environment.
+- All other objects are no longer 'visible' from the global environment.
+
+## Examples
+
+### Environments and Scoping
+
+```{r, error=TRUE}
+rm(list = ls())
+ls()
+f <- function(x){
+  y <- 2
+  print(ls())
+  y <- y + z ## f wird nach z in der ?bergeordneten Umgebung (hier global) suchen.
+  print(ls())
+  return(x + y)
+}
+x <- 1; z <- 3
+f(x = x) ## f wird z finden:
+## -> obwohl wir es nicht explizit als Argument in die lokale Umgebung
+##    von f übergeben haben.
+y ## Von der übergeordneten Umgebung aus können wir nicht auf y zurückgreifen.
+```
+
+### Closure
+
+```{r}
+power <- function(exponent){
+  return(function(x){
+    return(x ^ exponent)})
+}
+square <- power(2)
+square(2)
+square(4)
+cube <- power(3)
+cube(2)
+cube(4)
+```
+
+<!--
+%functions: recursions}
+%\begin{Verbatim}
+%fibonacci <- function(n){
+%  if(n == 1)
+%    return(0)
+%  else if(n == 2)
+%    return(1)
+%  else
+%    return(fibonacci(n-1) + fibonacci(n-2))
+%}
+%\end{Verbatim}
+%
+%- call the function from within, define break point
+%- easy for small tasks, memory intensive for large data
+% functions: numerical minimization}
+%\begin{Verbatim}
+%goal <- function(par,...){
+%  CONTENT
+%  return(value)
+%}
+%nlm(par,goal,...)
+%\end{Verbatim}
+%
+%- find parameter of function that produces lowest value of goal function
+%- alternative: `optim}
+%- if parameter constrained to interval, use: `optimize}
+%- uses grid search to find minimum
+%- use to find: optimal smoothing parameter, maximum likelihood, etc.
+
+%% 
+%functions: finding and handling errors}
+%
+%\begin{tabular}{r|l}
+%Code & Function \\ \hline
+%`traceback} & shows subroutine and line where error occurred \\
+%`browser} & halts function and opens interactive console \\
+%`debug} & execute function completely in browser mode \\
+%`try} & wraps a part of code that is likely to produce errors \\
+%\end{tabular}
+%
+%- missing brackets or syntax errors are reported while reading the function
+%- the more complex the function the less obvious is any fail
+%- if an analysis takes longer, multiple attempts on solving a problem are not efficient anymore
+%- otherwise insert 'print' of object that might contain error
+%
+-->
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+`r if (knitr::is_html_output()) '# References {-}'`
