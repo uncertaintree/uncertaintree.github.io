@@ -110,7 +110,7 @@ code span.wa { font-style: italic; } /* Warning */
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path=""><a href="#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#data-preparations"><i class="fa fa-check"></i>Data preparations</a></li>
 <li class="chapter" data-level="1" data-path=""><a href="#store-graphics"><i class="fa fa-check"></i><b>1</b> Store graphics</a></li>
 <li class="chapter" data-level="2" data-path=""><a href="#generic-plot-function-plotx-y-type-..."><i class="fa fa-check"></i><b>2</b> Generic plot-function <code>plot(x, y, type, ...)</code></a><ul>
 <li class="chapter" data-level="2.1" data-path=""><a href="#frequently-used-arguments-with-plot"><i class="fa fa-check"></i><b>2.1</b> Frequently used arguments with <code>plot()</code></a></li>
@@ -152,11 +152,11 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="5.7.1" data-path=""><a href="#examples-1"><i class="fa fa-check"></i><b>5.7.1</b> Examples</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path=""><a href="#organization-of-the-graphics-window-with-par-and-layout"><i class="fa fa-check"></i><b>6</b> Organization of the graphics window with <code>par ()</code> and <code>layout ()</code></a><ul>
+<li class="chapter" data-level="6" data-path=""><a href="#organization-of-the-graphics-window-with-par-and-layout"><i class="fa fa-check"></i><b>6</b> Organization of the graphics window with <code>par()</code> and <code>layout()</code></a><ul>
 <li class="chapter" data-level="6.1" data-path=""><a href="#example-layout"><i class="fa fa-check"></i><b>6.1</b> Example <code>layout()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path=""><a href="#colours"><i class="fa fa-check"></i><b>7</b> Colours</a><ul>
-<li class="chapter" data-level="7.1" data-path=""><a href="#example-viridis"><i class="fa fa-check"></i><b>7.1</b> Example <code>viridis()</code></a></li>
+<li class="chapter" data-level="7.1" data-path=""><a href="#example-viridis-garnier2018"><i class="fa fa-check"></i><b>7.1</b> Example <code>viridis()</code> <span class="citation">(Garnier <span>2018</span>)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path=""><a href="#mathematical-notation-in-graphics"><i class="fa fa-check"></i><b>8</b> Mathematical notation in graphics</a><ul>
 <li class="chapter" data-level="8.1" data-path=""><a href="#example-3"><i class="fa fa-check"></i><b>8.1</b> Example</a></li>
@@ -164,7 +164,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="9" data-path=""><a href="#lattice-graphics-for-grouped-clustered-data"><i class="fa fa-check"></i><b>9</b> <code>lattice</code> Graphics for grouped / clustered data</a><ul>
 <li class="chapter" data-level="9.1" data-path=""><a href="#example-4"><i class="fa fa-check"></i><b>9.1</b> Example:</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path=""><a href="#ggplot"><i class="fa fa-check"></i><b>10</b> <code>ggplot</code></a></li>
+<li class="chapter" data-level="10" data-path=""><a href="#ggplot2"><i class="fa fa-check"></i><b>10</b> <code>ggplot2</code></a></li>
 <li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -186,156 +186,24 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Introduction to R: Session 02</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>Oktober 22, 2021 (Version 0.1)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>Oktober 27, 2021 (Version 0.2)</em></p>
 </div>
 <!--# About this course{-}
 This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
 <p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
-<div id="data" class="section level1 unnumbered">
-<h1>Data</h1>
-<!--We will use two data-sets within this course. 
-
-### Drought {-}
-
-Data basis: Fischer, R., Dobbertin, M., Granke, O., et al., 2006. The condition of forests in Europe. 2006
-Executive report. UNECE, Hamburg.
-
-
-```r
-bair <- c(.505, .648, .523, .426, .64, .5, .257, .866, .434, .368, .54, .923, .702, 
-          .615, 1.013, .807, .262, .887, 1.281, 1.125, .99, 1.2, .983, .697, .606, 
-          .718, .48, .822, .944, .77, 1.036, 1.23, .68, .985)
-elev <- c(335, 460, 480, 515, 540, 650, 680, 715, 730, 835, 860, 960,
-          1020, 1025, 1100, 1150, 1150, 1170, 1190, 1350, 1400, 1500, 1540,
-          475, 480, 507.5, 580, 750, 780, 800, 1025, 1100, 1150, 1200)
-species <- c("Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
-             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
-             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
-             "Spruce", "Spruce", "Spruce", "Beech", "Beech", "Beech", "Beech",
-             "Beech", "Beech", "Beech", "Beech", "Beech", "Beech", "Beech")
-drought <- data.frame(bair = bair,
-                      elev = elev,
-                      species = species)
-summary(drought)
-```
-
-```
-##       bair             elev          species  
-##  Min.   :0.2570   Min.   : 335.0   Beech :11  
-##  1st Qu.:0.5272   1st Qu.: 597.5   Spruce:23  
-##  Median :0.7100   Median : 847.5              
-##  Mean   :0.7489   Mean   : 888.3              
-##  3rd Qu.:0.9732   3rd Qu.:1150.0              
-##  Max.   :1.2810   Max.   :1540.0
-```
-For further context information, another source working on and interpereting this data (p. 202-203): 
-
-Matthias Dobbertin, Markus Neumann, Hans-Werner Schroeck, Chapter 10 - Tree Growth Measurements in Long-Term Forest Monitoring in Europe,
-Editor(s): Marco Ferretti, Richard Fischer,
-Developments in Environmental Science,
-Elsevier,
-Volume 12,
-2013,
-Pages 183-204,
-[https://doi.org/10.1016/B978-0-08-098222-9.00010-8](https://doi.org/10.1016/B978-0-08-098222-9.00010-8)
-
-### Frost {-}
-
-<!--Datenbasis: Deutscher Wetterdienst, hier dargestellte Werte selbst aus Tageseinzelwerten erzeugt.
-Data basis: Deutscher Wetterdienst, values shown here were generated over individual values by myself.
-
-Direct download links for data basis (Stations Id 1691, Goettingen): 
-
-- [historical data)](ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/tageswerte_KL_01691_19270101_20201231_hist.zip)
-- [recent data)](ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_01691_akt.zip)
-
-Some definitions:
-
-- Budburst is estimated based on first day with degree days > 220 (begin counting on March, 20). 
-- End of 1st development stage is estimated based on first day with degree days > 320 (begin counting on March, 20). 
-- Definition frost event: $\min\left(\text{Temp}_{50\text{cm}}\right) < -1.95°\text{C}$
-
-
-```r
-frost <- data.frame(year = 1947:2021, 
-                    n_frost = c(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 
-                                0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                                0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 
-                                3, 2, 0, 0, 0, 0, 0, 0, 1, 5, 0), 
-                    bud_burst = as.Date(c(-19230, -18867, -18503, -18127, -17758, -17408, -17034, 
-                                          -16661, -16293, -15929, -15566, -15202, -14847, -14475, 
-                                          -14121, -13744, -13384, -13017, -12647, -12291, -11917, 
-                                          -11563, -11191, -10821, -10462, -10092, -9720, -9361, 
-                                          -8997, -8635, -8261, -7896, -7530, -7164, -6808, -6436, 
-                                          -6078, -5705, -5347, -4981, -4619, -4254, -3883, -3524, 
-                                          -3145, -2788, -2437, -2060, -1694, -1322, -958, -602, 
-                                          -237, 124, 499, 864, 1222, 1592, 1957, 2321, 2681, 3055, 
-                                          3408, 3789, 4137, 4513, 4877, 5234, 5610, 5976, 6345, 
-                                          6691, 7074, 7435, 7812), 
-                                        origin = as.Date("2000-01-01")),
-                    end_1st_dev_stage = as.Date(c(-19222, -18859, -18489, -18118, -17746, -17397, 
-                                                  -17026, -16650, -16280, -15921, -15552, -15192, 
-                                                  -14837, -14464, -14104, -13726, -13370, -13006, 
-                                                  -12633, -12281, -11905, -11545, -11180, -10808, 
-                                                  -10455, -10078, -9710, -9349, -8984, -8623, -8248, 
-                                                  -7886, -7521, -7151, -6799, -6427, -6068, -5691, 
-                                                  -5338, -4972, -4601, -4246, -3875, -3513, -3131, 
-                                                  -2780, -2426, -2050, -1679, -1311, -944, -594, 
-                                                  -225, 132, 510, 873, 1235, 1608, 1972, 2332, 2694, 
-                                                  3067, 3422, 3802, 4152, 4525, 4891, 5250, 5623, 
-                                                  5988, 6354, 6703, 7086, 7450, 7824), 
-                                                origin = as.Date("2000-01-01")))
-frost$may1st <- as.Date(paste0(frost$year, "-05-01"))
-frost$bud_burst_days_since_may1st <- julian(frost$bud_burst, origin = as.Date("2000-01-01")) - 
-  julian(frost$may1st, origin = as.Date("2000-01-01"))
-frost$end_1st_dev_stage_days_since_may1st <- julian(frost$end_1st_dev_stage, 
-                                                    origin = as.Date("2000-01-01")) - 
-  julian(frost$may1st, origin = as.Date("2000-01-01"))
-summary(frost)
-```
-
-```
-##       year         n_frost       bud_burst          end_1st_dev_stage   
-##  Min.   :1947   Min.   :0.00   Min.   :1947-05-09   Min.   :1947-05-17  
-##  1st Qu.:1966   1st Qu.:0.00   1st Qu.:1965-11-11   1st Qu.:1965-11-23  
-##  Median :1984   Median :0.00   Median :1984-05-19   Median :1984-06-02  
-##  Mean   :1984   Mean   :0.32   Mean   :1984-05-12   Mean   :1984-05-24  
-##  3rd Qu.:2002   3rd Qu.:0.00   3rd Qu.:2002-11-09   3rd Qu.:2002-11-20  
-##  Max.   :2021   Max.   :5.00   Max.   :2021-05-22   Max.   :2021-06-03  
-##      may1st           bud_burst_days_since_may1st
-##  Min.   :1947-05-01   Min.   :-4.00              
-##  1st Qu.:1965-10-30   1st Qu.: 8.00              
-##  Median :1984-05-01   Median :11.00              
-##  Mean   :1984-04-30   Mean   :11.69              
-##  3rd Qu.:2002-10-30   3rd Qu.:16.00              
-##  Max.   :2021-05-01   Max.   :23.00              
-##  end_1st_dev_stage_days_since_may1st
-##  Min.   : 8.00                      
-##  1st Qu.:20.00                      
-##  Median :24.00                      
-##  Mean   :23.47                      
-##  3rd Qu.:28.50                      
-##  Max.   :36.00
-```
-
-
-
-# Beispieldaten-->
-<p>Today, we will use a different examplary dataset, based on <code>spati2</code>, shipping with <code>lmfor</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;lmfor&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">data</span>(spati2)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">df &lt;-<span class="st"> </span>spati2</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">rm</span>(spati2)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">d_breaks_cut &lt;-<span class="st"> </span><span class="kw">quantile</span>(df<span class="op">$</span>d, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>))</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">df<span class="op">$</span>d_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(df<span class="op">$</span>d, <span class="dt">breaks =</span> d_breaks_cut, <span class="dt">include.lowest =</span> T)</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">dd &lt;-<span class="st"> </span><span class="kw">ddply</span>(df, <span class="kw">c</span>(<span class="st">&quot;d_cut&quot;</span>), summarise, <span class="dt">h_mean =</span> <span class="kw">mean</span>(h),</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">            <span class="dt">h_q25 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.25</span>),</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">            <span class="dt">h_q75 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.75</span>))</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">dd<span class="op">$</span>d_lb &lt;-<span class="st"> </span>d_breaks_cut[<span class="op">-</span><span class="kw">length</span>(d_breaks_cut)]</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">dd<span class="op">$</span>d_ub &lt;-<span class="st"> </span>d_breaks_cut[<span class="op">-</span><span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">dd<span class="op">$</span>b_mean &lt;-<span class="st"> </span><span class="kw">apply</span>(dd[, <span class="kw">c</span>(<span class="st">&quot;d_lb&quot;</span>, <span class="st">&quot;d_ub&quot;</span>)], <span class="dt">MAR =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> mean)</a></code></pre></div>
+<div id="data-preparations" class="section level1 unnumbered">
+<h1>Data preparations</h1>
+<p>We use the <code>plyr</code>s <span class="citation">(Wickham <a href="#ref-Wickham:2011">2011</a>)</span> <code>ddply</code> function here which we will introduce in a bit more detail in Session 05.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">d_breaks_cut &lt;-<span class="st"> </span><span class="kw">quantile</span>(df<span class="op">$</span>d, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>))</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">df<span class="op">$</span>d_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(df<span class="op">$</span>d, <span class="dt">breaks =</span> d_breaks_cut, <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">dd &lt;-<span class="st"> </span><span class="kw">ddply</span>(df, <span class="kw">c</span>(<span class="st">&quot;d_cut&quot;</span>), summarise, </a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">            <span class="dt">h_mean =</span> <span class="kw">mean</span>(h),</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">            <span class="dt">h_q25 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.25</span>),</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">            <span class="dt">h_q75 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.75</span>))</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">dd<span class="op">$</span>d_lb &lt;-<span class="st"> </span>d_breaks_cut[<span class="op">-</span><span class="kw">length</span>(d_breaks_cut)]</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">dd<span class="op">$</span>d_ub &lt;-<span class="st"> </span>d_breaks_cut[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">dd<span class="op">$</span>b_mean &lt;-<span class="st"> </span><span class="kw">apply</span>(dd[, <span class="kw">c</span>(<span class="st">&quot;d_lb&quot;</span>, <span class="st">&quot;d_ub&quot;</span>)], <span class="dt">MAR =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> mean)</a></code></pre></div>
 </div>
 <div id="store-graphics" class="section level1">
 <h1><span class="header-section-number">1</span> Store graphics</h1>
@@ -435,7 +303,7 @@ summary(frost)
 <td align="left">Size factor of the plot symbols</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>cex.axis</code>,<code>cex.lab</code>, <code>cex.main</code></td>
+<td align="left"><code>cex.axis</code>, <code>cex.lab</code>, <code>cex.main</code></td>
 <td align="left">Size factor of some parts of the plot</td>
 </tr>
 <tr class="even">
@@ -448,7 +316,7 @@ summary(frost)
 </tr>
 <tr class="even">
 <td align="left"><code>lwd</code></td>
-<td align="left">Line width (real value, $  geq 0 $)</td>
+<td align="left">Line width (real value, <span class="math inline">\(\geq 0\)</span>)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>main</code></td>
@@ -466,18 +334,17 @@ summary(frost)
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>)[<span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">     <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint, <span class="co"># rgb(red = 0, green = 0.38, blue = 0.27, alpha = 0.8),</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">     <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(df<span class="op">$</span>h)))</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<a class="sourceLine" id="cb3-4" data-line-number="4">     <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(df<span class="op">$</span>h)))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="example-plot...-type-l" class="section level2">
 <h2><span class="header-section-number">2.3</span> Example <code>plot(..., type = &quot;l&quot;)</code></h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">plot</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> paint, <span class="co"># rgb(0, 0.38, 0.27),</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">plot</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> paint, </a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Center of dbh class [m]&quot;</span>,</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">     <span class="dt">ylab =</span> <span class="st">&quot;Arith. mean tree height [m]&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>)))</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="example-plot...-type-b" class="section level2">
 <h2><span class="header-section-number">2.4</span> Example <code>plot(..., type = &quot;b&quot;)</code></h2>
@@ -485,7 +352,7 @@ summary(frost)
 <a class="sourceLine" id="cb5-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">plot</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint,</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="example-plot...-type-o" class="section level2">
 <h2><span class="header-section-number">2.5</span> Example <code>plot(..., type = &quot;o&quot;)</code></h2>
@@ -493,7 +360,7 @@ summary(frost)
 <a class="sourceLine" id="cb6-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">plot</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint,</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 </div>
 <div id="graphic-modules" class="section level1">
@@ -557,7 +424,7 @@ summary(frost)
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint,</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">     <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">lines</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="example-plot...-type-n-grid-and-points" class="section level2">
 <h2><span class="header-section-number">3.2</span> Example <code>plot(..., type = &quot;n&quot;)</code>, <code>grid()</code> and <code>points()</code></h2>
@@ -567,7 +434,7 @@ summary(frost)
 <a class="sourceLine" id="cb8-4" data-line-number="4">     <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">grid</span>(<span class="dt">col =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">points</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> paint)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="example-lines-abline-and-lines...-type-s" class="section level2">
 <h2><span class="header-section-number">3.3</span> Example <code>lines()</code>, <code>abline()</code> and <code>lines(..., type = &quot;s&quot;)</code></h2>
@@ -580,7 +447,7 @@ summary(frost)
 <a class="sourceLine" id="cb9-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;Empirical cumulative density&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">col =</span> paint)</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="fl">0.8</span>, <span class="fl">0.8</span>, <span class="fl">0.8</span>))</a>
 <a class="sourceLine" id="cb9-9" data-line-number="9"><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">0</span>, tmp1), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">cumsum</span>(tmp2)<span class="op">/</span><span class="kw">length</span>(df<span class="op">$</span>h)), <span class="dt">type =</span> <span class="st">&quot;s&quot;</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="example-polygon" class="section level2">
 <h2><span class="header-section-number">3.4</span> Example <code>polygon()</code></h2>
@@ -593,7 +460,7 @@ summary(frost)
 <a class="sourceLine" id="cb10-7" data-line-number="7">        <span class="dt">col =</span> paint_a, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
 <a class="sourceLine" id="cb10-8" data-line-number="8"><span class="kw">points</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">0.1</span>, <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>))</a>
 <a class="sourceLine" id="cb10-9" data-line-number="9"><span class="kw">lines</span>(dd<span class="op">$</span>b_mean<span class="op">/</span><span class="dv">100</span>, dd<span class="op">$</span>h_mean, <span class="dt">col =</span> paint, <span class="dt">lwd =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
 </div>
 </div>
 <div id="legend" class="section level1">
@@ -615,7 +482,7 @@ summary(frost)
 <a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">1</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="ot">NA</span>), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</a>
 <a class="sourceLine" id="cb11-7" data-line-number="7">       <span class="dt">col =</span> <span class="kw">c</span>(paint, <span class="kw">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)),</a>
 <a class="sourceLine" id="cb11-8" data-line-number="8">       <span class="kw">c</span>(<span class="st">&quot;Obs.&quot;</span>, <span class="st">&quot;Arithm. mean&quot;</span>))</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
 </div>
 </div>
 <div id="further-plot-types" class="section level1">
@@ -646,7 +513,7 @@ with interquartile range <span class="math inline">\(\text{IQA} = \vert Q_3-Q_1 
 <a class="sourceLine" id="cb13-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)[<span class="dv">2</span>]</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">boxplot</span>(df<span class="op">$</span>h, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">frame =</span> F, <span class="dt">las =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4">        <span class="dt">col =</span> paint)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">length</span>(<span class="kw">levels</span>(df<span class="op">$</span>d_cut)), <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)</a>
 <a class="sourceLine" id="cb14-3" data-line-number="3">tmp &lt;-<span class="st"> </span><span class="kw">levels</span>(df<span class="op">$</span>d_cut)</a>
@@ -655,7 +522,7 @@ with interquartile range <span class="math inline">\(\text{IQA} = \vert Q_3-Q_1 
 <a class="sourceLine" id="cb14-6" data-line-number="6">        <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, </a>
 <a class="sourceLine" id="cb14-7" data-line-number="7">        <span class="dt">col =</span> paint)<span class="co">## rgb(0, 0.38, 0.27, alpha = 0.5))</span></a>
 <a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw">mtext</span>(<span class="dv">1</span>, <span class="dt">text =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">line =</span> <span class="fl">5.1</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 </div>
 <div id="stripchart" class="section level2">
@@ -675,7 +542,7 @@ with interquartile range <span class="math inline">\(\text{IQA} = \vert Q_3-Q_1 
 <a class="sourceLine" id="cb15-6" data-line-number="6">        <span class="dt">col =</span> paint)</a>
 <a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">stripchart</span>(sdf<span class="op">$</span>h, <span class="dt">add =</span> T, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>,</a>
 <a class="sourceLine" id="cb15-8" data-line-number="8">           <span class="dt">jitter =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 </div>
 <div id="hist" class="section level2">
@@ -693,7 +560,7 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb17-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)[<span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">hist</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">col =</span> paint,</a>
 <a class="sourceLine" id="cb17-4" data-line-number="4">     <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Abs. frequency&quot;</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 </div>
 <div id="density" class="section level2">
@@ -718,7 +585,7 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb19-6" data-line-number="6">     <span class="dt">xlab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Probability density&quot;</span>,</a>
 <a class="sourceLine" id="cb19-7" data-line-number="7">     <span class="dt">col =</span> paint, <span class="dt">border =</span> <span class="ot">NA</span>)</a>
 <a class="sourceLine" id="cb19-8" data-line-number="8"><span class="kw">lines</span>(tmp1<span class="op">$</span>x, tmp1<span class="op">$</span>y, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-22-1.png" width="576" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-21-1.png" width="576" /></p>
 </div>
 </div>
 <div id="contour-und-filled.contour" class="section level2">
@@ -744,7 +611,7 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb21-4" data-line-number="4">        <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(mu)), <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(sigma<span class="op">^</span><span class="dv">2</span>)),</a>
 <a class="sourceLine" id="cb21-5" data-line-number="5">        <span class="dt">col =</span> paint, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw">points</span>(<span class="kw">mean</span>(df<span class="op">$</span>h), <span class="kw">var</span>(df<span class="op">$</span>h), <span class="dt">pch =</span> <span class="dv">16</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="example-filled.contour" class="section level3">
 <h3><span class="header-section-number">5.5.2</span> Example <code>filled.contour()</code></h3>
@@ -753,7 +620,7 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">filled.contour</span>(<span class="dt">x =</span> mu_seq, <span class="dt">y =</span> sd_seq<span class="op">^</span><span class="dv">2</span>, <span class="dt">z =</span> z, <span class="dt">col =</span> paint,</a>
 <a class="sourceLine" id="cb22-4" data-line-number="4">               <span class="dt">levels =</span> <span class="kw">seq</span>(<span class="kw">floor</span>(<span class="kw">min</span>(z)), <span class="kw">ceiling</span>(<span class="kw">max</span>(z)), <span class="dt">length =</span> <span class="dv">50</span>), <span class="dt">las =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb22-5" data-line-number="5">               <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(mu)), <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(sigma<span class="op">^</span><span class="dv">2</span>)))</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 </div>
 <div id="mosaicplot" class="section level2">
@@ -770,7 +637,7 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb24-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">length</span>(<span class="kw">levels</span>(df<span class="op">$</span>h_cut)), <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>)</a>
 <a class="sourceLine" id="cb24-3" data-line-number="3"><span class="kw">mosaicplot</span>(tab, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</a>
 <a class="sourceLine" id="cb24-4" data-line-number="4">           <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">col =</span> paint, <span class="dt">off =</span> <span class="dv">2</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
 <div id="quantile-quantile-plot" class="section level2">
@@ -799,7 +666,7 @@ The histogram thus provides a rough estimate for the probability density functio
 </div>
 </div>
 <div id="organization-of-the-graphics-window-with-par-and-layout" class="section level1">
-<h1><span class="header-section-number">6</span> Organization of the graphics window with <code>par ()</code> and <code>layout ()</code></h1>
+<h1><span class="header-section-number">6</span> Organization of the graphics window with <code>par()</code> and <code>layout()</code></h1>
 <ul>
 <li>The function <code>par()</code> holds – based on a list – all relevant parameters for the graphics window.</li>
 <li>Overview through <code>?par</code></li>
@@ -821,21 +688,21 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb28-9" data-line-number="9">     <span class="dt">col =</span> paint_a, <span class="dt">border =</span> paint)</a>
 <a class="sourceLine" id="cb28-10" data-line-number="10"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> paint_a,</a>
 <a class="sourceLine" id="cb28-11" data-line-number="11">     <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 </div>
 <div id="colours" class="section level1">
 <h1><span class="header-section-number">7</span> Colours</h1>
 <ul>
 <li>Colors are changed by the argument <code>col = &quot;name&quot;</code>.</li>
-<li>The function <code>colors ()</code> contains already defined standard colors.</li>
-<li>The function <code>palette ()</code> contains the color palette that is used when <code>col</code> is specified by a numeric value.</li>
-<li><code>rgb</code> generates colors by mixing red, green and blue components (with the possibility of <strong>alpha</strong> shading} through the argument <code>alpha</code>).</li>
-<li>In this course I mostly use the (very rich) package <code>colorspace</code> ([JSS article] (<a href="https://www.jstatsoft.org/index.php/jss/article/view/v096i01/1395" class="uri">https://www.jstatsoft.org/index.php/jss/article/view/v096i01/1395</a>)).</li>
-<li>Alternatively, package <code>viridis</code> supports the search for optimal colors in terms of taking into account most types of color blindness, as well as the maximum contrast in gray-scale printing of colored graphics.</li>
+<li>The function <code>colors()</code> contains already defined standard colors.</li>
+<li>The function <code>palette()</code> contains the color palette that is used when <code>col</code> is specified by a numeric value.</li>
+<li><code>rgb</code> generates colors by mixing red, green and blue components (with the possibility of <strong>alpha</strong> shading through the argument <code>alpha</code>), but mixing several colors for usage in one graphic by hand is not recommended <span class="citation">(Zeileis, Hornik, and Murrell <a href="#ref-Zeileis:Et:Al:2009">2009</a>)</span>.</li>
+<li>Therefore, I mostly use the very powerful <code>colorspace</code> <span class="citation">(Zeileis et al. <a href="#ref-Zeileis:Et:Al:2020">2020</a>)</span> and <code>viridis</code> <span class="citation">(Garnier <a href="#ref-Garnier:2018">2018</a>)</span> packages.</li>
+<li><code>viridis</code> supports the search for optimal colors in terms of taking into account most types of color blindness, as well as the maximum contrast in gray-scale printing of colored graphics.</li>
 </ul>
-<div id="example-viridis" class="section level2">
-<h2><span class="header-section-number">7.1</span> Example <code>viridis()</code></h2>
+<div id="example-viridis-garnier2018" class="section level2">
+<h2><span class="header-section-number">7.1</span> Example <code>viridis()</code> <span class="citation">(Garnier <a href="#ref-Garnier:2018">2018</a>)</span></h2>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;viridis&quot;</span>)</a>
 <a class="sourceLine" id="cb29-2" data-line-number="2">df<span class="op">$</span>dmean_rounded &lt;-<span class="st"> </span><span class="kw">round</span>(df<span class="op">$</span>dmean)</a>
 <a class="sourceLine" id="cb29-3" data-line-number="3">cols &lt;-<span class="st"> </span><span class="kw">viridis</span>(<span class="dt">n =</span> <span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">max</span>(df<span class="op">$</span>dmean_rounded) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(df<span class="op">$</span>dmean_rounded), <span class="dt">alpha =</span> <span class="fl">0.7</span>)</a>
@@ -854,7 +721,7 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb29-16" data-line-number="16">  <span class="kw">polygon</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>), i <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">-0.5</span>), <span class="dt">border =</span> <span class="ot">NA</span>,</a>
 <a class="sourceLine" id="cb29-17" data-line-number="17">          <span class="dt">col =</span> cols[i])</a>
 <a class="sourceLine" id="cb29-18" data-line-number="18">}</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
 </div>
 <div id="mathematical-notation-in-graphics" class="section level1">
@@ -903,15 +770,15 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb30-4" data-line-number="4">txt2 &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Quadratic mean Stem diameter: &quot;</span>, <span class="kw">sqrt</span>(<span class="kw">frac</span>(</a>
 <a class="sourceLine" id="cb30-5" data-line-number="5">                         <span class="kw">sum</span>(d[i]<span class="op">^</span><span class="dv">2</span>, i <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, n),n)), <span class="st">&quot;   [&quot;</span>, cm<span class="op">^</span><span class="dv">2</span>, <span class="st">&quot;]&quot;</span>))</a>
 <a class="sourceLine" id="cb30-6" data-line-number="6"><span class="kw">text</span>(<span class="dv">1</span>, <span class="fl">1.2</span>, txt1); <span class="kw">text</span>(<span class="dv">1</span>, <span class="fl">0.9</span>, txt2)</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </div>
 </div>
 <div id="lattice-graphics-for-grouped-clustered-data" class="section level1">
 <h1><span class="header-section-number">9</span> <code>lattice</code> Graphics for grouped / clustered data</h1>
 <ul>
-<li><code>library(&quot;lattice&quot;)</code></li>
-<li>Conveniently plot grouped data into a graph</li>
-<li>‘Lattice structure’ offers better division compared to <code>par(mfrow = c(i, j))</code></li>
+<li><code>library(&quot;lattice&quot;)</code> <span class="citation">(Sarkar <a href="#ref-Sarkar:2008">2008</a>)</span></li>
+<li>Plotting functions for grouped data.</li>
+<li><code>Lattice</code> offers a much more convenient segmentation of the graphic device compared to ‘by hand’ <code>par(mfrow = c(i, j))</code>, or <code>layout()</code>.</li>
 </ul>
 <table>
 <thead>
@@ -969,15 +836,35 @@ The histogram thus provides a rough estimate for the probability density functio
 <a class="sourceLine" id="cb32-6" data-line-number="6">       <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>, <span class="dt">col =</span> paint_a, </a>
 <a class="sourceLine" id="cb32-7" data-line-number="7">       <span class="dt">par.strip.text =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>), </a>
 <a class="sourceLine" id="cb32-8" data-line-number="8">       <span class="dt">par.settings =</span> <span class="kw">list</span>(<span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> paint)))</a></code></pre></div>
-<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 </div>
-<div id="ggplot" class="section level1">
-<h1><span class="header-section-number">10</span> <code>ggplot</code></h1>
-<p>The basics to Grammar of Graphics in Session 05.</p>
+<div id="ggplot2" class="section level1">
+<h1><span class="header-section-number">10</span> <code>ggplot2</code></h1>
+<p>Some basics to ‘Grammar of Graphics’ – package ggplot2’ <span class="citation">(Wickham <a href="#ref-Wickham:2016">2016</a>)</span> – in Session 05.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Garnier:2018">
+<p>Garnier, Simon. 2018. <em>Viridis: Default Color Maps from ’Matplotlib’</em>. <a href="https://CRAN.R-project.org/package=viridis">https://CRAN.R-project.org/package=viridis</a>.</p>
+</div>
+<div id="ref-Sarkar:2008">
+<p>Sarkar, Deepayan. 2008. <em>Lattice: Multivariate Data Visualization with R</em>. New York: Springer. <a href="http://lmdvr.r-forge.r-project.org">http://lmdvr.r-forge.r-project.org</a>.</p>
+</div>
+<div id="ref-Wickham:2011">
+<p>Wickham, Hadley. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/">http://www.jstatsoft.org/v40/i01/</a>.</p>
+</div>
+<div id="ref-Wickham:2016">
+<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div id="ref-Zeileis:Et:Al:2020">
+<p>Zeileis, Achim, Jason C. Fisher, Kurt Hornik, Ross Ihaka, Claire D. McWhite, Paul Murrell, Reto Stauffer, and Claus O. Wilke. 2020. “colorspace: A Toolbox for Manipulating and Assessing Colors and Palettes.” <em>Journal of Statistical Software</em> 96 (1): 1–49. <a href="https://doi.org/10.18637/jss.v096.i01">https://doi.org/10.18637/jss.v096.i01</a>.</p>
+</div>
+<div id="ref-Zeileis:Et:Al:2009">
+<p>Zeileis, Achim, Kurt Hornik, and Paul Murrell. 2009. “Escaping RGBland: Selecting Colors for Statistical Graphics.” <em>Computational Statistics &amp; Data Analysis</em> 53 (9): 3259–70. <a href="https://doi.org/10.1016/j.csda.2008.11.033">https://doi.org/10.1016/j.csda.2008.11.033</a>.</p>
+</div>
+</div>
 </div>
 <div class="footnotes">
 <hr />
@@ -1017,7 +904,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": [["intro_to_R_session_01.pdf", "PDF"]],
+"download": [["intro_to_R_session_02.pdf", "PDF"]],
 "toc": {
 "collapse": "subsubsection",
 "scroll_highlight": true

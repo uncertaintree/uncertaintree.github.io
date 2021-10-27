@@ -111,10 +111,6 @@ code span.wa { font-style: italic; } /* Warning */
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path=""><a href="#about-this-course"><i class="fa fa-check"></i>About this course</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#data"><i class="fa fa-check"></i>Data</a><ul>
-<li class="chapter" data-level="" data-path=""><a href="#drought"><i class="fa fa-check"></i>Drought</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#frost"><i class="fa fa-check"></i>Frost</a></li>
-</ul></li>
 <li class="chapter" data-level="1" data-path=""><a href="#intro"><i class="fa fa-check"></i><b>1</b> (Int)R(o)</a><ul>
 <li class="chapter" data-level="1.1" data-path=""><a href="#what-is-r"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path=""><a href="#why-user"><i class="fa fa-check"></i><b>1.2</b> Why useR?</a></li>
@@ -213,125 +209,12 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Introduction to R: Session 01</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>Oktober 21, 2021 (Version 0.1)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>Oktober 27, 2021 (Version 0.2)</em></p>
 </div>
 <div id="about-this-course" class="section level1 unnumbered">
 <h1>About this course</h1>
 <p>This course introduces basic R-programming skills needed for applied statistical modeling in R.</p>
 <p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
-</div>
-<div id="data" class="section level1 unnumbered">
-<h1>Data</h1>
-<p>We will use two data-sets within this course.</p>
-<div id="drought" class="section level3 unnumbered">
-<h3>Drought</h3>
-<p>Data basis: Fischer, R., Dobbertin, M., Granke, O., et al., 2006. The condition of forests in Europe. 2006
-Executive report. UNECE, Hamburg.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">bair &lt;-<span class="st"> </span><span class="kw">c</span>(.<span class="dv">505</span>, <span class="fl">.648</span>, <span class="fl">.523</span>, <span class="fl">.426</span>, <span class="fl">.64</span>, <span class="fl">.5</span>, <span class="fl">.257</span>, <span class="fl">.866</span>, <span class="fl">.434</span>, <span class="fl">.368</span>, <span class="fl">.54</span>, <span class="fl">.923</span>, <span class="fl">.702</span>, </a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">          <span class="fl">.615</span>, <span class="fl">1.013</span>, <span class="fl">.807</span>, <span class="fl">.262</span>, <span class="fl">.887</span>, <span class="fl">1.281</span>, <span class="fl">1.125</span>, <span class="fl">.99</span>, <span class="fl">1.2</span>, <span class="fl">.983</span>, <span class="fl">.697</span>, <span class="fl">.606</span>, </a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">          <span class="fl">.718</span>, <span class="fl">.48</span>, <span class="fl">.822</span>, <span class="fl">.944</span>, <span class="fl">.77</span>, <span class="fl">1.036</span>, <span class="fl">1.23</span>, <span class="fl">.68</span>, <span class="fl">.985</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">elev &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">335</span>, <span class="dv">460</span>, <span class="dv">480</span>, <span class="dv">515</span>, <span class="dv">540</span>, <span class="dv">650</span>, <span class="dv">680</span>, <span class="dv">715</span>, <span class="dv">730</span>, <span class="dv">835</span>, <span class="dv">860</span>, <span class="dv">960</span>,</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">          <span class="dv">1020</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1150</span>, <span class="dv">1170</span>, <span class="dv">1190</span>, <span class="dv">1350</span>, <span class="dv">1400</span>, <span class="dv">1500</span>, <span class="dv">1540</span>,</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">          <span class="dv">475</span>, <span class="dv">480</span>, <span class="fl">507.5</span>, <span class="dv">580</span>, <span class="dv">750</span>, <span class="dv">780</span>, <span class="dv">800</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1200</span>)</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">species &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>,</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">             <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>)</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">drought &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">bair =</span> bair,</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">                      <span class="dt">elev =</span> elev,</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">                      <span class="dt">species =</span> species)</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">summary</span>(drought)</a></code></pre></div>
-<pre><code>##       bair             elev          species  
-##  Min.   :0.2570   Min.   : 335.0   Beech :11  
-##  1st Qu.:0.5272   1st Qu.: 597.5   Spruce:23  
-##  Median :0.7100   Median : 847.5              
-##  Mean   :0.7489   Mean   : 888.3              
-##  3rd Qu.:0.9732   3rd Qu.:1150.0              
-##  Max.   :1.2810   Max.   :1540.0</code></pre>
-<p>For further context information, another source working on and interpereting this data (p. 202-203):</p>
-<p>Matthias Dobbertin, Markus Neumann, Hans-Werner Schroeck, Chapter 10 - Tree Growth Measurements in Long-Term Forest Monitoring in Europe,
-Editor(s): Marco Ferretti, Richard Fischer,
-Developments in Environmental Science,
-Elsevier,
-Volume 12,
-2013,
-Pages 183-204,
-<a href="https://doi.org/10.1016/B978-0-08-098222-9.00010-8">https://doi.org/10.1016/B978-0-08-098222-9.00010-8</a></p>
-</div>
-<div id="frost" class="section level3 unnumbered">
-<h3>Frost</h3>
-<!--Datenbasis: Deutscher Wetterdienst, hier dargestellte Werte selbst aus Tageseinzelwerten erzeugt.-->
-<p>Data basis: Deutscher Wetterdienst, values shown here were generated over individual values by myself.</p>
-<p>Direct download links for data basis (Stations Id 1691, Goettingen):</p>
-<ul>
-<li><a href="ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/tageswerte_KL_01691_19270101_20201231_hist.zip">historical data)</a></li>
-<li><a href="ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_01691_akt.zip">recent data)</a></li>
-</ul>
-<p>Some definitions:</p>
-<ul>
-<li>Budburst is estimated based on first day with degree days &gt; 220 (begin counting on March, 20).</li>
-<li>End of 1st development stage is estimated based on first day with degree days &gt; 320 (begin counting on March, 20).</li>
-<li>Definition frost event: <span class="math inline">\(\min\left(\text{Temp}_{50\text{cm}}\right) &lt; -1.95°\text{C}\)</span></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">frost &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1947</span><span class="op">:</span><span class="dv">2021</span>, </a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">                    <span class="dt">n_frost =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                                <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">                                <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">                                <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">                                <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">                    <span class="dt">bud_burst =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">19230</span>, <span class="dv">-18867</span>, <span class="dv">-18503</span>, <span class="dv">-18127</span>, <span class="dv">-17758</span>, <span class="dv">-17408</span>, <span class="dv">-17034</span>, </a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">                                          <span class="dv">-16661</span>, <span class="dv">-16293</span>, <span class="dv">-15929</span>, <span class="dv">-15566</span>, <span class="dv">-15202</span>, <span class="dv">-14847</span>, <span class="dv">-14475</span>, </a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">                                          <span class="dv">-14121</span>, <span class="dv">-13744</span>, <span class="dv">-13384</span>, <span class="dv">-13017</span>, <span class="dv">-12647</span>, <span class="dv">-12291</span>, <span class="dv">-11917</span>, </a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">                                          <span class="dv">-11563</span>, <span class="dv">-11191</span>, <span class="dv">-10821</span>, <span class="dv">-10462</span>, <span class="dv">-10092</span>, <span class="dv">-9720</span>, <span class="dv">-9361</span>, </a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">                                          <span class="dv">-8997</span>, <span class="dv">-8635</span>, <span class="dv">-8261</span>, <span class="dv">-7896</span>, <span class="dv">-7530</span>, <span class="dv">-7164</span>, <span class="dv">-6808</span>, <span class="dv">-6436</span>, </a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">                                          <span class="dv">-6078</span>, <span class="dv">-5705</span>, <span class="dv">-5347</span>, <span class="dv">-4981</span>, <span class="dv">-4619</span>, <span class="dv">-4254</span>, <span class="dv">-3883</span>, <span class="dv">-3524</span>, </a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">                                          <span class="dv">-3145</span>, <span class="dv">-2788</span>, <span class="dv">-2437</span>, <span class="dv">-2060</span>, <span class="dv">-1694</span>, <span class="dv">-1322</span>, <span class="dv">-958</span>, <span class="dv">-602</span>, </a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">                                          <span class="dv">-237</span>, <span class="dv">124</span>, <span class="dv">499</span>, <span class="dv">864</span>, <span class="dv">1222</span>, <span class="dv">1592</span>, <span class="dv">1957</span>, <span class="dv">2321</span>, <span class="dv">2681</span>, <span class="dv">3055</span>, </a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">                                          <span class="dv">3408</span>, <span class="dv">3789</span>, <span class="dv">4137</span>, <span class="dv">4513</span>, <span class="dv">4877</span>, <span class="dv">5234</span>, <span class="dv">5610</span>, <span class="dv">5976</span>, <span class="dv">6345</span>, </a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">                                          <span class="dv">6691</span>, <span class="dv">7074</span>, <span class="dv">7435</span>, <span class="dv">7812</span>), </a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">                                        <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)),</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">                    <span class="dt">end_1st_dev_stage =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">19222</span>, <span class="dv">-18859</span>, <span class="dv">-18489</span>, <span class="dv">-18118</span>, <span class="dv">-17746</span>, <span class="dv">-17397</span>, </a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">                                                  <span class="dv">-17026</span>, <span class="dv">-16650</span>, <span class="dv">-16280</span>, <span class="dv">-15921</span>, <span class="dv">-15552</span>, <span class="dv">-15192</span>, </a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">                                                  <span class="dv">-14837</span>, <span class="dv">-14464</span>, <span class="dv">-14104</span>, <span class="dv">-13726</span>, <span class="dv">-13370</span>, <span class="dv">-13006</span>, </a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">                                                  <span class="dv">-12633</span>, <span class="dv">-12281</span>, <span class="dv">-11905</span>, <span class="dv">-11545</span>, <span class="dv">-11180</span>, <span class="dv">-10808</span>, </a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">                                                  <span class="dv">-10455</span>, <span class="dv">-10078</span>, <span class="dv">-9710</span>, <span class="dv">-9349</span>, <span class="dv">-8984</span>, <span class="dv">-8623</span>, <span class="dv">-8248</span>, </a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">                                                  <span class="dv">-7886</span>, <span class="dv">-7521</span>, <span class="dv">-7151</span>, <span class="dv">-6799</span>, <span class="dv">-6427</span>, <span class="dv">-6068</span>, <span class="dv">-5691</span>, </a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">                                                  <span class="dv">-5338</span>, <span class="dv">-4972</span>, <span class="dv">-4601</span>, <span class="dv">-4246</span>, <span class="dv">-3875</span>, <span class="dv">-3513</span>, <span class="dv">-3131</span>, </a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">                                                  <span class="dv">-2780</span>, <span class="dv">-2426</span>, <span class="dv">-2050</span>, <span class="dv">-1679</span>, <span class="dv">-1311</span>, <span class="dv">-944</span>, <span class="dv">-594</span>, </a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">                                                  <span class="dv">-225</span>, <span class="dv">132</span>, <span class="dv">510</span>, <span class="dv">873</span>, <span class="dv">1235</span>, <span class="dv">1608</span>, <span class="dv">1972</span>, <span class="dv">2332</span>, <span class="dv">2694</span>, </a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">                                                  <span class="dv">3067</span>, <span class="dv">3422</span>, <span class="dv">3802</span>, <span class="dv">4152</span>, <span class="dv">4525</span>, <span class="dv">4891</span>, <span class="dv">5250</span>, <span class="dv">5623</span>, </a>
-<a class="sourceLine" id="cb3-28" data-line-number="28">                                                  <span class="dv">5988</span>, <span class="dv">6354</span>, <span class="dv">6703</span>, <span class="dv">7086</span>, <span class="dv">7450</span>, <span class="dv">7824</span>), </a>
-<a class="sourceLine" id="cb3-29" data-line-number="29">                                                <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)))</a>
-<a class="sourceLine" id="cb3-30" data-line-number="30">frost<span class="op">$</span>may1st &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">paste0</span>(frost<span class="op">$</span>year, <span class="st">&quot;-05-01&quot;</span>))</a>
-<a class="sourceLine" id="cb3-31" data-line-number="31">frost<span class="op">$</span>bud_burst_days_since_may1st &lt;-<span class="st"> </span><span class="kw">julian</span>(frost<span class="op">$</span>bud_burst, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="op">-</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="st">  </span><span class="kw">julian</span>(frost<span class="op">$</span>may1st, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</a>
-<a class="sourceLine" id="cb3-33" data-line-number="33">frost<span class="op">$</span>end_1st_dev_stage_days_since_may1st &lt;-<span class="st"> </span><span class="kw">julian</span>(frost<span class="op">$</span>end_1st_dev_stage, </a>
-<a class="sourceLine" id="cb3-34" data-line-number="34">                                                    <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="op">-</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="st">  </span><span class="kw">julian</span>(frost<span class="op">$</span>may1st, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</a>
-<a class="sourceLine" id="cb3-36" data-line-number="36"><span class="kw">summary</span>(frost)</a></code></pre></div>
-<pre><code>##       year         n_frost       bud_burst          end_1st_dev_stage   
-##  Min.   :1947   Min.   :0.00   Min.   :1947-05-09   Min.   :1947-05-17  
-##  1st Qu.:1966   1st Qu.:0.00   1st Qu.:1965-11-11   1st Qu.:1965-11-23  
-##  Median :1984   Median :0.00   Median :1984-05-19   Median :1984-06-02  
-##  Mean   :1984   Mean   :0.32   Mean   :1984-05-12   Mean   :1984-05-24  
-##  3rd Qu.:2002   3rd Qu.:0.00   3rd Qu.:2002-11-09   3rd Qu.:2002-11-20  
-##  Max.   :2021   Max.   :5.00   Max.   :2021-05-22   Max.   :2021-06-03  
-##      may1st           bud_burst_days_since_may1st
-##  Min.   :1947-05-01   Min.   :-4.00              
-##  1st Qu.:1965-10-30   1st Qu.: 8.00              
-##  Median :1984-05-01   Median :11.00              
-##  Mean   :1984-04-30   Mean   :11.69              
-##  3rd Qu.:2002-10-30   3rd Qu.:16.00              
-##  Max.   :2021-05-01   Max.   :23.00              
-##  end_1st_dev_stage_days_since_may1st
-##  Min.   : 8.00                      
-##  1st Qu.:20.00                      
-##  Median :24.00                      
-##  Mean   :23.47                      
-##  3rd Qu.:28.50                      
-##  Max.   :36.00</code></pre>
-</div>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">1</span> (Int)R(o)</h1>
@@ -339,25 +222,25 @@ Pages 183-204,
 <h2><span class="header-section-number">1.1</span> What is R?</h2>
 <p><a href="https://doi.org/10.2307/1390807">‘A Language for Data Analysis and Graphics’</a></p>
 <p>An example: <strong>Scatter plot, data-management and descriptive analysis</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">## A scatter-plot:</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="fl">.1</span>, <span class="fl">.1</span>), <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">plot</span>(drought<span class="op">$</span>elev, drought<span class="op">$</span>bair, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">     <span class="dt">xlab =</span> <span class="st">&quot;Elevation [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Basal area increment ratio [%]&quot;</span>, </a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">     <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">17</span>)[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Spruce&quot;</span>)], </a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">     <span class="dt">col =</span> paint[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Spruce&quot;</span>)])</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">1000</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">17</span>), <span class="dt">col =</span> paint, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">       <span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">## A scatter-plot:</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="fl">.1</span>, <span class="fl">.1</span>), <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">plot</span>(drought<span class="op">$</span>elev, drought<span class="op">$</span>bair, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">     <span class="dt">xlab =</span> <span class="st">&quot;Elevation [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Basal area increment ratio [%]&quot;</span>, </a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">     <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">17</span>)[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Spruce&quot;</span>)], </a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">     <span class="dt">col =</span> paint[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Spruce&quot;</span>)])</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">1000</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">17</span>), <span class="dt">col =</span> paint, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">       <span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_01_files/figure-html/data_drought-1.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">## ... some data-management:</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">range</span>(drought<span class="op">$</span>elev)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">## ... some data-management:</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">range</span>(drought<span class="op">$</span>elev)</a></code></pre></div>
 <pre><code>## [1]  335 1540</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">range</span>(drought<span class="op">$</span>elev <span class="op">%/%</span><span class="st"> </span><span class="dv">250</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">range</span>(drought<span class="op">$</span>elev <span class="op">%/%</span><span class="st"> </span><span class="dv">250</span>))</a></code></pre></div>
 <pre><code>## [1] 1 6</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">br &lt;-<span class="st"> </span><span class="kw">seq</span>(tmp[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span><span class="dv">250</span>, (tmp[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">by =</span> <span class="dv">250</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">(drought<span class="op">$</span>elev_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(drought<span class="op">$</span>elev, <span class="dt">breaks =</span> br))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">br &lt;-<span class="st"> </span><span class="kw">seq</span>(tmp[<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span><span class="dv">250</span>, (tmp[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">by =</span> <span class="dv">250</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">(drought<span class="op">$</span>elev_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(drought<span class="op">$</span>elev, <span class="dt">breaks =</span> br))</a></code></pre></div>
 <pre><code>##  [1] (250,500]          (250,500]          (250,500]          (500,750]         
 ##  [5] (500,750]          (500,750]          (500,750]          (500,750]         
 ##  [9] (500,750]          (750,1e+03]        (750,1e+03]        (750,1e+03]       
@@ -368,11 +251,11 @@ Pages 183-204,
 ## [29] (750,1e+03]        (750,1e+03]        (1e+03,1.25e+03]   (1e+03,1.25e+03]  
 ## [33] (1e+03,1.25e+03]   (1e+03,1.25e+03]  
 ## 6 Levels: (250,500] (500,750] (750,1e+03] ... (1.5e+03,1.75e+03]</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">## ... and some descriptive statistics:</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">ddply</span>(<span class="dt">.data =</span> drought, <span class="dt">.variables =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;elev_cut&quot;</span>), summarize, <span class="dt">.drop =</span> F,</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">      <span class="dt">n =</span> <span class="kw">length</span>(bair),</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">      <span class="dt">mean_bair =</span> <span class="kw">mean</span>(bair))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">## ... and some descriptive statistics:</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">ddply</span>(<span class="dt">.data =</span> drought, <span class="dt">.variables =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;elev_cut&quot;</span>), summarize, <span class="dt">.drop =</span> F,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">      <span class="dt">n =</span> <span class="kw">length</span>(bair),</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">      <span class="dt">mean_bair =</span> <span class="kw">mean</span>(bair))</a></code></pre></div>
 <pre><code>##    species           elev_cut n mean_bair
 ## 1    Beech          (250,500] 2 0.6515000
 ## 2    Beech          (500,750] 3 0.6733333
@@ -389,39 +272,39 @@ Pages 183-204,
 </div>
 <div id="why-user" class="section level2">
 <h2><span class="header-section-number">1.2</span> Why useR?</h2>
-<p>Because of packages such as ‘mgcv’!
+<p>Because of packages such as <code>mgcv</code>!
 … and because we can organize our whole working-with-data-process reproducibly (markdown!) in one place!</p>
 <p>(Note: the following figure is much too overloaded!)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="fl">.1</span>, <span class="fl">.1</span>), <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">plot</span>(frost<span class="op">$</span>year, frost<span class="op">$</span>bud_burst_days_since_may1st, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">     <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Bud burst [Days since May, 1st]&quot;</span>, </a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">     <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">grid</span>()</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">16</span>), <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>), </a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">       <span class="dt">title =</span> <span class="st">&quot;At least one frost event during 1st dev. stage:&quot;</span>, </a>
-<a class="sourceLine" id="cb14-8" data-line-number="8">       <span class="dt">bg =</span> <span class="kw">rgb</span>(.<span class="dv">5</span>, <span class="fl">.5</span>, <span class="fl">.5</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>))</a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">## library(&quot;mgcv&quot;)</span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10">m &lt;-<span class="st"> </span>mgcv<span class="op">::</span><span class="kw">gam</span>(bud_burst_days_since_may1st <span class="op">~</span><span class="st"> </span><span class="kw">te</span>(year), <span class="dt">data =</span> frost)</a>
-<a class="sourceLine" id="cb14-11" data-line-number="11">nd &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="kw">seq</span>(<span class="kw">min</span>(frost<span class="op">$</span>year), <span class="kw">max</span>(frost<span class="op">$</span>year), <span class="dt">by =</span> <span class="fl">.5</span>))</a>
-<a class="sourceLine" id="cb14-12" data-line-number="12">br &lt;-<span class="st"> </span>mgcv<span class="op">::</span><span class="kw">gam.mh</span>(m, <span class="dt">thin =</span> <span class="dv">5</span>, <span class="dt">ns =</span> <span class="dv">2000</span>, <span class="dt">rw.scale =</span> <span class="dv">2</span>)<span class="op">$</span>bs</a>
-<a class="sourceLine" id="cb14-13" data-line-number="13">coda<span class="op">::</span><span class="kw">effectiveSize</span>(coda<span class="op">::</span><span class="kw">as.mcmc</span>(br))</a>
-<a class="sourceLine" id="cb14-14" data-line-number="14">Mu &lt;-<span class="st"> </span><span class="kw">predict</span>(m, <span class="dt">newdata =</span> nd, <span class="dt">type =</span> <span class="st">&quot;lpmatrix&quot;</span>) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(br)</a>
-<a class="sourceLine" id="cb14-15" data-line-number="15">Mu_q &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> Mu, <span class="dt">MAR =</span> <span class="dv">1</span> , <span class="dt">FUN =</span> quantile, </a>
-<a class="sourceLine" id="cb14-16" data-line-number="16">              <span class="dt">probs =</span> <span class="kw">seq</span>(.<span class="dv">01</span>, <span class="fl">.99</span>, <span class="dt">by =</span> <span class="fl">.01</span>))</a>
-<a class="sourceLine" id="cb14-17" data-line-number="17">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">sequential_hcl</span>(<span class="dt">n =</span> <span class="kw">nrow</span>(Mu_q), <span class="dt">pal =</span> <span class="st">&quot;Light Grays&quot;</span>)</a>
-<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Mu_q)) {</a>
-<a class="sourceLine" id="cb14-19" data-line-number="19">  <span class="kw">lines</span>(nd<span class="op">$</span>year, Mu_q[i, ], <span class="dt">col =</span> paint[i])  </a>
-<a class="sourceLine" id="cb14-20" data-line-number="20">}</a>
-<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="kw">lines</span>(nd<span class="op">$</span>year, <span class="kw">predict</span>(m, <span class="dt">newdata =</span> nd), <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb14-22" data-line-number="22">tmp &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(frost<span class="op">$</span>end_1st_dev_stage <span class="op">-</span><span class="st"> </span>frost<span class="op">$</span>bud_burst)</a>
-<a class="sourceLine" id="cb14-23" data-line-number="23">tmp &lt;-<span class="st"> </span>tmp <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(tmp) <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb14-24" data-line-number="24">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">diverging_hcl</span>(<span class="dt">n =</span> <span class="kw">max</span>(tmp), <span class="dt">pal =</span> <span class="st">&quot;Berlin&quot;</span>)</a>
-<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="kw">points</span>(frost<span class="op">$</span>year, frost<span class="op">$</span>bud_burst_days_since_may1st, <span class="dt">col =</span> paint[tmp],</a>
-<a class="sourceLine" id="cb14-26" data-line-number="26">       <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">16</span>)[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(frost<span class="op">$</span>n_frost <span class="op">&gt;</span><span class="st"> </span><span class="fl">.5</span>)])</a>
-<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="kw">text</span>(frost<span class="op">$</span>year, frost<span class="op">$</span>bud_burst <span class="op">-</span><span class="st"> </span>frost<span class="op">$</span>may1st, </a>
-<a class="sourceLine" id="cb14-28" data-line-number="28">     <span class="dt">labels =</span> frost<span class="op">$</span>end_1st_dev_stage <span class="op">-</span><span class="st"> </span>frost<span class="op">$</span>bud_burst, </a>
-<a class="sourceLine" id="cb14-29" data-line-number="29">     <span class="dt">adj =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">1</span>, <span class="fl">-.5</span>), <span class="dt">cex =</span> <span class="fl">.8</span>, <span class="dt">col =</span> paint[tmp])</a></code></pre></div>
-<p><img src="intro_to_R_session_01_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="fl">.1</span>, <span class="fl">.1</span>), <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">plot</span>(frost<span class="op">$</span>year, frost<span class="op">$</span>bud_burst_days_since_may1st, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">     <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Bud burst [Days since May, 1st]&quot;</span>, </a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">     <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">grid</span>()</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">16</span>), <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>), </a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">       <span class="dt">title =</span> <span class="st">&quot;At least one frost event during 1st dev. stage:&quot;</span>, </a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">       <span class="dt">bg =</span> <span class="kw">rgb</span>(.<span class="dv">5</span>, <span class="fl">.5</span>, <span class="fl">.5</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>))</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">## library(&quot;mgcv&quot;)</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">m &lt;-<span class="st"> </span>mgcv<span class="op">::</span><span class="kw">gam</span>(bud_burst_days_since_may1st <span class="op">~</span><span class="st"> </span><span class="kw">te</span>(year), <span class="dt">data =</span> frost)</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">nd &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="kw">seq</span>(<span class="kw">min</span>(frost<span class="op">$</span>year), <span class="kw">max</span>(frost<span class="op">$</span>year), <span class="dt">by =</span> <span class="fl">.5</span>))</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">br &lt;-<span class="st"> </span>mgcv<span class="op">::</span><span class="kw">gam.mh</span>(m, <span class="dt">thin =</span> <span class="dv">5</span>, <span class="dt">ns =</span> <span class="dv">2000</span>, <span class="dt">rw.scale =</span> <span class="dv">2</span>)<span class="op">$</span>bs</a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">coda<span class="op">::</span><span class="kw">effectiveSize</span>(coda<span class="op">::</span><span class="kw">as.mcmc</span>(br))</a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">Mu &lt;-<span class="st"> </span><span class="kw">predict</span>(m, <span class="dt">newdata =</span> nd, <span class="dt">type =</span> <span class="st">&quot;lpmatrix&quot;</span>) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(br)</a>
+<a class="sourceLine" id="cb10-15" data-line-number="15">Mu_q &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> Mu, <span class="dt">MAR =</span> <span class="dv">1</span> , <span class="dt">FUN =</span> quantile, </a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">              <span class="dt">probs =</span> <span class="kw">seq</span>(.<span class="dv">01</span>, <span class="fl">.99</span>, <span class="dt">by =</span> <span class="fl">.01</span>))</a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">sequential_hcl</span>(<span class="dt">n =</span> <span class="kw">nrow</span>(Mu_q), <span class="dt">pal =</span> <span class="st">&quot;Light Grays&quot;</span>)</a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Mu_q)) {</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">  <span class="kw">lines</span>(nd<span class="op">$</span>year, Mu_q[i, ], <span class="dt">col =</span> paint[i])  </a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">}</a>
+<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="kw">lines</span>(nd<span class="op">$</span>year, <span class="kw">predict</span>(m, <span class="dt">newdata =</span> nd), <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">tmp &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(frost<span class="op">$</span>end_1st_dev_stage <span class="op">-</span><span class="st"> </span>frost<span class="op">$</span>bud_burst)</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">tmp &lt;-<span class="st"> </span>tmp <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(tmp) <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">diverging_hcl</span>(<span class="dt">n =</span> <span class="kw">max</span>(tmp), <span class="dt">pal =</span> <span class="st">&quot;Berlin&quot;</span>)</a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"><span class="kw">points</span>(frost<span class="op">$</span>year, frost<span class="op">$</span>bud_burst_days_since_may1st, <span class="dt">col =</span> paint[tmp],</a>
+<a class="sourceLine" id="cb10-26" data-line-number="26">       <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">16</span>)[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(frost<span class="op">$</span>n_frost <span class="op">&gt;</span><span class="st"> </span><span class="fl">.5</span>)])</a>
+<a class="sourceLine" id="cb10-27" data-line-number="27"><span class="kw">text</span>(frost<span class="op">$</span>year, frost<span class="op">$</span>bud_burst <span class="op">-</span><span class="st"> </span>frost<span class="op">$</span>may1st, </a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">     <span class="dt">labels =</span> frost<span class="op">$</span>end_1st_dev_stage <span class="op">-</span><span class="st"> </span>frost<span class="op">$</span>bud_burst, </a>
+<a class="sourceLine" id="cb10-29" data-line-number="29">     <span class="dt">adj =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">1</span>, <span class="fl">-.5</span>), <span class="dt">cex =</span> <span class="fl">.8</span>, <span class="dt">col =</span> paint[tmp])</a></code></pre></div>
+<p><img src="intro_to_R_session_01_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="literature" class="section level2">
 <h2><span class="header-section-number">1.3</span> Literature</h2>
@@ -450,49 +333,18 @@ Pages 183-204,
 <p>R:</p>
 <ul>
 <li><a href="https://r-project.org">https://r-project.org</a></li>
-<li>Freely availble</li>
-<li>Unterstützt durch alle Betriebssysteme: Windows, Linux/Unix, Mac OS, …</li>
+<li>Freely available</li>
+<li>Supported by all major operating system: Windows, Linux/Unix, Mac OS, …</li>
 </ul>
 <p>RStudio and others editors for working with R:</p>
 <ul>
-<li><strong>RStudio</strong> for Windows, Mac OS and Linux:</li>
+<li><strong>RStudio</strong> for Windows, Mac OS and Linux:
+<ul>
 <li><a href="https://rstudio.org/">RStudio website</a></li>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">RStudio cheat sheet</a></li>
+</ul></li>
 <li>Previously, I presented a list of alternatives to RStudio, but in 2021, that doesn’t seem suitable anymore!?</li>
 </ul>
-<!-- - Alternativen:
-- *Tinn-R* für Windows ([Link](https://sciviews.org/Tinn-R/).
-- *Notepad++* für Windows ([Link](https://notepad-plus-plus.org/)
-- *JGR* für Windows, Mac OS und Linux ([Link](https://rforge.net/JGR/).
-- *Emacs Speaks Statistics* (*ESS*) für Emacs, Xemacs, etc.
-- Überblick: [Link](https://sciviews.org/_rgui/).-->
-<!--
-
-
-
-```r
-library("lmfor"); library("plyr")
-## Datenmanagement:
-data(spati2)
-d <- spati2; rm(spati2)
-## Grafik:
-plot(d$d/10, d$h, pch = 16, bty = "n", col = rgb(0.5, 0.5, 0.5, alpha = 0.5),
-xlab = "Diameter in 1.3m [m]", ylab = "Height [m]", yaxt = "n")
-axis(2, las = 2)
-## Deskriptive Analyse:
-d_breaks_cut <- quantile(d$d, probs = seq(0, 1, by = 0.05))
-d$d_cut <- cut(d$d, breaks = d_breaks_cut, include.lowest = T)
-dd <- ddply(d, c("d_cut"), summarise, h_mean = mean(h))
-dd$d_lb <- d_breaks_cut[-length(d_breaks_cut)]; dd$d_ub <- d_breaks_cut[-1]
-for(i in 1:nrow(dd)){ ## Mit Hilfe von 'Programmierbefehlen'
-lines(x = c(dd$d_lb[i], dd$d_ub[i])/10, y = rep(dd$h_mean[i], 2), lwd = 2)
-}
-lines(x = apply(dd[, c("d_lb", "d_ub")]/10, MAR = 1, FUN = mean), y = dd$h_mean,
-type = "o", pch = 16, lwd = 2)
-```
-
-<img src="intro_to_R_session_01_files/figure-html/unnamed-chunk-6-1.png" width="672" />
--->
 </div>
 <div id="r-is-a-language" class="section level2">
 <h2><span class="header-section-number">1.5</span> R is a language</h2>
@@ -571,24 +423,24 @@ type = "o", pch = 16, lwd = 2)
 <div id="exercise" class="section level2">
 <h2><span class="header-section-number">2.1</span> Exercise</h2>
 <p>Run the following lines.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">1</span>] <span class="co">## Basal area increment ratio at 1st plot</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">a <span class="co">## ... growth is about a half in 2003 in comparison to growth in 2002</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">1</span>] <span class="co">## Basal area increment ratio at 1st plot</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">a <span class="co">## ... growth is about a half in 2003 in comparison to growth in 2002</span></a></code></pre></div>
 <pre><code>## [1] 0.505</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">2</span>] <span class="co">## Basal area increment ratio at 2nd plot</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">b <span class="co">## ... growth is about two thirds in 2003 in comparison to growth in 2002</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">2</span>] <span class="co">## Basal area increment ratio at 2nd plot</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">b <span class="co">## ... growth is about two thirds in 2003 in comparison to growth in 2002</span></a></code></pre></div>
 <pre><code>## [1] 0.648</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">a <span class="op">-</span><span class="st"> </span>b <span class="co">## Whats the difference of bair?</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">a <span class="op">-</span><span class="st"> </span>b <span class="co">## Whats the difference of bair?</span></a></code></pre></div>
 <pre><code>## [1] -0.143</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">a <span class="op">/</span><span class="st"> </span>b <span class="co">## Whats the ratio of bair?</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">a <span class="op">/</span><span class="st"> </span>b <span class="co">## Whats the ratio of bair?</span></a></code></pre></div>
 <pre><code>## [1] 0.779321</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">b <span class="op">%/%</span><span class="st"> </span>a <span class="co">## How often is &#39;b&#39; contained in &#39;a&#39;?</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">b <span class="op">%/%</span><span class="st"> </span>a <span class="co">## How often is &#39;b&#39; contained in &#39;a&#39;?</span></a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">b <span class="op">%%</span><span class="st"> </span>a <span class="co">## If &#39;b&#39; is contained once in &#39;a&#39;, what&#39;s remaining?</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">b <span class="op">%%</span><span class="st"> </span>a <span class="co">## If &#39;b&#39; is contained once in &#39;a&#39;, what&#39;s remaining?</span></a></code></pre></div>
 <pre><code>## [1] 0.143</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">(a <span class="op">+</span><span class="st"> </span>b)<span class="op">/</span><span class="dv">2</span> <span class="co">## Arithmetic mean of &#39;a&#39; and &#39;b&#39;</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">(a <span class="op">+</span><span class="st"> </span>b)<span class="op">/</span><span class="dv">2</span> <span class="co">## Arithmetic mean of &#39;a&#39; and &#39;b&#39;</span></a></code></pre></div>
 <pre><code>## [1] 0.5765</code></pre>
 <p>Did we just calculate an arithmetic mean ‘by hand’?</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">mean</span>(<span class="kw">c</span>(a, b))</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">mean</span>(<span class="kw">c</span>(a, b))</a></code></pre></div>
 <pre><code>## [1] 0.5765</code></pre>
 </div>
 </div>
@@ -673,19 +525,19 @@ type = "o", pch = 16, lwd = 2)
 </tbody>
 </table>
 <p>Remember, everything in R is an object or a function, so we even can’t use <code>,</code> without a function cal such as:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">c</span>(a, b) <span class="co">## first two bair values in a vector</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">c</span>(a, b) <span class="co">## first two bair values in a vector</span></a></code></pre></div>
 <pre><code>## [1] 0.505 0.648</code></pre>
 <div id="exercise-1" class="section level2">
 <h2><span class="header-section-number">3.1</span> Exercise</h2>
 <p>Run the following lines and ask yourself <em>What is the applied question behind each line?</em>.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">pi <span class="co">## Okay, there is no applied meaning here, it&#39;s just a number, an important one, though :)</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">a <span class="op">/</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span>pi</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">a <span class="op">&gt;</span><span class="st"> </span>b</a>
-<a class="sourceLine" id="cb33-4" data-line-number="4">a <span class="op">&lt;</span><span class="st"> </span>b</a>
-<a class="sourceLine" id="cb33-5" data-line-number="5">a <span class="op">==</span><span class="st"> </span>a <span class="op">&amp;</span><span class="st"> </span>b <span class="op">!=</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb33-6" data-line-number="6">a <span class="op">&gt;</span><span class="st"> </span>b <span class="op">|</span><span class="st"> </span>b <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb33-7" data-line-number="7">a <span class="op">/</span><span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb33-8" data-line-number="8"><span class="dv">0</span> <span class="op">/</span><span class="st"> </span><span class="dv">0</span> <span class="co">## Let: x = 0 / 0. So: 0 * x = 0, which is true for any number x.</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">pi <span class="co">## Okay, there is no applied meaning here, it&#39;s just a number, an important one, though :)</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">a <span class="op">/</span><span class="st"> </span>b <span class="op">==</span><span class="st"> </span>pi</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">a <span class="op">&gt;</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">a <span class="op">&lt;</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">a <span class="op">==</span><span class="st"> </span>a <span class="op">&amp;</span><span class="st"> </span>b <span class="op">!=</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">a <span class="op">&gt;</span><span class="st"> </span>b <span class="op">|</span><span class="st"> </span>b <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">a <span class="op">/</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb29-8" data-line-number="8"><span class="dv">0</span> <span class="op">/</span><span class="st"> </span><span class="dv">0</span> <span class="co">## Let: x = 0 / 0. So: 0 * x = 0, which is true for any number x.</span></a></code></pre></div>
 </div>
 </div>
 <div id="mathematical-functions" class="section level1">
@@ -744,20 +596,20 @@ type = "o", pch = 16, lwd = 2)
 <div id="exercise-2" class="section level2">
 <h2><span class="header-section-number">4.1</span> Exercise</h2>
 <p>Run the following lines.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">a &lt;-<span class="st"> </span>d<span class="op">$</span>h[<span class="dv">1</span>]; a; b &lt;-<span class="st"> </span>d<span class="op">$</span>h[<span class="dv">2</span>]; b <span class="co">## Hoehen erster und zweiter Baum</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">exp</span>(<span class="dt">x =</span> a)</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw">sqrt</span>(<span class="dt">x =</span> a)</a>
-<a class="sourceLine" id="cb34-4" data-line-number="4">a <span class="op">-</span><span class="st"> </span>b</a>
-<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="kw">abs</span>(<span class="dt">x =</span> a <span class="op">-</span><span class="st"> </span>b)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">1</span>]; a; b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">2</span>]; b <span class="co">## Hoehen erster und zweiter Baum</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="kw">exp</span>(<span class="dt">x =</span> a)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="kw">sqrt</span>(<span class="dt">x =</span> a)</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">a <span class="op">-</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="kw">abs</span>(<span class="dt">x =</span> a <span class="op">-</span><span class="st"> </span>b)</a></code></pre></div>
 <p>(Computers construct real values)[<a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic" class="uri">https://en.wikipedia.org/wiki/Floating-point_arithmetic</a>]:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">sin</span>(<span class="dt">x =</span> pi)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">sin</span>(<span class="dt">x =</span> pi)</a></code></pre></div>
 <pre><code>## [1] 1.224647e-16</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">sin</span>(pi), <span class="dt">digits =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">sin</span>(pi), <span class="dt">digits =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">cos</span>(<span class="dt">x =</span> pi)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">cos</span>(<span class="dt">x =</span> pi)</a></code></pre></div>
 <pre><code>## [1] -1</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">sum</span>(a, b)</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="kw">max</span>(a, b)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">sum</span>(a, b)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">max</span>(a, b)</a></code></pre></div>
 </div>
 </div>
 <div id="functions-basics" class="section level1">
@@ -770,20 +622,20 @@ type = "o", pch = 16, lwd = 2)
 <li>Search for documentation of <code>f</code> by: <code>help.search('f')</code></li>
 <li>Syntax:</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">f</span>(<span class="dt">arg1 =</span> wert1, <span class="dt">arg2 =</span> wert2, ...) <span class="co">## &#39;...&#39; is for optional further arguments.</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">f</span>(<span class="dt">arg1 =</span> wert1, <span class="dt">arg2 =</span> wert2, ...) <span class="co">## &#39;...&#39; is for optional further arguments.</span></a></code></pre></div>
 <ul>
 <li>Arguments often have default objects, eg. for <code>pch</code> in <code>plot()</code>:</li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> b)</a></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> b, <span class="dt">pch =</span> <span class="dv">1</span>) <span class="co">## same!</span></a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> b)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> b, <span class="dt">pch =</span> <span class="dv">1</span>) <span class="co">## same!</span></a></code></pre></div>
 <ul>
 <li>Giving objects to arguments is not optional in any case:</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">sin</span>(pi<span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">sin</span>(pi<span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">sin</span>(<span class="dt">x =</span> pi<span class="op">/</span><span class="dv">2</span>) <span class="co">## Same</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">sin</span>(<span class="dt">x =</span> pi<span class="op">/</span><span class="dv">2</span>) <span class="co">## Same</span></a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">plot</span>(pi, pi, <span class="dv">1</span>) <span class="co">## Error!</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">plot</span>(pi, pi, <span class="dv">1</span>) <span class="co">## Error!</span></a></code></pre></div>
 <pre><code>## Error in plot.xy(xy, type, ...): ungültiger Plottyp</code></pre>
 </div>
 <div id="documentation" class="section level1">
@@ -815,12 +667,12 @@ type = "o", pch = 16, lwd = 2)
 <li>Assignment of contents by <code>&lt;-</code> or <code>=</code> (or very seldomly <code>-&gt;</code>).</li>
 <li>Type of contents is described by object classes.</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">names</span>(drought)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">names</span>(drought)</a></code></pre></div>
 <pre><code>## [1] &quot;bair&quot;     &quot;elev&quot;     &quot;species&quot;  &quot;elev_cut&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co">#rm(spati2)</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">#(a &lt;- d$h[1]); (a = d$h[1])</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="co">#log(b &lt;- d$h[2]); b</span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co">#(a &lt;- b)</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co">#rm(spati2)</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co">#(a &lt;- d$h[1]); (a = d$h[1])</span></a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="co">#log(b &lt;- d$h[2]); b</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="co">#(a &lt;- b)</span></a></code></pre></div>
 <div id="objekt-names" class="section level2">
 <h2><span class="header-section-number">7.1</span> Objekt names</h2>
 <p>There are few hard technical restrictions on how to name objects in R, and a few soft rules that make life much simpler:</p>
@@ -834,16 +686,16 @@ type = "o", pch = 16, lwd = 2)
 <li>Ask yourself: Will I be able to immediately remember the contents from the name after two weeks without working on this project?</li>
 </ul>
 <p>We get an error message:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">3values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">3values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## Error: &lt;text&gt;:1:2: unerwartetes Symbol
 ## 1: 3values
 ##      ^</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">three_values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">three_values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
 </div>
 <div id="save-and-load" class="section level2">
 <h2><span class="header-section-number">7.2</span> Save and load</h2>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">save</span>(frost, <span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">save</span>(frost, <span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a></code></pre></div>
 </div>
 <div id="litter-service" class="section level2">
 <h2><span class="header-section-number">7.3</span> Litter service</h2>
@@ -852,26 +704,34 @@ type = "o", pch = 16, lwd = 2)
 <li>Litter service using <code>rm()</code></li>
 <li><code>dput()</code> comes as a helper</li>
 </ul>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
-<pre><code>##  [1] &quot;a&quot;                 &quot;b&quot;                 &quot;bair&quot;             
-##  [4] &quot;br&quot;                &quot;d&quot;                 &quot;d_breaks_cut&quot;     
-##  [7] &quot;dd&quot;                &quot;drought&quot;           &quot;elev&quot;             
-## [10] &quot;frost&quot;             &quot;i&quot;                 &quot;m&quot;                
-## [13] &quot;Mu&quot;                &quot;Mu_q&quot;              &quot;nd&quot;               
-## [16] &quot;paint&quot;             &quot;quantile_sequence&quot; &quot;species&quot;          
-## [19] &quot;three_values&quot;      &quot;tmp&quot;</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>())</a></code></pre></div>
-<pre><code>## c(&quot;a&quot;, &quot;b&quot;, &quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;drought&quot;, 
-## &quot;elev&quot;, &quot;frost&quot;, &quot;i&quot;, &quot;m&quot;, &quot;Mu&quot;, &quot;Mu_q&quot;, &quot;nd&quot;, &quot;paint&quot;, &quot;quantile_sequence&quot;, 
-## &quot;species&quot;, &quot;three_values&quot;, &quot;tmp&quot;)</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>()[<span class="op">!</span>(<span class="kw">ls</span>() <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;drought&quot;</span>, <span class="st">&quot;frost&quot;</span>))])</a></code></pre></div>
-<pre><code>## c(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, 
-## &quot;Mu&quot;, &quot;Mu_q&quot;, &quot;nd&quot;, &quot;paint&quot;, &quot;quantile_sequence&quot;, &quot;species&quot;, 
-## &quot;three_values&quot;, &quot;tmp&quot;)</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">rm</span>(<span class="st">&quot;bair&quot;</span>, <span class="st">&quot;br&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;d_breaks_cut&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;elev&quot;</span>, <span class="st">&quot;i&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;Mu&quot;</span>, </a>
-<a class="sourceLine" id="cb64-2" data-line-number="2">   <span class="st">&quot;Mu_q&quot;</span>, <span class="st">&quot;nd&quot;</span>, <span class="st">&quot;paint&quot;</span>, <span class="st">&quot;quantile_sequence&quot;</span>, <span class="st">&quot;species&quot;</span>, <span class="st">&quot;three_values&quot;</span>, <span class="st">&quot;tmp&quot;</span>)</a>
-<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="kw">ls</span>()</a></code></pre></div>
-<pre><code>## [1] &quot;a&quot;       &quot;b&quot;       &quot;drought&quot; &quot;frost&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
+<pre><code>##  [1] &quot;a&quot;            &quot;b&quot;            &quot;br&quot;           &quot;df&quot;           &quot;drought&quot;     
+##  [6] &quot;frost&quot;        &quot;i&quot;            &quot;m&quot;            &quot;Mu&quot;           &quot;Mu_q&quot;        
+## [11] &quot;nd&quot;           &quot;paint&quot;        &quot;three_values&quot; &quot;tmp&quot;</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>())</a></code></pre></div>
+<pre><code>## c(&quot;a&quot;, &quot;b&quot;, &quot;br&quot;, &quot;df&quot;, &quot;drought&quot;, &quot;frost&quot;, &quot;i&quot;, &quot;m&quot;, &quot;Mu&quot;, &quot;Mu_q&quot;, 
+## &quot;nd&quot;, &quot;paint&quot;, &quot;three_values&quot;, &quot;tmp&quot;)</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>()[<span class="op">!</span>(<span class="kw">ls</span>() <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;drought&quot;</span>, <span class="st">&quot;frost&quot;</span>))])</a></code></pre></div>
+<pre><code>## c(&quot;br&quot;, &quot;df&quot;, &quot;i&quot;, &quot;m&quot;, &quot;Mu&quot;, &quot;Mu_q&quot;, &quot;nd&quot;, &quot;paint&quot;, &quot;three_values&quot;, 
+## &quot;tmp&quot;)</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">rm</span>(<span class="st">&quot;bair&quot;</span>, <span class="st">&quot;br&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;d_breaks_cut&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;elev&quot;</span>, <span class="st">&quot;i&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;Mu&quot;</span>, </a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">   <span class="st">&quot;Mu_q&quot;</span>, <span class="st">&quot;nd&quot;</span>, <span class="st">&quot;paint&quot;</span>, <span class="st">&quot;quantile_sequence&quot;</span>, <span class="st">&quot;species&quot;</span>, <span class="st">&quot;three_values&quot;</span>, <span class="st">&quot;tmp&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
+## Objekt &#39;bair&#39; nicht gefunden</code></pre>
+<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
+## Objekt &#39;d&#39; nicht gefunden</code></pre>
+<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
+## Objekt &#39;d_breaks_cut&#39; nicht gefunden</code></pre>
+<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
+## Objekt &#39;dd&#39; nicht gefunden</code></pre>
+<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
+## Objekt &#39;elev&#39; nicht gefunden</code></pre>
+<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
+## Objekt &#39;quantile_sequence&#39; nicht gefunden</code></pre>
+<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
+## Objekt &#39;species&#39; nicht gefunden</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;a&quot;       &quot;b&quot;       &quot;df&quot;      &quot;drought&quot; &quot;frost&quot;</code></pre>
 </div>
 </div>
 <div id="dataobject-classes" class="section level1">
@@ -927,18 +787,18 @@ type = "o", pch = 16, lwd = 2)
 <div id="exercises-1" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Exercises</h3>
 <p>Copy-paste and run each line: describe what it does and what it results in.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">1</span>]; b &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb66-2" data-line-number="2">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">1</span>]; b &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a></code></pre></div>
 <pre><code>## [1] 335 460</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">c</span>(x, a)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">c</span>(x, a)</a></code></pre></div>
 <pre><code>## [1] 335 460 335</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">c</span>(x, x)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">c</span>(x, x)</a></code></pre></div>
 <pre><code>## [1] 335 460 335 460</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">x[<span class="dv">2</span>] &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">3</span>]; x</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">x[<span class="dv">2</span>] &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">3</span>]; x</a></code></pre></div>
 <pre><code>## [1] 335 480</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">length</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">length</span>(x)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">a<span class="op">:</span>b</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">a<span class="op">:</span>b</a></code></pre></div>
 <pre><code>##   [1] 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352
 ##  [19] 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370
 ##  [37] 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388
@@ -946,7 +806,7 @@ type = "o", pch = 16, lwd = 2)
 ##  [73] 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424
 ##  [91] 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442
 ## [109] 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="fl">.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="fl">.5</span>)</a></code></pre></div>
 <pre><code>##   [1] 335.0 335.5 336.0 336.5 337.0 337.5 338.0 338.5 339.0 339.5 340.0 340.5
 ##  [13] 341.0 341.5 342.0 342.5 343.0 343.5 344.0 344.5 345.0 345.5 346.0 346.5
 ##  [25] 347.0 347.5 348.0 348.5 349.0 349.5 350.0 350.5 351.0 351.5 352.0 352.5
@@ -968,28 +828,28 @@ type = "o", pch = 16, lwd = 2)
 ## [217] 443.0 443.5 444.0 444.5 445.0 445.5 446.0 446.5 447.0 447.5 448.0 448.5
 ## [229] 449.0 449.5 450.0 450.5 451.0 451.5 452.0 452.5 453.0 453.5 454.0 454.5
 ## [241] 455.0 455.5 456.0 456.5 457.0 457.5 458.0 458.5 459.0 459.5 460.0</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>##  [1] 335 340 345 350 355 360 365 370 375 380 385 390 395 400 405 410 415 420 425
 ## [20] 430 435 440 445 450 455 460</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">seq</span>(a, b, <span class="dt">length =</span> <span class="dv">10</span>) <span class="co">## Sequenz</span></a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">seq</span>(a, b, <span class="dt">length =</span> <span class="dv">10</span>) <span class="co">## Sequenz</span></a></code></pre></div>
 <pre><code>##  [1] 335.0000 348.8889 362.7778 376.6667 390.5556 404.4444 418.3333 432.2222
 ##  [9] 446.1111 460.0000</code></pre>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">rep</span>(x, <span class="dt">times =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">rep</span>(x, <span class="dt">times =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 335 480 335 480 335 480</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">rep</span>(x, <span class="dt">each =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">rep</span>(x, <span class="dt">each =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 335 335 335 480 480 480</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">7</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">7</span>)</a></code></pre></div>
 <pre><code>## [1] 335 480 335 480 335 480 335</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">sort</span>(x, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">sort</span>(x, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 480 335</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">order</span>(<span class="kw">c</span>(x, <span class="dv">100</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">order</span>(<span class="kw">c</span>(x, <span class="dv">100</span>))</a></code></pre></div>
 <pre><code>## [1] 3 1 2</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">1</span>]); b &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb94-2" data-line-number="2">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">1</span>]); b &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb98-2" data-line-number="2">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a></code></pre></div>
 <pre><code>## [1] &quot;Spruce&quot; &quot;Spruce&quot;</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">c</span>(x, <span class="st">&quot;Beech&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">c</span>(x, <span class="st">&quot;Beech&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Spruce&quot; &quot;Spruce&quot; &quot;Beech&quot;</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="kw">c</span>(x, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">c</span>(x, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Spruce&quot; &quot;Spruce&quot; &quot;2&quot;</code></pre>
 </div>
 </div>
@@ -1004,16 +864,16 @@ type = "o", pch = 16, lwd = 2)
 <div id="exercises-2" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> Exercises</h3>
 <p>Copy-paste and run each line: describe what it does and what it results in.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
-<a class="sourceLine" id="cb100-2" data-line-number="2">x<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="kw">sin</span>(x)</a>
-<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="kw">summary</span>(x)</a>
-<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="kw">boxplot</span>(x)</a>
-<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="kw">stripchart</span>(x, <span class="dt">add =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T)</a></code></pre></div>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">species &lt;-<span class="st"> </span>drought<span class="op">$</span>species</a>
-<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species)</a>
-<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>elev <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
+<a class="sourceLine" id="cb104-2" data-line-number="2">x<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="kw">sin</span>(x)</a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb104-5" data-line-number="5"><span class="kw">summary</span>(x)</a>
+<a class="sourceLine" id="cb104-6" data-line-number="6"><span class="kw">boxplot</span>(x)</a>
+<a class="sourceLine" id="cb104-7" data-line-number="7"><span class="kw">stripchart</span>(x, <span class="dt">add =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">species &lt;-<span class="st"> </span>drought<span class="op">$</span>species</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>elev <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>))</a></code></pre></div>
 </div>
 </div>
 <div id="matrix" class="section level2">
@@ -1022,7 +882,7 @@ type = "o", pch = 16, lwd = 2)
 <div id="basics-1" class="section level3">
 <h3><span class="header-section-number">8.3.1</span> Basics</h3>
 <p><code>P</code><span class="math inline">\(\times\)</span><code>P</code> matrix with content <code>content</code>:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> P, <span class="dt">ncol =</span> Q, <span class="dt">data =</span> content)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> P, <span class="dt">ncol =</span> Q, <span class="dt">data =</span> content)</a></code></pre></div>
 <p>Fill matrix column- (default) or linewise using argument <code>byrow = TRUE</code>:</p>
 <ul>
 <li>Indexing of one element: <code>A[1, 1]</code></li>
@@ -1035,49 +895,49 @@ type = "o", pch = 16, lwd = 2)
 </div>
 <div id="exercises-3" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Exercises</h3>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev</a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
-<a class="sourceLine" id="cb103-3" data-line-number="3"><span class="kw">length</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">length</span>(b)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2">b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
+<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="kw">length</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">length</span>(b)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">length</span>(a), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(a, b))</a>
-<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">all</span>(A[, <span class="dv">1</span>] <span class="op">==</span><span class="st"> </span>a)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">length</span>(a), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(a, b))</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">all</span>(A[, <span class="dv">1</span>] <span class="op">==</span><span class="st"> </span>a)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</a></code></pre></div>
 <pre><code>##      [,1]  [,2]
 ## [1,]  335 0.505
 ## [2,]  460 0.648
 ## [3,]  480 0.523</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## [1] 0.505 0.648 0.523</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">A[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">29</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">A[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">29</span>), ]</a></code></pre></div>
 <pre><code>##      [,1]  [,2]
 ## [1,]  335 0.505
 ## [2,]  460 0.648
 ## [3,]  480 0.523
 ## [4,]  780 0.944</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>); B</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>); B</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
 ## [2,]    2    5    8
 ## [3,]    3    6    9</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">diag</span>(B)</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">diag</span>(B)</a></code></pre></div>
 <pre><code>## [1] 1 5 9</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">B <span class="op">%*%</span><span class="st"> </span>B</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">B <span class="op">%*%</span><span class="st"> </span>B</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]   30   66  102
 ## [2,]   36   81  126
 ## [3,]   42   96  150</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">B <span class="op">%*%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">B <span class="op">%*%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]   12
 ## [2,]   15
 ## [3,]   18</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">rowSums</span>(B)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">rowSums</span>(B)</a></code></pre></div>
 <pre><code>## [1] 12 15 18</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span>B</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span>B</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    6   15   24</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">colSums</span>(B)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">colSums</span>(B)</a></code></pre></div>
 <pre><code>## [1]  6 15 24</code></pre>
 </div>
 </div>
@@ -1093,14 +953,14 @@ type = "o", pch = 16, lwd = 2)
 <li><code>str</code> gives the structure</li>
 <li>For lists of ‘consistent’ classes (or generic functions):</li>
 </ul>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">lapply</span>(<span class="dt">X =</span> mylist, <span class="dt">FUN =</span> myfun)</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="kw">lapply</span>(<span class="dt">X =</span> mylist, <span class="dt">FUN =</span> myfun)</a></code></pre></div>
 </div>
 <div id="exercises-4" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> Exercises</h3>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">beech &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">species =</span> <span class="st">&quot;Fagus&quot;</span>,</a>
-<a class="sourceLine" id="cb128-2" data-line-number="2">              <span class="dt">n =</span> <span class="kw">sum</span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>),</a>
-<a class="sourceLine" id="cb128-3" data-line-number="3">              <span class="dt">data =</span> <span class="kw">subset</span>(drought, species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>))</a>
-<a class="sourceLine" id="cb128-4" data-line-number="4">beech</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">beech &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">species =</span> <span class="st">&quot;Fagus&quot;</span>,</a>
+<a class="sourceLine" id="cb132-2" data-line-number="2">              <span class="dt">n =</span> <span class="kw">sum</span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>),</a>
+<a class="sourceLine" id="cb132-3" data-line-number="3">              <span class="dt">data =</span> <span class="kw">subset</span>(drought, species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>))</a>
+<a class="sourceLine" id="cb132-4" data-line-number="4">beech</a></code></pre></div>
 <pre><code>## $species
 ## [1] &quot;Fagus&quot;
 ## 
@@ -1120,13 +980,13 @@ type = "o", pch = 16, lwd = 2)
 ## 32 1.230 1100.0   Beech (1e+03,1.25e+03]
 ## 33 0.680 1150.0   Beech (1e+03,1.25e+03]
 ## 34 0.985 1200.0   Beech (1e+03,1.25e+03]</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">beech[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">beech[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>## [1] &quot;Fagus&quot;</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">beech[[<span class="st">&#39;species&#39;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">beech[[<span class="st">&#39;species&#39;</span>]]</a></code></pre></div>
 <pre><code>## [1] &quot;Fagus&quot;</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">beech<span class="op">$</span>species</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">beech<span class="op">$</span>species</a></code></pre></div>
 <pre><code>## [1] &quot;Fagus&quot;</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">str</span>(beech)</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">str</span>(beech)</a></code></pre></div>
 <pre><code>## List of 3
 ##  $ species: chr &quot;Fagus&quot;
 ##  $ n      : int 11
@@ -1135,7 +995,7 @@ type = "o", pch = 16, lwd = 2)
 ##   ..$ elev    : num [1:11] 475 480 508 580 750 ...
 ##   ..$ species : Factor w/ 2 levels &quot;Beech&quot;,&quot;Spruce&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 ##   ..$ elev_cut: Factor w/ 6 levels &quot;(250,500]&quot;,&quot;(500,750]&quot;,..: 1 1 2 2 2 3 3 4 4 4 ...</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> dim)</a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> dim)</a></code></pre></div>
 <pre><code>## $species
 ## NULL
 ## 
@@ -1144,7 +1004,7 @@ type = "o", pch = 16, lwd = 2)
 ## 
 ## $data
 ## [1] 11  4</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> summary)</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> summary)</a></code></pre></div>
 <pre><code>## $species
 ##    Length     Class      Mode 
 ##         1 character character 
@@ -1173,19 +1033,19 @@ type = "o", pch = 16, lwd = 2)
 </ul>
 <div id="exercises-5" class="section level3">
 <h3><span class="header-section-number">8.5.1</span> Exercises</h3>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">c</span>(<span class="dt">one =</span> <span class="dv">1</span>, <span class="dt">two =</span> <span class="dv">2</span>, <span class="dt">four =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb142-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb142-3" data-line-number="3">x</a>
-<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;four&quot;</span>)</a>
-<a class="sourceLine" id="cb142-5" data-line-number="5">x</a>
-<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="kw">names</span>(beech)</a>
-<a class="sourceLine" id="cb142-7" data-line-number="7">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(drought<span class="op">$</span>elev[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], drought<span class="op">$</span>bair[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]))</a>
-<a class="sourceLine" id="cb142-8" data-line-number="8"><span class="kw">colnames</span>(A)</a>
-<a class="sourceLine" id="cb142-9" data-line-number="9"><span class="kw">colnames</span>(A) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;elev&quot;</span>, <span class="st">&quot;bair&quot;</span>)</a>
-<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="kw">colnames</span>(A)</a>
-<a class="sourceLine" id="cb142-11" data-line-number="11"><span class="kw">rownames</span>(A)</a>
-<a class="sourceLine" id="cb142-12" data-line-number="12"><span class="kw">names</span>(A)</a>
-<a class="sourceLine" id="cb142-13" data-line-number="13"><span class="kw">dimnames</span>(A)</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">c</span>(<span class="dt">one =</span> <span class="dv">1</span>, <span class="dt">two =</span> <span class="dv">2</span>, <span class="dt">four =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb146-3" data-line-number="3">x</a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;four&quot;</span>)</a>
+<a class="sourceLine" id="cb146-5" data-line-number="5">x</a>
+<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="kw">names</span>(beech)</a>
+<a class="sourceLine" id="cb146-7" data-line-number="7">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(drought<span class="op">$</span>elev[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], drought<span class="op">$</span>bair[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]))</a>
+<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="kw">colnames</span>(A)</a>
+<a class="sourceLine" id="cb146-9" data-line-number="9"><span class="kw">colnames</span>(A) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;elev&quot;</span>, <span class="st">&quot;bair&quot;</span>)</a>
+<a class="sourceLine" id="cb146-10" data-line-number="10"><span class="kw">colnames</span>(A)</a>
+<a class="sourceLine" id="cb146-11" data-line-number="11"><span class="kw">rownames</span>(A)</a>
+<a class="sourceLine" id="cb146-12" data-line-number="12"><span class="kw">names</span>(A)</a>
+<a class="sourceLine" id="cb146-13" data-line-number="13"><span class="kw">dimnames</span>(A)</a></code></pre></div>
 </div>
 </div>
 <div id="dataframe" class="section level2">
@@ -1201,29 +1061,29 @@ type = "o", pch = 16, lwd = 2)
 </ul>
 <div id="exercises-6" class="section level3">
 <h3><span class="header-section-number">8.6.1</span> Exercises</h3>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">weather &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>),</a>
-<a class="sourceLine" id="cb143-2" data-line-number="2">                      <span class="dt">daily_mean_temperature_C =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>),</a>
-<a class="sourceLine" id="cb143-3" data-line-number="3">                      <span class="dt">precipitation_sum_mm =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">25</span>),</a>
-<a class="sourceLine" id="cb143-4" data-line-number="4">                      <span class="dt">site =</span> <span class="st">&quot;Goettingen&quot;</span>)</a>
-<a class="sourceLine" id="cb143-5" data-line-number="5">weather</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">weather &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>),</a>
+<a class="sourceLine" id="cb147-2" data-line-number="2">                      <span class="dt">daily_mean_temperature_C =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>),</a>
+<a class="sourceLine" id="cb147-3" data-line-number="3">                      <span class="dt">precipitation_sum_mm =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">25</span>),</a>
+<a class="sourceLine" id="cb147-4" data-line-number="4">                      <span class="dt">site =</span> <span class="st">&quot;Goettingen&quot;</span>)</a>
+<a class="sourceLine" id="cb147-5" data-line-number="5">weather</a></code></pre></div>
 <pre><code>##         day daily_mean_temperature_C precipitation_sum_mm       site
 ## 1    Monday                       12                    5 Goettingen
 ## 2   Tuesday                       14                    9 Goettingen
 ## 3 Wednesday                       11                   25 Goettingen</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ]</a></code></pre></div>
 <pre><code>##       day daily_mean_temperature_C precipitation_sum_mm       site
 ## 1  Monday                       12                    5 Goettingen
 ## 2 Tuesday                       14                    9 Goettingen</code></pre>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">weather<span class="op">$</span>day[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">weather<span class="op">$</span>day[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## [1] Monday  Tuesday
 ## Levels: Monday Tuesday Wednesday</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">weather[[<span class="st">&quot;daily_mean_temperature_C&quot;</span>]][<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">weather[[<span class="st">&quot;daily_mean_temperature_C&quot;</span>]][<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;daily_mean_temperature_C&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;daily_mean_temperature_C&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a></code></pre></div>
 <pre><code>##   daily_mean_temperature_C precipitation_sum_mm
 ## 1                       12                    5
 ## 2                       14                    9</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a></code></pre></div>
 <pre><code>##       day precipitation_sum_mm
 ## 1  Monday                    5
 ## 2 Tuesday                    9</code></pre>
@@ -1240,7 +1100,7 @@ type = "o", pch = 16, lwd = 2)
 </ul>
 <div id="exercises-7" class="section level3">
 <h3><span class="header-section-number">8.7.1</span> Exercises</h3>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">summary</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">summary</span>(weather)</a></code></pre></div>
 <pre><code>##         day    daily_mean_temperature_C precipitation_sum_mm         site  
 ##  Monday   :1   Min.   :11.00            Min.   : 5           Goettingen:3  
 ##  Tuesday  :1   1st Qu.:11.50            1st Qu.: 7                         
@@ -1248,17 +1108,17 @@ type = "o", pch = 16, lwd = 2)
 ##                Mean   :12.33            Mean   :13                         
 ##                3rd Qu.:13.00            3rd Qu.:17                         
 ##                Max.   :14.00            Max.   :25</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">str</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">str</span>(weather)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    3 obs. of  4 variables:
 ##  $ day                     : Factor w/ 3 levels &quot;Monday&quot;,&quot;Tuesday&quot;,..: 1 2 3
 ##  $ daily_mean_temperature_C: num  12 14 11
 ##  $ precipitation_sum_mm    : num  5 9 25
 ##  $ site                    : Factor w/ 1 level &quot;Goettingen&quot;: 1 1 1</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">head</span>(weather, <span class="dt">n =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">head</span>(weather, <span class="dt">n =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##       day daily_mean_temperature_C precipitation_sum_mm       site
 ## 1  Monday                       12                    5 Goettingen
 ## 2 Tuesday                       14                    9 Goettingen</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">dim</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">dim</span>(weather)</a></code></pre></div>
 <pre><code>## [1] 3 4</code></pre>
 </div>
 </div>
@@ -1269,39 +1129,39 @@ type = "o", pch = 16, lwd = 2)
 <div id="nchar" class="section level2 unnumbered">
 <h2><code>nchar</code></h2>
 <p>Returns the number of characters of a string:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">nchar</span>(<span class="kw">names</span>(weather))</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">nchar</span>(<span class="kw">names</span>(weather))</a></code></pre></div>
 <pre><code>## [1]  3 24 20  4</code></pre>
 </div>
 <div id="tolower-und-toupper" class="section level2 unnumbered">
 <h2><code>tolower</code> und <code>toupper</code></h2>
 <p>Replaces uppercase with lowercase letters (and vice versa).</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">toupper</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">toupper</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</a></code></pre></div>
 <pre><code>## [1] &quot;BEECH&quot; &quot;BEECH&quot; &quot;BEECH&quot;</code></pre>
 <pre><code>## [1] &quot;beech&quot; &quot;beech&quot; &quot;beech&quot;</code></pre>
 </div>
 <div id="gsub" class="section level2 unnumbered">
 <h2><code>gsub</code></h2>
 <p>Replace a pattern:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">names</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">names</span>(weather)</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;                      &quot;daily_mean_temperature_C&quot;
 ## [3] &quot;precipitation_sum_mm&quot;     &quot;site&quot;</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_mm&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__mm&quot;</span>, <span class="dt">fixed =</span> T)</a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_C&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__C&quot;</span>, <span class="dt">fixed =</span> T)</a>
-<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="kw">names</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_mm&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__mm&quot;</span>, <span class="dt">fixed =</span> T)</a>
+<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_C&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__C&quot;</span>, <span class="dt">fixed =</span> T)</a>
+<a class="sourceLine" id="cb174-3" data-line-number="3"><span class="kw">names</span>(weather)</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;                       &quot;daily_mean_temperature__C&quot;
 ## [3] &quot;precipitation_sum__mm&quot;     &quot;site&quot;</code></pre>
 </div>
 <div id="substring" class="section level2 unnumbered">
 <h2><code>substring</code></h2>
 <p>Substrings from <code>first</code> to <code>last</code>.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">substring</span>(<span class="kw">names</span>(weather), <span class="dt">first =</span> <span class="dv">1</span>, <span class="dt">last =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">substring</span>(<span class="kw">names</span>(weather), <span class="dt">first =</span> <span class="dv">1</span>, <span class="dt">last =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;   &quot;daily&quot; &quot;preci&quot; &quot;site&quot;</code></pre>
 </div>
 <div id="strsplit" class="section level2 unnumbered">
 <h2><code>strsplit</code></h2>
 <p>Splits strings according to a certain pattern (<code>strsplit</code> always returns a list).</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;__&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T)</a>
-<a class="sourceLine" id="cb174-2" data-line-number="2">(tmp &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="kw">names</span>(weather), <span class="dt">split =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T))</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;__&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T)</a>
+<a class="sourceLine" id="cb178-2" data-line-number="2">(tmp &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="kw">names</span>(weather), <span class="dt">split =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T))</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;day&quot;
 ## 
@@ -1317,7 +1177,7 @@ type = "o", pch = 16, lwd = 2)
 <div id="paste" class="section level2 unnumbered">
 <h2><code>paste</code></h2>
 <p>Merges strings (arguments <code>sep</code> or<code>collapse</code>).</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)})</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)})</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;                      &quot;daily_mean_temperature_C&quot;
 ## [3] &quot;precipitation_sum_mm&quot;     &quot;site&quot;</code></pre>
 </div>
@@ -1376,11 +1236,11 @@ Baum-ID (, Traktecke, Trakt-ID, ...). Dabei ist zu bevorzugen die Informationen 
 <ul>
 <li>To achieve this, it can be helpful to find out which working directory <em>R</em> is currently accessing:</li>
 </ul>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
 <ul>
 <li>If different from the storage location of the dataframe, we have to change this working directory:</li>
 </ul>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;&lt;Pfad des Ordners in welchem der Datensatz gespeichert ist&gt;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;&lt;Pfad des Ordners in welchem der Datensatz gespeichert ist&gt;&quot;</span>)</a></code></pre></div>
 <p>By executing this function call, <em>R</em> now knows in which working directory we want to work.</p>
 <p>** For RStudio users **</p>
 <p>It is very helpful to save the current <code>.R</code> code file and the dataframe in the same directory: At the beginning of a working session, you can then click on <em>Session</em> <span class="math inline">\(\rightarrow\)</span> <em>Set Working Directory</em> <span class="math inline">\(\rightarrow\)</span> <em>To Source File Location</em> (this also facilitates collaboration).</p>
@@ -1411,7 +1271,7 @@ Tabellenkalkulationsprogramme (wie *Microsoft Excel*) bieten das Abspeichern von
 
 Falls die Daten im oben erwähnten Tabulator-separierten Textformat `.txt` gespeichert wurden, kann mit der Funktion `read.table()` ein einfacher Weg des Datenimports gegangen werden:
 -->
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;&lt;FileName&gt;.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;&lt;FileName&gt;.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <!--
 - Durch die vorhergehende Festlegung des Arbeitsverzeichnisses (`setwd()**) kann der Datensatz direkt durch die Angabe des Dateinamens importiert werden.
 
@@ -1427,7 +1287,7 @@ Um ein anderes Separationsargument festzulegen, muss der Wert des Arguments `sep
 <li><p>The separation argument <code>sep</code> is set to the value <code>&quot;&quot;</code>, since the <code>read.table</code> command is defined for tab-separated text formats.</p></li>
 </ul>
 <p>To specify a different separation argument, the value of the argument <code>sep</code> must be changed:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;&lt;FileName&gt;.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;&lt;FileName&gt;.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a></code></pre></div>
 </div>
 <div id="read.csv-and-read.csv2" class="section level3">
 <h3><span class="header-section-number">10.3.3</span> <code>read.csv()</code> and <code>read.csv2()</code></h3>
@@ -1452,8 +1312,8 @@ Um ein anderes Separationsargument festzulegen, muss der Wert des Arguments `sep
 <li>the argument <code>fill</code> is also <code>TRUE</code>, which means that if lines have unequal lengths, <code>read.csv()</code> and <code>read.csv2()</code> will always fill the short lines with empty cells.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data.csv&quot;</span>, <span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">stringsAsFactor =</span> F)</a>
-<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="kw">names</span>(d)</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data.csv&quot;</span>, <span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">stringsAsFactor =</span> F)</a>
+<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="kw">names</span>(d)</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -1488,13 +1348,13 @@ In doing so, factor levels (<code>levels</code>) are generated, which are number
 <p>Never say never but <a href="https://www.r-bloggers.com/to-attach-or-not-attach-that-is-the-question/"><strong>never use <code>attach()</code></strong></a>.</p>
 <p>… use a short name for the dataframe object (e.g. <code>df</code>) to keep the paperwork to a minimum!</p>
 <p>The function <code>merge(data_set1, data_set2, by, ...)</code> can be used to link two dataframes using a key variable:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
-<a class="sourceLine" id="cb183-2" data-line-number="2">dd &lt;-<span class="st"> </span><span class="kw">ddply</span>(drought, <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>), summarize,</a>
-<a class="sourceLine" id="cb183-3" data-line-number="3">            <span class="dt">mean_bair =</span> <span class="kw">mean</span>(bair),</a>
-<a class="sourceLine" id="cb183-4" data-line-number="4">            <span class="dt">sd_bair =</span> <span class="kw">sd</span>(bair),</a>
-<a class="sourceLine" id="cb183-5" data-line-number="5">            <span class="dt">mean_elev =</span> <span class="kw">mean</span>(elev),</a>
-<a class="sourceLine" id="cb183-6" data-line-number="6">            <span class="dt">sd_elev =</span> <span class="kw">sd</span>(elev))</a>
-<a class="sourceLine" id="cb183-7" data-line-number="7"><span class="kw">head</span>(<span class="kw">merge</span>(drought, dd, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb187-2" data-line-number="2">dd &lt;-<span class="st"> </span><span class="kw">ddply</span>(drought, <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>), summarize,</a>
+<a class="sourceLine" id="cb187-3" data-line-number="3">            <span class="dt">mean_bair =</span> <span class="kw">mean</span>(bair),</a>
+<a class="sourceLine" id="cb187-4" data-line-number="4">            <span class="dt">sd_bair =</span> <span class="kw">sd</span>(bair),</a>
+<a class="sourceLine" id="cb187-5" data-line-number="5">            <span class="dt">mean_elev =</span> <span class="kw">mean</span>(elev),</a>
+<a class="sourceLine" id="cb187-6" data-line-number="6">            <span class="dt">sd_elev =</span> <span class="kw">sd</span>(elev))</a>
+<a class="sourceLine" id="cb187-7" data-line-number="7"><span class="kw">head</span>(<span class="kw">merge</span>(drought, dd, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>)))</a></code></pre></div>
 <pre><code>##   species  bair  elev    elev_cut mean_bair   sd_bair mean_elev  sd_elev
 ## 1   Beech 0.697 475.0   (250,500] 0.8152727 0.2159037  804.3182 277.0922
 ## 2   Beech 0.606 480.0   (250,500] 0.8152727 0.2159037  804.3182 277.0922
@@ -1503,8 +1363,8 @@ In doing so, factor levels (<code>levels</code>) are generated, which are number
 ## 5   Beech 0.822 750.0   (500,750] 0.8152727 0.2159037  804.3182 277.0922
 ## 6   Beech 0.944 780.0 (750,1e+03] 0.8152727 0.2159037  804.3182 277.0922</code></pre>
 <p><code>subset</code> can be used to split a dataframe according to the result of a logical comparison:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">sdf &lt;-<span class="st"> </span><span class="kw">subset</span>(drought, elev_cut <span class="op">==</span><span class="st"> &quot;(500,750]&quot;</span> <span class="op">&amp;</span><span class="st"> </span>species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>)</a>
-<a class="sourceLine" id="cb185-2" data-line-number="2">sdf</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">sdf &lt;-<span class="st"> </span><span class="kw">subset</span>(drought, elev_cut <span class="op">==</span><span class="st"> &quot;(500,750]&quot;</span> <span class="op">&amp;</span><span class="st"> </span>species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>)</a>
+<a class="sourceLine" id="cb189-2" data-line-number="2">sdf</a></code></pre></div>
 <pre><code>##     bair  elev species  elev_cut
 ## 26 0.718 507.5   Beech (500,750]
 ## 27 0.480 580.0   Beech (500,750]
