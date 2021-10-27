@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R: Data</title>
+  <meta name="description" content="Introduction to R: Data" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R: Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R: Data" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#drought"><i class="fa fa-check"></i><b>1</b> Drought</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#frost"><i class="fa fa-check"></i><b>2</b> Frost</a></li>
+<li class="chapter" data-level="3" data-path=""><a href="#df"><i class="fa fa-check"></i><b>3</b> <code>df</code></a></li>
+<li class="chapter" data-level="4" data-path=""><a href="#all-in-one"><i class="fa fa-check"></i><b>4</b> All-in-one</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R: Data</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R: Data</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>Oktober 27, 2021 (Version 0.1)</em></p>
+</div>
+<!--# About this course{-}
+This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="drought" class="section level1">
+<h1><span class="header-section-number">1</span> Drought</h1>
+<p>Data basis: <span class="citation">Fischer et al. (<a href="#ref-FischerEtAl:2006">2006</a>)</span>.
+For further context information, another source working on and interpereting this data is
+<span class="citation">Dobbertin, Neumann, and Schroeck (<a href="#ref-DobbertinEtl:2013">2013</a>, 202–3)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">bair &lt;-<span class="st"> </span><span class="kw">c</span>(.<span class="dv">505</span>, <span class="fl">.648</span>, <span class="fl">.523</span>, <span class="fl">.426</span>, <span class="fl">.64</span>, <span class="fl">.5</span>, <span class="fl">.257</span>, <span class="fl">.866</span>, <span class="fl">.434</span>, <span class="fl">.368</span>, <span class="fl">.54</span>, <span class="fl">.923</span>, <span class="fl">.702</span>, </a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">          <span class="fl">.615</span>, <span class="fl">1.013</span>, <span class="fl">.807</span>, <span class="fl">.262</span>, <span class="fl">.887</span>, <span class="fl">1.281</span>, <span class="fl">1.125</span>, <span class="fl">.99</span>, <span class="fl">1.2</span>, <span class="fl">.983</span>, <span class="fl">.697</span>, <span class="fl">.606</span>, </a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">          <span class="fl">.718</span>, <span class="fl">.48</span>, <span class="fl">.822</span>, <span class="fl">.944</span>, <span class="fl">.77</span>, <span class="fl">1.036</span>, <span class="fl">1.23</span>, <span class="fl">.68</span>, <span class="fl">.985</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">elev &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">335</span>, <span class="dv">460</span>, <span class="dv">480</span>, <span class="dv">515</span>, <span class="dv">540</span>, <span class="dv">650</span>, <span class="dv">680</span>, <span class="dv">715</span>, <span class="dv">730</span>, <span class="dv">835</span>, <span class="dv">860</span>, <span class="dv">960</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">          <span class="dv">1020</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1150</span>, <span class="dv">1170</span>, <span class="dv">1190</span>, <span class="dv">1350</span>, <span class="dv">1400</span>, <span class="dv">1500</span>, <span class="dv">1540</span>,</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">          <span class="dv">475</span>, <span class="dv">480</span>, <span class="fl">507.5</span>, <span class="dv">580</span>, <span class="dv">750</span>, <span class="dv">780</span>, <span class="dv">800</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1200</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">species &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>,</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">             <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">drought &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">bair =</span> bair,</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">                      <span class="dt">elev =</span> elev,</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">                      <span class="dt">species =</span> species)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">rm</span>(bair, elev, species)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">summary</span>(drought)</a></code></pre></div>
+<pre><code>##       bair             elev          species  
+##  Min.   :0.2570   Min.   : 335.0   Beech :11  
+##  1st Qu.:0.5272   1st Qu.: 597.5   Spruce:23  
+##  Median :0.7100   Median : 847.5              
+##  Mean   :0.7489   Mean   : 888.3              
+##  3rd Qu.:0.9732   3rd Qu.:1150.0              
+##  Max.   :1.2810   Max.   :1540.0</code></pre>
+</div>
+<div id="frost" class="section level1">
+<h1><span class="header-section-number">2</span> Frost</h1>
+<!--Datenbasis: Deutscher Wetterdienst, hier dargestellte Werte selbst aus Tageseinzelwerten erzeugt.-->
+<p>Data basis: Deutscher Wetterdienst, values shown here were generated based individual values, code by myself.</p>
+<p>Direct download links for data basis (Stations Id 1691, Goettingen):</p>
+<ul>
+<li><a href="ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/tageswerte_KL_01691_19270101_20201231_hist.zip">historical data</a></li>
+<li><a href="ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_01691_akt.zip">recent data</a></li>
+</ul>
+<p>Some definitions:</p>
+<ul>
+<li>Budburst is estimated based on first day where <span class="math inline">\(\text{dd}&gt;220\)</span> <span class="citation">(Thomson and Moncrieff <a href="#ref-ThomsonMoncrieff:1982">1982</a>)</span> [degree days <span class="math inline">\(\text{dd}\)</span>, start counting on March, 20].</li>
+<li>End of 1st development stage is estimated based on first day where <span class="math inline">\(\text{dd}&gt;320\)</span> (start counting on March, 20). <em>… I need to re-discover the source stating that 1st dev. stage is about 100 dd</em></li>
+<li>Definition frost event: <span class="math inline">\(\min\left(\text{Temp}_{50\text{cm}}\right) &lt; -1.95^\circ\text{C}\)</span> <span class="citation">(Hannerz <a href="#ref-Hannerz:1994">1994</a>)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">frost &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1947</span><span class="op">:</span><span class="dv">2021</span>, </a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">                    <span class="dt">n_frost =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                                <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                                <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                                <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">                                <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">                    <span class="dt">bud_burst =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">19230</span>, <span class="dv">-18867</span>, <span class="dv">-18503</span>, <span class="dv">-18127</span>, <span class="dv">-17758</span>, <span class="dv">-17408</span>, <span class="dv">-17034</span>, </a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">                                          <span class="dv">-16661</span>, <span class="dv">-16293</span>, <span class="dv">-15929</span>, <span class="dv">-15566</span>, <span class="dv">-15202</span>, <span class="dv">-14847</span>, <span class="dv">-14475</span>, </a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">                                          <span class="dv">-14121</span>, <span class="dv">-13744</span>, <span class="dv">-13384</span>, <span class="dv">-13017</span>, <span class="dv">-12647</span>, <span class="dv">-12291</span>, <span class="dv">-11917</span>, </a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">                                          <span class="dv">-11563</span>, <span class="dv">-11191</span>, <span class="dv">-10821</span>, <span class="dv">-10462</span>, <span class="dv">-10092</span>, <span class="dv">-9720</span>, <span class="dv">-9361</span>, </a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">                                          <span class="dv">-8997</span>, <span class="dv">-8635</span>, <span class="dv">-8261</span>, <span class="dv">-7896</span>, <span class="dv">-7530</span>, <span class="dv">-7164</span>, <span class="dv">-6808</span>, <span class="dv">-6436</span>, </a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">                                          <span class="dv">-6078</span>, <span class="dv">-5705</span>, <span class="dv">-5347</span>, <span class="dv">-4981</span>, <span class="dv">-4619</span>, <span class="dv">-4254</span>, <span class="dv">-3883</span>, <span class="dv">-3524</span>, </a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">                                          <span class="dv">-3145</span>, <span class="dv">-2788</span>, <span class="dv">-2437</span>, <span class="dv">-2060</span>, <span class="dv">-1694</span>, <span class="dv">-1322</span>, <span class="dv">-958</span>, <span class="dv">-602</span>, </a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">                                          <span class="dv">-237</span>, <span class="dv">124</span>, <span class="dv">499</span>, <span class="dv">864</span>, <span class="dv">1222</span>, <span class="dv">1592</span>, <span class="dv">1957</span>, <span class="dv">2321</span>, <span class="dv">2681</span>, <span class="dv">3055</span>, </a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">                                          <span class="dv">3408</span>, <span class="dv">3789</span>, <span class="dv">4137</span>, <span class="dv">4513</span>, <span class="dv">4877</span>, <span class="dv">5234</span>, <span class="dv">5610</span>, <span class="dv">5976</span>, <span class="dv">6345</span>, </a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">                                          <span class="dv">6691</span>, <span class="dv">7074</span>, <span class="dv">7435</span>, <span class="dv">7812</span>), </a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">                                        <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)),</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">                    <span class="dt">end_1st_dev_stage =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">19222</span>, <span class="dv">-18859</span>, <span class="dv">-18489</span>, <span class="dv">-18118</span>, <span class="dv">-17746</span>, <span class="dv">-17397</span>, </a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">                                                  <span class="dv">-17026</span>, <span class="dv">-16650</span>, <span class="dv">-16280</span>, <span class="dv">-15921</span>, <span class="dv">-15552</span>, <span class="dv">-15192</span>, </a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">                                                  <span class="dv">-14837</span>, <span class="dv">-14464</span>, <span class="dv">-14104</span>, <span class="dv">-13726</span>, <span class="dv">-13370</span>, <span class="dv">-13006</span>, </a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">                                                  <span class="dv">-12633</span>, <span class="dv">-12281</span>, <span class="dv">-11905</span>, <span class="dv">-11545</span>, <span class="dv">-11180</span>, <span class="dv">-10808</span>, </a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">                                                  <span class="dv">-10455</span>, <span class="dv">-10078</span>, <span class="dv">-9710</span>, <span class="dv">-9349</span>, <span class="dv">-8984</span>, <span class="dv">-8623</span>, <span class="dv">-8248</span>, </a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">                                                  <span class="dv">-7886</span>, <span class="dv">-7521</span>, <span class="dv">-7151</span>, <span class="dv">-6799</span>, <span class="dv">-6427</span>, <span class="dv">-6068</span>, <span class="dv">-5691</span>, </a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">                                                  <span class="dv">-5338</span>, <span class="dv">-4972</span>, <span class="dv">-4601</span>, <span class="dv">-4246</span>, <span class="dv">-3875</span>, <span class="dv">-3513</span>, <span class="dv">-3131</span>, </a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">                                                  <span class="dv">-2780</span>, <span class="dv">-2426</span>, <span class="dv">-2050</span>, <span class="dv">-1679</span>, <span class="dv">-1311</span>, <span class="dv">-944</span>, <span class="dv">-594</span>, </a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">                                                  <span class="dv">-225</span>, <span class="dv">132</span>, <span class="dv">510</span>, <span class="dv">873</span>, <span class="dv">1235</span>, <span class="dv">1608</span>, <span class="dv">1972</span>, <span class="dv">2332</span>, <span class="dv">2694</span>, </a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">                                                  <span class="dv">3067</span>, <span class="dv">3422</span>, <span class="dv">3802</span>, <span class="dv">4152</span>, <span class="dv">4525</span>, <span class="dv">4891</span>, <span class="dv">5250</span>, <span class="dv">5623</span>, </a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">                                                  <span class="dv">5988</span>, <span class="dv">6354</span>, <span class="dv">6703</span>, <span class="dv">7086</span>, <span class="dv">7450</span>, <span class="dv">7824</span>), </a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">                                                <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)))</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30">frost<span class="op">$</span>may1st &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">paste0</span>(frost<span class="op">$</span>year, <span class="st">&quot;-05-01&quot;</span>))</a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">frost<span class="op">$</span>bud_burst_days_since_may1st &lt;-<span class="st"> </span><span class="kw">julian</span>(frost<span class="op">$</span>bud_burst, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="st">  </span><span class="kw">julian</span>(frost<span class="op">$</span>may1st, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</a>
+<a class="sourceLine" id="cb3-33" data-line-number="33">frost<span class="op">$</span>end_1st_dev_stage_days_since_may1st &lt;-<span class="st"> </span><span class="kw">julian</span>(frost<span class="op">$</span>end_1st_dev_stage, </a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">                                                    <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="st">  </span><span class="kw">julian</span>(frost<span class="op">$</span>may1st, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</a>
+<a class="sourceLine" id="cb3-36" data-line-number="36"><span class="kw">summary</span>(frost)</a></code></pre></div>
+<pre><code>##       year         n_frost       bud_burst          end_1st_dev_stage   
+##  Min.   :1947   Min.   :0.00   Min.   :1947-05-09   Min.   :1947-05-17  
+##  1st Qu.:1966   1st Qu.:0.00   1st Qu.:1965-11-11   1st Qu.:1965-11-23  
+##  Median :1984   Median :0.00   Median :1984-05-19   Median :1984-06-02  
+##  Mean   :1984   Mean   :0.32   Mean   :1984-05-12   Mean   :1984-05-24  
+##  3rd Qu.:2002   3rd Qu.:0.00   3rd Qu.:2002-11-09   3rd Qu.:2002-11-20  
+##  Max.   :2021   Max.   :5.00   Max.   :2021-05-22   Max.   :2021-06-03  
+##      may1st           bud_burst_days_since_may1st
+##  Min.   :1947-05-01   Min.   :-4.00              
+##  1st Qu.:1965-10-30   1st Qu.: 8.00              
+##  Median :1984-05-01   Median :11.00              
+##  Mean   :1984-04-30   Mean   :11.69              
+##  3rd Qu.:2002-10-30   3rd Qu.:16.00              
+##  Max.   :2021-05-01   Max.   :23.00              
+##  end_1st_dev_stage_days_since_may1st
+##  Min.   : 8.00                      
+##  1st Qu.:20.00                      
+##  Median :24.00                      
+##  Mean   :23.47                      
+##  3rd Qu.:28.50                      
+##  Max.   :36.00</code></pre>
+</div>
+<div id="df" class="section level1">
+<h1><span class="header-section-number">3</span> <code>df</code></h1>
+<p>This is just re-named <code>spati2</code> that ships with <code>lmfor</code> <span class="citation">(Mehtatalo <a href="#ref-Mehtatalo:2019">2019</a>)</span>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;lmfor&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">data</span>(spati2)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">df &lt;-<span class="st"> </span>spati2</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">rm</span>(spati2)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">summary</span>(df)</a></code></pre></div>
+<pre><code>##       plot             d               h                n         
+##  Min.   : 1.00   Min.   : 1.50   Min.   : 1.900   Min.   :  7.00  
+##  1st Qu.:28.00   1st Qu.: 6.20   1st Qu.: 6.000   1st Qu.: 17.00  
+##  Median :56.00   Median :10.20   Median : 8.000   Median : 58.00  
+##  Mean   :45.41   Mean   :11.66   Mean   : 9.566   Mean   : 54.96  
+##  3rd Qu.:61.00   3rd Qu.:14.70   3rd Qu.:11.700   3rd Qu.: 84.00  
+##  Max.   :66.00   Max.   :51.00   Max.   :28.000   Max.   :105.00  
+##       dvar            dmean       
+##  Min.   : 1.867   Min.   : 4.821  
+##  1st Qu.: 2.818   1st Qu.: 6.736  
+##  Median : 3.691   Median :10.879  
+##  Mean   : 4.649   Mean   :11.660  
+##  3rd Qu.: 5.621   3rd Qu.:14.168  
+##  Max.   :15.636   Max.   :29.569</code></pre>
+</div>
+<div id="all-in-one" class="section level1">
+<h1><span class="header-section-number">4</span> All-in-one</h1>
+<p>… just for convenience, copy-paste only once!</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;lmfor&quot;</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">bair &lt;-<span class="st"> </span><span class="kw">c</span>(.<span class="dv">505</span>, <span class="fl">.648</span>, <span class="fl">.523</span>, <span class="fl">.426</span>, <span class="fl">.64</span>, <span class="fl">.5</span>, <span class="fl">.257</span>, <span class="fl">.866</span>, <span class="fl">.434</span>, <span class="fl">.368</span>, <span class="fl">.54</span>, <span class="fl">.923</span>, <span class="fl">.702</span>, </a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">          <span class="fl">.615</span>, <span class="fl">1.013</span>, <span class="fl">.807</span>, <span class="fl">.262</span>, <span class="fl">.887</span>, <span class="fl">1.281</span>, <span class="fl">1.125</span>, <span class="fl">.99</span>, <span class="fl">1.2</span>, <span class="fl">.983</span>, <span class="fl">.697</span>, <span class="fl">.606</span>, </a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">          <span class="fl">.718</span>, <span class="fl">.48</span>, <span class="fl">.822</span>, <span class="fl">.944</span>, <span class="fl">.77</span>, <span class="fl">1.036</span>, <span class="fl">1.23</span>, <span class="fl">.68</span>, <span class="fl">.985</span>)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">elev &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">335</span>, <span class="dv">460</span>, <span class="dv">480</span>, <span class="dv">515</span>, <span class="dv">540</span>, <span class="dv">650</span>, <span class="dv">680</span>, <span class="dv">715</span>, <span class="dv">730</span>, <span class="dv">835</span>, <span class="dv">860</span>, <span class="dv">960</span>,</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">          <span class="dv">1020</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1150</span>, <span class="dv">1170</span>, <span class="dv">1190</span>, <span class="dv">1350</span>, <span class="dv">1400</span>, <span class="dv">1500</span>, <span class="dv">1540</span>,</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">          <span class="dv">475</span>, <span class="dv">480</span>, <span class="fl">507.5</span>, <span class="dv">580</span>, <span class="dv">750</span>, <span class="dv">780</span>, <span class="dv">800</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1200</span>)</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">species &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>,</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">             <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>)</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">drought &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">bair =</span> bair,</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">                      <span class="dt">elev =</span> elev,</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">                      <span class="dt">species =</span> species)</a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">frost &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1947</span><span class="op">:</span><span class="dv">2021</span>, </a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">                    <span class="dt">n_frost =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">                                <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb7-19" data-line-number="19">                                <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">                                <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">                                <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">                    <span class="dt">bud_burst =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">19230</span>, <span class="dv">-18867</span>, <span class="dv">-18503</span>, <span class="dv">-18127</span>, <span class="dv">-17758</span>, <span class="dv">-17408</span>, <span class="dv">-17034</span>, </a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">                                          <span class="dv">-16661</span>, <span class="dv">-16293</span>, <span class="dv">-15929</span>, <span class="dv">-15566</span>, <span class="dv">-15202</span>, <span class="dv">-14847</span>, <span class="dv">-14475</span>, </a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">                                          <span class="dv">-14121</span>, <span class="dv">-13744</span>, <span class="dv">-13384</span>, <span class="dv">-13017</span>, <span class="dv">-12647</span>, <span class="dv">-12291</span>, <span class="dv">-11917</span>, </a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">                                          <span class="dv">-11563</span>, <span class="dv">-11191</span>, <span class="dv">-10821</span>, <span class="dv">-10462</span>, <span class="dv">-10092</span>, <span class="dv">-9720</span>, <span class="dv">-9361</span>, </a>
+<a class="sourceLine" id="cb7-26" data-line-number="26">                                          <span class="dv">-8997</span>, <span class="dv">-8635</span>, <span class="dv">-8261</span>, <span class="dv">-7896</span>, <span class="dv">-7530</span>, <span class="dv">-7164</span>, <span class="dv">-6808</span>, <span class="dv">-6436</span>, </a>
+<a class="sourceLine" id="cb7-27" data-line-number="27">                                          <span class="dv">-6078</span>, <span class="dv">-5705</span>, <span class="dv">-5347</span>, <span class="dv">-4981</span>, <span class="dv">-4619</span>, <span class="dv">-4254</span>, <span class="dv">-3883</span>, <span class="dv">-3524</span>, </a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">                                          <span class="dv">-3145</span>, <span class="dv">-2788</span>, <span class="dv">-2437</span>, <span class="dv">-2060</span>, <span class="dv">-1694</span>, <span class="dv">-1322</span>, <span class="dv">-958</span>, <span class="dv">-602</span>, </a>
+<a class="sourceLine" id="cb7-29" data-line-number="29">                                          <span class="dv">-237</span>, <span class="dv">124</span>, <span class="dv">499</span>, <span class="dv">864</span>, <span class="dv">1222</span>, <span class="dv">1592</span>, <span class="dv">1957</span>, <span class="dv">2321</span>, <span class="dv">2681</span>, <span class="dv">3055</span>, </a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">                                          <span class="dv">3408</span>, <span class="dv">3789</span>, <span class="dv">4137</span>, <span class="dv">4513</span>, <span class="dv">4877</span>, <span class="dv">5234</span>, <span class="dv">5610</span>, <span class="dv">5976</span>, <span class="dv">6345</span>, </a>
+<a class="sourceLine" id="cb7-31" data-line-number="31">                                          <span class="dv">6691</span>, <span class="dv">7074</span>, <span class="dv">7435</span>, <span class="dv">7812</span>), </a>
+<a class="sourceLine" id="cb7-32" data-line-number="32">                                        <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)),</a>
+<a class="sourceLine" id="cb7-33" data-line-number="33">                    <span class="dt">end_1st_dev_stage =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">19222</span>, <span class="dv">-18859</span>, <span class="dv">-18489</span>, <span class="dv">-18118</span>, <span class="dv">-17746</span>, <span class="dv">-17397</span>, </a>
+<a class="sourceLine" id="cb7-34" data-line-number="34">                                                  <span class="dv">-17026</span>, <span class="dv">-16650</span>, <span class="dv">-16280</span>, <span class="dv">-15921</span>, <span class="dv">-15552</span>, <span class="dv">-15192</span>, </a>
+<a class="sourceLine" id="cb7-35" data-line-number="35">                                                  <span class="dv">-14837</span>, <span class="dv">-14464</span>, <span class="dv">-14104</span>, <span class="dv">-13726</span>, <span class="dv">-13370</span>, <span class="dv">-13006</span>, </a>
+<a class="sourceLine" id="cb7-36" data-line-number="36">                                                  <span class="dv">-12633</span>, <span class="dv">-12281</span>, <span class="dv">-11905</span>, <span class="dv">-11545</span>, <span class="dv">-11180</span>, <span class="dv">-10808</span>, </a>
+<a class="sourceLine" id="cb7-37" data-line-number="37">                                                  <span class="dv">-10455</span>, <span class="dv">-10078</span>, <span class="dv">-9710</span>, <span class="dv">-9349</span>, <span class="dv">-8984</span>, <span class="dv">-8623</span>, <span class="dv">-8248</span>, </a>
+<a class="sourceLine" id="cb7-38" data-line-number="38">                                                  <span class="dv">-7886</span>, <span class="dv">-7521</span>, <span class="dv">-7151</span>, <span class="dv">-6799</span>, <span class="dv">-6427</span>, <span class="dv">-6068</span>, <span class="dv">-5691</span>, </a>
+<a class="sourceLine" id="cb7-39" data-line-number="39">                                                  <span class="dv">-5338</span>, <span class="dv">-4972</span>, <span class="dv">-4601</span>, <span class="dv">-4246</span>, <span class="dv">-3875</span>, <span class="dv">-3513</span>, <span class="dv">-3131</span>, </a>
+<a class="sourceLine" id="cb7-40" data-line-number="40">                                                  <span class="dv">-2780</span>, <span class="dv">-2426</span>, <span class="dv">-2050</span>, <span class="dv">-1679</span>, <span class="dv">-1311</span>, <span class="dv">-944</span>, <span class="dv">-594</span>, </a>
+<a class="sourceLine" id="cb7-41" data-line-number="41">                                                  <span class="dv">-225</span>, <span class="dv">132</span>, <span class="dv">510</span>, <span class="dv">873</span>, <span class="dv">1235</span>, <span class="dv">1608</span>, <span class="dv">1972</span>, <span class="dv">2332</span>, <span class="dv">2694</span>, </a>
+<a class="sourceLine" id="cb7-42" data-line-number="42">                                                  <span class="dv">3067</span>, <span class="dv">3422</span>, <span class="dv">3802</span>, <span class="dv">4152</span>, <span class="dv">4525</span>, <span class="dv">4891</span>, <span class="dv">5250</span>, <span class="dv">5623</span>, </a>
+<a class="sourceLine" id="cb7-43" data-line-number="43">                                                  <span class="dv">5988</span>, <span class="dv">6354</span>, <span class="dv">6703</span>, <span class="dv">7086</span>, <span class="dv">7450</span>, <span class="dv">7824</span>), </a>
+<a class="sourceLine" id="cb7-44" data-line-number="44">                                                <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)))</a>
+<a class="sourceLine" id="cb7-45" data-line-number="45">frost<span class="op">$</span>may1st &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">paste0</span>(frost<span class="op">$</span>year, <span class="st">&quot;-05-01&quot;</span>))</a>
+<a class="sourceLine" id="cb7-46" data-line-number="46">frost<span class="op">$</span>bud_burst_days_since_may1st &lt;-<span class="st"> </span><span class="kw">julian</span>(frost<span class="op">$</span>bud_burst, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="st">  </span><span class="kw">julian</span>(frost<span class="op">$</span>may1st, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</a>
+<a class="sourceLine" id="cb7-48" data-line-number="48">frost<span class="op">$</span>end_1st_dev_stage_days_since_may1st &lt;-<span class="st"> </span><span class="kw">julian</span>(frost<span class="op">$</span>end_1st_dev_stage, </a>
+<a class="sourceLine" id="cb7-49" data-line-number="49">                                                    <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="st">  </span><span class="kw">julian</span>(frost<span class="op">$</span>may1st, <span class="dt">origin =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</a>
+<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="kw">data</span>(spati2)</a>
+<a class="sourceLine" id="cb7-52" data-line-number="52">df &lt;-<span class="st"> </span>spati2</a>
+<a class="sourceLine" id="cb7-53" data-line-number="53"><span class="kw">rm</span>(bair, elev, species, spati2)</a>
+<a class="sourceLine" id="cb7-54" data-line-number="54"><span class="kw">ls</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;df&quot;      &quot;drought&quot; &quot;frost&quot;</code></pre>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-DobbertinEtl:2013">
+<p>Dobbertin, Matthias, Markus Neumann, and Hans-Werner Schroeck. 2013. “Tree Growth Measurements in Long-Term Forest Monitoring in Europe.” In, 183–204. Elsevier. <a href="https://doi.org/10.1016/b978-0-08-098222-9.00010-8">https://doi.org/10.1016/b978-0-08-098222-9.00010-8</a>.</p>
+</div>
+<div id="ref-FischerEtAl:2006">
+<p>Fischer, R, M Dobbertin, O Granke, K Karoles, M Köhl, P Kraft, P Meyer, et al. 2006. “The Condition of Forests in Europe. 2006 Executive Report.” <em>UNECE, Hamburg</em>.</p>
+</div>
+<div id="ref-Hannerz:1994">
+<p>Hannerz, Mats. 1994. “Predicting the Risk of Frost Occurrence After Budburst of Norway Spruce in Sweden.” 28 (4). Finnish Society of Forest Science. <a href="https://doi.org/10.14214/sf.a9175">https://doi.org/10.14214/sf.a9175</a>.</p>
+</div>
+<div id="ref-Mehtatalo:2019">
+<p>Mehtatalo, Lauri. 2019. <em>Lmfor: Functions for Forest Biometrics</em>. <a href="https://CRAN.R-project.org/package=lmfor">https://CRAN.R-project.org/package=lmfor</a>.</p>
+</div>
+<div id="ref-ThomsonMoncrieff:1982">
+<p>Thomson, A. J., and S. M. Moncrieff. 1982. “Prediction of Bud Burst in Douglas-Fir by Degree-Day Accumulation” 12 (2). Canadian Science Publishing: 448–52. <a href="https://doi.org/10.1139/x82-069">https://doi.org/10.1139/x82-069</a>.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_01.pdf", "PDF"]],
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
