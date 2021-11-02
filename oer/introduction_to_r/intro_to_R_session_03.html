@@ -133,7 +133,8 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="3.5" data-path=""><a href="#apply-commands"><i class="fa fa-check"></i><b>3.5</b> <code>apply</code>-commands</a><ul>
 <li class="chapter" data-level="3.5.1" data-path=""><a href="#exercises-3"><i class="fa fa-check"></i><b>3.5.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path=""><a href="#pragmatic-programming."><i class="fa fa-check"></i><b>3.6</b> Pragmatic Programming.</a></li>
+<li class="chapter" data-level="3.6" data-path=""><a href="#plyrddply-splitapplycombine"><i class="fa fa-check"></i><b>3.6</b> <code>plyr::ddply</code>: ’split–apply–combine</a></li>
+<li class="chapter" data-level="3.7" data-path=""><a href="#pragmatic-programming."><i class="fa fa-check"></i><b>3.7</b> Pragmatic Programming.</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path=""><a href="#define-your-own-functions."><i class="fa fa-check"></i><b>4</b> Define your own functions.</a><ul>
 <li class="chapter" data-level="4.1" data-path=""><a href="#naming-conventions-for-arguments."><i class="fa fa-check"></i><b>4.1</b> Naming conventions for arguments.</a></li>
@@ -141,6 +142,10 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="4.3" data-path=""><a href="#exercises-4"><i class="fa fa-check"></i><b>4.3</b> Exercises</a><ul>
 <li class="chapter" data-level="4.3.1" data-path=""><a href="#environments-and-scoping"><i class="fa fa-check"></i><b>4.3.1</b> Environments and scoping</a></li>
 <li class="chapter" data-level="4.3.2" data-path=""><a href="#closure"><i class="fa fa-check"></i><b>4.3.2</b> Closure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path=""><a href="#real-world-helpers"><i class="fa fa-check"></i><b>4.4</b> Real-world helpers</a><ul>
+<li class="chapter" data-level="4.4.1" data-path=""><a href="#drop_ghosts"><i class="fa fa-check"></i><b>4.4.1</b> <code>drop_ghosts</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path=""><a href="#overlap_seq"><i class="fa fa-check"></i><b>4.4.2</b> <code>overlap_seq</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -163,7 +168,7 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Introduction to R: Session 03</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>Oktober 27, 2021 (Version 0.2)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>November 2, 2021 (Version 0.3)</em></p>
 </div>
 <!--# About this course{-}
 This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
@@ -428,6 +433,7 @@ If any of those periods covers our current day, than at least a value of <code>1
 <li>flexible number of repetitions.</li>
 <li>stops immediately after the condition – <code>index &lt; K</code> in the above usage example – is no longer met, ie. is <code>FALSE</code> for the first time.</li>
 </ul>
+<p><em>The following two examples are two applications of a while-loop that came into my mind. They might be a bit too distracting from the goals of ‘Introduction to R’, so feel completely free to skip them …</em></p>
 <div id="example-1" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Example 1</h3>
 <p>This example does Bayesian inference for a simple one parameter model – estimation of an unknown quantity which is a proportion between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> – by filtering the prior proposals that lead to the simulated data that are equal to the data sample – the likelihood works as some sort of sieve here.</p>
@@ -450,15 +456,15 @@ If any of those periods covers our current day, than at least a value of <code>1
 <a class="sourceLine" id="cb17-12" data-line-number="12"><span class="kw">length</span>(post)</a></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">length</span>(prior)</a></code></pre></div>
-<pre><code>## [1] 108957</code></pre>
+<pre><code>## [1] 105532</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">length</span>(post) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(prior)</a></code></pre></div>
-<pre><code>## [1] 0.009177933</code></pre>
+<pre><code>## [1] 0.009475799</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">summary</span>(post)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.05987 0.13396 0.16119 0.16319 0.18829 0.31869</code></pre>
+## 0.05418 0.13114 0.15931 0.16260 0.19002 0.31595</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">summary</span>(prior)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.08287 0.50145 0.50086 0.91828 1.00000</code></pre>
+## 0.00000 0.08305 0.50061 0.49960 0.91694 1.00000</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">b &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">.025</span>)</a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">paint_a &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>)</a>
@@ -569,16 +575,57 @@ There are different - but actually very similar – versions of <code>appyly</co
 <a class="sourceLine" id="cb32-15" data-line-number="15"><span class="kw">sapply</span>(frost[, <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">6</span><span class="op">:</span><span class="dv">7</span>)], <span class="dt">FUN =</span> mean)</a></code></pre></div>
 </div>
 </div>
+<div id="plyrddply-splitapplycombine" class="section level2">
+<h2><span class="header-section-number">3.6</span> <code>plyr::ddply</code>: ’split–apply–combine</h2>
+<p>‘split–apply–combine’ refers to a sequence of actions that is often used in the analysis of data:</p>
+<ul>
+<li><em>split</em>: Split the data set according to the characteristics of one or a combination of several categorical variables,</li>
+<li><em>apply</em>: Apply statistical methods (or functions like <code>mean()</code>, <code>length()</code>, …) to each of these partial data sets,</li>
+<li><em>combine</em>: Manage all results in a common result object.</li>
+</ul>
+<p>‘split–apply–combine’ with the function <code>ddply</code> from the package <code>plyr</code> <span class="citation">(Wickham <a href="#ref-Wickham:2011">2011</a>)</span>:</p>
+<ul>
+<li>takes a dataframe (one of the <code>d</code>s in the functions name)</li>
+<li>returns a dataframe (the second <code>d</code> in the functions name)</li>
+</ul>
+<p>Alternative: base R <em>aggregate</em>.</p>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">ddply</span>(data, </a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">      <span class="dt">variables =</span> <span class="kw">c</span>(<span class="st">&quot;variable(s) to split data frame by&quot;</span>), </a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">      summarise, </a>
+<a class="sourceLine" id="cb33-5" data-line-number="5">      <span class="dt">output_variable1 =</span> <span class="kw">function1</span>(input_variable1),</a>
+<a class="sourceLine" id="cb33-6" data-line-number="6">      <span class="dt">output_variable2 =</span> <span class="kw">function2</span>(input_variable2),</a>
+<a class="sourceLine" id="cb33-7" data-line-number="7">      ...)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">d_breaks_cut &lt;-<span class="st"> </span><span class="kw">quantile</span>(df<span class="op">$</span>d, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>))</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">df<span class="op">$</span>d_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(df<span class="op">$</span>d, <span class="dt">breaks =</span> d_breaks_cut, <span class="dt">include.lowest =</span> T)</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">dd &lt;-<span class="st"> </span><span class="kw">ddply</span>(df, <span class="kw">c</span>(<span class="st">&quot;d_cut&quot;</span>), summarise, </a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">            <span class="dt">n =</span> <span class="kw">length</span>(h),</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">            <span class="dt">h_min =</span> <span class="kw">min</span>(h),</a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">            <span class="dt">h_q25 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.25</span>),</a>
+<a class="sourceLine" id="cb34-8" data-line-number="8">            <span class="dt">h_mean =</span> <span class="kw">mean</span>(h),</a>
+<a class="sourceLine" id="cb34-9" data-line-number="9">            <span class="dt">h_q75 =</span> <span class="kw">quantile</span>(h, <span class="dt">probs =</span> <span class="fl">0.75</span>),</a>
+<a class="sourceLine" id="cb34-10" data-line-number="10">            <span class="dt">h_max =</span> <span class="kw">min</span>(h))</a>
+<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="kw">head</span>(dd)</a></code></pre></div>
+<pre><code>##       d_cut  n h_min h_q25   h_mean h_q75 h_max
+## 1 [1.5,3.1] 86   1.9 2.900 3.389535 3.800   1.9
+## 2   (3.1,4] 91   2.1 3.600 4.410989 5.050   2.1
+## 3   (4,4.8] 86   3.2 4.200 4.995349 5.800   3.2
+## 4 (4.8,5.4] 79   3.1 4.550 5.401266 6.050   3.1
+## 5 (5.4,6.2] 93   3.4 5.200 6.311828 7.100   3.4
+## 6 (6.2,6.9] 74   3.8 5.125 6.532432 7.775   3.8</code></pre>
+</div>
 <div id="pragmatic-programming." class="section level2">
-<h2><span class="header-section-number">3.6</span> Pragmatic Programming.</h2>
+<h2><span class="header-section-number">3.7</span> Pragmatic Programming.</h2>
 <p><strong>The primary aim of your R Code is that it does what you need it to do – without errors!</strong></p>
 <p><strong>Faulty conclusions in your data analysis as a consequence of data handling errors are one of the worst things that can happen to you as a researcher.</strong></p>
 <p><strong>Copy-paste sequences such as:</strong></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">df[, <span class="dv">1</span>] &lt;-<span class="st"> </span>df[, <span class="dv">1</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">1</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">df[, <span class="dv">2</span>] &lt;-<span class="st"> </span>df[, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">2</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">df[, <span class="dv">3</span>] &lt;-<span class="st"> </span>df[, <span class="dv">3</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">3</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb33-4" data-line-number="4">df[, <span class="dv">5</span>] &lt;-<span class="st"> </span>df[, <span class="dv">5</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">5</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb33-5" data-line-number="5">df[, <span class="dv">6</span>] &lt;-<span class="st"> </span>df[, <span class="dv">6</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">6</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">6</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">df[, <span class="dv">1</span>] &lt;-<span class="st"> </span>df[, <span class="dv">1</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">1</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">df[, <span class="dv">2</span>] &lt;-<span class="st"> </span>df[, <span class="dv">2</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">2</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">df[, <span class="dv">3</span>] &lt;-<span class="st"> </span>df[, <span class="dv">3</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">3</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">df[, <span class="dv">5</span>] &lt;-<span class="st"> </span>df[, <span class="dv">5</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">5</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">df[, <span class="dv">6</span>] &lt;-<span class="st"> </span>df[, <span class="dv">6</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(df[, <span class="dv">6</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(df[, <span class="dv">6</span>])</a></code></pre></div>
 <p><strong>are one of the main error source for R users / ‘beginners’ that don’t rely on ‘programming techniques’.</strong></p>
 <p><strong>Loops are somehow ill-reputed, but whatever way of programming you find that get’s you towards errorless handling of your data, is perfect!</strong></p>
 <p>Therefore:</p>
@@ -622,10 +669,10 @@ result <- content1 * logical_comparison1 +
 <li>As can be seen from the <code>apply()</code> examples, it is very often necessary to be able to write your own little helper functions.
 Also for your own <strong>orientation</strong>: Always comment on the processes and steps in your code and in your functions to make it easier to understand the motivation and ideas behind it later.</li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">name &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, <span class="dt">arg3 =</span> <span class="ot">TRUE</span>, <span class="dt">arg4 =</span> <span class="dv">2</span>, ...){</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">  content</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb34-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">name &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, <span class="dt">arg3 =</span> <span class="ot">TRUE</span>, <span class="dt">arg4 =</span> <span class="dv">2</span>, ...){</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">  content</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">}</a></code></pre></div>
 <ul>
 <li>The general rules for naming objects also apply to function arguments.</li>
 <li>Arguments can have preset values (here <code>arg3</code> and<code>arg4</code>)</li>
@@ -694,34 +741,97 @@ Also for your own <strong>orientation</strong>: Always comment on the processes 
 <h2><span class="header-section-number">4.3</span> Exercises</h2>
 <div id="environments-and-scoping" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> Environments and scoping</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3">f &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb35-4" data-line-number="4">  y &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb35-5" data-line-number="5">  <span class="kw">print</span>(<span class="kw">ls</span>())</a>
-<a class="sourceLine" id="cb35-6" data-line-number="6">  y &lt;-<span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z <span class="co">## f wird nach z in der ?bergeordneten Umgebung (hier global) suchen.</span></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">  <span class="kw">print</span>(<span class="kw">ls</span>())</a>
-<a class="sourceLine" id="cb35-8" data-line-number="8">  <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y)</a>
-<a class="sourceLine" id="cb35-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb35-10" data-line-number="10">x &lt;-<span class="st"> </span><span class="dv">1</span>; z &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb35-11" data-line-number="11"><span class="kw">f</span>(<span class="dt">x =</span> x) <span class="co">## f wird z finden:</span></a>
-<a class="sourceLine" id="cb35-12" data-line-number="12"><span class="co">## -&gt; obwohl wir es nicht explizit als Argument in die lokale Umgebung</span></a>
-<a class="sourceLine" id="cb35-13" data-line-number="13"><span class="co">##    von f übergeben haben.</span></a>
-<a class="sourceLine" id="cb35-14" data-line-number="14">y <span class="co">## Von der übergeordneten Umgebung aus können wir nicht auf y zurückgreifen.</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">f &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4">  y &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5">  <span class="kw">print</span>(<span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb38-6" data-line-number="6">  y &lt;-<span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z <span class="co">## f wird nach z in der ?bergeordneten Umgebung (hier global) suchen.</span></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7">  <span class="kw">print</span>(<span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb38-8" data-line-number="8">  <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb38-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">x &lt;-<span class="st"> </span><span class="dv">1</span>; z &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="kw">f</span>(<span class="dt">x =</span> x) <span class="co">## f wird z finden:</span></a>
+<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="co">## -&gt; obwohl wir es nicht explizit als Argument in die lokale Umgebung</span></a>
+<a class="sourceLine" id="cb38-13" data-line-number="13"><span class="co">##    von f übergeben haben.</span></a>
+<a class="sourceLine" id="cb38-14" data-line-number="14">y <span class="co">## Von der übergeordneten Umgebung aus können wir nicht auf y zurückgreifen.</span></a></code></pre></div>
 <pre><code>## Error in eval(expr, envir, enclos): Objekt &#39;y&#39; nicht gefunden</code></pre>
 </div>
 <div id="closure" class="section level3">
 <h3><span class="header-section-number">4.3.2</span> Closure</h3>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">power &lt;-<span class="st"> </span><span class="cf">function</span>(exponent){</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">  <span class="kw">return</span>(<span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3">    <span class="kw">return</span>(x <span class="op">^</span><span class="st"> </span>exponent)})</a>
-<a class="sourceLine" id="cb37-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb37-5" data-line-number="5">square &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="kw">square</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="kw">square</span>(<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb37-8" data-line-number="8">cube &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="kw">cube</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb37-10" data-line-number="10"><span class="kw">cube</span>(<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">power &lt;-<span class="st"> </span><span class="cf">function</span>(exponent){</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">  <span class="kw">return</span>(<span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3">    <span class="kw">return</span>(x <span class="op">^</span><span class="st"> </span>exponent)})</a>
+<a class="sourceLine" id="cb40-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb40-5" data-line-number="5">square &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="kw">square</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="kw">square</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8">cube &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="kw">cube</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10"><span class="kw">cube</span>(<span class="dv">4</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="real-world-helpers" class="section level2">
+<h2><span class="header-section-number">4.4</span> Real-world helpers</h2>
+<div id="drop_ghosts" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> <code>drop_ghosts</code></h3>
+<p>This function drops ghosts, ie. it removes levels of a factor variable for which the absolute frequency in the data is <span class="math inline">\(0\)</span>.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">drop_ghosts &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">lev =</span> <span class="ot">NULL</span>) {</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">  <span class="cf">if</span> (<span class="kw">is.null</span>(lev)) {</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">    <span class="kw">as.factor</span>(<span class="kw">as.character</span>(x))  </a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb41-5" data-line-number="5">    <span class="cf">if</span> (<span class="kw">length</span>(<span class="kw">unique</span>(x)) <span class="op">!=</span><span class="st"> </span><span class="kw">length</span>(lev)) {</a>
+<a class="sourceLine" id="cb41-6" data-line-number="6">      <span class="kw">stop</span>(<span class="st">&quot;Please provide levels of correct length!&quot;</span>)  </a>
+<a class="sourceLine" id="cb41-7" data-line-number="7">    }</a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">    <span class="kw">factor</span>(<span class="kw">as.character</span>(x), <span class="dt">levels =</span> lev)</a>
+<a class="sourceLine" id="cb41-9" data-line-number="9">  }</a>
+<a class="sourceLine" id="cb41-10" data-line-number="10">}</a></code></pre></div>
+<p>Validation:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), <span class="dt">each =</span> <span class="dv">5</span>)))</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">tmp<span class="op">$</span>species</a></code></pre></div>
+<pre><code>##  [1] Beech  Beech  Beech  Beech  Beech  Spruce Spruce Spruce Spruce Spruce
+## Levels: Beech Spruce</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">sub &lt;-<span class="st"> </span><span class="kw">subset</span>(tmp, species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">sub<span class="op">$</span>species</a></code></pre></div>
+<pre><code>## [1] Beech Beech Beech Beech Beech
+## Levels: Beech Spruce</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">drop_ghosts</span>(<span class="dt">x =</span> sub<span class="op">$</span>species)</a></code></pre></div>
+<pre><code>## [1] Beech Beech Beech Beech Beech
+## Levels: Beech</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">drop_ghosts</span>(<span class="dt">x =</span> sub<span class="op">$</span>species, <span class="dt">lev =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>))</a></code></pre></div>
+<pre><code>## Error in drop_ghosts(x = sub$species, lev = c(&quot;Beech&quot;, &quot;Oak&quot;)): Please provide levels of correct length!</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Spruce&quot;</span>)))</a></code></pre></div>
+<pre><code>## [1] Beech Oak  
+## Levels: Beech Oak Spruce</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">drop_ghosts</span>(<span class="dt">x =</span> tmp, <span class="dt">lev =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>))</a></code></pre></div>
+<pre><code>## [1] Beech Oak  
+## Levels: Beech Oak</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">drop_ghosts</span>(<span class="dt">x =</span> tmp, <span class="dt">lev =</span> <span class="kw">c</span>(<span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Beech&quot;</span>))</a></code></pre></div>
+<pre><code>## [1] Beech Oak  
+## Levels: Oak Beech</code></pre>
+</div>
+<div id="overlap_seq" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> <code>overlap_seq</code></h3>
+<p>This function generates an overlapping sequence, ie. it takes a numeric variable <code>x</code> and a numeric step-length <code>delta</code> and calculates a sequence at multiples of <code>delta</code> that has a minimum below or just at the minumum of <code>x</code>, and a maximum beyond or just at the maximum of <code>x</code>.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">overlap_seq &lt;-<span class="st"> </span><span class="cf">function</span>(x, delta) {</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">  tmp &lt;-<span class="st"> </span>x <span class="op">%/%</span><span class="st"> </span>delta</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3">  tmp2 &lt;-<span class="st"> </span>x <span class="op">%%</span><span class="st"> </span>delta</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">  <span class="cf">if</span> (tmp2[<span class="kw">which.max</span>(x)] <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb56-5" data-line-number="5">    result &lt;-<span class="st"> </span>delta <span class="op">*</span><span class="st"> </span>(<span class="kw">min</span>(tmp, <span class="dt">na.rm =</span> T)<span class="op">:</span><span class="kw">max</span>(tmp, <span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb56-6" data-line-number="6">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb56-7" data-line-number="7">    result &lt;-<span class="st"> </span>delta <span class="op">*</span><span class="st"> </span>(<span class="kw">min</span>(tmp, <span class="dt">na.rm =</span> T)<span class="op">:</span>(<span class="kw">max</span>(tmp, <span class="dt">na.rm =</span> T) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb56-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb56-9" data-line-number="9">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb56-10" data-line-number="10">}</a></code></pre></div>
+<p>Validation:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">overlap_seq</span>(<span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">120</span>, <span class="dv">290</span>), <span class="dt">delta =</span> <span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1]   0 100 200 300</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">overlap_seq</span>(<span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">120</span>, <span class="dv">300</span>), <span class="dt">delta =</span> <span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1]   0 100 200 300</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">overlap_seq</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">120</span>, <span class="dv">300</span>), <span class="dt">delta =</span> <span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1]   0 100 200 300</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">overlap_seq</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">120</span>, <span class="dv">301</span>), <span class="dt">delta =</span> <span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1] -100    0  100  200  300  400</code></pre>
 <!--
 %functions: recursions}
 %\begin{Verbatim}
@@ -774,6 +884,11 @@ Also for your own <strong>orientation</strong>: Always comment on the processes 
 
 # References {-}
 -->
+<div id="refs" class="references">
+<div id="ref-Wickham:2011">
+<p>Wickham, Hadley. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/">http://www.jstatsoft.org/v40/i01/</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>

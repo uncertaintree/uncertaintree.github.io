@@ -186,7 +186,7 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Introduction to R: Session 02</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>Oktober 27, 2021 (Version 0.2)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>November 2, 2021 (Version 0.3)</em></p>
 </div>
 <!--# About this course{-}
 This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
@@ -331,6 +331,7 @@ This course introduces basic R-programming skills needed for applied statistical
 </div>
 <div id="example-plot" class="section level2">
 <h2><span class="header-section-number">2.2</span> Example <code>plot()</code></h2>
+<p>(We use <code>par(...)</code> and <code>colorspace::</code>… here, but don’t be distracted, we will treat them later. For the moment: <code>par(...)</code> manipulates the arrangment of the plot on the ‘piece of paper’ that we have to draw on, and <code>colorspace::...</code> just helps us to find ‘good’(!) colors …)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>, <span class="dt">mgp =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">.5</span>, <span class="dv">0</span>), <span class="dt">tcl =</span> <span class="fl">-.3</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">pal =</span> <span class="st">&quot;Earth&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>)[<span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">plot</span>(df<span class="op">$</span>d<span class="op">/</span><span class="dv">100</span>, df<span class="op">$</span>h, <span class="dt">xlab =</span> <span class="st">&quot;Stem diameter at 1.3m [m]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tree height [m]&quot;</span>,</a>
@@ -841,7 +842,34 @@ The histogram thus provides a rough estimate for the probability density functio
 </div>
 <div id="ggplot2" class="section level1">
 <h1><span class="header-section-number">10</span> <code>ggplot2</code></h1>
-<p>Some basics to ‘Grammar of Graphics’ – package ggplot2’ <span class="citation">(Wickham <a href="#ref-Wickham:2016">2016</a>)</span> – in Session 05.</p>
+<p>In the last couple of years, creating graphics with <code>ggplot2</code> <span class="citation">(Wickham <a href="#ref-Wickham:2016">2016</a>)</span> instead of base R commands has steadily increased among R users.
+I still have the impression base R allows me to have more flexibility in what my resulting plot may look, but by it’s modularity, and clear structure, and intuitiveness, command chains for making a graphic with <code>ggplot2</code> often come naturelly and less labour intensive in comparison to base R.
+<span class="math inline">\(\rightarrow\)</span> so it might be recommendanle to feel home in both worlds?!</p>
+<p>In order to set up a graphic with <code>ggplot2</code>, you usually start with calling <code>ggplot()</code> where you supply a dataframe (Note that <code>ggplot</code> is very much centered on having everything organized in dataframe, which is good, of course!) and an aesthetic mapping using <code>aes()</code>:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(drought, <span class="kw">aes</span>(elev, bair, <span class="dt">colour =</span> species))</a></code></pre></div>
+<p>From here on, you add modules – layers, scales, faceting specifications, coordinate systems, … (a great overview is given in the <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf">official cheat sheet</a>
+)– using <code>+</code>:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>… and you keep going, module by module:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="st">  </span><span class="kw">xlab</span>(<span class="dt">label =</span> <span class="st">&quot;Elevation [m]&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">ylab</span>(<span class="dt">label =</span> <span class="st">&quot;Basal area increment ratio&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">colour =</span> <span class="st">&quot;Species:&quot;</span>)</a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">rows =</span> <span class="kw">vars</span>(species))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(<span class="dt">rows =</span> <span class="kw">vars</span>(species))</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-37-2.png" width="672" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-37-3.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>))</a></code></pre></div>
+<p><img src="intro_to_R_session_02_files/figure-html/unnamed-chunk-37-4.png" width="672" /></p>
+<!--
+Some basics to 'Grammar of Graphics' -- package ggplot2' [@Wickham:2016] -- in Session 05.
+-->
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
