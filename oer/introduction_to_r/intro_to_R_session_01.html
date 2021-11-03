@@ -199,7 +199,7 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Introduction to R: Session 01</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>November 02, 2021 (Version 0.4)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>November 03, 2021 (Version 0.5)</em></p>
 </div>
 <p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
 <div id="intro" class="section level1">
@@ -593,7 +593,7 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <div id="exercises-2" class="section level2">
 <h2><span class="header-section-number">5.1</span> Exercises</h2>
 <p>Run the following lines.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">1</span>]; a; b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">2</span>]; b <span class="co">## Hoehen erster und zweiter Baum</span></a>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">1</span>]; a; b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">2</span>]; b <span class="co">## Basal are increment ratio values of first two stands</span></a>
 <a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">exp</span>(<span class="dt">x =</span> a)</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw">sqrt</span>(<span class="dt">x =</span> a)</a>
 <a class="sourceLine" id="cb27-4" data-line-number="4">a <span class="op">-</span><span class="st"> </span>b</a>
@@ -611,7 +611,7 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 </div>
 <div id="functions-basics" class="section level1">
 <h1><span class="header-section-number">6</span> Functions basics</h1>
-<p>(We will have a more detailed focus on functions in the third(?) session.)</p>
+<p>(We will have a more detailed focus on functions in the third session.)</p>
 <p><strong>Basic properties of functions in R:</strong></p>
 <ul>
 <li>Function call of function <code>f</code> using brackets: <code>f()</code></li>
@@ -619,7 +619,7 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <li>Search for documentation of <code>f</code> by: <code>help.search('f')</code></li>
 <li>Syntax:</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">f</span>(<span class="dt">arg1 =</span> wert1, <span class="dt">arg2 =</span> wert2, ...) <span class="co">## &#39;...&#39; is for optional further arguments.</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">f</span>(<span class="dt">arg1 =</span> value1, <span class="dt">arg2 =</span> value2, ...) <span class="co">## &#39;...&#39; is for optional further arguments.</span></a></code></pre></div>
 <ul>
 <li>Arguments often have default objects, eg. for <code>pch</code> in <code>plot()</code>:</li>
 </ul>
@@ -664,12 +664,14 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <li>Assignment of contents by <code>&lt;-</code> or <code>=</code> (or very seldomly <code>-&gt;</code>).</li>
 <li>Type of contents is described by object classes.</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">names</span>(drought)</a></code></pre></div>
-<pre><code>## [1] &quot;bair&quot;     &quot;elev&quot;     &quot;species&quot;  &quot;elev_cut&quot;</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co">#rm(spati2)</span></a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="co">#(a &lt;- d$h[1]); (a = d$h[1])</span></a>
-<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="co">#log(b &lt;- d$h[2]); b</span></a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="co">#(a &lt;- b)</span></a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">(a &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">1</span>]); (<span class="dt">a =</span> drought<span class="op">$</span>bair[<span class="dv">1</span>])</a></code></pre></div>
+<pre><code>## [1] 0.505</code></pre>
+<pre><code>## [1] 0.505</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">log</span>(b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair[<span class="dv">2</span>]); b</a></code></pre></div>
+<pre><code>## [1] -0.4338646</code></pre>
+<pre><code>## [1] 0.648</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">(a &lt;-<span class="st"> </span>b)</a></code></pre></div>
+<pre><code>## [1] 0.648</code></pre>
 <div id="objekt-names" class="section level2">
 <h2><span class="header-section-number">8.1</span> Objekt names</h2>
 <p>There are few hard technical restrictions on how to name objects in R, and a few soft rules that make life much simpler:</p>
@@ -683,16 +685,18 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <li>Ask yourself: Will I be able to immediately remember the contents from the name after two weeks without working on this project?</li>
 </ul>
 <p>We get an error message:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">3values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">3values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## Error: &lt;text&gt;:1:2: unerwartetes Symbol
 ## 1: 3values
 ##      ^</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">three_values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">three_values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a></code></pre></div>
 </div>
 <div id="save-and-load" class="section level2">
 <h2><span class="header-section-number">8.2</span> Save and load</h2>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">save</span>(frost, <span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">save</span>(frost, <span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</a></code></pre></div>
+<p>Where will my files be stored?
+See section <em>Preparatory Work in R</em> in Session 04.</p>
 </div>
 <div id="litter-service" class="section level2">
 <h2><span class="header-section-number">8.3</span> Litter service</h2>
@@ -701,34 +705,19 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <li>Litter service using <code>rm()</code></li>
 <li><code>dput()</code> comes as a helper</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
 <pre><code>##  [1] &quot;a&quot;            &quot;b&quot;            &quot;br&quot;           &quot;df&quot;           &quot;drought&quot;     
 ##  [6] &quot;frost&quot;        &quot;i&quot;            &quot;m&quot;            &quot;Mu&quot;           &quot;Mu_q&quot;        
 ## [11] &quot;nd&quot;           &quot;paint&quot;        &quot;three_values&quot; &quot;tmp&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>())</a></code></pre></div>
 <pre><code>## c(&quot;a&quot;, &quot;b&quot;, &quot;br&quot;, &quot;df&quot;, &quot;drought&quot;, &quot;frost&quot;, &quot;i&quot;, &quot;m&quot;, &quot;Mu&quot;, &quot;Mu_q&quot;, 
 ## &quot;nd&quot;, &quot;paint&quot;, &quot;three_values&quot;, &quot;tmp&quot;)</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>()[<span class="op">!</span>(<span class="kw">ls</span>() <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;drought&quot;</span>, <span class="st">&quot;frost&quot;</span>))])</a></code></pre></div>
-<pre><code>## c(&quot;br&quot;, &quot;df&quot;, &quot;i&quot;, &quot;m&quot;, &quot;Mu&quot;, &quot;Mu_q&quot;, &quot;nd&quot;, &quot;paint&quot;, &quot;three_values&quot;, 
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">dput</span>(<span class="kw">ls</span>()[<span class="op">!</span>(<span class="kw">ls</span>() <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;drought&quot;</span>, <span class="st">&quot;frost&quot;</span>, <span class="st">&quot;df&quot;</span>))])</a></code></pre></div>
+<pre><code>## c(&quot;a&quot;, &quot;b&quot;, &quot;br&quot;, &quot;i&quot;, &quot;m&quot;, &quot;Mu&quot;, &quot;Mu_q&quot;, &quot;nd&quot;, &quot;paint&quot;, &quot;three_values&quot;, 
 ## &quot;tmp&quot;)</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">rm</span>(<span class="st">&quot;bair&quot;</span>, <span class="st">&quot;br&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;d_breaks_cut&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;elev&quot;</span>, <span class="st">&quot;i&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;Mu&quot;</span>, </a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">   <span class="st">&quot;Mu_q&quot;</span>, <span class="st">&quot;nd&quot;</span>, <span class="st">&quot;paint&quot;</span>, <span class="st">&quot;quantile_sequence&quot;</span>, <span class="st">&quot;species&quot;</span>, <span class="st">&quot;three_values&quot;</span>, <span class="st">&quot;tmp&quot;</span>)</a></code></pre></div>
-<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
-## Objekt &#39;bair&#39; nicht gefunden</code></pre>
-<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
-## Objekt &#39;d&#39; nicht gefunden</code></pre>
-<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
-## Objekt &#39;d_breaks_cut&#39; nicht gefunden</code></pre>
-<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
-## Objekt &#39;dd&#39; nicht gefunden</code></pre>
-<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
-## Objekt &#39;elev&#39; nicht gefunden</code></pre>
-<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
-## Objekt &#39;quantile_sequence&#39; nicht gefunden</code></pre>
-<pre><code>## Warning in rm(&quot;bair&quot;, &quot;br&quot;, &quot;d&quot;, &quot;d_breaks_cut&quot;, &quot;dd&quot;, &quot;elev&quot;, &quot;i&quot;, &quot;m&quot;, :
-## Objekt &#39;species&#39; nicht gefunden</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
-<pre><code>## [1] &quot;a&quot;       &quot;b&quot;       &quot;df&quot;      &quot;drought&quot; &quot;frost&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">rm</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;br&quot;</span>, <span class="st">&quot;i&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;Mu&quot;</span>, <span class="st">&quot;Mu_q&quot;</span>, <span class="st">&quot;nd&quot;</span>, <span class="st">&quot;paint&quot;</span>, <span class="st">&quot;three_values&quot;</span>, <span class="st">&quot;tmp&quot;</span>)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="kw">ls</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;df&quot;      &quot;drought&quot; &quot;frost&quot;</code></pre>
 </div>
 </div>
 <div id="dataobject-classes" class="section level1">
@@ -784,25 +773,25 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <div id="exercises-4" class="section level3">
 <h3><span class="header-section-number">9.1.2</span> Exercises</h3>
 <p>Copy-paste and run each line: describe what it does and what it results in.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">1</span>]; b &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb67-2" data-line-number="2">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a>
-<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="kw">c</span>(x, a)</a>
-<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="kw">c</span>(x, x)</a>
-<a class="sourceLine" id="cb67-5" data-line-number="5">x[<span class="dv">2</span>] &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">3</span>]; x</a>
-<a class="sourceLine" id="cb67-6" data-line-number="6"><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb67-7" data-line-number="7">a<span class="op">:</span>b</a>
-<a class="sourceLine" id="cb67-8" data-line-number="8"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="fl">.5</span>)</a>
-<a class="sourceLine" id="cb67-9" data-line-number="9"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb67-10" data-line-number="10"><span class="kw">seq</span>(a, b, <span class="dt">length =</span> <span class="dv">10</span>) <span class="co">## Sequenz</span></a>
-<a class="sourceLine" id="cb67-11" data-line-number="11"><span class="kw">rep</span>(x, <span class="dt">times =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb67-12" data-line-number="12"><span class="kw">rep</span>(x, <span class="dt">each =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb67-13" data-line-number="13"><span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb67-14" data-line-number="14"><span class="kw">sort</span>(x, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb67-15" data-line-number="15"><span class="kw">order</span>(<span class="kw">c</span>(x, <span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb67-16" data-line-number="16">a &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">1</span>]); b &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb67-17" data-line-number="17">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a>
-<a class="sourceLine" id="cb67-18" data-line-number="18"><span class="kw">c</span>(x, <span class="st">&quot;Beech&quot;</span>)</a>
-<a class="sourceLine" id="cb67-19" data-line-number="19"><span class="kw">c</span>(x, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">1</span>]; b &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="kw">c</span>(x, a)</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="kw">c</span>(x, x)</a>
+<a class="sourceLine" id="cb64-5" data-line-number="5">x[<span class="dv">2</span>] &lt;-<span class="st"> </span>drought<span class="op">$</span>elev[<span class="dv">3</span>]; x</a>
+<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb64-7" data-line-number="7">a<span class="op">:</span>b</a>
+<a class="sourceLine" id="cb64-8" data-line-number="8"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="fl">.5</span>)</a>
+<a class="sourceLine" id="cb64-9" data-line-number="9"><span class="kw">seq</span>(a, b, <span class="dt">by =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb64-10" data-line-number="10"><span class="kw">seq</span>(a, b, <span class="dt">length =</span> <span class="dv">10</span>) <span class="co">## Sequenz</span></a>
+<a class="sourceLine" id="cb64-11" data-line-number="11"><span class="kw">rep</span>(x, <span class="dt">times =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb64-12" data-line-number="12"><span class="kw">rep</span>(x, <span class="dt">each =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb64-13" data-line-number="13"><span class="kw">rep</span>(x, <span class="dt">length =</span> <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb64-14" data-line-number="14"><span class="kw">sort</span>(x, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb64-15" data-line-number="15"><span class="kw">order</span>(<span class="kw">c</span>(x, <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb64-16" data-line-number="16">a &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">1</span>]); b &lt;-<span class="st"> </span><span class="kw">as.character</span>(drought<span class="op">$</span>species[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb64-17" data-line-number="17">(x &lt;-<span class="st"> </span><span class="kw">c</span>(a, b))</a>
+<a class="sourceLine" id="cb64-18" data-line-number="18"><span class="kw">c</span>(x, <span class="st">&quot;Beech&quot;</span>)</a>
+<a class="sourceLine" id="cb64-19" data-line-number="19"><span class="kw">c</span>(x, <span class="dv">2</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="calculations" class="section level2">
@@ -816,16 +805,16 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <div id="exercises-5" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Exercises</h3>
 <p>Copy-paste and run each line: describe what it does and what it results in.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">x<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="kw">sin</span>(x)</a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="kw">summary</span>(x)</a>
-<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="kw">boxplot</span>(x)</a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="kw">stripchart</span>(x, <span class="dt">add =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T)</a></code></pre></div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">species &lt;-<span class="st"> </span>drought<span class="op">$</span>species</a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species)</a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>elev <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">x<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="kw">sin</span>(x)</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="kw">summary</span>(x)</a>
+<a class="sourceLine" id="cb65-6" data-line-number="6"><span class="kw">boxplot</span>(x)</a>
+<a class="sourceLine" id="cb65-7" data-line-number="7"><span class="kw">stripchart</span>(x, <span class="dt">add =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">species &lt;-<span class="st"> </span>drought<span class="op">$</span>species</a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species)</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>(drought<span class="op">$</span>elev <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>))</a></code></pre></div>
 </div>
 </div>
 <div id="matrix" class="section level2">
@@ -834,7 +823,7 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <div id="basics-1" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Basics</h3>
 <p><code>P</code><span class="math inline">\(\times\)</span><code>P</code> matrix with content <code>content</code>:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> P, <span class="dt">ncol =</span> Q, <span class="dt">data =</span> content)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> P, <span class="dt">ncol =</span> Q, <span class="dt">data =</span> content)</a></code></pre></div>
 <p>Fill matrix column- (default) or linewise using argument <code>byrow = TRUE</code>:</p>
 <ul>
 <li>Indexing of one element: <code>A[1, 1]</code></li>
@@ -847,21 +836,21 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 </div>
 <div id="exercises-6" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> Exercises</h3>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2">b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="kw">length</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">length</span>(b)</a>
-<a class="sourceLine" id="cb71-4" data-line-number="4">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">length</span>(a), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(a, b))</a>
-<a class="sourceLine" id="cb71-5" data-line-number="5"><span class="kw">all</span>(A[, <span class="dv">1</span>] <span class="op">==</span><span class="st"> </span>a)</a>
-<a class="sourceLine" id="cb71-6" data-line-number="6">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</a>
-<a class="sourceLine" id="cb71-7" data-line-number="7">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb71-8" data-line-number="8">A[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">29</span>), ]</a>
-<a class="sourceLine" id="cb71-9" data-line-number="9">B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>); B</a>
-<a class="sourceLine" id="cb71-10" data-line-number="10"><span class="kw">diag</span>(B)</a>
-<a class="sourceLine" id="cb71-11" data-line-number="11">B <span class="op">%*%</span><span class="st"> </span>B</a>
-<a class="sourceLine" id="cb71-12" data-line-number="12">B <span class="op">%*%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb71-13" data-line-number="13"><span class="kw">rowSums</span>(B)</a>
-<a class="sourceLine" id="cb71-14" data-line-number="14"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span>B</a>
-<a class="sourceLine" id="cb71-15" data-line-number="15"><span class="kw">colSums</span>(B)</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">a &lt;-<span class="st"> </span>drought<span class="op">$</span>elev</a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">b &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="kw">length</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">length</span>(b)</a>
+<a class="sourceLine" id="cb68-4" data-line-number="4">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">length</span>(a), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(a, b))</a>
+<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="kw">all</span>(A[, <span class="dv">1</span>] <span class="op">==</span><span class="st"> </span>a)</a>
+<a class="sourceLine" id="cb68-6" data-line-number="6">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</a>
+<a class="sourceLine" id="cb68-7" data-line-number="7">A[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb68-8" data-line-number="8">A[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">29</span>), ]</a>
+<a class="sourceLine" id="cb68-9" data-line-number="9">B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>); B</a>
+<a class="sourceLine" id="cb68-10" data-line-number="10"><span class="kw">diag</span>(B)</a>
+<a class="sourceLine" id="cb68-11" data-line-number="11">B <span class="op">%*%</span><span class="st"> </span>B</a>
+<a class="sourceLine" id="cb68-12" data-line-number="12">B <span class="op">%*%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb68-13" data-line-number="13"><span class="kw">rowSums</span>(B)</a>
+<a class="sourceLine" id="cb68-14" data-line-number="14"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span>B</a>
+<a class="sourceLine" id="cb68-15" data-line-number="15"><span class="kw">colSums</span>(B)</a></code></pre></div>
 </div>
 </div>
 <div id="list" class="section level2">
@@ -876,20 +865,20 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <li><code>str</code> gives the structure</li>
 <li>For lists of ‘consistent’ classes (or generic functions):</li>
 </ul>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">lapply</span>(<span class="dt">X =</span> mylist, <span class="dt">FUN =</span> myfun)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">lapply</span>(<span class="dt">X =</span> mylist, <span class="dt">FUN =</span> myfun)</a></code></pre></div>
 </div>
 <div id="exercises-7" class="section level3">
 <h3><span class="header-section-number">9.4.2</span> Exercises</h3>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">beech &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">species =</span> <span class="st">&quot;Fagus&quot;</span>,</a>
-<a class="sourceLine" id="cb73-2" data-line-number="2">              <span class="dt">n =</span> <span class="kw">sum</span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>),</a>
-<a class="sourceLine" id="cb73-3" data-line-number="3">              <span class="dt">data =</span> <span class="kw">subset</span>(drought, species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>))</a>
-<a class="sourceLine" id="cb73-4" data-line-number="4">beech</a>
-<a class="sourceLine" id="cb73-5" data-line-number="5">beech[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb73-6" data-line-number="6">beech[[<span class="st">&#39;species&#39;</span>]]</a>
-<a class="sourceLine" id="cb73-7" data-line-number="7">beech<span class="op">$</span>species</a>
-<a class="sourceLine" id="cb73-8" data-line-number="8"><span class="kw">str</span>(beech)</a>
-<a class="sourceLine" id="cb73-9" data-line-number="9"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> dim)</a>
-<a class="sourceLine" id="cb73-10" data-line-number="10"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> summary)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">beech &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">species =</span> <span class="st">&quot;Fagus&quot;</span>,</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">              <span class="dt">n =</span> <span class="kw">sum</span>(drought<span class="op">$</span>species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>),</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">              <span class="dt">data =</span> <span class="kw">subset</span>(drought, species <span class="op">==</span><span class="st"> &quot;Beech&quot;</span>))</a>
+<a class="sourceLine" id="cb70-4" data-line-number="4">beech</a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">beech[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">beech[[<span class="st">&#39;species&#39;</span>]]</a>
+<a class="sourceLine" id="cb70-7" data-line-number="7">beech<span class="op">$</span>species</a>
+<a class="sourceLine" id="cb70-8" data-line-number="8"><span class="kw">str</span>(beech)</a>
+<a class="sourceLine" id="cb70-9" data-line-number="9"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> dim)</a>
+<a class="sourceLine" id="cb70-10" data-line-number="10"><span class="kw">lapply</span>(beech, <span class="dt">FUN =</span> summary)</a></code></pre></div>
 </div>
 </div>
 <div id="synthesis-and-indexing" class="section level2">
@@ -902,19 +891,19 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 </ul>
 <div id="exercises-8" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> Exercises</h3>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">c</span>(<span class="dt">one =</span> <span class="dv">1</span>, <span class="dt">two =</span> <span class="dv">2</span>, <span class="dt">four =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb74-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb74-3" data-line-number="3">x</a>
-<a class="sourceLine" id="cb74-4" data-line-number="4"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;four&quot;</span>)</a>
-<a class="sourceLine" id="cb74-5" data-line-number="5">x</a>
-<a class="sourceLine" id="cb74-6" data-line-number="6"><span class="kw">names</span>(beech)</a>
-<a class="sourceLine" id="cb74-7" data-line-number="7">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(drought<span class="op">$</span>elev[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], drought<span class="op">$</span>bair[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]))</a>
-<a class="sourceLine" id="cb74-8" data-line-number="8"><span class="kw">colnames</span>(A)</a>
-<a class="sourceLine" id="cb74-9" data-line-number="9"><span class="kw">colnames</span>(A) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;elev&quot;</span>, <span class="st">&quot;bair&quot;</span>)</a>
-<a class="sourceLine" id="cb74-10" data-line-number="10"><span class="kw">colnames</span>(A)</a>
-<a class="sourceLine" id="cb74-11" data-line-number="11"><span class="kw">rownames</span>(A)</a>
-<a class="sourceLine" id="cb74-12" data-line-number="12"><span class="kw">names</span>(A)</a>
-<a class="sourceLine" id="cb74-13" data-line-number="13"><span class="kw">dimnames</span>(A)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">c</span>(<span class="dt">one =</span> <span class="dv">1</span>, <span class="dt">two =</span> <span class="dv">2</span>, <span class="dt">four =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">x</a>
+<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;four&quot;</span>)</a>
+<a class="sourceLine" id="cb71-5" data-line-number="5">x</a>
+<a class="sourceLine" id="cb71-6" data-line-number="6"><span class="kw">names</span>(beech)</a>
+<a class="sourceLine" id="cb71-7" data-line-number="7">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">data =</span> <span class="kw">c</span>(drought<span class="op">$</span>elev[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], drought<span class="op">$</span>bair[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]))</a>
+<a class="sourceLine" id="cb71-8" data-line-number="8"><span class="kw">colnames</span>(A)</a>
+<a class="sourceLine" id="cb71-9" data-line-number="9"><span class="kw">colnames</span>(A) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;elev&quot;</span>, <span class="st">&quot;bair&quot;</span>)</a>
+<a class="sourceLine" id="cb71-10" data-line-number="10"><span class="kw">colnames</span>(A)</a>
+<a class="sourceLine" id="cb71-11" data-line-number="11"><span class="kw">rownames</span>(A)</a>
+<a class="sourceLine" id="cb71-12" data-line-number="12"><span class="kw">names</span>(A)</a>
+<a class="sourceLine" id="cb71-13" data-line-number="13"><span class="kw">dimnames</span>(A)</a></code></pre></div>
 </div>
 </div>
 <div id="dataframe" class="section level2">
@@ -930,16 +919,16 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 </ul>
 <div id="exercises-9" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> Exercises</h3>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">weather &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>),</a>
-<a class="sourceLine" id="cb75-2" data-line-number="2">                      <span class="dt">daily_mean_temperature_C =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>),</a>
-<a class="sourceLine" id="cb75-3" data-line-number="3">                      <span class="dt">precipitation_sum_mm =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">25</span>),</a>
-<a class="sourceLine" id="cb75-4" data-line-number="4">                      <span class="dt">site =</span> <span class="st">&quot;Goettingen&quot;</span>)</a>
-<a class="sourceLine" id="cb75-5" data-line-number="5">weather</a>
-<a class="sourceLine" id="cb75-6" data-line-number="6">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ]</a>
-<a class="sourceLine" id="cb75-7" data-line-number="7">weather<span class="op">$</span>day[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb75-8" data-line-number="8">weather[[<span class="st">&quot;daily_mean_temperature_C&quot;</span>]][<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb75-9" data-line-number="9">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;daily_mean_temperature_C&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a>
-<a class="sourceLine" id="cb75-10" data-line-number="10">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">weather &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>),</a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">                      <span class="dt">daily_mean_temperature_C =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>),</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3">                      <span class="dt">precipitation_sum_mm =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">25</span>),</a>
+<a class="sourceLine" id="cb72-4" data-line-number="4">                      <span class="dt">site =</span> <span class="st">&quot;Goettingen&quot;</span>)</a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">weather</a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ]</a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">weather<span class="op">$</span>day[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb72-8" data-line-number="8">weather[[<span class="st">&quot;daily_mean_temperature_C&quot;</span>]][<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb72-9" data-line-number="9">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;daily_mean_temperature_C&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a>
+<a class="sourceLine" id="cb72-10" data-line-number="10">weather[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</a></code></pre></div>
 </div>
 </div>
 <div id="functions-on-dataframes" class="section level2">
@@ -953,10 +942,10 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 </ul>
 <div id="exercises-10" class="section level3">
 <h3><span class="header-section-number">9.7.1</span> Exercises</h3>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">summary</span>(weather)</a>
-<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="kw">str</span>(weather)</a>
-<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="kw">head</span>(weather, <span class="dt">n =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb76-4" data-line-number="4"><span class="kw">dim</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">summary</span>(weather)</a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="kw">str</span>(weather)</a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="kw">head</span>(weather, <span class="dt">n =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="kw">dim</span>(weather)</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -966,40 +955,40 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <div id="nchar" class="section level2 unnumbered">
 <h2><code>nchar</code></h2>
 <p>Returns the number of characters of a string:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">nchar</span>(<span class="kw">names</span>(weather))</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">nchar</span>(<span class="kw">names</span>(weather))</a></code></pre></div>
 <pre><code>## [1]  3 24 20  4</code></pre>
 </div>
 <div id="tolower-und-toupper" class="section level2 unnumbered">
 <h2><code>tolower</code> und <code>toupper</code></h2>
 <p>Replaces uppercase with lowercase letters (and vice versa).</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">toupper</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">toupper</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</a></code></pre></div>
 <pre><code>## [1] &quot;BEECH&quot; &quot;BEECH&quot; &quot;BEECH&quot;</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">tolower</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">tolower</span>(<span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</a></code></pre></div>
 <pre><code>## [1] &quot;beech&quot; &quot;beech&quot; &quot;beech&quot;</code></pre>
 </div>
 <div id="gsub" class="section level2 unnumbered">
 <h2><code>gsub</code></h2>
 <p>Replace a pattern:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">names</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">names</span>(weather)</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;                      &quot;daily_mean_temperature_C&quot;
 ## [3] &quot;precipitation_sum_mm&quot;     &quot;site&quot;</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_mm&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__mm&quot;</span>, <span class="dt">fixed =</span> T)</a>
-<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_C&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__C&quot;</span>, <span class="dt">fixed =</span> T)</a>
-<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="kw">names</span>(weather)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_mm&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__mm&quot;</span>, <span class="dt">fixed =</span> T)</a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;_C&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;__C&quot;</span>, <span class="dt">fixed =</span> T)</a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="kw">names</span>(weather)</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;                       &quot;daily_mean_temperature__C&quot;
 ## [3] &quot;precipitation_sum__mm&quot;     &quot;site&quot;</code></pre>
 </div>
 <div id="substring" class="section level2 unnumbered">
 <h2><code>substring</code></h2>
 <p>Substrings from <code>first</code> to <code>last</code>.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">substring</span>(<span class="kw">names</span>(weather), <span class="dt">first =</span> <span class="dv">1</span>, <span class="dt">last =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">substring</span>(<span class="kw">names</span>(weather), <span class="dt">first =</span> <span class="dv">1</span>, <span class="dt">last =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;   &quot;daily&quot; &quot;preci&quot; &quot;site&quot;</code></pre>
 </div>
 <div id="strsplit" class="section level2 unnumbered">
 <h2><code>strsplit</code></h2>
 <p>Splits strings according to a certain pattern (<code>strsplit</code> always returns a list).</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;__&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T)</a>
-<a class="sourceLine" id="cb89-2" data-line-number="2">(tmp &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="kw">names</span>(weather), <span class="dt">split =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T))</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">names</span>(weather) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="kw">names</span>(weather), <span class="dt">pattern =</span> <span class="st">&quot;__&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T)</a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">(tmp &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="kw">names</span>(weather), <span class="dt">split =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">fixed =</span> T))</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;day&quot;
 ## 
@@ -1015,7 +1004,7 @@ First and third line define objects <code>a</code> and <code>b</code> by using a
 <div id="paste" class="section level2 unnumbered">
 <h2><code>paste</code></h2>
 <p>Merges strings (arguments <code>sep</code> or<code>collapse</code>).</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)})</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)})</a></code></pre></div>
 <pre><code>## [1] &quot;day&quot;                      &quot;daily_mean_temperature_C&quot;
 ## [3] &quot;precipitation_sum_mm&quot;     &quot;site&quot;</code></pre>
 </div>
@@ -1044,72 +1033,72 @@ Praktisches Vorgehen:
 </ul>
 <p>We can generate a factor without specification of levels and labels:
 In this case, factor levels (<code>levels</code>) are generated (in alphabetical order), numbered internally (see this numeric expression using <code>as.numeric</code>), and represented externally by the original values of the character string.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>)))</a></code></pre></div>
 <pre><code>## [1] Beech  Spruce Beech 
 ## Levels: Beech Spruce</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">attributes</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">attributes</span>(tmp)</a></code></pre></div>
 <pre><code>## $levels
 ## [1] &quot;Beech&quot;  &quot;Spruce&quot;
 ## 
 ## $class
 ## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="kw">levels</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">levels</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] &quot;Beech&quot;  &quot;Spruce&quot;</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">as.numeric</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">as.numeric</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] 1 2 1</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] &quot;Beech&quot;  &quot;Spruce&quot; &quot;Beech&quot;</code></pre>
 <p>We can provide levels, to which the numerical representation will refer to:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>), </a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>), </a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>)))</a></code></pre></div>
 <pre><code>## [1] Beech  Spruce Beech 
 ## Levels: Spruce Beech</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">attributes</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">attributes</span>(tmp)</a></code></pre></div>
 <pre><code>## $levels
 ## [1] &quot;Spruce&quot; &quot;Beech&quot; 
 ## 
 ## $class
 ## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">levels</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">levels</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] &quot;Spruce&quot; &quot;Beech&quot;</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">as.numeric</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">as.numeric</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] 2 1 2</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] &quot;Beech&quot;  &quot;Spruce&quot; &quot;Beech&quot;</code></pre>
 <p>Using labels, the values represented externally are the result of the mapping from <code>levels</code> to <code>labels</code></p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>), </a>
-<a class="sourceLine" id="cb113-2" data-line-number="2">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
-<a class="sourceLine" id="cb113-3" data-line-number="3">               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Fagus sylvatica&quot;</span>, <span class="st">&quot;Picea abies&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">(tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>), </a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Fagus sylvatica&quot;</span>, <span class="st">&quot;Picea abies&quot;</span>)))</a></code></pre></div>
 <pre><code>## [1] Fagus sylvatica Picea abies     Fagus sylvatica
 ## Levels: Fagus sylvatica Picea abies</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">attributes</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">attributes</span>(tmp)</a></code></pre></div>
 <pre><code>## $levels
 ## [1] &quot;Fagus sylvatica&quot; &quot;Picea abies&quot;    
 ## 
 ## $class
 ## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">levels</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">levels</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] &quot;Fagus sylvatica&quot; &quot;Picea abies&quot;</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">as.numeric</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">as.numeric</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] 1 2 1</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
 <pre><code>## [1] &quot;Fagus sylvatica&quot; &quot;Picea abies&quot;     &quot;Fagus sylvatica&quot;</code></pre>
 <div id="exercises-11" class="section level2">
 <h2><span class="header-section-number">11.1</span> Exercises</h2>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), </a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
-<a class="sourceLine" id="cb123-3" data-line-number="3">               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Fagus sylvatica&quot;</span>, <span class="st">&quot;Picea abies&quot;</span>))</a>
-<a class="sourceLine" id="cb123-4" data-line-number="4"><span class="kw">attributes</span>(tmp)</a>
-<a class="sourceLine" id="cb123-5" data-line-number="5"><span class="kw">levels</span>(tmp)</a>
-<a class="sourceLine" id="cb123-6" data-line-number="6"><span class="kw">as.numeric</span>(tmp)</a>
-<a class="sourceLine" id="cb123-7" data-line-number="7"><span class="kw">as.character</span>(tmp)</a>
-<a class="sourceLine" id="cb123-8" data-line-number="8">tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), </a>
-<a class="sourceLine" id="cb123-9" data-line-number="9">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
-<a class="sourceLine" id="cb123-10" data-line-number="10">               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Deciduous&quot;</span>, <span class="st">&quot;Deciduous&quot;</span>, <span class="st">&quot;Conifer&quot;</span>))</a>
-<a class="sourceLine" id="cb123-11" data-line-number="11"><span class="kw">attributes</span>(tmp)</a>
-<a class="sourceLine" id="cb123-12" data-line-number="12"><span class="kw">levels</span>(tmp)</a>
-<a class="sourceLine" id="cb123-13" data-line-number="13"><span class="kw">as.numeric</span>(tmp)</a>
-<a class="sourceLine" id="cb123-14" data-line-number="14"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), </a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Fagus sylvatica&quot;</span>, <span class="st">&quot;Picea abies&quot;</span>))</a>
+<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="kw">attributes</span>(tmp)</a>
+<a class="sourceLine" id="cb120-5" data-line-number="5"><span class="kw">levels</span>(tmp)</a>
+<a class="sourceLine" id="cb120-6" data-line-number="6"><span class="kw">as.numeric</span>(tmp)</a>
+<a class="sourceLine" id="cb120-7" data-line-number="7"><span class="kw">as.character</span>(tmp)</a>
+<a class="sourceLine" id="cb120-8" data-line-number="8">tmp &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), </a>
+<a class="sourceLine" id="cb120-9" data-line-number="9">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </a>
+<a class="sourceLine" id="cb120-10" data-line-number="10">               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Deciduous&quot;</span>, <span class="st">&quot;Deciduous&quot;</span>, <span class="st">&quot;Conifer&quot;</span>))</a>
+<a class="sourceLine" id="cb120-11" data-line-number="11"><span class="kw">attributes</span>(tmp)</a>
+<a class="sourceLine" id="cb120-12" data-line-number="12"><span class="kw">levels</span>(tmp)</a>
+<a class="sourceLine" id="cb120-13" data-line-number="13"><span class="kw">as.numeric</span>(tmp)</a>
+<a class="sourceLine" id="cb120-14" data-line-number="14"><span class="kw">as.character</span>(tmp)</a></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
