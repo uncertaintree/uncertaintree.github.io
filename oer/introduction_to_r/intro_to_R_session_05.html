@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R: Session 05</title>
+  <meta name="description" content="Introduction to R: Session 05" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R: Session 05" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R: Session 05" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#r-markdown"><i class="fa fa-check"></i><b>1</b> R markdown</a><ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#structure"><i class="fa fa-check"></i><b>1.1</b> Structure</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#installation"><i class="fa fa-check"></i><b>1.2</b> Installation</a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#links-misc"><i class="fa fa-check"></i><b>1.3</b> Links &amp; misc</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path=""><a href="#other-topics"><i class="fa fa-check"></i><b>2</b> Other topics</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R: Session 05</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R: Session 05</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>November 09, 2021 (Version 0.1)</em></p>
+</div>
+<!--
+# About this course{-}
+This course introduces basic R-programming skills needed for applied statistical modeling in R.
+-->
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="r-markdown" class="section level1">
+<h1><span class="header-section-number">1</span> R markdown</h1>
+<p>R markdown (<span class="citation">Allaire et al. (<a href="#ref-Allaire:Et:Al:2021">2021</a>)</span>, <span class="citation">Xie, Allaire, and Grolemund (<a href="#ref-Xie:2018">2018</a>)</span>, <span class="citation">Xie, Dervieux, and Riederer (<a href="#ref-Xie:2020">2020</a>)</span>) offers an environment to combine the analysis / manipulation / … of data with an immediate production of a document in one step (all materials of this course were created with a variant of R markdown).</p>
+<p>With a single R markdown file, you can:</p>
+<ul>
+<li>save an evaluate R code, and</li>
+<li>generate a report (article, presentation slides, …) containing the results of the evaluation of the R code.</li>
+</ul>
+<p>R markdown documents are completely reproducible and support a variety of static and dynamic output formats.</p>
+<div id="structure" class="section level2">
+<h2><span class="header-section-number">1.1</span> Structure</h2>
+<p>An R markdown file is essentially divided into three areas:</p>
+<ul>
+<li>Title:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="op">---</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">title<span class="op">:</span><span class="st"> &quot;Estimating Potential for Late-Frost-Events in Goettingen&quot;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">author<span class="op">:</span><span class="st"> &quot;Holger Sennhenn-Reulen&quot;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">date<span class="op">:</span><span class="st"> &quot;November 09, 2021&quot;</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">output<span class="op">:</span><span class="st"> </span>word_document</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="op">---</span></a></code></pre></div>
+<ul>
+<li>R code ‘chunks’:</li>
+</ul>
+<pre><code>```{r}
+summary(frost)
+```</code></pre>
+<ul>
+<li>and, embedded in between, text with (reduced) formatting:</li>
+</ul>
+<pre><code>This sentence will be given as ordinary text in the output document, 
+with words in *italics* or **bold**.</code></pre>
+</div>
+<div id="installation" class="section level2">
+<h2><span class="header-section-number">1.2</span> Installation</h2>
+<p>A connection to the internet is required for the following steps:</p>
+<ul>
+<li>Create a new folder <code>markdown files</code> in your favorite working directory.</li>
+<li><p>Start RStudio and click on <code>File</code> <span class="math inline">\(\rightarrow\)</span> <code>New File</code> <span class="math inline">\(\rightarrow\)</span> <code>R Markdown</code>:
+<img src="new_markdown_file_01.png" alt="File -&gt; New File -&gt; R Markdown" /></p></li>
+<li><p>After clicking on ‘R Markdown’ you will be asked whether you want to install some R packages . After confirmation, with subsequent installation, the following window should open:
+<img src="new_markdown_file_02.png" alt="Markdown dialogue" /></p></li>
+<li>Enter a title and your name and mark the selection ‘Word’. Click on ‘OK’.</li>
+<li><p>The following document is generated (in this example, the output is still set on the default <code>html_document</code>):
+<img src="new_markdown_file_03.png" alt="Markdown skeleton" /></p></li>
+<li>Save this file in the <code>markdown files</code> folder: The file has the extension<code>.Rmd</code>, for R-Markdown.</li>
+<li>Finally: click on the ‘Knit’ button.</li>
+<li><p>A Word / OpenOffice Writer file with R commands, graphics and results should open.</p></li>
+</ul>
+</div>
+<div id="links-misc" class="section level2">
+<h2><span class="header-section-number">1.3</span> Links &amp; misc</h2>
+<ul>
+<li><a href="https://pkgs.rstudio.com/rmarkdown/articles/rmarkdown.html">Get started!</a></li>
+<li><a href="https://www.rstudio.org/links/r_markdown_cheat_sheet">R markdown cheat sheet</a></li>
+<li><a href="https://www.rstudio.org/links/r_markdown_reference_guide">R markdown reference guide</a></li>
+<li>Click <code>Help</code> <span class="math inline">\(\rightarrow\)</span> <code>Markdown Quick Reference</code></li>
+<li>Inlcude template file:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">output<span class="op">:</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span>word_document<span class="op">:</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">    </span>highlight<span class="op">:</span><span class="st"> </span>null</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    toc<span class="op">:</span><span class="st"> </span>yes</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    reference_docx<span class="op">:</span><span class="st"> </span>markdown_word_style_template.docx</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="op">---</span></a></code></pre></div>
+<p>where <code>markdown_word_style_template.docx</code> is a file that stores built-in Microsoft Office Word styles (German: <em>Formatvorlagen</em>):
+<img src="markdown_word_template.png" alt="Word template" /></p>
+</div>
+</div>
+<div id="other-topics" class="section level1">
+<h1><span class="header-section-number">2</span> Other topics</h1>
+<ul>
+<li>Give credit to package authors and maintainers by citing R packages:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">citation</span>(<span class="st">&quot;mgcv&quot;</span>)</a></code></pre></div>
+<ul>
+<li><strong>Six sections structure for applied statistics on real data</strong>:
+<ul>
+<li><em>1st section:</em> Organize R session (Load packages, set working directory, …)</li>
+<li><em>2nd section:</em> Data management (Load data, manipulate and organize data, hold your global environment clean using <code>rm()</code>)</li>
+<li><em>3rd section:</em> Descriptive analysis (Plots, plots, plots, …)</li>
+<li><em>4th section:</em> Statistical modelling</li>
+<li><em>5th section:</em> Visualisation (<a href="https://www.tandfonline.com/doi/abs/10.1198/000313002317572790">is better than tabulation</a>) of results</li>
+<li><em>6th section:</em> Show the outcome of <code>sessionInfo()</code></li>
+<li>Note: If this is your markdown structure, then whatever you show in section 5 is fully reproducible (given you don’t make excessive use of <code>save</code> and <code>load</code>), and there is no better feeling than bycycle-commuting home through sunshine, knowing that your analysis is reproducible on the next day!</li>
+</ul></li>
+<li><code>dput(...)</code> comes handy here and there.</li>
+</ul>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Allaire:Et:Al:2021">
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2021. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>.</p>
+</div>
+<div id="ref-Xie:2018">
+<p>Xie, Yihui, J.J. Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>.</p>
+</div>
+<div id="ref-Xie:2020">
+<p>Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown-cookbook">https://bookdown.org/yihui/rmarkdown-cookbook</a>.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_05.pdf", "PDF"]],
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
