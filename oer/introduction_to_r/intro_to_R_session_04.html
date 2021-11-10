@@ -123,7 +123,9 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="2" data-path=""><a href="#descriptive-analysis-for-univariate-samples"><i class="fa fa-check"></i><b>2</b> Descriptive analysis for univariate samples</a><ul>
 <li class="chapter" data-level="2.1" data-path=""><a href="#continuously-scaled-variable"><i class="fa fa-check"></i><b>2.1</b> Continuously scaled variable</a><ul>
 <li class="chapter" data-level="2.1.1" data-path=""><a href="#location"><i class="fa fa-check"></i><b>2.1.1</b> Location</a></li>
-<li class="chapter" data-level="2.1.2" data-path=""><a href="#scale-variation"><i class="fa fa-check"></i><b>2.1.2</b> Scale / variation</a></li>
+<li class="chapter" data-level="2.1.2" data-path=""><a href="#exercises"><i class="fa fa-check"></i><b>2.1.2</b> Exercises</a></li>
+<li class="chapter" data-level="2.1.3" data-path=""><a href="#scale-variation"><i class="fa fa-check"></i><b>2.1.3</b> Scale / variation</a></li>
+<li class="chapter" data-level="2.1.4" data-path=""><a href="#exercises-1"><i class="fa fa-check"></i><b>2.1.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path=""><a href="#categorically-scaled-variables"><i class="fa fa-check"></i><b>2.2</b> Categorically scaled variables</a><ul>
 <li class="chapter" data-level="2.2.1" data-path=""><a href="#one-dimensional"><i class="fa fa-check"></i><b>2.2.1</b> One dimensional:</a></li>
@@ -155,6 +157,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="6.6.2" data-path=""><a href="#model-component-mu-1"><i class="fa fa-check"></i><b>6.6.2</b> Model component <code>mu</code></a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
       </nav>
@@ -175,7 +178,7 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Introduction to R: Session 04</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>November 02, 2021 (Version 0.2)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>November 10, 2021 (Version 0.3)</em></p>
 </div>
 <!--
 # About this course{-}
@@ -188,13 +191,13 @@ This course introduces basic R-programming skills needed for applied statistical
 <div id="reproducible-data-management" class="section level2">
 <h2><span class="header-section-number">1.1</span> Reproducible data management</h2>
 <ul>
-<li>Avoid any steps in spreadsheet-software as MS Excel that are done ‘by hand’ and are non-repdroducible.</li>
+<li>Avoid any steps in spreadsheet-software as MS Excel that are done ‘by hand’ and are non-reproducible.</li>
 <li><em>Workflow A</em>:
 <ul>
-<li>Generate an R-Script <code>01_datamanagement.R</code> that loads your data and does all the steps and stops with an object <code>df</code> that is used for any further steps.</li>
+<li>Generate an R-Script <code>01_datamanagement.R</code> that loads your data and does all the steps, and returns an object <code>df</code> that is used for any further steps.</li>
 <li>Run this file using <code>source(01_datamanagement.R)</code>.</li>
 </ul></li>
-<li><em>Workflow B</em>: Generate a markdown file that not only doeas the above, but also documents all your steps (A short intro to markdown in Session 05).</li>
+<li><em>Workflow B</em>: Generate a markdown file that not only does the above, but also documents all your steps (A brief intro to markdown in Session 05).</li>
 </ul>
 </div>
 <div id="preparatory-steps-prior-r" class="section level2">
@@ -250,7 +253,7 @@ Baum-ID (, Traktecke, Trakt-ID, ...). Dabei ist zu bevorzugen die Informationen 
 <ul>
 <li><p>The most popular non-standard formats (i.e. not <code>.xls</code> or<code>.xlsx</code>) to save a dataframe are <code>.csv</code> (for <em>comma-separated value</em>) and<code>.txt</code> (tab-separated text file).</p></li>
 <li><p>Depending on this choice, a line’s contents are either separated by commas or tabs (referred to as ‘separation argument’).</p></li>
-<li><p><strong>Attention:</strong> Under operating systems with German language setting, commas are the default setting for the argument to represent decimal numbers. Here it is necessary to change the default values for the arguments <code>sep</code> and<code>dec</code> to <code>sep =&quot;; &quot;</code> and <code>dec =&quot;, &quot;</code> (required in <code>read.table()</code>, <code>read.csv()</code> and <code>read.csv2()</code>; see also the next sections).</p></li>
+<li><p><strong>Attention:</strong> Under operating systems with German language setting, commas are the default setting for the argument to represent decimal numbers. Here it is necessary to change the default values for the arguments <code>sep</code> and<code>dec</code> to <code>sep = &quot;; &quot;</code> and <code>dec = &quot;, &quot;</code> (required in <code>read.table()</code>, <code>read.csv()</code> and <code>read.csv2()</code>; see also the next sections).</p></li>
 </ul>
 </div>
 <div id="read.table" class="section level2">
@@ -384,51 +387,45 @@ library("lmfor")
 <li><code>median</code>, <code>quantile</code> (calculates percentiles <code>probs = seq(0, 1, by = .01)</code>, and quartiles for <code>probs = c(.25, .5, .75)</code>)</li>
 <li><code>summary</code> (returns: <code>min</code>, 1st quartile, <code>median</code>, <code>mean</code>, 3rd quartile, <code>max</code>)</li>
 </ul>
+</div>
+<div id="exercises" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Exercises</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">## mean:</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">mean</span>(drought<span class="op">$</span>bair)</a></code></pre></div>
-<pre><code>## [1] 0.7489118</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">## weighted mean:</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">tmp &lt;-<span class="st"> </span><span class="kw">nrow</span>(drought)<span class="op">/</span><span class="kw">table</span>(drought<span class="op">$</span>species)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> <span class="kw">factor</span>(<span class="kw">levels</span>(drought<span class="op">$</span>species), <span class="dt">levels =</span> <span class="kw">levels</span>(drought<span class="op">$</span>species)), </a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">                  <span class="dt">w =</span> <span class="kw">as.numeric</span>(tmp))</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">tmp &lt;-<span class="st"> </span><span class="kw">merge</span>(drought[, <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;bair&quot;</span>)], tmp, <span class="dt">by =</span> <span class="st">&quot;species&quot;</span>)</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6">tmp<span class="op">$</span>w &lt;-<span class="st"> </span>tmp<span class="op">$</span>w<span class="op">/</span><span class="kw">sum</span>(tmp<span class="op">$</span>w)</a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="kw">aggregate</span>(<span class="dt">x =</span> tmp[, <span class="kw">c</span>(<span class="st">&quot;w&quot;</span>)], <span class="dt">by =</span> <span class="kw">list</span>(tmp<span class="op">$</span>species), <span class="dt">FUN =</span> sum)</a></code></pre></div>
-<pre><code>##   Group.1   x
-## 1   Beech 0.5
-## 2  Spruce 0.5</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">weighted.mean</span>(tmp<span class="op">$</span>bair, <span class="dt">w =</span> tmp<span class="op">$</span>w)</a></code></pre></div>
-<pre><code>## [1] 0.7662233</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">rm</span>(tmp)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">## median:</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">median</span>(drought<span class="op">$</span>bair)</a></code></pre></div>
-<pre><code>## [1] 0.71</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co">## quartiles:</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">quantile</span>(drought<span class="op">$</span>bair, <span class="dt">probs =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>))</a></code></pre></div>
-<pre><code>##     25%     50%     75% 
-## 0.52725 0.71000 0.97325</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">## summary:</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">summary</span>(drought<span class="op">$</span>bair)</a></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.2570  0.5272  0.7100  0.7489  0.9732  1.2810</code></pre>
-<p>A sample of a continuously scaled variable doesn’t have a mode:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">table</span>(drought<span class="op">$</span>bair), <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">mean</span>(drought<span class="op">$</span>bair)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">## weighted mean:</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">tmp &lt;-<span class="st"> </span><span class="kw">nrow</span>(drought)<span class="op">/</span><span class="kw">table</span>(drought<span class="op">$</span>species)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> <span class="kw">factor</span>(<span class="kw">levels</span>(drought<span class="op">$</span>species), <span class="dt">levels =</span> <span class="kw">levels</span>(drought<span class="op">$</span>species)), </a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">                  <span class="dt">w =</span> <span class="kw">as.numeric</span>(tmp))</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">tmp &lt;-<span class="st"> </span><span class="kw">merge</span>(drought[, <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;bair&quot;</span>)], tmp, <span class="dt">by =</span> <span class="st">&quot;species&quot;</span>)</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">tmp<span class="op">$</span>w &lt;-<span class="st"> </span>tmp<span class="op">$</span>w<span class="op">/</span><span class="kw">sum</span>(tmp<span class="op">$</span>w)</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="kw">aggregate</span>(<span class="dt">x =</span> tmp[, <span class="kw">c</span>(<span class="st">&quot;w&quot;</span>)], <span class="dt">by =</span> <span class="kw">list</span>(tmp<span class="op">$</span>species), <span class="dt">FUN =</span> sum)</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw">weighted.mean</span>(tmp<span class="op">$</span>bair, <span class="dt">w =</span> tmp<span class="op">$</span>w)</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="kw">rm</span>(tmp)</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">## median:</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="kw">median</span>(drought<span class="op">$</span>bair)</a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">## quartiles:</span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="kw">quantile</span>(drought<span class="op">$</span>bair, <span class="dt">probs =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>))</a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">## summary:</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="kw">summary</span>(drought<span class="op">$</span>bair)</a></code></pre></div>
+<p><strong>Mode:</strong>
+A sample of a continuously scaled variable doesn’t have a mode:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">table</span>(drought<span class="op">$</span>bair), <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>… but the density of such a variable might have a maximum.
 So we cannot <strong>calculate</strong> a mode, but with using techniques such as kernel density estimation – R function <code>density</code> – the location of the maximum density can be <strong>estimated</strong>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">get_mode &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...){</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">  tmp &lt;-<span class="st"> </span><span class="kw">density</span>(x, ...)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">  index &lt;-<span class="st"> </span><span class="kw">which.max</span>(tmp<span class="op">$</span>y)</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">  <span class="kw">return</span>(tmp<span class="op">$</span>x[index])</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">tmp &lt;-<span class="st"> </span><span class="kw">density</span>(drought<span class="op">$</span>bair)</a>
-<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="kw">plot</span>(tmp, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;BAIR&quot;</span>,</a>
-<a class="sourceLine" id="cb25-8" data-line-number="8">     <span class="dt">main =</span> <span class="kw">paste0</span>(<span class="st">&quot;Kernel density estimation, gaussian kernel function, bandwidth: &quot;</span>, <span class="kw">round</span>(tmp<span class="op">$</span>bw, <span class="dv">3</span>)))</a>
-<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="kw">rug</span>(drought<span class="op">$</span>bair)</a>
-<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">print</span>(<span class="kw">get_mode</span>(drought<span class="op">$</span>bair)))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">get_mode &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...){</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">  tmp &lt;-<span class="st"> </span><span class="kw">density</span>(x, ...)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">  index &lt;-<span class="st"> </span><span class="kw">which.max</span>(tmp<span class="op">$</span>y)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">  <span class="kw">return</span>(tmp<span class="op">$</span>x[index])</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">tmp &lt;-<span class="st"> </span><span class="kw">density</span>(drought<span class="op">$</span>bair)</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="kw">plot</span>(tmp, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;BAIR&quot;</span>,</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">     <span class="dt">main =</span> <span class="kw">paste0</span>(<span class="st">&quot;Kernel density estimation, gaussian kernel function, bandwidth: &quot;</span>, <span class="kw">round</span>(tmp<span class="op">$</span>bw, <span class="dv">3</span>)))</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="kw">rug</span>(drought<span class="op">$</span>bair)</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">print</span>(<span class="kw">get_mode</span>(drought<span class="op">$</span>bair)))</a></code></pre></div>
 </div>
 <div id="scale-variation" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Scale / variation</h3>
+<h3><span class="header-section-number">2.1.3</span> Scale / variation</h3>
 <p>Methods to describe the scale / variation:</p>
 <ul>
 <li><code>range</code> (calculates <code>min</code> and <code>max</code>)</li>
@@ -438,8 +435,11 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 <li><code>IQR</code> (interquartile range)</li>
 </ul>
 <p>Argument <code>na.rm = TRUE</code> removes all missing values in advance!</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">mad</a></code></pre></div>
+</div>
+<div id="exercises-1" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Exercises</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">mad</a></code></pre></div>
 <pre><code>## function (x, center = median(x), constant = 1.4826, na.rm = FALSE, 
 ##     low = FALSE, high = FALSE) 
 ## {
@@ -454,13 +454,13 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 ##     }
 ##     else median(abs(x - center))
 ## }
-## &lt;bytecode: 0x5591662d2fe0&gt;
+## &lt;bytecode: 0x55bebfd3f440&gt;
 ## &lt;environment: namespace:stats&gt;</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">c</span>(<span class="kw">mad</span>(x, <span class="dt">constant =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">  <span class="kw">median</span>(<span class="kw">abs</span>(x <span class="op">-</span><span class="st"> </span><span class="kw">median</span>(x))),</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">  <span class="kw">sd</span>(x),</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="kw">var</span>(x),</a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">  <span class="kw">IQR</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">c</span>(<span class="kw">mad</span>(x, <span class="dt">constant =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">  <span class="kw">median</span>(<span class="kw">abs</span>(x <span class="op">-</span><span class="st"> </span><span class="kw">median</span>(x))),</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">  <span class="kw">sd</span>(x),</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">  <span class="kw">var</span>(x),</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">  <span class="kw">IQR</span>(x))</a></code></pre></div>
 <pre><code>## [1] 0.21150000 0.21150000 0.27400800 0.07508039 0.44600000</code></pre>
 </div>
 </div>
@@ -470,159 +470,159 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 <p><em>… while preparing, this section somehow got longer and longer. For a general introduction to R, at some point, when you feel like it, just move on to next section on bivariate sample.</em></p>
 <div id="one-dimensional" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> One dimensional:</h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">table</span>(drought<span class="op">$</span>species)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">table</span>(drought<span class="op">$</span>species)</a></code></pre></div>
 <pre><code>## 
 ##  Beech Spruce 
 ##     11     23</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>drought<span class="op">$</span>species)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>drought<span class="op">$</span>species)</a></code></pre></div>
 <pre><code>## drought$species
 ##  Beech Spruce 
 ##     11     23</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species, <span class="dt">data =</span> drought)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species, <span class="dt">data =</span> drought)</a></code></pre></div>
 <pre><code>## species
 ##  Beech Spruce 
 ##     11     23</code></pre>
 <p><code>addNA</code> and <code>useNA</code> show slightly different behavior:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(drought<span class="op">$</span>species), <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">table</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="kw">as.character</span>(drought<span class="op">$</span>species), <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">table</span>(tmp)</a></code></pre></div>
 <pre><code>## tmp
 ##  Beech Spruce 
 ##     11     23</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">table</span>(drought<span class="op">$</span>species, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">table</span>(drought<span class="op">$</span>species, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Beech Spruce 
 ##     11     23</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">table</span>(tmp, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">table</span>(tmp, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a></code></pre></div>
 <pre><code>## tmp
 ##  Beech Spruce   &lt;NA&gt; 
 ##     11     23      1</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">table</span>(drought<span class="op">$</span>species, <span class="dt">useNA =</span> <span class="st">&quot;always&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">table</span>(drought<span class="op">$</span>species, <span class="dt">useNA =</span> <span class="st">&quot;always&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Beech Spruce   &lt;NA&gt; 
 ##     11     23      0</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">table</span>(tmp, <span class="dt">useNA =</span> <span class="st">&quot;always&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">table</span>(tmp, <span class="dt">useNA =</span> <span class="st">&quot;always&quot;</span>)</a></code></pre></div>
 <pre><code>## tmp
 ##  Beech Spruce   &lt;NA&gt; 
 ##     11     23      1</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>drought<span class="op">$</span>species, <span class="dt">addNA =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>drought<span class="op">$</span>species, <span class="dt">addNA =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## drought$species
 ##  Beech Spruce 
 ##     11     23</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>tmp, <span class="dt">addNA =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>tmp, <span class="dt">addNA =</span> T)</a></code></pre></div>
 <pre><code>## tmp
 ##  Beech Spruce   &lt;NA&gt; 
 ##     11     23      1</code></pre>
 <p>Default <code>plot</code>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">table</span>(drought<span class="op">$</span>species))</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">table</span>(drought<span class="op">$</span>species))</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species, <span class="dt">data =</span> drought))</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species, <span class="dt">data =</span> drought))</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
 </div>
 <div id="two-dimensional" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Two dimensional</h3>
 <p>… this illustrational example shows <em>bad scientific practice</em> since we cut continuous variables into binary categories, and by this bin a lot of valuable information!</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> drought<span class="op">$</span>species)</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">tmp<span class="op">$</span>elevGreater1000 &lt;-<span class="st"> </span>(drought<span class="op">$</span>elev <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>)</a>
-<a class="sourceLine" id="cb52-3" data-line-number="3">tmp<span class="op">$</span>bairGreater1 &lt;-<span class="st"> </span>(drought<span class="op">$</span>bair <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1, tmp<span class="op">$</span>elevGreater1000) <span class="co">## We are lost!</span></a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> drought<span class="op">$</span>species)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">tmp<span class="op">$</span>elevGreater1000 &lt;-<span class="st"> </span>(drought<span class="op">$</span>elev <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">tmp<span class="op">$</span>bairGreater1 &lt;-<span class="st"> </span>(drought<span class="op">$</span>bair <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1, tmp<span class="op">$</span>elevGreater1000) <span class="co">## We are lost!</span></a></code></pre></div>
 <pre><code>##        
 ##         FALSE TRUE
 ##   FALSE    19    9
 ##   TRUE      0    6</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>bairGreater1 <span class="op">+</span><span class="st"> </span>elevGreater1000, <span class="dt">data =</span> tmp) <span class="co">## Labels!</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>bairGreater1 <span class="op">+</span><span class="st"> </span>elevGreater1000, <span class="dt">data =</span> tmp) <span class="co">## Labels!</span></a></code></pre></div>
 <pre><code>##             elevGreater1000
 ## bairGreater1 FALSE TRUE
 ##        FALSE    19    9
 ##        TRUE      0    6</code></pre>
 <p>Default <code>plot</code>:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1, tmp<span class="op">$</span>elevGreater1000) <span class="co">## We are lost!</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1, tmp<span class="op">$</span>elevGreater1000) <span class="co">## We are lost!</span></a></code></pre></div>
 <pre><code>##        
 ##         FALSE TRUE
 ##   FALSE    19    9
 ##   TRUE      0    6</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>bairGreater1 <span class="op">+</span><span class="st"> </span>elevGreater1000, <span class="dt">data =</span> tmp) <span class="co">## Labels!</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>bairGreater1 <span class="op">+</span><span class="st"> </span>elevGreater1000, <span class="dt">data =</span> tmp) <span class="co">## Labels!</span></a></code></pre></div>
 <pre><code>##             elevGreater1000
 ## bairGreater1 FALSE TRUE
 ##        FALSE    19    9
 ##        TRUE      0    6</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1, tmp<span class="op">$</span>elevGreater1000), <span class="dt">main =</span> <span class="st">&quot;table&quot;</span>)</a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>bairGreater1 <span class="op">+</span><span class="st"> </span>elevGreater1000, <span class="dt">data =</span> tmp), <span class="dt">main =</span> <span class="st">&quot;xtabs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1, tmp<span class="op">$</span>elevGreater1000), <span class="dt">main =</span> <span class="st">&quot;table&quot;</span>)</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>bairGreater1 <span class="op">+</span><span class="st"> </span>elevGreater1000, <span class="dt">data =</span> tmp), <span class="dt">main =</span> <span class="st">&quot;xtabs&quot;</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 <div id="addmargins-margin.table-and-prop.table" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> <code>addmargins</code>, <code>margin.table</code>, and <code>prop.table</code></h3>
 <p>One dimensional:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE   Sum 
 ##    28     6    34</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
 <pre><code>## [1] 34</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
 <pre><code>## 
 ##     FALSE      TRUE 
 ## 0.8235294 0.1764706</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">prop.table</span>(tmp<span class="op">$</span><span class="kw">table</span>(bairGreater1)))</a></code></pre></div>
-<pre><code>## Error in prop.table(tmp$table(bairGreater1)): Versuch eine Nicht-Funktion anzuwenden</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>bairGreater1)))</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
 <p>Two dimensional:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
 <pre><code>##        
 ##         FALSE TRUE Sum
 ##   FALSE    19    0  19
 ##   TRUE      9    6  15
 ##   Sum      28    6  34</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
 <pre><code>## [1] 34</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ##    19    15</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ##    28     6</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1))</a></code></pre></div>
 <pre><code>##        
 ##             FALSE      TRUE
 ##   FALSE 0.5588235 0.0000000
 ##   TRUE  0.2647059 0.1764706</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>##        
 ##         FALSE TRUE
 ##   FALSE   1.0  0.0
 ##   TRUE    0.6  0.4</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##        
 ##             FALSE      TRUE
 ##   FALSE 0.6785714 0.0000000
 ##   TRUE  0.3214286 1.0000000</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1)))</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">margin.table</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1)))</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1)))</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1)))</a></code></pre></div>
 <pre><code>##        
 ##             FALSE      TRUE       Sum
 ##   FALSE 0.5588235 0.0000000 0.5588235
 ##   TRUE  0.2647059 0.1764706 0.4411765
 ##   Sum   0.8235294 0.1764706 1.0000000</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>))</a></code></pre></div>
 <pre><code>##        
 ##         FALSE TRUE Sum
 ##   FALSE   1.0  0.0 1.0
 ##   TRUE    0.6  0.4 1.0
 ##   Sum     1.6  0.4 2.0</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>))</a></code></pre></div>
 <pre><code>##        
 ##             FALSE      TRUE       Sum
 ##   FALSE 0.6785714 0.0000000 0.6785714
 ##   TRUE  0.3214286 1.0000000 1.3214286
 ##   Sum   1.0000000 1.0000000 2.0000000</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>), <span class="dt">margin =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">1</span>), <span class="dt">margin =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##        
 ##         FALSE TRUE Sum
 ##   FALSE   1.0  0.0 1.0
 ##   TRUE    0.6  0.4 1.0</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>), <span class="dt">margin =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(tmp<span class="op">$</span>elevGreater1000, tmp<span class="op">$</span>bairGreater1), <span class="dt">margin =</span> <span class="dv">2</span>), <span class="dt">margin =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>##        
 ##             FALSE      TRUE
 ##   FALSE 0.6785714 0.0000000
@@ -631,20 +631,20 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 </div>
 <div id="applied-example" class="section level3">
 <h3><span class="header-section-number">2.2.4</span> Applied example</h3>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co">## Session 03:</span></a>
-<a class="sourceLine" id="cb95-2" data-line-number="2">overlap_seq &lt;-<span class="st"> </span><span class="cf">function</span>(x, delta) {</a>
-<a class="sourceLine" id="cb95-3" data-line-number="3">  tmp &lt;-<span class="st"> </span>x <span class="op">%/%</span><span class="st"> </span>delta</a>
-<a class="sourceLine" id="cb95-4" data-line-number="4">  tmp2 &lt;-<span class="st"> </span>x <span class="op">%%</span><span class="st"> </span>delta</a>
-<a class="sourceLine" id="cb95-5" data-line-number="5">  <span class="cf">if</span> (tmp2[<span class="kw">which.max</span>(x)] <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb95-6" data-line-number="6">    result &lt;-<span class="st"> </span>delta <span class="op">*</span><span class="st"> </span>(<span class="kw">min</span>(tmp, <span class="dt">na.rm =</span> T)<span class="op">:</span><span class="kw">max</span>(tmp, <span class="dt">na.rm =</span> T))</a>
-<a class="sourceLine" id="cb95-7" data-line-number="7">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb95-8" data-line-number="8">    result &lt;-<span class="st"> </span>delta <span class="op">*</span><span class="st"> </span>(<span class="kw">min</span>(tmp, <span class="dt">na.rm =</span> T)<span class="op">:</span>(<span class="kw">max</span>(tmp, <span class="dt">na.rm =</span> T) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb95-9" data-line-number="9">  }</a>
-<a class="sourceLine" id="cb95-10" data-line-number="10">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb95-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb95-12" data-line-number="12">tmp<span class="op">$</span>elevCut &lt;-<span class="st"> </span><span class="kw">cut</span>(drought<span class="op">$</span>elev, <span class="dt">breaks =</span> <span class="kw">overlap_seq</span>(<span class="dt">x =</span> drought<span class="op">$</span>elev, <span class="dt">delta =</span> <span class="dv">250</span>), <span class="dt">dig.lab =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb95-13" data-line-number="13">tmp<span class="op">$</span>bairCut &lt;-<span class="st"> </span><span class="kw">cut</span>(drought<span class="op">$</span>bair, <span class="dt">breaks =</span> <span class="kw">overlap_seq</span>(<span class="dt">x =</span> drought<span class="op">$</span>bair, <span class="dt">delta =</span> <span class="fl">.25</span>))</a>
-<a class="sourceLine" id="cb95-14" data-line-number="14">(xtab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>elevCut <span class="op">+</span><span class="st"> </span>bairCut <span class="op">+</span><span class="st"> </span>species, <span class="dt">data =</span> tmp))</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="co">## Session 03:</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">overlap_seq &lt;-<span class="st"> </span><span class="cf">function</span>(x, delta) {</a>
+<a class="sourceLine" id="cb84-3" data-line-number="3">  tmp &lt;-<span class="st"> </span>x <span class="op">%/%</span><span class="st"> </span>delta</a>
+<a class="sourceLine" id="cb84-4" data-line-number="4">  tmp2 &lt;-<span class="st"> </span>x <span class="op">%%</span><span class="st"> </span>delta</a>
+<a class="sourceLine" id="cb84-5" data-line-number="5">  <span class="cf">if</span> (tmp2[<span class="kw">which.max</span>(x)] <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb84-6" data-line-number="6">    result &lt;-<span class="st"> </span>delta <span class="op">*</span><span class="st"> </span>(<span class="kw">min</span>(tmp, <span class="dt">na.rm =</span> T)<span class="op">:</span><span class="kw">max</span>(tmp, <span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb84-7" data-line-number="7">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb84-8" data-line-number="8">    result &lt;-<span class="st"> </span>delta <span class="op">*</span><span class="st"> </span>(<span class="kw">min</span>(tmp, <span class="dt">na.rm =</span> T)<span class="op">:</span>(<span class="kw">max</span>(tmp, <span class="dt">na.rm =</span> T) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb84-9" data-line-number="9">  }</a>
+<a class="sourceLine" id="cb84-10" data-line-number="10">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb84-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb84-12" data-line-number="12">tmp<span class="op">$</span>elevCut &lt;-<span class="st"> </span><span class="kw">cut</span>(drought<span class="op">$</span>elev, <span class="dt">breaks =</span> <span class="kw">overlap_seq</span>(<span class="dt">x =</span> drought<span class="op">$</span>elev, <span class="dt">delta =</span> <span class="dv">250</span>), <span class="dt">dig.lab =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb84-13" data-line-number="13">tmp<span class="op">$</span>bairCut &lt;-<span class="st"> </span><span class="kw">cut</span>(drought<span class="op">$</span>bair, <span class="dt">breaks =</span> <span class="kw">overlap_seq</span>(<span class="dt">x =</span> drought<span class="op">$</span>bair, <span class="dt">delta =</span> <span class="fl">.25</span>))</a>
+<a class="sourceLine" id="cb84-14" data-line-number="14">(xtab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>elevCut <span class="op">+</span><span class="st"> </span>bairCut <span class="op">+</span><span class="st"> </span>species, <span class="dt">data =</span> tmp))</a></code></pre></div>
 <pre><code>## , , species = Beech
 ## 
 ##              bairCut
@@ -666,7 +666,7 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 ##   (1000,1250]          1          2        2        1          1
 ##   (1250,1500]          0          0        1        2          0
 ##   (1500,1750]          0          0        1        0          0</code></pre>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(xtab, <span class="dt">margin =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))), <span class="dv">2</span>)[, , <span class="st">&quot;Beech&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(xtab, <span class="dt">margin =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))), <span class="dv">2</span>)[, , <span class="st">&quot;Beech&quot;</span>]</a></code></pre></div>
 <pre><code>##              bairCut
 ## elevCut       (0.25,0.5] (0.5,0.75] (0.75,1] (1,1.25] (1.25,1.5]    Sum
 ##   (250,500]         0.00     100.00     0.00     0.00       0.00 100.00
@@ -676,7 +676,7 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 ##   (1250,1500]                                                          
 ##   (1500,1750]                                                          
 ##   Sum</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(xtab, <span class="dt">margin =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))), <span class="dv">2</span>)[, , <span class="st">&quot;Spruce&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">addmargins</span>(<span class="kw">prop.table</span>(xtab, <span class="dt">margin =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))), <span class="dv">2</span>)[, , <span class="st">&quot;Spruce&quot;</span>]</a></code></pre></div>
 <pre><code>##              bairCut
 ## elevCut       (0.25,0.5] (0.5,0.75] (0.75,1] (1,1.25] (1.25,1.5]    Sum
 ##   (250,500]         0.00     100.00     0.00     0.00       0.00 100.00
@@ -686,46 +686,46 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 ##   (1250,1500]       0.00       0.00    33.33    66.67       0.00 100.00
 ##   (1500,1750]       0.00       0.00   100.00     0.00       0.00 100.00
 ##   Sum             114.29     178.57   211.90    80.95      14.29 600.00</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>elevCut <span class="op">+</span><span class="st"> </span>bairCut, <span class="dt">data =</span> tmp), <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">off =</span> <span class="dv">5</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, </a>
-<a class="sourceLine" id="cb101-3" data-line-number="3">     <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">length</span>(<span class="kw">levels</span>(tmp<span class="op">$</span>bairCut)), <span class="dt">rev =</span> T))</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>elevCut <span class="op">+</span><span class="st"> </span>bairCut, <span class="dt">data =</span> tmp), <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">off =</span> <span class="dv">5</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, </a>
+<a class="sourceLine" id="cb90-3" data-line-number="3">     <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">length</span>(<span class="kw">levels</span>(tmp<span class="op">$</span>bairCut)), <span class="dt">rev =</span> T))</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
 <div id="mode" class="section level3">
 <h3><span class="header-section-number">2.2.5</span> Mode</h3>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">(xtab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>elevCut <span class="op">+</span><span class="st"> </span>bairCut, <span class="dt">data =</span> tmp))</a>
-<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="kw">sort</span>(xtab, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="kw">which</span>(xtab <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(xtab), <span class="dt">arr.ind =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb102-4" data-line-number="4">xtab[<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">(xtab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>elevCut <span class="op">+</span><span class="st"> </span>bairCut, <span class="dt">data =</span> tmp))</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="kw">sort</span>(xtab, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="kw">which</span>(xtab <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(xtab), <span class="dt">arr.ind =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb91-4" data-line-number="4">xtab[<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>]</a></code></pre></div>
 </div>
 </div>
 </div>
 <div id="bivariate-samples" class="section level1">
 <h1><span class="header-section-number">3</span> Bivariate samples</h1>
 <p><strong>A bivariate sample is a set of observation units, for which each has two characteristics that have been measured.</strong></p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">5</span>, <span class="dt">data =</span> <span class="kw">runif</span>(<span class="dv">25</span>))</a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">A[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
-<pre><code>##           [,1]      [,2]
-## [1,] 0.8008004 0.9095051
-## [2,] 0.4004013 0.4429371
-## [3,] 0.6291776 0.5750237
-## [4,] 0.2376229 0.8094628
-## [5,] 0.6579635 0.4953966</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">pmax</span>(A[, <span class="dv">1</span>], A[, <span class="dv">2</span>])</a></code></pre></div>
-<pre><code>## [1] 0.9095051 0.4429371 0.6291776 0.8094628 0.6579635</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">5</span>, <span class="dt">data =</span> <span class="kw">runif</span>(<span class="dv">25</span>))</a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">A[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>##           [,1]       [,2]
+## [1,] 0.3557360 0.63108394
+## [2,] 0.8956146 0.71177564
+## [3,] 0.1868810 0.19614738
+## [4,] 0.9145527 0.04358162
+## [5,] 0.1864815 0.78064295</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">pmax</span>(A[, <span class="dv">1</span>], A[, <span class="dv">2</span>])</a></code></pre></div>
+<pre><code>## [1] 0.6310839 0.8956146 0.1961474 0.9145527 0.7806429</code></pre>
 <ul>
 <li><code>cor</code> for correlation coefficient,</li>
 <li><code>cov</code> for (variance) covariance (matrix).</li>
 </ul>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
-<a class="sourceLine" id="cb107-2" data-line-number="2">y &lt;-<span class="st"> </span>drought<span class="op">$</span>elev<span class="op">/</span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="kw">cor</span>(x, y, <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">x &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
+<a class="sourceLine" id="cb96-2" data-line-number="2">y &lt;-<span class="st"> </span>drought<span class="op">$</span>elev<span class="op">/</span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3"><span class="kw">cor</span>(x, y, <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] 0.6174439</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">cov</span>(<span class="kw">cbind</span>(x, y))</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="kw">cov</span>(<span class="kw">cbind</span>(x, y))</a></code></pre></div>
 <pre><code>##            x          y
 ## x 0.07508039 0.05579038
 ## y 0.05579038 0.10874194</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">c</span>(<span class="kw">cov</span>(x, y), <span class="kw">var</span>(x), <span class="kw">var</span>(y))</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">c</span>(<span class="kw">cov</span>(x, y), <span class="kw">var</span>(x), <span class="kw">var</span>(y))</a></code></pre></div>
 <pre><code>## [1] 0.05579038 0.07508039 0.10874194</code></pre>
 </div>
 <div id="probability-distribution-models" class="section level1">
@@ -839,22 +839,22 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">N &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb113-3" data-line-number="3">A &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="st">&quot;U[0, 1]&quot;</span> =<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> N, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb113-4" data-line-number="4">           <span class="st">&quot;Beta(1/3, 1/3)&quot;</span> =<span class="st"> </span><span class="kw">rbeta</span>(<span class="dt">n =</span> N, <span class="dt">shape1 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">shape2 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb113-5" data-line-number="5">           <span class="st">&quot;N(0, 1)&quot;</span> =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> N, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb113-6" data-line-number="6">           <span class="st">&quot;t(3)&quot;</span> =<span class="st"> </span><span class="kw">rt</span>(<span class="dt">n =</span> N, <span class="dt">df =</span> <span class="dv">3</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb113-7" data-line-number="7">           <span class="st">&quot;logN(0, 1)&quot;</span> =<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt">n =</span> N, <span class="dt">meanlog =</span> <span class="dv">0</span>, <span class="dt">sdlog =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb113-8" data-line-number="8">           <span class="st">&quot;Exp(1)&quot;</span> =<span class="st"> </span><span class="kw">rexp</span>(<span class="dt">n =</span> N, <span class="dt">rate =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb113-9" data-line-number="9">           <span class="st">&quot;Chi2(3)&quot;</span> =<span class="st"> </span><span class="kw">rchisq</span>(<span class="dt">n =</span> N, <span class="dt">df =</span> <span class="dv">3</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb113-10" data-line-number="10">           <span class="st">&quot;F(10, 10)&quot;</span> =<span class="st"> </span><span class="kw">rf</span>(<span class="dt">n =</span> N, <span class="dt">df1 =</span> <span class="dv">10</span>, <span class="dt">df2 =</span> <span class="dv">10</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb113-11" data-line-number="11">           <span class="st">&quot;Gamma(1, 2)&quot;</span> =<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n =</span> N, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">rate =</span> <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb113-12" data-line-number="12">           <span class="st">&quot;Weibull(1, 2)&quot;</span> =<span class="st"> </span><span class="kw">rweibull</span>(<span class="dt">n =</span> N, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb113-13" data-line-number="13"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb113-14" data-line-number="14"><span class="kw">boxplot</span>(A, <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">frame =</span> F, <span class="dt">pch =</span> <span class="ot">NA</span>, <span class="dt">ylab =</span> <span class="st">&quot;Random sample&quot;</span>)</a>
-<a class="sourceLine" id="cb113-15" data-line-number="15"><span class="kw">stripchart</span>(<span class="kw">as.data.frame</span>(A), <span class="dt">add =</span> T, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, </a>
-<a class="sourceLine" id="cb113-16" data-line-number="16">           <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">ncol</span>(A)))</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">N &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb102-3" data-line-number="3">A &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="st">&quot;U[0, 1]&quot;</span> =<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> N, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb102-4" data-line-number="4">           <span class="st">&quot;Beta(1/3, 1/3)&quot;</span> =<span class="st"> </span><span class="kw">rbeta</span>(<span class="dt">n =</span> N, <span class="dt">shape1 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">shape2 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb102-5" data-line-number="5">           <span class="st">&quot;N(0, 1)&quot;</span> =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> N, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb102-6" data-line-number="6">           <span class="st">&quot;t(3)&quot;</span> =<span class="st"> </span><span class="kw">rt</span>(<span class="dt">n =</span> N, <span class="dt">df =</span> <span class="dv">3</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb102-7" data-line-number="7">           <span class="st">&quot;logN(0, 1)&quot;</span> =<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt">n =</span> N, <span class="dt">meanlog =</span> <span class="dv">0</span>, <span class="dt">sdlog =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb102-8" data-line-number="8">           <span class="st">&quot;Exp(1)&quot;</span> =<span class="st"> </span><span class="kw">rexp</span>(<span class="dt">n =</span> N, <span class="dt">rate =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb102-9" data-line-number="9">           <span class="st">&quot;Chi2(3)&quot;</span> =<span class="st"> </span><span class="kw">rchisq</span>(<span class="dt">n =</span> N, <span class="dt">df =</span> <span class="dv">3</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb102-10" data-line-number="10">           <span class="st">&quot;F(10, 10)&quot;</span> =<span class="st"> </span><span class="kw">rf</span>(<span class="dt">n =</span> N, <span class="dt">df1 =</span> <span class="dv">10</span>, <span class="dt">df2 =</span> <span class="dv">10</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb102-11" data-line-number="11">           <span class="st">&quot;Gamma(1, 2)&quot;</span> =<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n =</span> N, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">rate =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb102-12" data-line-number="12">           <span class="st">&quot;Weibull(1, 2)&quot;</span> =<span class="st"> </span><span class="kw">rweibull</span>(<span class="dt">n =</span> N, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb102-13" data-line-number="13"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
+<a class="sourceLine" id="cb102-14" data-line-number="14"><span class="kw">boxplot</span>(A, <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">frame =</span> F, <span class="dt">pch =</span> <span class="ot">NA</span>, <span class="dt">ylab =</span> <span class="st">&quot;Random sample&quot;</span>)</a>
+<a class="sourceLine" id="cb102-15" data-line-number="15"><span class="kw">stripchart</span>(<span class="kw">as.data.frame</span>(A), <span class="dt">add =</span> T, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, </a>
+<a class="sourceLine" id="cb102-16" data-line-number="16">           <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">ncol</span>(A)))</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 <div id="distribution-models-for-discrete-random-variables" class="section level2">
@@ -907,24 +907,24 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">N &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb114-3" data-line-number="3">A &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="st">&quot;Binomial(10, .5)&quot;</span> =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> N, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">.5</span>),</a>
-<a class="sourceLine" id="cb114-4" data-line-number="4">           <span class="st">&quot;Hyper(7, 3, 8)&quot;</span> =<span class="st"> </span><span class="kw">rhyper</span>(<span class="dt">nn =</span> N, <span class="dt">m =</span> <span class="dv">7</span>, <span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">8</span>),</a>
-<a class="sourceLine" id="cb114-5" data-line-number="5">           <span class="st">&quot;NegBin(10, .5)&quot;</span> =<span class="st"> </span><span class="kw">rnbinom</span>(<span class="dt">n =</span> N, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">.5</span>),</a>
-<a class="sourceLine" id="cb114-6" data-line-number="6">           <span class="st">&quot;Poisson(3)&quot;</span> =<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> N, <span class="dt">lambda =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb114-7" data-line-number="7">           <span class="st">&quot;Geom(.5)&quot;</span> =<span class="st"> </span><span class="kw">rgeom</span>(<span class="dt">n =</span> N, <span class="dt">prob =</span> <span class="fl">.5</span>))</a>
-<a class="sourceLine" id="cb114-8" data-line-number="8"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb114-9" data-line-number="9"><span class="kw">boxplot</span>(A, <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">frame =</span> F, <span class="dt">pch =</span> <span class="ot">NA</span>, <span class="dt">ylab =</span> <span class="st">&quot;Random sample&quot;</span>)</a>
-<a class="sourceLine" id="cb114-10" data-line-number="10"><span class="kw">stripchart</span>(<span class="kw">as.data.frame</span>(A), <span class="dt">add =</span> T, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, </a>
-<a class="sourceLine" id="cb114-11" data-line-number="11">           <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">ncol</span>(A)))</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">N &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">A &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="st">&quot;Binomial(10, .5)&quot;</span> =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> N, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">.5</span>),</a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">           <span class="st">&quot;Hyper(7, 3, 8)&quot;</span> =<span class="st"> </span><span class="kw">rhyper</span>(<span class="dt">nn =</span> N, <span class="dt">m =</span> <span class="dv">7</span>, <span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">8</span>),</a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">           <span class="st">&quot;NegBin(10, .5)&quot;</span> =<span class="st"> </span><span class="kw">rnbinom</span>(<span class="dt">n =</span> N, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">.5</span>),</a>
+<a class="sourceLine" id="cb103-6" data-line-number="6">           <span class="st">&quot;Poisson(3)&quot;</span> =<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> N, <span class="dt">lambda =</span> <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb103-7" data-line-number="7">           <span class="st">&quot;Geom(.5)&quot;</span> =<span class="st"> </span><span class="kw">rgeom</span>(<span class="dt">n =</span> N, <span class="dt">prob =</span> <span class="fl">.5</span>))</a>
+<a class="sourceLine" id="cb103-8" data-line-number="8"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
+<a class="sourceLine" id="cb103-9" data-line-number="9"><span class="kw">boxplot</span>(A, <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">frame =</span> F, <span class="dt">pch =</span> <span class="ot">NA</span>, <span class="dt">ylab =</span> <span class="st">&quot;Random sample&quot;</span>)</a>
+<a class="sourceLine" id="cb103-10" data-line-number="10"><span class="kw">stripchart</span>(<span class="kw">as.data.frame</span>(A), <span class="dt">add =</span> T, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, </a>
+<a class="sourceLine" id="cb103-11" data-line-number="11">           <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">ncol</span>(A)))</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>Multinomial:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">rmultinom</span>(<span class="dt">n =</span> N, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(.<span class="dv">1</span>, <span class="fl">.1</span>, <span class="fl">.8</span>))</a>
-<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="kw">boxplot</span>(<span class="kw">t</span>(A), <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">frame =</span> F, <span class="dt">pch =</span> <span class="ot">NA</span>, <span class="dt">ylab =</span> <span class="st">&quot;Random sample&quot;</span>)</a>
-<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="kw">stripchart</span>(<span class="kw">as.data.frame</span>(<span class="kw">t</span>(A)), <span class="dt">add =</span> T, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, </a>
-<a class="sourceLine" id="cb115-5" data-line-number="5">           <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">ncol</span>(<span class="kw">t</span>(A))))</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">rmultinom</span>(<span class="dt">n =</span> N, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(.<span class="dv">1</span>, <span class="fl">.1</span>, <span class="fl">.8</span>))</a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span><span class="fl">.1</span>)</a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="kw">boxplot</span>(<span class="kw">t</span>(A), <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">frame =</span> F, <span class="dt">pch =</span> <span class="ot">NA</span>, <span class="dt">ylab =</span> <span class="st">&quot;Random sample&quot;</span>)</a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="kw">stripchart</span>(<span class="kw">as.data.frame</span>(<span class="kw">t</span>(A)), <span class="dt">add =</span> T, <span class="dt">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="dt">vertical =</span> T, <span class="dt">pch =</span> <span class="dv">16</span>, </a>
+<a class="sourceLine" id="cb104-5" data-line-number="5">           <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">divergingx_hcl</span>(<span class="dt">n =</span> <span class="kw">ncol</span>(<span class="kw">t</span>(A))))</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 </div>
 </div>
@@ -965,54 +965,54 @@ So we cannot <strong>calculate</strong> a mode, but with using techniques such a
 <li>Seeds are generated by system time and session ID (<code>?RNG</code>)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">Sys.getpid</span>()</a></code></pre></div>
-<pre><code>## [1] 11868</code></pre>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">(t1 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>())</a></code></pre></div>
-<pre><code>## [1] &quot;2021-11-02 12:34:20 CET&quot;</code></pre>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">(t2 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>())</a></code></pre></div>
-<pre><code>## [1] &quot;2021-11-02 12:34:20 CET&quot;</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">t2 <span class="op">-</span><span class="st"> </span>t1</a></code></pre></div>
-<pre><code>## Time difference of 0.001140118 secs</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">Sys.getpid</span>()</a></code></pre></div>
+<pre><code>## [1] 14827</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">(t1 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>())</a></code></pre></div>
+<pre><code>## [1] &quot;2021-11-10 14:03:05 CET&quot;</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">(t2 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>())</a></code></pre></div>
+<pre><code>## [1] &quot;2021-11-10 14:03:05 CET&quot;</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">t2 <span class="op">-</span><span class="st"> </span>t1</a></code></pre></div>
+<pre><code>## Time difference of 0.002011061 secs</code></pre>
 <ul>
 <li>We can overwrite thus seed generating by using <code>set.seed()</code>:</li>
 </ul>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 0.6229466 0.2511743 0.4641535 0.1655092 0.8578065</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 0.2875775 0.7883051 0.4089769 0.8830174 0.9404673</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 0.0455565 0.5281055 0.8924190 0.5514350 0.4566147</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb130-2" data-line-number="2"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="kw">runif</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 0.2875775 0.7883051 0.4089769 0.8830174 0.9404673</code></pre>
 <ul>
 <li>Generate random numbers using <code>r</code> + distribution abbreviation (uses inversion - sampling)</li>
 <li>Random numbers from sets with <code>sample (c (), size, replace = TRUE)</code>.</li>
 </ul>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">RNGkind</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">RNGkind</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;Mersenne-Twister&quot; &quot;Inversion&quot;        &quot;Rejection&quot;</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1604</span>)</a>
-<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">rbinom</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1604</span>)</a>
+<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="kw">rbinom</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>## [1] 1 1 1 0 1</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">rbinom</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">rbinom</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>## [1] 0 1 0 1 0</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1604</span>)</a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">rbinom</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1604</span>)</a>
+<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="kw">rbinom</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>## [1] 1 1 1 0 1</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 5 4 1 6 2</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 10  5  4  5  4</code></pre>
 <div id="inversion-sampling" class="section level2">
 <h2><span class="header-section-number">5.1</span> Inversion-sampling</h2>
 <p><strong>Inversion sampling is a rather simple application of a mathemcatical thing – the inverse of the cumulative distribution function – that one easily brands as ‘interesting only in mathematical theory’, but which has an incredibly applied value!</strong></p>
 <p>Let random variable <span class="math inline">\(X\)</span> have cumulative distribution function <span class="math inline">\(F\)</span>.</p>
 <p>Let’s assume for the moment we can draw random numbers from this distribution, eg. from the standard normal:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>)</a></code></pre></div>
 <p>If we plug these into the cumulative distribution function</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">u &lt;-<span class="st"> </span><span class="kw">pnorm</span>(x)</a>
-<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="kw">hist</span>(u)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">u &lt;-<span class="st"> </span><span class="kw">pnorm</span>(x)</a>
+<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">hist</span>(u)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>we obviously get random draws from the continuous uniform distribution <span class="math inline">\(U[0,1]\)</span>, ie. <span class="math inline">\(F(X)\sim\text{U}(0,1)\)</span>.</p>
 <p>Now all we need to do is to solve this equation:</p>
@@ -1030,12 +1030,12 @@ X=F^{-1}(Z), Z\sim U[0,1]
 <li>transform <span class="math inline">\(x_k=F^{-1}(u_k)\)</span></li>
 </ul>
 <p>In R, <span class="math inline">\(F^{-1}(u_k)\)</span> is given as <code>q...</code>.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">u &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="kw">qnorm</span>(<span class="dt">p =</span> u)</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">u &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">qnorm</span>(<span class="dt">p =</span> u)</a></code></pre></div>
 <pre><code>## [1] -1.9728444 -1.2169369 -2.2157531 -0.8150545  2.4262442</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">qweibull</span>(<span class="dt">p =</span> u, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">qweibull</span>(<span class="dt">p =</span> u, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 0.02455568 0.11857422 0.01344418 0.23258871 4.87592939</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">qbinom</span>(<span class="dt">p =</span> u, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">qbinom</span>(<span class="dt">p =</span> u, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">.5</span>)</a></code></pre></div>
 <pre><code>## [1] 2 3 2 4 9</code></pre>
 </div>
 </div>
@@ -1045,42 +1045,42 @@ X=F^{-1}(Z), Z\sim U[0,1]
 <h2><span class="header-section-number">6.1</span> Let’s invent a data generating machanism</h2>
 <p>Because of a drought in one year, trees grow less in this year in comparison to the preceding year.
 However, by differences in the availability to growth-ressources by different elevations at the same mountain range, this reduction is reversed above a certain elevation threshold.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">(elev &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">400</span>, <span class="dv">1800</span>, <span class="dt">by =</span> <span class="dv">50</span>) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">(elev &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">400</span>, <span class="dv">1800</span>, <span class="dt">by =</span> <span class="dv">50</span>) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</a></code></pre></div>
 <pre><code>##  [1] 0.40 0.45 0.50 0.55 0.60 0.65 0.70 0.75 0.80 0.85 0.90 0.95 1.00 1.05 1.10
 ## [16] 1.15 1.20 1.25 1.30 1.35 1.40 1.45 1.50 1.55 1.60 1.65 1.70 1.75 1.80</code></pre>
 <p>For species A and B:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">muA &lt;-<span class="st"> </span><span class="fl">.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">.25</span> <span class="op">*</span><span class="st"> </span>elev</a>
-<a class="sourceLine" id="cb154-2" data-line-number="2">muB &lt;-<span class="st"> </span><span class="fl">.8</span> <span class="op">+</span><span class="st"> </span><span class="fl">.15</span> <span class="op">*</span><span class="st"> </span>elev</a>
-<a class="sourceLine" id="cb154-3" data-line-number="3">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb154-4" data-line-number="4"><span class="kw">plot</span>(elev, muA, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb154-5" data-line-number="5"><span class="kw">lines</span>(elev, muB, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">muA &lt;-<span class="st"> </span><span class="fl">.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">.25</span> <span class="op">*</span><span class="st"> </span>elev</a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">muB &lt;-<span class="st"> </span><span class="fl">.8</span> <span class="op">+</span><span class="st"> </span><span class="fl">.15</span> <span class="op">*</span><span class="st"> </span>elev</a>
+<a class="sourceLine" id="cb143-3" data-line-number="3">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="kw">plot</span>(elev, muA, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="kw">lines</span>(elev, muB, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>Random variation in site-specific availability to growth-ressources:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb155-2" data-line-number="2">epsA &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(muA), <span class="dt">sd =</span> <span class="fl">.05</span>)</a>
-<a class="sourceLine" id="cb155-3" data-line-number="3">epsB &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(muB), <span class="dt">sd =</span> <span class="fl">.05</span>)</a>
-<a class="sourceLine" id="cb155-4" data-line-number="4"><span class="kw">plot</span>(elev, muA <span class="op">+</span><span class="st"> </span>epsA, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb155-5" data-line-number="5"><span class="kw">points</span>(elev, muB <span class="op">+</span><span class="st"> </span>epsB, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">epsA &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(muA), <span class="dt">sd =</span> <span class="fl">.05</span>)</a>
+<a class="sourceLine" id="cb144-3" data-line-number="3">epsB &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(muB), <span class="dt">sd =</span> <span class="fl">.05</span>)</a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="kw">plot</span>(elev, muA <span class="op">+</span><span class="st"> </span>epsA, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="kw">points</span>(elev, muB <span class="op">+</span><span class="st"> </span>epsB, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Compose outcome measurements <code>y</code>:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">yA &lt;-<span class="st"> </span>muA <span class="op">+</span><span class="st"> </span>epsA</a>
-<a class="sourceLine" id="cb156-2" data-line-number="2">yB &lt;-<span class="st"> </span>muB <span class="op">+</span><span class="st"> </span>epsB</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">yA &lt;-<span class="st"> </span>muA <span class="op">+</span><span class="st"> </span>epsA</a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">yB &lt;-<span class="st"> </span>muB <span class="op">+</span><span class="st"> </span>epsB</a></code></pre></div>
 </div>
 <div id="introducing-formula" class="section level2">
 <h2><span class="header-section-number">6.2</span> Introducing <code>formula</code></h2>
 <p><code>formula</code> notation for the data generating mechanism:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">frmlaA &lt;-<span class="st"> </span><span class="kw">as.formula</span>(yA <span class="op">~</span><span class="st"> </span>elev)</a>
-<a class="sourceLine" id="cb157-2" data-line-number="2"><span class="kw">str</span>(frmlaA)</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">frmlaA &lt;-<span class="st"> </span><span class="kw">as.formula</span>(yA <span class="op">~</span><span class="st"> </span>elev)</a>
+<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="kw">str</span>(frmlaA)</a></code></pre></div>
 <pre><code>## Class &#39;formula&#39;  language yA ~ elev
 ##   ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt;</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">summary</span>(frmlaA)</a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">summary</span>(frmlaA)</a></code></pre></div>
 <pre><code>##  Length   Class    Mode 
 ##       3 formula    call</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1">frmlaA[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">frmlaA[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## `~`()</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1">frmlaA[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">frmlaA[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## yA()</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1">frmlaA[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">frmlaA[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## elev()</code></pre>
 <ul>
 <li><code>yA</code> and <code>yB</code> are measured outcomes, written on the left hand side of the formula</li>
@@ -1090,19 +1090,19 @@ However, by differences in the availability to growth-ressources by different el
 <li>Let’s assume it comes to our mind that a normal distribution is a statistical model that is quite useful to express the effects of variation in site-specific availability to growth-ressources on the outcome. Then:</li>
 </ul>
 <p>We can use a formula directly for <code>plot</code>:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">frmlaB &lt;-<span class="st"> </span><span class="kw">as.formula</span>(yB <span class="op">~</span><span class="st"> </span>elev)</a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="kw">plot</span>(frmlaA, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="kw">points</span>(frmlaB, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">frmlaB &lt;-<span class="st"> </span><span class="kw">as.formula</span>(yB <span class="op">~</span><span class="st"> </span>elev)</a>
+<a class="sourceLine" id="cb156-2" data-line-number="2"><span class="kw">plot</span>(frmlaA, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb156-3" data-line-number="3"><span class="kw">points</span>(frmlaB, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <div id="using-formula-inside-lm" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Using <code>formula</code> inside <code>lm</code></h3>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">mA &lt;-<span class="st"> </span><span class="kw">lm</span>(frmlaA)</a>
-<a class="sourceLine" id="cb168-2" data-line-number="2">mB &lt;-<span class="st"> </span><span class="kw">lm</span>(frmlaB)</a>
-<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb168-4" data-line-number="4"><span class="kw">plot</span>(frmlaA, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb168-5" data-line-number="5"><span class="kw">abline</span>(mA, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="kw">points</span>(frmlaB, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb168-7" data-line-number="7"><span class="kw">abline</span>(mB, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">mA &lt;-<span class="st"> </span><span class="kw">lm</span>(frmlaA)</a>
+<a class="sourceLine" id="cb157-2" data-line-number="2">mB &lt;-<span class="st"> </span><span class="kw">lm</span>(frmlaB)</a>
+<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="kw">plot</span>(frmlaA, <span class="dt">pch =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb157-5" data-line-number="5"><span class="kw">abline</span>(mA, <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb157-6" data-line-number="6"><span class="kw">points</span>(frmlaB, <span class="dt">pch =</span> <span class="st">&quot;B&quot;</span>, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb157-7" data-line-number="7"><span class="kw">abline</span>(mB, <span class="dt">col =</span> paint[<span class="dv">2</span>])</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>The data-generating mechanisms varied for varying species A, and B.
 Can we unify this into one description of a data-generating mechanism?</p>
@@ -1111,16 +1111,16 @@ yA=0.7+0.25\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 \rightarrow y= 0.7+0.25\cdot\text{elev}+\texttt{(species == B)}\cdot(0.1-0.1\cdot\text{elev})+\texttt{rnorm(n=1, mu = 0, sd = .05)}
 \]</span></p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">dfsim &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> <span class="kw">c</span>(yA, yB),</a>
-<a class="sourceLine" id="cb169-2" data-line-number="2">                    <span class="dt">elev =</span> <span class="kw">c</span>(elev, elev),</a>
-<a class="sourceLine" id="cb169-3" data-line-number="3">                    <span class="dt">species =</span> <span class="kw">rep</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">each =</span> <span class="kw">length</span>(elev)))</a>
-<a class="sourceLine" id="cb169-4" data-line-number="4">dfsim<span class="op">$</span>x &lt;-<span class="st"> </span>dfsim<span class="op">$</span>elev</a>
-<a class="sourceLine" id="cb169-5" data-line-number="5"><span class="co">## See: ?formula</span></a>
-<a class="sourceLine" id="cb169-6" data-line-number="6">frmla &lt;-<span class="st"> </span><span class="kw">as.formula</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">*</span><span class="st"> </span>species)</a>
-<a class="sourceLine" id="cb169-7" data-line-number="7"><span class="kw">summary</span>(frmla)</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">dfsim &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> <span class="kw">c</span>(yA, yB),</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2">                    <span class="dt">elev =</span> <span class="kw">c</span>(elev, elev),</a>
+<a class="sourceLine" id="cb158-3" data-line-number="3">                    <span class="dt">species =</span> <span class="kw">rep</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">each =</span> <span class="kw">length</span>(elev)))</a>
+<a class="sourceLine" id="cb158-4" data-line-number="4">dfsim<span class="op">$</span>x &lt;-<span class="st"> </span>dfsim<span class="op">$</span>elev</a>
+<a class="sourceLine" id="cb158-5" data-line-number="5"><span class="co">## See: ?formula</span></a>
+<a class="sourceLine" id="cb158-6" data-line-number="6">frmla &lt;-<span class="st"> </span><span class="kw">as.formula</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">*</span><span class="st"> </span>species)</a>
+<a class="sourceLine" id="cb158-7" data-line-number="7"><span class="kw">summary</span>(frmla)</a></code></pre></div>
 <pre><code>##  Length   Class    Mode 
 ##       3 formula    call</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">model.matrix</span>(<span class="dt">object =</span> frmla, <span class="dt">data =</span> <span class="kw">subset</span>(dfsim, species <span class="op">==</span><span class="st"> &quot;A&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">model.matrix</span>(<span class="dt">object =</span> frmla, <span class="dt">data =</span> <span class="kw">subset</span>(dfsim, species <span class="op">==</span><span class="st"> &quot;A&quot;</span>)))</a></code></pre></div>
 <pre><code>##   (Intercept)    x speciesB x:speciesB
 ## 1           1 0.40        0          0
 ## 2           1 0.45        0          0
@@ -1128,7 +1128,7 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 ## 4           1 0.55        0          0
 ## 5           1 0.60        0          0
 ## 6           1 0.65        0          0</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">model.matrix</span>(<span class="dt">object =</span> frmla, <span class="dt">data =</span> <span class="kw">subset</span>(dfsim, species <span class="op">==</span><span class="st"> &quot;B&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">model.matrix</span>(<span class="dt">object =</span> frmla, <span class="dt">data =</span> <span class="kw">subset</span>(dfsim, species <span class="op">==</span><span class="st"> &quot;B&quot;</span>)))</a></code></pre></div>
 <pre><code>##    (Intercept)    x speciesB x:speciesB
 ## 30           1 0.40        1       0.40
 ## 31           1 0.45        1       0.45
@@ -1136,15 +1136,15 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 ## 33           1 0.55        1       0.55
 ## 34           1 0.60        1       0.60
 ## 35           1 0.65        1       0.65</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(frmla, <span class="dt">data =</span> dfsim)</a>
-<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="kw">coef</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(frmla, <span class="dt">data =</span> dfsim)</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="kw">coef</span>(m)</a></code></pre></div>
 <pre><code>## (Intercept)           x    speciesB  x:speciesB 
 ##  0.73593782  0.21314912  0.09105386 -0.07786856</code></pre>
 </div>
 </div>
 <div id="inspection-of-estimated-parameters" class="section level2">
 <h2><span class="header-section-number">6.3</span> Inspection of estimated parameters</h2>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;arm&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;arm&quot;</span>)</a></code></pre></div>
 <pre><code>## Loading required package: MASS</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
@@ -1171,25 +1171,25 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 <pre><code>## The following object is masked from &#39;package:spatstat&#39;:
 ## 
 ##     rescale</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">sim</span>(m)</a>
-<a class="sourceLine" id="cb191-2" data-line-number="2">B &lt;-<span class="st"> </span><span class="kw">cbind</span>(tmp<span class="op">@</span>coef, tmp<span class="op">@</span>sigma)</a>
-<a class="sourceLine" id="cb191-3" data-line-number="3"><span class="kw">colnames</span>(B)[<span class="kw">ncol</span>(B)] &lt;-<span class="st"> &quot;sigma&quot;</span></a>
-<a class="sourceLine" id="cb191-4" data-line-number="4"><span class="kw">boxplot</span>(B, <span class="dt">frame =</span> F, <span class="dt">las =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">tmp &lt;-<span class="st"> </span><span class="kw">sim</span>(m)</a>
+<a class="sourceLine" id="cb180-2" data-line-number="2">B &lt;-<span class="st"> </span><span class="kw">cbind</span>(tmp<span class="op">@</span>coef, tmp<span class="op">@</span>sigma)</a>
+<a class="sourceLine" id="cb180-3" data-line-number="3"><span class="kw">colnames</span>(B)[<span class="kw">ncol</span>(B)] &lt;-<span class="st"> &quot;sigma&quot;</span></a>
+<a class="sourceLine" id="cb180-4" data-line-number="4"><span class="kw">boxplot</span>(B, <span class="dt">frame =</span> F, <span class="dt">las =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1">B[<span class="dv">1</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">B[<span class="dv">1</span>, ]</a></code></pre></div>
 <pre><code>## (Intercept)           x    speciesB  x:speciesB       sigma 
 ##  0.73646218  0.21452618  0.07840359 -0.07300474  0.04516890</code></pre>
 </div>
 <div id="predictive-check" class="section level2">
 <h2><span class="header-section-number">6.4</span> Predictive check</h2>
 <p>For only one data-point:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">elev &lt;-<span class="st"> </span><span class="dv">1300</span> <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb194-2" data-line-number="2">species &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>), <span class="dt">levels =</span> <span class="kw">levels</span>(dfsim<span class="op">$</span>species))</a>
-<a class="sourceLine" id="cb194-3" data-line-number="3">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> elev, <span class="dt">species =</span> species))</a>
-<a class="sourceLine" id="cb194-4" data-line-number="4">X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)]</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">elev &lt;-<span class="st"> </span><span class="dv">1300</span> <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb183-2" data-line-number="2">species &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>), <span class="dt">levels =</span> <span class="kw">levels</span>(dfsim<span class="op">$</span>species))</a>
+<a class="sourceLine" id="cb183-3" data-line-number="3">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> elev, <span class="dt">species =</span> species))</a>
+<a class="sourceLine" id="cb183-4" data-line-number="4">X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)]</a></code></pre></div>
 <pre><code>##       [,1]
 ## 1 1.015346</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)], <span class="dt">sd =</span> B[<span class="dv">1</span>, <span class="kw">ncol</span>(B)])</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)], <span class="dt">sd =</span> B[<span class="dv">1</span>, <span class="kw">ncol</span>(B)])</a></code></pre></div>
 <pre><code>##   [1] 0.9899480 1.1019713 1.0041147 1.0777084 1.0207939 1.0035805 1.0309227
 ##   [8] 0.9790030 1.0654185 0.9655213 1.0515324 1.0261213 1.0216022 1.0481515
 ##  [15] 0.9765463 0.9598976 1.0021634 1.0701242 1.0414169 1.1183507 0.9699917
@@ -1206,8 +1206,8 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 ##  [92] 1.0264920 0.8984973 0.9266750 1.0125771 1.0557838 1.0140788 0.9701887
 ##  [99] 1.0081371 0.9915109</code></pre>
 <p>For the full data-frame:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> dfsim)</a>
-<a class="sourceLine" id="cb198-2" data-line-number="2"><span class="kw">head</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> dfsim)</a>
+<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="kw">head</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
 <pre><code>##        [,1]
 ## 1 0.8222726
 ## 2 0.8329990
@@ -1215,29 +1215,29 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 ## 4 0.8544516
 ## 5 0.8651779
 ## 6 0.8759042</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">dim</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">dim</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
 <pre><code>## [1] 58  1</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1">Ytilde &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(dfsim), <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb202-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
-<a class="sourceLine" id="cb202-3" data-line-number="3">  tmp &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
-<a class="sourceLine" id="cb202-4" data-line-number="4">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(dfsim)) {</a>
-<a class="sourceLine" id="cb202-5" data-line-number="5">    Ytilde[s, i] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">mean =</span> tmp[i, <span class="dv">1</span>], <span class="dt">sd =</span> B[s, <span class="kw">ncol</span>(B)])</a>
-<a class="sourceLine" id="cb202-6" data-line-number="6">  }</a>
-<a class="sourceLine" id="cb202-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb202-8" data-line-number="8">tmp &lt;-<span class="st"> </span><span class="kw">apply</span>(Ytilde, <span class="dt">MAR =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> density)</a>
-<a class="sourceLine" id="cb202-9" data-line-number="9"><span class="kw">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>y))}))), </a>
-<a class="sourceLine" id="cb202-10" data-line-number="10">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">min</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">min</span>(x<span class="op">$</span>x))})), </a>
-<a class="sourceLine" id="cb202-11" data-line-number="11">              <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>x))}))), </a>
-<a class="sourceLine" id="cb202-12" data-line-number="12">     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;y&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;(Predictive) Density&quot;</span>)</a>
-<a class="sourceLine" id="cb202-13" data-line-number="13"><span class="kw">invisible</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> lines, <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">sequential_hcl</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)))</a>
-<a class="sourceLine" id="cb202-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">density</span>(dfsim<span class="op">$</span>y), <span class="dt">lwd =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1">Ytilde &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(dfsim), <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
+<a class="sourceLine" id="cb191-3" data-line-number="3">  tmp &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
+<a class="sourceLine" id="cb191-4" data-line-number="4">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(dfsim)) {</a>
+<a class="sourceLine" id="cb191-5" data-line-number="5">    Ytilde[s, i] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">mean =</span> tmp[i, <span class="dv">1</span>], <span class="dt">sd =</span> B[s, <span class="kw">ncol</span>(B)])</a>
+<a class="sourceLine" id="cb191-6" data-line-number="6">  }</a>
+<a class="sourceLine" id="cb191-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb191-8" data-line-number="8">tmp &lt;-<span class="st"> </span><span class="kw">apply</span>(Ytilde, <span class="dt">MAR =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> density)</a>
+<a class="sourceLine" id="cb191-9" data-line-number="9"><span class="kw">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>y))}))), </a>
+<a class="sourceLine" id="cb191-10" data-line-number="10">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">min</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">min</span>(x<span class="op">$</span>x))})), </a>
+<a class="sourceLine" id="cb191-11" data-line-number="11">              <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>x))}))), </a>
+<a class="sourceLine" id="cb191-12" data-line-number="12">     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;y&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;(Predictive) Density&quot;</span>)</a>
+<a class="sourceLine" id="cb191-13" data-line-number="13"><span class="kw">invisible</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> lines, <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">sequential_hcl</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)))</a>
+<a class="sourceLine" id="cb191-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">density</span>(dfsim<span class="op">$</span>y), <span class="dt">lwd =</span> <span class="dv">4</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 <div id="model-component-mu" class="section level2">
 <h2><span class="header-section-number">6.5</span> Model component <code>mu</code></h2>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1">elev &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">400</span>, <span class="dv">1800</span>), <span class="dv">2</span>) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb203-2" data-line-number="2">species &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">each =</span> <span class="dv">2</span>), <span class="dt">levels =</span> <span class="kw">levels</span>(dfsim<span class="op">$</span>species))</a>
-<a class="sourceLine" id="cb203-3" data-line-number="3">(X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> elev, <span class="dt">species =</span> species)))</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1">elev &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">400</span>, <span class="dv">1800</span>), <span class="dv">2</span>) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb192-2" data-line-number="2">species &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">each =</span> <span class="dv">2</span>), <span class="dt">levels =</span> <span class="kw">levels</span>(dfsim<span class="op">$</span>species))</a>
+<a class="sourceLine" id="cb192-3" data-line-number="3">(X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> elev, <span class="dt">species =</span> species)))</a></code></pre></div>
 <pre><code>##   (Intercept)   x speciesB x:speciesB
 ## 1           1 0.4        0        0.0
 ## 2           1 1.8        0        0.0
@@ -1248,35 +1248,35 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 ## attr(,&quot;contrasts&quot;)
 ## attr(,&quot;contrasts&quot;)$species
 ## [1] &quot;contr.treatment&quot;</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">Mu &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(X), <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
-<a class="sourceLine" id="cb205-3" data-line-number="3">  Mu[s, ] &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
-<a class="sourceLine" id="cb205-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb205-5" data-line-number="5">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb205-6" data-line-number="6"><span class="kw">plot</span>(<span class="kw">range</span>(elev), <span class="kw">range</span>(Mu), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Elev [m/1000]&quot;</span>, </a>
-<a class="sourceLine" id="cb205-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;Model component &#39;mu&#39;&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a>
-<a class="sourceLine" id="cb205-8" data-line-number="8"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Mu)) {</a>
-<a class="sourceLine" id="cb205-9" data-line-number="9">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb205-10" data-line-number="10">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col =</span> paint[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb205-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb205-12" data-line-number="12"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="fl">.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">.25</span> <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">1</span>], <span class="dt">lwd =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb205-13" data-line-number="13"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="fl">.8</span> <span class="op">+</span><span class="st"> </span><span class="fl">.15</span> <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">2</span>], <span class="dt">lwd =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb205-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">1</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb205-15" data-line-number="15"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">3</span>] <span class="op">+</span><span class="st"> </span>(<span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">4</span>]) <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), </a>
-<a class="sourceLine" id="cb205-16" data-line-number="16">      <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">2</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">Mu &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(X), <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb194-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
+<a class="sourceLine" id="cb194-3" data-line-number="3">  Mu[s, ] &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
+<a class="sourceLine" id="cb194-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb194-5" data-line-number="5">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)</a>
+<a class="sourceLine" id="cb194-6" data-line-number="6"><span class="kw">plot</span>(<span class="kw">range</span>(elev), <span class="kw">range</span>(Mu), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Elev [m/1000]&quot;</span>, </a>
+<a class="sourceLine" id="cb194-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;Model component &#39;mu&#39;&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb194-8" data-line-number="8"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Mu)) {</a>
+<a class="sourceLine" id="cb194-9" data-line-number="9">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb194-10" data-line-number="10">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col =</span> paint[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb194-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb194-12" data-line-number="12"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="fl">.7</span> <span class="op">+</span><span class="st"> </span><span class="fl">.25</span> <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">1</span>], <span class="dt">lwd =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb194-13" data-line-number="13"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="fl">.8</span> <span class="op">+</span><span class="st"> </span><span class="fl">.15</span> <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">2</span>], <span class="dt">lwd =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb194-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">1</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb194-15" data-line-number="15"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">3</span>] <span class="op">+</span><span class="st"> </span>(<span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">4</span>]) <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), </a>
+<a class="sourceLine" id="cb194-16" data-line-number="16">      <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">2</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 </div>
 <div id="real-data" class="section level2">
 <h2><span class="header-section-number">6.6</span> Real data</h2>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">drought<span class="op">$</span>x &lt;-<span class="st"> </span>drought<span class="op">$</span>elev <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb206-2" data-line-number="2">drought<span class="op">$</span>y &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
-<a class="sourceLine" id="cb206-3" data-line-number="3">m &lt;-<span class="st"> </span><span class="kw">lm</span>(frmla, <span class="dt">data =</span> drought)</a>
-<a class="sourceLine" id="cb206-4" data-line-number="4">tmp &lt;-<span class="st"> </span><span class="kw">sim</span>(m)</a>
-<a class="sourceLine" id="cb206-5" data-line-number="5">B &lt;-<span class="st"> </span><span class="kw">cbind</span>(tmp<span class="op">@</span>coef, tmp<span class="op">@</span>sigma)</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">drought<span class="op">$</span>x &lt;-<span class="st"> </span>drought<span class="op">$</span>elev <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb195-2" data-line-number="2">drought<span class="op">$</span>y &lt;-<span class="st"> </span>drought<span class="op">$</span>bair</a>
+<a class="sourceLine" id="cb195-3" data-line-number="3">m &lt;-<span class="st"> </span><span class="kw">lm</span>(frmla, <span class="dt">data =</span> drought)</a>
+<a class="sourceLine" id="cb195-4" data-line-number="4">tmp &lt;-<span class="st"> </span><span class="kw">sim</span>(m)</a>
+<a class="sourceLine" id="cb195-5" data-line-number="5">B &lt;-<span class="st"> </span><span class="kw">cbind</span>(tmp<span class="op">@</span>coef, tmp<span class="op">@</span>sigma)</a></code></pre></div>
 <div id="predictive-check-1" class="section level3">
 <h3><span class="header-section-number">6.6.1</span> Predictive check</h3>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> drought)</a>
-<a class="sourceLine" id="cb207-2" data-line-number="2"><span class="kw">head</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> drought)</a>
+<a class="sourceLine" id="cb196-2" data-line-number="2"><span class="kw">head</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
 <pre><code>##        [,1]
 ## 1 0.3949298
 ## 2 0.4520939
@@ -1284,29 +1284,29 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 ## 4 0.4772460
 ## 5 0.4886789
 ## 6 0.5389832</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1"><span class="kw">dim</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">dim</span>(X <span class="op">%*%</span><span class="st"> </span>B[<span class="dv">1</span>, <span class="op">-</span><span class="kw">ncol</span>(B)])</a></code></pre></div>
 <pre><code>## [1] 34  1</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">Ytilde &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(drought), <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb211-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
-<a class="sourceLine" id="cb211-3" data-line-number="3">  tmp &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
-<a class="sourceLine" id="cb211-4" data-line-number="4">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(drought)) {</a>
-<a class="sourceLine" id="cb211-5" data-line-number="5">    Ytilde[s, i] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">mean =</span> tmp[i, <span class="dv">1</span>], <span class="dt">sd =</span> B[s, <span class="kw">ncol</span>(B)])</a>
-<a class="sourceLine" id="cb211-6" data-line-number="6">  }</a>
-<a class="sourceLine" id="cb211-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb211-8" data-line-number="8">tmp &lt;-<span class="st"> </span><span class="kw">apply</span>(Ytilde, <span class="dt">MAR =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> density)</a>
-<a class="sourceLine" id="cb211-9" data-line-number="9"><span class="kw">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>y))}))), </a>
-<a class="sourceLine" id="cb211-10" data-line-number="10">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">min</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">min</span>(x<span class="op">$</span>x))})), </a>
-<a class="sourceLine" id="cb211-11" data-line-number="11">              <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>x))}))), </a>
-<a class="sourceLine" id="cb211-12" data-line-number="12">     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;y&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;(Predictive) Density&quot;</span>)</a>
-<a class="sourceLine" id="cb211-13" data-line-number="13"><span class="kw">invisible</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> lines, <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">sequential_hcl</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)))</a>
-<a class="sourceLine" id="cb211-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">density</span>(drought<span class="op">$</span>y), <span class="dt">lwd =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1">Ytilde &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(drought), <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
+<a class="sourceLine" id="cb200-3" data-line-number="3">  tmp &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
+<a class="sourceLine" id="cb200-4" data-line-number="4">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(drought)) {</a>
+<a class="sourceLine" id="cb200-5" data-line-number="5">    Ytilde[s, i] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">mean =</span> tmp[i, <span class="dv">1</span>], <span class="dt">sd =</span> B[s, <span class="kw">ncol</span>(B)])</a>
+<a class="sourceLine" id="cb200-6" data-line-number="6">  }</a>
+<a class="sourceLine" id="cb200-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb200-8" data-line-number="8">tmp &lt;-<span class="st"> </span><span class="kw">apply</span>(Ytilde, <span class="dt">MAR =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> density)</a>
+<a class="sourceLine" id="cb200-9" data-line-number="9"><span class="kw">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>y))}))), </a>
+<a class="sourceLine" id="cb200-10" data-line-number="10">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">min</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">min</span>(x<span class="op">$</span>x))})), </a>
+<a class="sourceLine" id="cb200-11" data-line-number="11">              <span class="kw">max</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> <span class="cf">function</span>(x){<span class="kw">return</span>(<span class="kw">max</span>(x<span class="op">$</span>x))}))), </a>
+<a class="sourceLine" id="cb200-12" data-line-number="12">     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;y&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;(Predictive) Density&quot;</span>)</a>
+<a class="sourceLine" id="cb200-13" data-line-number="13"><span class="kw">invisible</span>(<span class="kw">sapply</span>(tmp, <span class="dt">FUN =</span> lines, <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">sequential_hcl</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)))</a>
+<a class="sourceLine" id="cb200-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">density</span>(drought<span class="op">$</span>y), <span class="dt">lwd =</span> <span class="dv">4</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 </div>
 <div id="model-component-mu-1" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> Model component <code>mu</code></h3>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">elev &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">400</span>, <span class="dv">1800</span>), <span class="dv">2</span>) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb212-2" data-line-number="2">species &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">levels</span>(drought<span class="op">$</span>species), <span class="dt">each =</span> <span class="dv">2</span>), <span class="dt">levels =</span> <span class="kw">levels</span>(drought<span class="op">$</span>species))</a>
-<a class="sourceLine" id="cb212-3" data-line-number="3">(X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> elev, <span class="dt">species =</span> species)))</a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">elev &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">400</span>, <span class="dv">1800</span>), <span class="dv">2</span>) <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb201-2" data-line-number="2">species &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">levels</span>(drought<span class="op">$</span>species), <span class="dt">each =</span> <span class="dv">2</span>), <span class="dt">levels =</span> <span class="kw">levels</span>(drought<span class="op">$</span>species))</a>
+<a class="sourceLine" id="cb201-3" data-line-number="3">(X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(frmla[<span class="op">-</span><span class="dv">2</span>], <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> elev, <span class="dt">species =</span> species)))</a></code></pre></div>
 <pre><code>##   (Intercept)   x speciesSpruce x:speciesSpruce
 ## 1           1 0.4             0             0.0
 ## 2           1 1.8             0             0.0
@@ -1317,23 +1317,26 @@ yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
 ## attr(,&quot;contrasts&quot;)
 ## attr(,&quot;contrasts&quot;)$species
 ## [1] &quot;contr.treatment&quot;</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">Mu &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(X), <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb214-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
-<a class="sourceLine" id="cb214-3" data-line-number="3">  Mu[s, ] &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
-<a class="sourceLine" id="cb214-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb214-5" data-line-number="5">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb214-6" data-line-number="6"><span class="kw">plot</span>(<span class="kw">range</span>(elev), <span class="kw">range</span>(Mu), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Elevation [m/1000]&quot;</span>, </a>
-<a class="sourceLine" id="cb214-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;Model component &#39;mu&#39;&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a>
-<a class="sourceLine" id="cb214-8" data-line-number="8"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Mu)) {</a>
-<a class="sourceLine" id="cb214-9" data-line-number="9">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb214-10" data-line-number="10">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col =</span> paint[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb214-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb214-12" data-line-number="12"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">1</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb214-13" data-line-number="13"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">3</span>] <span class="op">+</span><span class="st"> </span>(<span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">4</span>]) <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), </a>
-<a class="sourceLine" id="cb214-14" data-line-number="14">      <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">2</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1">Mu &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">nrow</span>(B), <span class="dt">ncol =</span> <span class="kw">nrow</span>(X), <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb203-2" data-line-number="2"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(B)) {</a>
+<a class="sourceLine" id="cb203-3" data-line-number="3">  Mu[s, ] &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>B[s, <span class="op">-</span><span class="kw">ncol</span>(B)]</a>
+<a class="sourceLine" id="cb203-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb203-5" data-line-number="5">paint &lt;-<span class="st"> </span>colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">.1</span>)</a>
+<a class="sourceLine" id="cb203-6" data-line-number="6"><span class="kw">plot</span>(<span class="kw">range</span>(elev), <span class="kw">range</span>(Mu), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">xlab =</span> <span class="st">&quot;Elevation [m/1000]&quot;</span>, </a>
+<a class="sourceLine" id="cb203-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;Model component &#39;mu&#39;&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb203-8" data-line-number="8"><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Mu)) {</a>
+<a class="sourceLine" id="cb203-9" data-line-number="9">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> paint[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb203-10" data-line-number="10">  <span class="kw">lines</span>(<span class="kw">range</span>(elev), Mu[s, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col =</span> paint[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb203-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb203-12" data-line-number="12"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">1</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb203-13" data-line-number="13"><span class="kw">lines</span>(<span class="kw">range</span>(elev), <span class="kw">coef</span>(m)[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">3</span>] <span class="op">+</span><span class="st"> </span>(<span class="kw">coef</span>(m)[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="kw">coef</span>(m)[<span class="dv">4</span>]) <span class="op">*</span><span class="st"> </span><span class="kw">range</span>(elev), </a>
+<a class="sourceLine" id="cb203-14" data-line-number="14">      <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw">qualitative_hcl</span>(<span class="dt">n =</span> <span class="dv">2</span>)[<span class="dv">2</span>], <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="intro_to_R_session_04_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 </div>
 </div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
 </div>
 <div class="footnotes">
 <hr />
