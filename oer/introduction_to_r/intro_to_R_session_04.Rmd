@@ -1,0 +1,961 @@
+---
+date: "November 10, 2021 (Version 0.3)"
+#author: "Holger Sennhenn-Reulen"
+title: "**Introduction to R: Session 04**"
+author: "Holger Sennhenn-Reulen^[Private webpage: [uncertaintree.github.io](https://uncertaintree.github.io)], Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)"
+publisher: "Me"
+site: bookdown::bookdown_site
+documentclass: scrartcl
+fontsize: 10pt
+bibliography: references.bib
+# biblio-style: "apalike"
+link-citations: yes
+output:
+  bookdown::gitbook:
+    highlight: monochrome
+    css: style_gitbook.css
+    citation_package: default
+    anchor_sections: FALSE
+    split_by: "none"
+    config:
+      toc:
+        collapse: subsubsection
+        scroll_highlight: yes
+        before: null
+        after: null
+      toolbar:
+        position: fixed
+      edit : null
+      download: [["intro_to_R_session_04.pdf", "PDF"]]
+      search: no
+      fontsettings: no
+      info: no
+      sharing: no
+  bookdown::pdf_book:
+    pandoc_args: --top-level-division=section
+    citation_package: natbib
+    highlight: monochrome
+    includes:
+      in_header: "preamble_gitbook.tex"
+---
+
+<!--
+`r if (knitr::is_html_output()) '# About this course{-}'`
+`r if (knitr::is_html_output()) 'This course introduces basic R-programming skills needed for applied statistical modeling in R.'`
+-->
+
+`r if (knitr::is_html_output()) 'All contents are licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).'`
+`r if (knitr::is_latex_output()) '\\vfill'`
+`r if (knitr::is_latex_output()) '\\begin{center}'`
+`r if (knitr::is_latex_output()) '\\begin{minipage}{.6\\textwidth}'`
+`r if (knitr::is_latex_output()) '\\textsf{All contents are licensed under CC BY-NC-ND 4.0 \\href{https://creativecommons.org/licenses/by-nc-nd/4.0/}{(Link)}.}'`
+`r if (knitr::is_latex_output()) '\\end{minipage}'`
+`r if (knitr::is_latex_output()) '\\end{center}'`
+`r if (knitr::is_latex_output()) '\\vfill'`
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+```{r, message=FALSE, results='hide', echo=FALSE}
+rm(list = ls())
+library("lmfor")
+bair <- c(.505, .648, .523, .426, .64, .5, .257, .866, .434, .368, .54, .923, .702, 
+          .615, 1.013, .807, .262, .887, 1.281, 1.125, .99, 1.2, .983, .697, .606, 
+          .718, .48, .822, .944, .77, 1.036, 1.23, .68, .985)
+elev <- c(335, 460, 480, 515, 540, 650, 680, 715, 730, 835, 860, 960,
+          1020, 1025, 1100, 1150, 1150, 1170, 1190, 1350, 1400, 1500, 1540,
+          475, 480, 507.5, 580, 750, 780, 800, 1025, 1100, 1150, 1200)
+species <- c("Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce", "Spruce",
+             "Spruce", "Spruce", "Spruce", "Beech", "Beech", "Beech", "Beech",
+             "Beech", "Beech", "Beech", "Beech", "Beech", "Beech", "Beech")
+drought <- data.frame(bair = bair,
+                      elev = elev,
+                      species = species)
+frost <- data.frame(year = 1947:2021, 
+                    n_frost = c(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 
+                                0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                                0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 
+                                3, 2, 0, 0, 0, 0, 0, 0, 1, 5, 0), 
+                    bud_burst = as.Date(c(-19230, -18867, -18503, -18127, -17758, -17408, -17034, 
+                                          -16661, -16293, -15929, -15566, -15202, -14847, -14475, 
+                                          -14121, -13744, -13384, -13017, -12647, -12291, -11917, 
+                                          -11563, -11191, -10821, -10462, -10092, -9720, -9361, 
+                                          -8997, -8635, -8261, -7896, -7530, -7164, -6808, -6436, 
+                                          -6078, -5705, -5347, -4981, -4619, -4254, -3883, -3524, 
+                                          -3145, -2788, -2437, -2060, -1694, -1322, -958, -602, 
+                                          -237, 124, 499, 864, 1222, 1592, 1957, 2321, 2681, 3055, 
+                                          3408, 3789, 4137, 4513, 4877, 5234, 5610, 5976, 6345, 
+                                          6691, 7074, 7435, 7812), 
+                                        origin = as.Date("2000-01-01")),
+                    end_1st_dev_stage = as.Date(c(-19222, -18859, -18489, -18118, -17746, -17397, 
+                                                  -17026, -16650, -16280, -15921, -15552, -15192, 
+                                                  -14837, -14464, -14104, -13726, -13370, -13006, 
+                                                  -12633, -12281, -11905, -11545, -11180, -10808, 
+                                                  -10455, -10078, -9710, -9349, -8984, -8623, -8248, 
+                                                  -7886, -7521, -7151, -6799, -6427, -6068, -5691, 
+                                                  -5338, -4972, -4601, -4246, -3875, -3513, -3131, 
+                                                  -2780, -2426, -2050, -1679, -1311, -944, -594, 
+                                                  -225, 132, 510, 873, 1235, 1608, 1972, 2332, 2694, 
+                                                  3067, 3422, 3802, 4152, 4525, 4891, 5250, 5623, 
+                                                  5988, 6354, 6703, 7086, 7450, 7824), 
+                                                origin = as.Date("2000-01-01")))
+frost$may1st <- as.Date(paste0(frost$year, "-05-01"))
+frost$bud_burst_days_since_may1st <- julian(frost$bud_burst, origin = as.Date("2000-01-01")) - 
+  julian(frost$may1st, origin = as.Date("2000-01-01"))
+frost$end_1st_dev_stage_days_since_may1st <- julian(frost$end_1st_dev_stage, 
+                                                    origin = as.Date("2000-01-01")) - 
+  julian(frost$may1st, origin = as.Date("2000-01-01"))
+data(spati2)
+df <- spati2
+rm(bair, elev, species, spati2)
+```
+
+# Working with 'real' data
+
+R is a powerful tool, not only for analysis, but also for managing of data. 
+
+## Reproducible data management
+
+- Avoid any steps in spreadsheet-software as MS Excel that are done 'by hand' and are non-reproducible. 
+- *Workflow A*: 
+   - Generate an R-Script `01_datamanagement.R` that loads your data and does all the steps, and returns an object `df` that is used for any further steps. 
+   - Run this file using `source(01_datamanagement.R)`.
+- *Workflow B*: Generate a markdown file that not only does the above, but also documents all your steps (A brief intro to markdown in Session 05).
+
+## Preparatory steps prior R
+
+Data management in *R* begins with loading the data into *R*. 
+But before we think about the technical way in which we read our data into *R*, we should first ensure that they are 'prepared' for this *R* import. 
+If we neglect a few basic rules in this preparatory work, we actually only hold back problems (for which we then only have to find unnecessarily 'complicated' solutions in *R*).
+
+- The first line of the dataframe is reserved for the variable names: If we set `header = TRUE` (*R* functions` read.csv () `or` read.table () `) the first line in the dataframe becomes for the variable names recycled.
+- The first column (s) should be used to define the observation unit:
+Tree ID (, section, section ID, ...). It is preferable to keep the information here separately:
+- It is easier to combine several variables (in *R*) than to split one variable into several variables.
+
+## Variable names
+
+- Avoid variable names, values, or cells with spaces. If ignored -- and not adequately handled during data import -- each word is treated as a (value of) a separate variable. This leads to errors that are always related to the fact that the number of elements varies between the lines (matrix 'behavior' of the dataframe).
+- If several words are to be put together, ideally use underscores, eg. `Count_per_ha` (Alternatively, you can also use dots -- `Count.per.ha` --, or start every single word with a capital letter -- `CountPerHa`).
+- **Decide on a rule and try to stick to it!**
+- Functions like `tolower`,` gsub () `and` stringsplit` are useful helpers to quickly carry out repairs in *R*.
+- Make sure that all missing values -- especially empty cells -- are marked with *NA*. 
+- Delete all free text comments (this only leads to extra columns or an inflation of *NA*s).
+
+<!-- - Die erste Zeile des Datensatzes ist reserviert für die Variablennamen: Wenn wir `header=TRUE` setzen (*R* Funktionen `read.csv()` oder `read.table()`) wird die erste Zeile im Datensatz für die Variablennamen recycelt.
+- Die erste(n) Spalte(n) sollte dafür genutzt werden die Beobachtungseinheit zu definieren: 
+Baum-ID (, Traktecke, Trakt-ID, ...). Dabei ist zu bevorzugen die Informationen hier separat zu halten: 
+- Das Zusammenfügen mehrerer Variablen ist (in *R*) einfacher als eine Variable in mehrere Variablen aufzutrennen.
+- **Variablennamen:** 
+- Vermeide Variablennamen, Werte oder Zellen mit Leerzeichen. Falls nicht beachtet -- und während des Datenimports nicht adäquat behandelt --, wird jedes Wort als (Wert einer) separaten Variablen betrachtet. Dies führt zu Fehlern die immer damit zusammen hängen dass die Anzahl der Werte zwischen den Zeilen verschieden sind (Matrizenverhalten des Datensatzes).
+- Falls mehrere Wörter zusammengefügt werden sollen, benutzt man dafür im Idealfall Unterstriche: `Anzahl_pro_ha`. Alternativ kann man auch Punkte nutzen (`Anzahl.pro.ha`), oder jedes einzelne Wort mit einem Gro\ss buchstaben beginnen (`AnzahlProHa`).      
+- Entscheide dich für eine Regel und versuche dabei zu bleiben!
+- Funktionen wie `tolower`, `gsub()` und `stringsplit` sind nützliche Helfer um in *R** schnell Reparierungen durchzuführen.**
+- Stelle sicher dass alle fehlenden Werte -- insbesondere leere Zellen -- durch *NA* gekennzeichnet sind.
+- Lösche alle Freitextkommentare (das führt nur zu Extraspalten oder einer Inflation von *NA*s).
+-->
+
+## Preparatory Work in R
+
+Before reading in a dataframe, you have to tell R where the file can be found.
+
+- To achieve this, it can be helpful to find out which working directory *R* is currently accessing:
+
+```{r, eval=F}
+getwd()
+```
+
+- If different from the storage location of the dataframe, we have to change this working directory:
+
+```{r, eval=F}
+setwd("<Path of the folder in which the data file is saved>")
+```
+
+By executing this function call, *R* now knows in which working directory we want to work.
+
+**For RStudio users**
+
+It is very helpful to save the current `.R` code file and the dataframe in the same directory: At the beginning of a working session, you can then click on *Session* $\rightarrow$ *Set Working Directory* $\rightarrow$ *To Source File Location* (this also facilitates collaboration).
+
+Spreadsheet software (such as MS Excel) allows dataframes to be saved in many different file formats:
+
+- The most popular non-standard formats (i.e. not `.xls` or` .xlsx`) to save a dataframe are `.csv` (for *comma-separated value*) and` .txt` (tab-separated text file).
+
+- Depending on this choice, a line's contents are either separated by commas or tabs (referred to as 'separation argument').
+
+- **Attention:** Under operating systems with German language setting, commas are the default setting for the argument to represent decimal numbers. Here it is necessary to change the default values for the arguments `sep` and` dec` to `sep = "; "` and `dec = ", "` (required in `read.table()`, `read.csv()` and `read.csv2()`; see also the next sections).
+
+## `read.table()`
+
+If the data was saved in the above-mentioned tab-separated text format `.txt`, the function `read.table()` is a simple way of importing data:
+
+<!--
+**Für RStudio-Benutzer:**
+
+Es ist sehr hilfreich die aktuelle `.R`-Codedatei und den Datensatz im selben Verzeichnis zu speichern: Man kann dann am Beginn einer Arbeitssitzung durch klicken auf *Session* $\rightarrow$ *Set Working Directory* $\rightarrow$ *To Source File Location* den Pfad setzen (Das macht auch insbesondere die Zusammenarbeit mit anderen Wissenschaftler:Innen einfacher).
+
+Tabellenkalkulationsprogramme (wie *Microsoft Excel*) bieten das Abspeichern von Datensaätzen in vielen verschiedenen Dateiformaten an:
+
+- Die beliebtesten nicht-Standard-Formate (also nicht `.xls` bzw. `.xlsx`) um einen Datensatz zu speichern sind `.csv` (*comma-separated value*) und `.txt` (Tabulatorgetrennte Textdatei).
+
+- Abhängig von dieser Wahl werden die Zellinhalte entweder durch Kommas oder Tabs getrennt (als 'Separationsargument' bezeichnet).
+
+- **Achtung:** Unter Betriebssystemen mit deutscher Spracheinstellung sind Kommas als Voreinstellung das Argument um Dezimalzahlen darzustellen. Hier ist es dann notwendig die voreingestellten Werte für die Argumente `sep` and `dec` auf `sep = ";"` und `dec = ","` abzuändern (wird benötigt in `read.table()`, `read.csv()` und `read.csv2()`; siehe auch die nächsten Abschnitte).
+
+### `read.table()`.
+
+Falls die Daten im oben erwähnten Tabulator-separierten Textformat `.txt` gespeichert wurden, kann mit der Funktion `read.table()` ein einfacher Weg des Datenimports gegangen werden:
+-->
+
+```{r, eval=F}
+d <- read.table("<FileName>.txt", header = TRUE)
+```
+
+<!--
+- Durch die vorhergehende Festlegung des Arbeitsverzeichnisses (`setwd()**) kann der Datensatz direkt durch die Angabe des Dateinamens importiert werden.
+
+- Durch den Wert des Arguments `header** kann festgelegt werden ob die erste Zeile des Datensatzes die Variablennamen enthält (`TRUE** ist hier der voreingestellte Wert).
+
+- Das Separationsargument `sep** ist gesetzt auf den Wert `''**`''**, da der `read.table**-Befehl für Tabulator-separierter Textformate definiert ist.
+
+Um ein anderes Separationsargument festzulegen, muss der Wert des Arguments `sep** verändert werden:
+-->
+- By previously defining the working directory (`setwd ()`), the dataser can be imported directly by specifying the file name.
+- The value of the `header` argument can be used to determine whether the first line of the dataframe contains the variable names (`TRUE` is the default value here).
+
+- The separation argument `sep` is set to the value `""`, since the `read.table` command is defined for tab-separated text formats.
+
+To specify a different separation argument, the value of the argument `sep` must be changed:
+
+```{r, eval=F}
+df <- read.table("<FileName>.txt", header = FALSE, sep = ";")
+```
+
+## `read.csv()` and `read.csv2()`
+
+The functions `read.csv()` and `read.csv2()` can be used to read data files in `.csv` (Comma Separated Values) format.
+
+<!--
+- `.csv` Datenätze können sehr einfach in *R* importiert werden und sind darum ein zu bevorzugendes Format.
+- `read.csv()` und `read.csv2()` nutzen verschiedene Separationsargumente: Für `read.csv()` das Komma, für `read.csv2()` das Semikolon (öffne deinen Datensatz in einem Texteditor um das Separationsargument leicht herauszufinden).
+- `read.csv()` und `read.csv2()` sind Spezialfälle von `read.table()`: Dies bedeutet, dass die Argumente für `read.table()` wechselseitig auch für `read.csv()` und `read.csv2()` genutzt werden können.
+- `read.csv()` und `read.csv2()` sind also sehr identisch zu `read.table()` und unterscheiden sich von `read.table()` in nur drei Aspekten:
+- Das Separationsargument `sep`,
+- das Argument `header` ist immer gleich `TRUE` gesetzt, und
+- das Argument `fill` ist auch gleich `TRUE`, was bedeutet,  dass falls Zeilen ungleiche Längen haben, `read.csv()` und `read.csv2()` die kurzen Zeilen immer mit leeren Zellen auffüllen wird.
+-->
+
+- `.csv` dataframes can be easily imported into *R* and are therefore a preferred format.
+- `read.csv()` and `read.csv2()` use different separation arguments: for `read.csv()` the comma, for `read.csv2()` the semicolon (open your dataframe in a text editor in order to quickly find out your separation argument).
+- `read.csv()` and `read.csv2()` are special cases of `read.table()`: This means that the arguments for `read.table()` can alternately also be used for `read.csv()` and `read.csv2()`.
+- `read.csv()` and `read.csv2()` are very similar to `read.table()` and differ from `read.table()` in only three aspects:
+  - The separation argument `sep`,
+  - he argument `header` is always set to` TRUE`, and
+  - the argument `fill` is also `TRUE`, which means that if lines have unequal lengths, `read.csv()` and `read.csv2()` will always fill the short lines with empty cells.
+
+```{r, eval=FALSE}
+d <- read.csv("data.csv", header = T, sep = ";", dec = ",", stringsAsFactor = F)
+names(d)
+```
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+## Factors
+
+**Working with factors:**
+
+- Import the data with `stringsAsFactor = FALSE`
+- Check the structure of the dataframe with the help of `str()`: Surprisingly, have variables been imported as strings (class `chr`)? If so, check the characteristics of these variables for incorrect values with `unique()` or `xtabs ()`.
+- Also check with `unique()` or `xtabs()` the characteristics of the variables that were planned to be read in as `chr`: Typing errors can easily lurk here as well.
+- Use `df$var <- as.factor(df$var)` to finally assign the `factor` class to variable `var`.
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+## `attach`, `subset` and `merge`
+
+Never say never but [**never use `attach()`**](https://www.r-bloggers.com/to-attach-or-not-attach-that-is-the-question/).
+
+... use a short name for the dataframe object (e.g. `df`) to keep the paperwork to a minimum!
+
+The function `merge(data_set1, data_set2, by, ...)` can be used to link two dataframes using a key variable:
+
+```{r}
+library("plyr")
+dd <- ddply(drought, c("species"), summarize,
+            mean_bair = mean(bair),
+            sd_bair = sd(bair),
+            mean_elev = mean(elev),
+            sd_elev = sd(elev))
+head(merge(drought, dd, by = c("species")))
+```
+
+`subset` can be used to split a dataframe according to the result of a logical comparison:
+
+```{r}
+(tmp <- range(drought$elev %/% 250))
+br <- seq(tmp[1] * 250, (tmp[2] + 1) * 250, by = 250)
+drought$elev_cut <- cut(drought$elev, breaks = br)
+sdf <- subset(drought, elev_cut == "(500,750]" & species == "Beech")
+sdf
+```
+
+<!--
+# Übungen.
+
+- Installiere und lade das Paket `lmfor`: <!-- durch (eine Internetverbidnung ist dafür notwendig):
+```{r, eval=F}
+install.packages("lmfor")
+library("lmfor")
+```
+
+- Mache dich mit *R* und *RStudio* vertraut indem du z.B. den Code aus dem Abschnitt ... <!-- Folie 4 in eine neue *R*-Codedatei kopierst, abspeicherst und laufen lässt (installieren des Pakets `plyr` kann dabei notwendig sein).
+- Versuche selbst Vektoren, Matrizen und Listen zu erstellen: Probiere (so viel wie möglich!) aus auf welche Arten und Weisen du Indexierung durchführen kannst!
+- Lade einen eigenen Datensatz nach *R*: überprüfe mit `summary`, `str` und `table` ob alle Variablen korrekt geladen wurden, keine falschen Werte enthalten und fehlende Werte korrekt als `NA` angezeigt werden.
+-->
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Descriptive analysis for univariate samples
+
+## Continuously scaled variable
+
+### Location
+
+- `mean`, `weighted.mean`
+- `median`, `quantile` (calculates percentiles `probs = seq(0, 1, by = .01)`, and quartiles for `probs = c(.25, .5, .75)`)
+- `summary` (returns: `min`, 1st quartile, `median`, `mean`, 3rd quartile, `max`)
+
+### Exercises
+
+```{r, results='hide'}
+## mean:
+mean(drought$bair)
+## weighted mean:
+tmp <- nrow(drought)/table(drought$species)
+tmp <- data.frame(species = factor(levels(drought$species), levels = levels(drought$species)), 
+                  w = as.numeric(tmp))
+tmp <- merge(drought[, c("species", "bair")], tmp, by = "species")
+tmp$w <- tmp$w/sum(tmp$w)
+aggregate(x = tmp[, c("w")], by = list(tmp$species), FUN = sum)
+weighted.mean(tmp$bair, w = tmp$w)
+rm(tmp)
+## median:
+median(drought$bair)
+## quartiles:
+quantile(drought$bair, probs = c(.25, .5, .75))
+## summary:
+summary(drought$bair)
+```
+
+**Mode:**
+A sample of a continuously scaled variable doesn't have a mode:
+
+```{r}
+plot(table(drought$bair), las = 2, bty = "n")
+```
+
+... but the density of such a variable might have a maximum. 
+So we cannot **calculate** a mode, but with using techniques such as kernel density estimation -- R function `density` -- the location of the maximum density can be **estimated**.
+
+```{r, eval = F}
+get_mode <- function(x, ...){
+  tmp <- density(x, ...)
+  index <- which.max(tmp$y)
+  return(tmp$x[index])
+}
+tmp <- density(drought$bair)
+plot(tmp, las = 1, bty = "n", xlab = "BAIR",
+     main = paste0("Kernel density estimation, gaussian kernel function, bandwidth: ", round(tmp$bw, 3)))
+rug(drought$bair)
+abline(v = print(get_mode(drought$bair)))
+```
+
+### Scale / variation
+
+Methods to describe the scale / variation:
+
+- `range` (calculates `min` and `max`)
+- `var` (variance)
+- `sd` (standard deviation)
+- `mad` ('median absolute deviation', function `mad(x)` is just a more general implementation of `median(abs(x - median(x)))`)
+- `IQR` (interquartile range)
+
+Argument `na.rm = TRUE` removes all missing values in advance!
+
+### Exercises
+
+```{r}
+x <- drought$bair
+mad
+c(mad(x, constant = 1),
+  median(abs(x - median(x))),
+  sd(x),
+  var(x),
+  IQR(x))
+```
+
+## Categorically scaled variables
+
+`table` as 'standard function' for absolute frequency distribution, `xtabs` as an alternative with formula syntax (and labeling with variable names if table is created from data set).
+
+*... while preparing, this section somehow got longer and longer. For a general introduction to R, at some point, when you feel like it, just move on to next section on bivariate sample.*
+
+### One dimensional:
+
+```{r}
+table(drought$species)
+xtabs(~ drought$species)
+xtabs(~ species, data = drought)
+```
+
+`addNA` and `useNA` show slightly different behavior:
+
+```{r}
+tmp <- as.factor(c(as.character(drought$species), NA))
+table(tmp)
+table(drought$species, useNA = "ifany")
+table(tmp, useNA = "ifany")
+table(drought$species, useNA = "always")
+table(tmp, useNA = "always")
+xtabs(~ drought$species, addNA = TRUE)
+xtabs(~ tmp, addNA = T)
+```
+
+Default `plot`:
+
+```{r}
+plot(table(drought$species))
+plot(xtabs(~ species, data = drought))
+```
+
+### Two dimensional 
+
+... this illustrational example shows *bad scientific practice* since we cut continuous variables into binary categories, and by this bin a lot of valuable information!
+
+```{r}
+tmp <- data.frame(species = drought$species)
+tmp$elevGreater1000 <- (drought$elev > 1000)
+tmp$bairGreater1 <- (drought$bair > 1)
+table(tmp$bairGreater1, tmp$elevGreater1000) ## We are lost!
+xtabs(~ bairGreater1 + elevGreater1000, data = tmp) ## Labels!
+```
+
+Default `plot`:
+
+```{r}
+par(mfrow = c(1, 2))
+table(tmp$bairGreater1, tmp$elevGreater1000) ## We are lost!
+xtabs(~ bairGreater1 + elevGreater1000, data = tmp) ## Labels!
+plot(table(tmp$bairGreater1, tmp$elevGreater1000), main = "table")
+plot(xtabs(~ bairGreater1 + elevGreater1000, data = tmp), main = "xtabs")
+```
+
+### `addmargins`, `margin.table`, and `prop.table`
+
+One dimensional:
+
+```{r, error = T}
+addmargins(table(tmp$bairGreater1))
+margin.table(table(tmp$bairGreater1))
+prop.table(table(tmp$bairGreater1))
+margin.table(prop.table(table(tmp$bairGreater1)))
+```
+
+Two dimensional:
+
+```{r}
+addmargins(table(tmp$elevGreater1000, tmp$bairGreater1))
+margin.table(table(tmp$elevGreater1000, tmp$bairGreater1))
+margin.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 1)
+margin.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 2)
+prop.table(table(tmp$elevGreater1000, tmp$bairGreater1))
+prop.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 1)
+prop.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 2)
+margin.table(prop.table(table(tmp$elevGreater1000, tmp$bairGreater1)))
+addmargins(prop.table(table(tmp$elevGreater1000, tmp$bairGreater1)))
+addmargins(prop.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 1))
+addmargins(prop.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 2))
+addmargins(prop.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 1), margin = 2)
+addmargins(prop.table(table(tmp$elevGreater1000, tmp$bairGreater1), margin = 2), margin = 1)
+```
+
+### Applied example
+
+```{r}
+## Session 03:
+overlap_seq <- function(x, delta) {
+  tmp <- x %/% delta
+  tmp2 <- x %% delta
+  if (tmp2[which.max(x)] == 0) {
+    result <- delta * (min(tmp, na.rm = T):max(tmp, na.rm = T))
+  } else {
+    result <- delta * (min(tmp, na.rm = T):(max(tmp, na.rm = T) + 1))
+  }
+  return(result)
+}
+tmp$elevCut <- cut(drought$elev, breaks = overlap_seq(x = drought$elev, delta = 250), dig.lab = 4)
+tmp$bairCut <- cut(drought$bair, breaks = overlap_seq(x = drought$bair, delta = .25))
+(xtab <- xtabs(~ elevCut + bairCut + species, data = tmp))
+round(100 * addmargins(prop.table(xtab, margin = c(1, 3))), 2)[, , "Beech"]
+round(100 * addmargins(prop.table(xtab, margin = c(1, 3))), 2)[, , "Spruce"]
+par(mfrow = c(1, 1), mar = c(0, 0, 0, 0) + .1)
+plot(xtabs(~ species + elevCut + bairCut, data = tmp), las = 2, off = 5, main = "", 
+     col = colorspace::divergingx_hcl(n = length(levels(tmp$bairCut)), rev = T))
+```
+
+### Mode
+
+```{r, eval=F}
+(xtab <- xtabs(~ species + elevCut + bairCut, data = tmp))
+sort(xtab, decreasing = TRUE)[1]
+which(xtab == max(xtab), arr.ind = TRUE)
+xtab[2, 2, 1]
+```
+
+# Bivariate samples
+
+**A bivariate sample is a set of observation units, for which each has two characteristics that have been measured.**
+
+```{r}
+A <- matrix(nrow = 5, ncol = 5, data = runif(25))
+A[, 1:2]
+pmax(A[, 1], A[, 2])
+```
+
+- `cor` for correlation coefficient,
+- `cov` for (variance) covariance (matrix).
+
+```{r}
+x <- drought$bair
+y <- drought$elev/1000
+cor(x, y, method = "pearson")
+cov(cbind(x, y))
+c(cov(x, y), var(x), var(y))
+```
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Probability distribution models
+
+## Definitions for continuous random variables:
+
+- Random variable $X\in\mathbf{R}$ follows distribution $F$ with density $f(x)\geq0\,\forall x\in\mathbf{R}$
+- Cumulative density function $F(x)=\int\limits_{-\infty}^{x}{f(z)}\text{d}z$, with $F(-\infty)=0$ and $F(\infty)=1$.
+- Quantile function $Q(x)=F^{-1}(x)$
+
+Implementation in R: `code` + distribution abbreviation
+
+Code  meaning
+----- --------
+`d`   density
+`p`   cdf (probability)
+`q`   quantile
+`r`   random number generation
+
+## Distribution models for continuous random variables:
+
+Distribution           Abbreviation  Parameter                             Wiki
+---------------------- ------------- ------------------------------------ ------
+Continuous uniform     `unif`        `min`, `max`                         [Link](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)
+Normal (aka. Gaussian) `norm`        `mean`, `sd`                         [Link](https://en.wikipedia.org/wiki/Normal_distribution)
+Lognormal              `lnorm`       `meanlog`, `sdlog`                   [Link](https://en.wikipedia.org/wiki/Log-normal_distribution)
+Exponential            `exp`         `rate`                               [Link](https://en.wikipedia.org/wiki/Exponential_distribution)
+Beta                   `beta`        `shape1`, `shape2`                   [Link](https://en.wikipedia.org/wiki/Beta_distribution)
+Chi-squared            `chisq`       `df`, `ncp`                          [Link](https://en.wikipedia.org/wiki/Chi-squared_distribution)
+F                      `f`           `df1`, `df2`, `ncp`                  [Link](https://en.wikipedia.org/wiki/F-distribution)
+Student-t              `t`           `df`, `ncp`                          [Link](https://en.wikipedia.org/wiki/Student%27s_t-distribution)
+Gamma                  `gamma`       `shape`, `rate`, `scale` = 1/`rate`  [Link](https://en.wikipedia.org/wiki/Gamma_distribution)
+Weibull                `weibull`     `shape`, `scale`                     [Link](https://en.wikipedia.org/wiki/Weibull_distribution)
+
+```{r}
+N <- 100
+set.seed(123)
+A <- cbind("U[0, 1]" = runif(n = N, min = 0, max = 1),
+           "Beta(1/3, 1/3)" = rbeta(n = N, shape1 = 1/3, shape2 = 1/3),
+           "N(0, 1)" = rnorm(n = N, mean = 0, sd = 1),
+           "t(3)" = rt(n = N, df = 3, ncp = 0),
+           "logN(0, 1)" = rlnorm(n = N, meanlog = 0, sdlog = 1),
+           "Exp(1)" = rexp(n = N, rate = 1),
+           "Chi2(3)" = rchisq(n = N, df = 3, ncp = 0),
+           "F(10, 10)" = rf(n = N, df1 = 10, df2 = 10, ncp = 0),
+           "Gamma(1, 2)" = rgamma(n = N, shape = 1, rate = 2),
+           "Weibull(1, 2)" = rweibull(n = N, shape = 1, scale = 2))
+par(mar = c(6, 4, 0, 0) + .1)
+boxplot(A, las = 2, frame = F, pch = NA, ylab = "Random sample")
+stripchart(as.data.frame(A), add = T, method = "jitter", vertical = T, pch = 16, 
+           col = colorspace::divergingx_hcl(n = ncol(A)))
+```
+
+## Distribution models for discrete random variables:
+
+Distribution      Abbreviation  Parameters            Wiki
+----------------- ------------- --------------------- --------------------------------------------------------------------
+Binomial          `binom`       `size`, `prob`        [Link](https://en.wikipedia.org/wiki/Binomial_distribution)
+Hypergeometric    `hyper`       `m`, `n`,` k`         [Link](https://en.wikipedia.org/wiki/Hypergeometric_distribution)
+Negative binomial `nbinom`      `size`, `prob`,` mu`  [Link](https://en.wikipedia.org/wiki/Negative_binomial_distribution)
+Poisson           `pois`        `lambda`              [Link](https://en.wikipedia.org/wiki/Poisson_binomial_distribution)
+Geometric         `geom`        `prob`                [Link](https://en.wikipedia.org/wiki/Geometric_distribution)
+Multinomial       `multinom`    `size`, `prob`        [Link](https://en.wikipedia.org/wiki/Multinomial_distribution)
+
+```{r}
+N <- 100
+set.seed(123)
+A <- cbind("Binomial(10, .5)" = rbinom(n = N, size = 10, prob = .5),
+           "Hyper(7, 3, 8)" = rhyper(nn = N, m = 7, n = 3, k = 8),
+           "NegBin(10, .5)" = rnbinom(n = N, size = 10, prob = .5),
+           "Poisson(3)" = rpois(n = N, lambda = 3),
+           "Geom(.5)" = rgeom(n = N, prob = .5))
+par(mar = c(6, 4, 0, 0) + .1)
+boxplot(A, las = 2, frame = F, pch = NA, ylab = "Random sample")
+stripchart(as.data.frame(A), add = T, method = "jitter", vertical = T, pch = 16, 
+           col = colorspace::divergingx_hcl(n = ncol(A)))
+```
+
+Multinomial:
+
+```{r}
+A <- rmultinom(n = N, size = 10, prob = c(.1, .1, .8))
+par(mar = c(6, 4, 0, 0) + .1)
+boxplot(t(A), las = 2, frame = F, pch = NA, ylab = "Random sample")
+stripchart(as.data.frame(t(A)), add = T, method = "jitter", vertical = T, pch = 16, 
+           col = colorspace::divergingx_hcl(n = ncol(t(A))))
+```
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Generating 'random' numbers
+
+<!--
+
+% - number of starting values is finite due to computational accuracy
+% - hence $x_n = x_{n+p} $ for large $n$
+% 
+% - large period $p$ needed
+% - uniform distribution within period needed
+% - independent subsequent numbers needed
+% 
+% - define starting values $ x_1, \dots x_n$
+% - generate random number $ x_{n+1} = a x_n \mod m$
+% - with
+% 
+% - $x_n,a \in \{0,\dots,2^{31}-1\} $
+% - prime $ m = 2^{31}-1$
+% - greatest common divisor $gcd(a,m) = 1$, $gcd(x_0,m) = 1$
+% - $\tilde{x}_n = \frac{x_n}{m} \in [0,1] $
+-->
+
+- Random numbers are generated in R by an algorithm, they are not real random -- whatever this is ...
+- Before a new random number is generated, this algorithm is in a certain state. 
+- The (next) random number depends on this state, drawing this new number alters the state. 
+- `RNGkind()` lists three character strings for three tasks:
+  - `kind` is for draws from the continuous uniform distribution.
+  - `normal.kind` is for draws from the normal distribution (I don't know why there's this specific kind for the normal, I suppose as the normal distribution is historically so important, there have been algorithms specifically designed for drawing from this distribution ...).
+  - `sample.kind` for drawing from the diccrete uniform distribution.
+- Why we won't have a look on the other algorithms, seeing the idea behind `Inversion` sampling is really helpful in order to see why being able to generate draws from continuous uniform distribution is already sufficient in order to sample from any other distribution. 
+- Reproducibility is often an important property!
+  - The state of the random number generating algorithm is initialized by a seed.
+  - Seeds are generated by system time and session ID (`?RNG`)
+```{r}
+Sys.getpid()
+(t1 <- Sys.time())
+(t2 <- Sys.time())
+t2 - t1
+```
+  - We can overwrite thus seed generating by using `set.seed()`:
+```{r}
+runif(5)
+set.seed(123)
+runif(5)
+runif(5)
+set.seed(123)
+runif(5)
+```
+- Generate random numbers using `r` + distribution abbreviation (uses inversion - sampling)
+- Random numbers from sets with `sample (c (), size, replace = TRUE)`.
+```{r}
+RNGkind()
+set.seed(1604)
+rbinom(5,1,0.5)
+rbinom(5,1,0.5)
+set.seed(1604)
+rbinom(5,1,0.5)
+sample(1:10, 5)
+sample(1:10, 5, replace = TRUE)
+```
+
+## Inversion-sampling
+
+**Inversion sampling is a rather simple application of a mathemcatical thing -- the inverse of the cumulative distribution function -- that one easily brands as 'interesting only in mathematical theory', but which has an incredibly applied value!**
+ 
+Let random variable $X$ have cumulative distribution function $F$.
+
+Let's assume for the moment we can draw random numbers from this distribution, eg. from the standard normal: 
+
+```{r}
+x <- rnorm(1000)
+```
+
+If we plug these into the cumulative distribution function
+
+```{r}
+u <- pnorm(x)
+hist(u)
+```
+
+we obviously get random draws from the continuous uniform distribution $U[0,1]$, ie. $F(X)\sim\text{U}(0,1)$.
+
+Now all we need to do is to solve this equation:
+
+\[
+F(X)=Z, Z\sim U[0,1]
+\]
+with respect to $X$:
+\[
+X=F^{-1}(Z), Z\sim U[0,1]
+\]
+
+For application this means that as long as we can draw from a continuous uniform distribution, and as long as we can write down $F^{-1}$, we can generate random draws for $X$.
+
+Inversion sampling:
+ 
+- generate numbers $u_1,\dots,u_n$ from the continuous uniform distribution $U[0,1]$
+- transform $x_k=F^{-1}(u_k)$
+
+In R, $F^{-1}(u_k)$ is given as `q...`.
+
+```{r}
+u <- runif(5)
+qnorm(p = u)
+qweibull(p = u, shape = 1, scale = 1)
+qbinom(p = u, size = 10, prob = .5)
+```
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+# Case study
+
+## Let's invent a data generating machanism
+
+Because of a drought in one year, trees grow less in this year in comparison to the preceding year. 
+However, by differences in the availability to growth-ressources by different elevations at the same mountain range, this reduction is reversed above a certain elevation threshold. 
+
+```{r}
+(elev <- seq(400, 1800, by = 50) / 1000)
+```
+
+For species A and B:
+
+```{r}
+muA <- .7 + .25 * elev
+muB <- .8 + .15 * elev
+paint <- colorspace::qualitative_hcl(n = 2)
+plot(elev, muA, type = "o", pch = "A", col = paint[1])
+lines(elev, muB, type = "o", pch = "B", col = paint[2])
+```
+
+Random variation in site-specific availability to growth-ressources:
+
+```{r}
+set.seed(123)
+epsA <- rnorm(length(muA), sd = .05)
+epsB <- rnorm(length(muB), sd = .05)
+plot(elev, muA + epsA, pch = "A", col = paint[1])
+points(elev, muB + epsB, pch = "B", col = paint[2])
+```
+
+Compose outcome measurements `y`:
+
+```{r}
+yA <- muA + epsA
+yB <- muB + epsB
+```
+
+## Introducing `formula`
+
+`formula` notation for the data generating mechanism:
+
+```{r}
+frmlaA <- as.formula(yA ~ elev)
+str(frmlaA)
+summary(frmlaA)
+frmlaA[1]
+frmlaA[2]
+frmlaA[3]
+```
+
+- `yA` and `yB` are measured outcomes, written on the left hand side of the formula
+- The left hand side is separated from the right hand side by `~`
+- The right hand side expresses the explanatory variables that are either experimentally controlled, or -- similar to the outcome -- observed / measured. In our formula examples, `elev` is the only explanatory variable. 
+- The parameters used for generating the outcome, `.7`, `.25` and `.05` for A, and `.8`, `.15` and `.05` for B, are not stated in the formula. Why? ... because in real world applications, we don't artificially invent, but rather want to estimate their plausible values based on our data. 
+- Let's assume it comes to our mind that a normal distribution is a statistical model that is quite useful to express the effects of variation in site-specific availability to growth-ressources on the outcome. Then:
+
+We can use a formula directly for `plot`:
+
+```{r}
+frmlaB <- as.formula(yB ~ elev)
+plot(frmlaA, pch = "A", col = paint[1])
+points(frmlaB, pch = "B", col = paint[2])
+```
+
+### Using `formula` inside `lm`
+
+```{r}
+mA <- lm(frmlaA)
+mB <- lm(frmlaB)
+par(mfrow = c(1, 2))
+plot(frmlaA, pch = "A", col = paint[1])
+abline(mA, col = paint[1])
+points(frmlaB, pch = "B", col = paint[2])
+abline(mB, col = paint[2])
+```
+
+The data-generating mechanisms varied for varying species A, and B. 
+Can we unify this into one description of a data-generating mechanism?
+
+\[
+yA=0.7+0.25\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
+yB=0.8+0.15\cdot\text{elev}+\texttt{rnorm(n=1, mu = 0, sd = .05)}\\
+\rightarrow y= 0.7+0.25\cdot\text{elev}+\texttt{(species == B)}\cdot(0.1-0.1\cdot\text{elev})+\texttt{rnorm(n=1, mu = 0, sd = .05)}
+\]
+
+```{r}
+dfsim <- data.frame(y = c(yA, yB),
+                    elev = c(elev, elev),
+                    species = rep(LETTERS[1:2], each = length(elev)))
+dfsim$x <- dfsim$elev
+## See: ?formula
+frmla <- as.formula(y ~ x * species)
+summary(frmla)
+head(model.matrix(object = frmla, data = subset(dfsim, species == "A")))
+head(model.matrix(object = frmla, data = subset(dfsim, species == "B")))
+m <- lm(frmla, data = dfsim)
+coef(m)
+```
+
+## Inspection of estimated parameters
+
+```{r}
+library("arm")
+tmp <- sim(m)
+B <- cbind(tmp@coef, tmp@sigma)
+colnames(B)[ncol(B)] <- "sigma"
+boxplot(B, frame = F, las = 2)
+B[1, ]
+```
+
+## Predictive check
+
+For only one data-point:
+
+```{r}
+elev <- 1300 / 1000
+species <- factor(c("A"), levels = levels(dfsim$species))
+X <- model.matrix(frmla[-2], data = data.frame(x = elev, species = species))
+X %*% B[1, -ncol(B)]
+rnorm(n = 100, mean = X %*% B[1, -ncol(B)], sd = B[1, ncol(B)])
+```
+
+For the full data-frame:
+
+```{r}
+X <- model.matrix(frmla[-2], data = dfsim)
+head(X %*% B[1, -ncol(B)])
+dim(X %*% B[1, -ncol(B)])
+Ytilde <- matrix(nrow = nrow(B), ncol = nrow(dfsim), NA)
+for (s in 1:nrow(B)) {
+  tmp <- X %*% B[s, -ncol(B)]
+  for (i in 1:nrow(dfsim)) {
+    Ytilde[s, i] <- rnorm(n = 1, mean = tmp[i, 1], sd = B[s, ncol(B)])
+  }
+}
+tmp <- apply(Ytilde, MAR = 1, FUN = density)
+plot(0, 0, ylim = c(0, max(sapply(tmp, FUN = function(x){return(max(x$y))}))), 
+     xlim = c(min(sapply(tmp, FUN = function(x){return(min(x$x))})), 
+              max(sapply(tmp, FUN = function(x){return(max(x$x))}))), 
+     type = "n", bty = "n", las = 1, xlab = "y", ylab = "(Predictive) Density")
+invisible(sapply(tmp, FUN = lines, col = colorspace::sequential_hcl(n = 1, alpha = .1)))
+lines(density(dfsim$y), lwd = 4)
+```
+
+## Model component `mu`
+
+```{r}
+elev <- rep(c(400, 1800), 2) / 1000
+species <- factor(rep(LETTERS[1:2], each = 2), levels = levels(dfsim$species))
+(X <- model.matrix(frmla[-2], data = data.frame(x = elev, species = species)))
+Mu <- matrix(nrow = nrow(B), ncol = nrow(X), NA)
+for (s in 1:nrow(B)) {
+  Mu[s, ] <- X %*% B[s, -ncol(B)]
+}
+paint <- colorspace::qualitative_hcl(n = 2, alpha = .1)
+plot(range(elev), range(Mu), type = "n", las = 1, xlab = "Elev [m/1000]", 
+     ylab = "Model component 'mu'", bty = "n")
+for (s in 1:nrow(Mu)) {
+  lines(range(elev), Mu[s, 1:2], col = paint[1])
+  lines(range(elev), Mu[s, 3:4], col = paint[2])
+}
+lines(range(elev), .7 + .25 * range(elev), col = colorspace::qualitative_hcl(n = 2)[1], lwd = 4)
+lines(range(elev), .8 + .15 * range(elev), col = colorspace::qualitative_hcl(n = 2)[2], lwd = 4)
+lines(range(elev), coef(m)[1] + coef(m)[2] * range(elev), col = colorspace::qualitative_hcl(n = 2)[1], lwd = 4, lty = 2)
+lines(range(elev), coef(m)[1] + coef(m)[3] + (coef(m)[2] + coef(m)[4]) * range(elev), 
+      col = colorspace::qualitative_hcl(n = 2)[2], lwd = 4, lty = 2)
+```
+
+## Real data
+
+```{r}
+drought$x <- drought$elev / 1000
+drought$y <- drought$bair
+m <- lm(frmla, data = drought)
+tmp <- sim(m)
+B <- cbind(tmp@coef, tmp@sigma)
+```
+
+### Predictive check
+
+```{r}
+X <- model.matrix(frmla[-2], data = drought)
+head(X %*% B[1, -ncol(B)])
+dim(X %*% B[1, -ncol(B)])
+Ytilde <- matrix(nrow = nrow(B), ncol = nrow(drought), NA)
+for (s in 1:nrow(B)) {
+  tmp <- X %*% B[s, -ncol(B)]
+  for (i in 1:nrow(drought)) {
+    Ytilde[s, i] <- rnorm(n = 1, mean = tmp[i, 1], sd = B[s, ncol(B)])
+  }
+}
+tmp <- apply(Ytilde, MAR = 1, FUN = density)
+plot(0, 0, ylim = c(0, max(sapply(tmp, FUN = function(x){return(max(x$y))}))), 
+     xlim = c(min(sapply(tmp, FUN = function(x){return(min(x$x))})), 
+              max(sapply(tmp, FUN = function(x){return(max(x$x))}))), 
+     type = "n", bty = "n", las = 1, xlab = "y", ylab = "(Predictive) Density")
+invisible(sapply(tmp, FUN = lines, col = colorspace::sequential_hcl(n = 1, alpha = .1)))
+lines(density(drought$y), lwd = 4)
+```
+
+### Model component `mu`
+
+```{r}
+elev <- rep(c(400, 1800), 2) / 1000
+species <- factor(rep(levels(drought$species), each = 2), levels = levels(drought$species))
+(X <- model.matrix(frmla[-2], data = data.frame(x = elev, species = species)))
+Mu <- matrix(nrow = nrow(B), ncol = nrow(X), NA)
+for (s in 1:nrow(B)) {
+  Mu[s, ] <- X %*% B[s, -ncol(B)]
+}
+paint <- colorspace::qualitative_hcl(n = 2, alpha = .1)
+plot(range(elev), range(Mu), type = "n", las = 1, xlab = "Elevation [m/1000]", 
+     ylab = "Model component 'mu'", bty = "n")
+for (s in 1:nrow(Mu)) {
+  lines(range(elev), Mu[s, 1:2], col = paint[1])
+  lines(range(elev), Mu[s, 3:4], col = paint[2])
+}
+lines(range(elev), coef(m)[1] + coef(m)[2] * range(elev), col = colorspace::qualitative_hcl(n = 2)[1], lwd = 4, lty = 2)
+lines(range(elev), coef(m)[1] + coef(m)[3] + (coef(m)[2] + coef(m)[4]) * range(elev), 
+      col = colorspace::qualitative_hcl(n = 2)[2], lwd = 4, lty = 2)
+```
+
+`r if (knitr::is_latex_output()) '\\clearpage'`
+
+`r if (knitr::is_html_output()) '# References {-}'`
