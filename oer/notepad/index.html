@@ -59,12 +59,18 @@ This is a list:
 <li> <a href="http://www.stat.columbia.edu/~gelman/book/"><h4>BDA 3</h4></a> </li>
 </ul>
 <br>
-How can I provide math?
+The arithmetic mean is calculated on empirical data, $y_i$, $i=1,\ldots,n$ by:
   <p><span class="math display">\[
-\sum\limits_{i=1}^{n}
+\sum\limits_{i=1}^{n}y_i
 \]</span></p>
 <br>
 How can I provide code?
+<xmp>
+m <- brm(y ~ x1 + x2 + (1 | ID), 
+         prior = pr,
+         family = "Gamma",
+         data = df)
+</xmp>
 
 <footer class="site-footer">
   <a href="https://uncertaintree.github.io/">&larr; (back to home)</a>
