@@ -4,6 +4,7 @@
 <style>
 a:link, a:visited, a:hover{
   color: MediumSeaGreen;
+  text-decoration: none;
 }
 </style> 
 <script type="text/javascript" async
@@ -13,21 +14,30 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-
 <body>
 This notepad provides space for notes.
 <br>
-<strong>Some idea:</strong> This is a nice website with a telling name: <a href="https://www.bayesrulesbook.com/">Bayes rules!</a>. 
-<br>
-This is a list:
+<strong>Books:</strong>
 <ul>
-<li> <a href="http://www.stat.columbia.edu/~gelman/book/">BDA 3</a> </li>
+  <li> <a href="https://www.bayesrulesbook.com/">Bayes rules!</a>
+  <li> <a href="http://www.stat.columbia.edu/~gelman/book/">BDA 3</a> </li>
 </ul>
-The arithmetic mean is calculated on empirical data, \(y_i\), \(i=1,\ldots,n\), by:
+<strong>The simple linear regression model:</strong>
+<br>
+The observation unit is denoted using index \(i=1,\ldots,n\).
+<br>
+For response variable \(Y_i\) - a random variable, and input variable \(x_i\), 
+<br>
+the simple linear regression model is given as:
 \[
-\sum\limits_{i=1}^{n}y_i
+Y_i=\beta_0\+\beta_1\cdot x_i + \epsilon_i, \quad\epsilon_i\sim\text{Normal}\left(0,\sigma_{\epsilon}^2\right)
 \]
-This is a call to brms::brm:
+For estimation of regression parameters \(\left(\beta_0,\beta_1,\sigma_{\epsilon}\right)^\top\) 
+<br>
+we need response observations \(y_i\).
+<br>
+This is a call to brms::brm in order to estimate this model:
 <xmp>
-m <- brm(y ~ x1 + x2 + (1 | ID), 
+m <- brm(y ~ x, 
          prior = pr,
-         family = "Gamma",
+         family = "Gaussian",
          data = df)
 </xmp>
 </body>
