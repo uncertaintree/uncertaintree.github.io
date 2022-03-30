@@ -3,8 +3,6 @@
   <head>
   <style>
   ul {
-    margin: 0 0;
-    padding: 0 0;
     list-style: disc;
 }
 </style>
@@ -43,11 +41,15 @@ This is a list:
 <br>
 The arithmetic mean is calculated on empirical data, 
 <span class="math display">\(y_i\)</span>, 
-<p><span class="math display">\(i=1,\ldots,n\)</span></p> by:
+<span class="math display">\(i=1,\ldots,n\)</span> 
+by:
 <p><span class="math display">\[
 \sum\limits_{i=1}^{n}y_i
 \]</span></p>
 <br>
+\[
+\sum\limits_{i=1}^{n}y_i
+\]
 This is a call to brms::brm:
 <xmp>
 m <- brm(y ~ x1 + x2 + (1 | ID), 
