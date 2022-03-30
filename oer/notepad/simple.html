@@ -34,11 +34,13 @@ For estimation of regression parameters \(\left(\beta_0,\beta_1,\sigma_{\epsilon
 we need response observations \(y_i\).
 <br>
 This is a call to brms::brm in order to estimate this model:
+<pre>
 <code>
 m <- brm(y ~ x, 
          prior =  c(prior(student_t(3,0,2), class = b)),
          family = "gaussian",
          data = df)
 </code>
+</pre>
 </body>
 </html>
