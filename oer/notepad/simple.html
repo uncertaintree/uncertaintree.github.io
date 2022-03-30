@@ -36,8 +36,8 @@ we need response observations \(y_i\).
 This is a call to brms::brm in order to estimate this model:
 <code>
 m <- brm(y ~ x, 
-         prior = pr,
-         family = "Gaussian",
+         prior =  c(prior(student_t(3,0,2), class = b)),
+         family = "gaussian",
          data = df)
 </code>
 </body>
