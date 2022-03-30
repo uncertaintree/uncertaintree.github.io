@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+This notepad provides space for notes.
+<br>
+<strong>Some idea:</strong> This is a nice website with a telling name: <a href="https://www.bayesrulesbook.com/">Bayes rules!</a>. 
+<br>
+This is a list:
+<ul>
+<li> <a href="http://www.stat.columbia.edu/~gelman/book/">BDA 3</a> </li>
+</ul>
+<br>
+The arithmetic mean is calculated on empirical data, \(y_i\), \(i=1,\ldots,n\), by:
+\[
+\sum\limits_{i=1}^{n}y_i
+\]
+This is a call to brms::brm:
+<xmp>
+m <- brm(y ~ x1 + x2 + (1 | ID), 
+         prior = pr,
+         family = "Gamma",
+         data = df)
+</xmp>
+</body>
+</html>
