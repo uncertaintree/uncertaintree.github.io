@@ -20,16 +20,22 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-
 </head>
 <body>
 <strong>Partial effects plot</strong>
+<br>
 A partial effects plot is a visualization of the influence of a covariate if all other covariates remain unchanged.
-In linear regression:
+<br>
+For example, in linear regression model:
 \[
 y_i=\beta_0+\beta_{1}x_{1,i}+\beta_{2}x_{2,i}+\epsilon_i
 \]
-such a partial effects plot is e.g. a representation of \(\beta_1\), i.e. the partial effect of input \(x_1\), with having the visual form of a straight line.
+such a partial effects plot is a representation of e.g. \(\beta_1\), i.e. the partial effect of input \(x_1\), with having the visual form of a straight line.
+<br>
+In this model we use the identity link which makes the partial effects plot representing not only the change of the linear predictor, but directly also of the conditional expectation \(E\left(Y_i\mid x_{1,i},x_{2,i}\right)\) of the response variable \(Y_i\). 
+<br>  
+As we will see later in the second additional point, this does not hold for non-linear link functions as used for almost any non-gaussian response model.   
 <br>  
 Taking this example further, if \(x_1\) now takes values between \(-1\) and \(1\), and an estimate for \(\beta_1\) is e.g. \(\hat{\beta}_1=0.5\), then the partial effects plot would look like a straight line from \((-1,-1 \cdot 0.5) \) to \((1,1 \cdot 0.5)\). 
 <br>
-Reversely, if we have a specific figure where the partial effects plot looks like a straight line from \((-0.08, -0.19)\) to \((0.14, 0.32)\), then the partial effect here is as that of a regression parameter \(\beta\) with value \(\frac{ 0.51}{0.22}\approx 2.3\).
+Reversely, if we have a specific figure where the partial effects plot looks like a straight line from \((-0.08, -0.19)\) to \((0.14, 0.32)\), then the partial effect here is as that of a regression parameter \(\beta\) with value \(\frac{0.51}{0.22}\approx 2.3\).
 <br>
 <strong>Addition 1.</strong> 
 Because we can, for example, also estimate non-linear, partial effects using a (spline) basis function approach, the 'partial effects plot' for a covariable can then also deviate from a straight line. 
