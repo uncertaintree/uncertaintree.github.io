@@ -110,16 +110,17 @@ code span.wa { font-style: italic; } /* Warning */
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path=""><a href="#long-story-short"><i class="fa fa-check"></i><b>1</b> Long story short …</a></li>
-<li class="chapter" data-level="2" data-path=""><a href="#organize-r-session"><i class="fa fa-check"></i><b>2</b> Organize R session</a></li>
-<li class="chapter" data-level="3" data-path=""><a href="#data"><i class="fa fa-check"></i><b>3</b> Data</a><ul>
-<li class="chapter" data-level="3.1" data-path=""><a href="#definition-of-frost-potential"><i class="fa fa-check"></i><b>3.1</b> Definition of frost potential</a></li>
-<li class="chapter" data-level="3.2" data-path=""><a href="#definition-of-bud-burst-timing"><i class="fa fa-check"></i><b>3.2</b> Definition of bud burst timing</a></li>
+<li class="chapter" data-level="1" data-path=""><a href="#use-for-statistical-teaching"><i class="fa fa-check"></i><b>1</b> Use for statistical teaching</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#long-story-short"><i class="fa fa-check"></i><b>2</b> Long story short …</a></li>
+<li class="chapter" data-level="3" data-path=""><a href="#organize-r-session"><i class="fa fa-check"></i><b>3</b> Organize R session</a></li>
+<li class="chapter" data-level="4" data-path=""><a href="#data"><i class="fa fa-check"></i><b>4</b> Data</a><ul>
+<li class="chapter" data-level="4.1" data-path=""><a href="#definition-of-frost-potential"><i class="fa fa-check"></i><b>4.1</b> Definition of frost potential</a></li>
+<li class="chapter" data-level="4.2" data-path=""><a href="#definition-of-bud-burst-timing"><i class="fa fa-check"></i><b>4.2</b> Definition of bud burst timing</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path=""><a href="#some-descriptive-graphics"><i class="fa fa-check"></i><b>4</b> Some descriptive graphics</a></li>
-<li class="chapter" data-level="5" data-path=""><a href="#another-important-data-management-step-towards-the-final-data-frame"><i class="fa fa-check"></i><b>5</b> Another important data-management step towards the final data-frame</a></li>
-<li class="chapter" data-level="6" data-path=""><a href="#some-more-descriptive-graphics"><i class="fa fa-check"></i><b>6</b> Some more descriptive graphics</a></li>
-<li class="chapter" data-level="7" data-path=""><a href="#final-data-frame-frost"><i class="fa fa-check"></i><b>7</b> Final data-frame ‘frost’</a></li>
+<li class="chapter" data-level="5" data-path=""><a href="#some-descriptive-graphics"><i class="fa fa-check"></i><b>5</b> Some descriptive graphics</a></li>
+<li class="chapter" data-level="6" data-path=""><a href="#another-important-data-management-step-towards-the-final-data-frame"><i class="fa fa-check"></i><b>6</b> Another important data-management step towards the final data-frame</a></li>
+<li class="chapter" data-level="7" data-path=""><a href="#some-more-descriptive-graphics"><i class="fa fa-check"></i><b>7</b> Some more descriptive graphics</a></li>
+<li class="chapter" data-level="8" data-path=""><a href="#final-data-frame-frost"><i class="fa fa-check"></i><b>8</b> Final data-frame ‘frost’</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -141,11 +142,15 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Uncertaintree: Frost data</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>March 4, 2022 (Version 0.1)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>April 26, 2022 (Version 0.2)</em></p>
 </div>
 <p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="use-for-statistical-teaching" class="section level1">
+<h1><span class="header-section-number">1</span> Use for statistical teaching</h1>
+<p>Among others, this data can be used for basic plotting in an R course, but also to think about some of the fundamentals of empirical research (‘What is my study population?’, …), or as a simple applied example for time-series structure, binomial regression, … .</p>
+</div>
 <div id="long-story-short" class="section level1">
-<h1><span class="header-section-number">1</span> Long story short …</h1>
+<h1><span class="header-section-number">2</span> Long story short …</h1>
 <p>Copy-paste-use:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">frost &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1947</span><span class="op">:</span><span class="dv">2021</span>, </a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">                    <span class="dt">frost =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </a>
@@ -155,7 +160,7 @@ code span.wa { font-style: italic; } /* Warning */
 <a class="sourceLine" id="cb1-6" data-line-number="6">                              <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
 </div>
 <div id="organize-r-session" class="section level1">
-<h1><span class="header-section-number">2</span> Organize R session</h1>
+<h1><span class="header-section-number">3</span> Organize R session</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">## Let&#39;s clean the current session:</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">## The packages we&#39;ll need:</span></a>
@@ -166,7 +171,7 @@ code span.wa { font-style: italic; } /* Warning */
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">install.packages</span>(<span class="st">&quot;rdwd&quot;</span>)</a></code></pre></div>
 </div>
 <div id="data" class="section level1">
-<h1><span class="header-section-number">3</span> Data</h1>
+<h1><span class="header-section-number">4</span> Data</h1>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">## For all the functions implemented in `rdwd`, the package web-site is worth </span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">## a visit: </span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">## https://bookdown.org/brry/rdwd/</span></a>
@@ -288,7 +293,7 @@ Since we are only interested in quantification of the frost potential, it seems 
 <p>Auxiliary variable <code>lines</code>:</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">df<span class="op">$</span>line &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df)</a></code></pre></div>
 <div id="definition-of-frost-potential" class="section level2">
-<h2><span class="header-section-number">3.1</span> Definition of frost potential</h2>
+<h2><span class="header-section-number">4.1</span> Definition of frost potential</h2>
 <p>A first note:
 It is generally not recommended–or even more some form of bad scientific practice–to ‘cut’ continuosly scaled variables.
 But here in this <strong>frost</strong> scenario, it seems justified to think of roles of water in plant cells differently for below or above the <span class="math inline">\(0\)</span> degree celsius <em>threshold</em> <span class="citation">(Sakai and Larcher <a href="#ref-Sakai:1987">1987</a>)</span>.</p>
@@ -339,7 +344,7 @@ abline(v = 2020)
 -->
 </div>
 <div id="definition-of-bud-burst-timing" class="section level2">
-<h2><span class="header-section-number">3.2</span> Definition of bud burst timing</h2>
+<h2><span class="header-section-number">4.2</span> Definition of bud burst timing</h2>
 <p>‘One of the most common problems seen in plantations of Douglas fir seedlings is damage caused by late spring frost,
 known to be highly correlated with the timing of bud burst.’ <span class="citation">(Malmqvist et al. <a href="#ref-Malmqvist:EtAl:2017">2017</a>)</span></p>
 <p>‘When the number of accumulated degree days (daily mean temperature[5 °C) reaches a certain threshold, specific for different species of conifers, buds start growing (Grossnickle 2000).’ <span class="citation">(Malmqvist et al. <a href="#ref-Malmqvist:EtAl:2017">2017</a>)</span></p>
@@ -389,7 +394,7 @@ Based on <code>TMK</code>, we can calculate monthly averages for period between 
 </div>
 </div>
 <div id="some-descriptive-graphics" class="section level1">
-<h1><span class="header-section-number">4</span> Some descriptive graphics</h1>
+<h1><span class="header-section-number">5</span> Some descriptive graphics</h1>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="kw">sort</span>(<span class="kw">unique</span>(df<span class="op">$</span>year)), </a>
 <a class="sourceLine" id="cb46-2" data-line-number="2">                  <span class="dt">n_days_year =</span> <span class="ot">NA</span>,</a>
 <a class="sourceLine" id="cb46-3" data-line-number="3">                  <span class="dt">n_days_frost =</span> <span class="ot">NA</span>,</a>
@@ -455,7 +460,7 @@ Based on <code>TMK</code>, we can calculate monthly averages for period between 
 <p><img src="Frost_data_files/figure-html/fig07-1.png" width="672" /></p>
 </div>
 <div id="another-important-data-management-step-towards-the-final-data-frame" class="section level1">
-<h1><span class="header-section-number">5</span> Another important data-management step towards the final data-frame</h1>
+<h1><span class="header-section-number">6</span> Another important data-management step towards the final data-frame</h1>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">sdf &lt;-<span class="st"> </span><span class="kw">subset</span>(df, z <span class="op">&gt;=</span><span class="st"> </span><span class="dv">220</span>)</a>
 <a class="sourceLine" id="cb49-2" data-line-number="2">sdf &lt;-<span class="st"> </span><span class="kw">subset</span>(sdf, z <span class="op">&lt;=</span><span class="st"> </span><span class="dv">320</span>)</a>
 <a class="sourceLine" id="cb49-3" data-line-number="3">dd &lt;-<span class="st"> </span><span class="kw">ddply</span>(sdf, <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>), summarise,</a>
@@ -483,7 +488,7 @@ Based on <code>TMK</code>, we can calculate monthly averages for period between 
 ##  Max.   :2021-05-01   Max.   :23.00   Max.   :36.00</code></pre>
 </div>
 <div id="some-more-descriptive-graphics" class="section level1">
-<h1><span class="header-section-number">6</span> Some more descriptive graphics</h1>
+<h1><span class="header-section-number">7</span> Some more descriptive graphics</h1>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">plot</span>(dd<span class="op">$</span>y, dd<span class="op">$</span>n_frost, <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;No. days with frost in 1st dev. stage&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="Frost_data_files/figure-html/fig08-1.png" width="672" /></p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">table</span>(dd<span class="op">$</span>n_frost <span class="op">&gt;</span><span class="st"> </span><span class="fl">.5</span>)</a></code></pre></div>
@@ -504,7 +509,7 @@ Based on <code>TMK</code>, we can calculate monthly averages for period between 
 <p><img src="Frost_data_files/figure-html/fig10-1.png" width="672" /></p>
 </div>
 <div id="final-data-frame-frost" class="section level1">
-<h1><span class="header-section-number">7</span> Final data-frame ‘frost’</h1>
+<h1><span class="header-section-number">8</span> Final data-frame ‘frost’</h1>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">frost &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> dd<span class="op">$</span>year, </a>
 <a class="sourceLine" id="cb56-2" data-line-number="2">                    <span class="dt">frost =</span> <span class="kw">as.numeric</span>(dd<span class="op">$</span>n_frost <span class="op">&gt;</span><span class="st"> </span><span class="fl">.5</span>))</a>
 <a class="sourceLine" id="cb56-3" data-line-number="3"><span class="kw">summary</span>(frost)</a></code></pre></div>
@@ -515,110 +520,6 @@ Based on <code>TMK</code>, we can calculate monthly averages for period between 
 ##  Mean   :1984   Mean   :0.16  
 ##  3rd Qu.:2002   3rd Qu.:0.00  
 ##  Max.   :2021   Max.   :1.00</code></pre>
-<!-- # Data availability -->
-<!-- ## Data on growth and survival -->
-<!-- The repository ([Link](https://erda.ku.dk/archives/845762612be1bf53dd482052126ce220/published-archive.html)) that provides the download link to the data doesn't give any statement on the terms of usage.  -->
-<!-- Further, the ["Data availability" section](https://link.springer.com/article/10.1007%2Fs13595-021-01098-5#data-availability) on the Article's website states "Data is publicly available through the University of Copenhagen - Electronic Research Data Archive (ERDA).".  -->
-<!-- There is no further information given.  -->
-<!-- So it should be okay to use the data for educational purpose, and moreover, the following argumentation for data from Table 1 also applies here. -->
-<!-- ## Data fom the article's Table 1 -->
-<!-- It is okay to re-use data represented in Table 1 (it should be even more for this solely educational purpose), since recording data is no original work of authorship (following block-quote is from the article ['copyrightability_of_tables_charts_and_graphs.pdf' (University of Michigan)](https://deepblue.lib.umich.edu/bitstream/handle/2027.42/83329/copyrightability_of_tables_charts_and_graphs.pdf), which I found as it was linked to [here](https://copyright.universityofcalifornia.edu/faqs/#d).): -->
-<!-- > "Charts, graphs, and tables are not subject to copyright protection because they do not meet the first requirement for copyright protection, that is, they are not “original works of authorship,” under the definitions in the Act (17 U.S.C. § 102(a).). At first glance, this probably doesn't make much sense; if a researcher runs a -->
-<!-- series of experiments and collects a data set, isn't that original, and aren't they the author of it? In a -->
-<!-- sense, yes, but in the sense that's important for copyright, no. Facts and data aren't considered original -->
-<!-- works of authorship because they are not “created” so much as they are “discovered.” For example, if -->
-<!-- a scientist takes temperature readings at various locations over a period of years, she isn't “creating” the -->
-<!-- data, she's recording the data. If she keeps a log describing how she feels every day, and how the -->
-<!-- sunrise looks at the testing station, that's original, creative, authorship. Recording natural phenomena -->
-<!-- is not."\ -->
-<!-- $\vphantom{.}$  [Unknown author(s), University of Michigan.]{style="float:right"} -->
-<!-- # On the form of scaling used here -->
-<!-- We center scale and covariates similar to @Dias:Et:Al:2021: -->
-<!-- > "In regression modeling it is common practice to empirically  -->
-<!--   standardize the covariates by subtracting the empirical mean  -->
-<!--   of the observed covariate values and diving the result by  -->
-<!--   the empirical standard deviation.  -->
-<!--   Here we standardize the covariates based on the available  -->
-<!--   domain expertise which improves interpretability and  -->
-<!--   generalizability of the resulting inferences as we now show." -->
-<!-- @Greenland:Mansournia:2015 write similarly: "..., we strongly advise that quantitative covariates be scaled in units that are contextually meaningful, important, and generalizable (recognizable and transportable)". -->
-<!-- # R Code -->
-<!-- ```{r, message=FALSE, results='hide', echo=TRUE} -->
-<!-- library("plyr") -->
-<!-- ## data from article's table 1: -->
-<!-- tab_1 <- data.frame(Provenance = c("Diamenar", "Djigueri", "Karofane",  -->
-<!--                                    "Sudan", "Kirane", "Kankoussa",  -->
-<!--                                    "Chad", "Daiba", "Aite", "Di",  -->
-<!--                                    "Bissiga", "Kidira", "Somo",  -->
-<!--                                    "Ngane", "Sodera"), -->
-<!--                     Rainfall_mm = c(288, 309, 366, 408, 380, 294, 349,  -->
-<!--                                     437, 449, 637, 696, 611, 627, 570,  -->
-<!--                                     762), -->
-<!--                     WAI0_mm = c(28, 45, 51, 56, 59, 60, 64, 65, 75,  -->
-<!--                                 121, 128, 184, 187, 194, 292)) -->
-<!-- ## data from repository (alternatively using 'encoding = "latin1"'): -->
-<!-- df <- read.csv("Growth_A. senegal_AFS.csv", stringsAsFactors = F) -->
-<!-- names(df) <- gsub(names(df), pattern = "..", replacement = "_",  -->
-<!--                   fixed = T) -->
-<!-- names(df) <- gsub(names(df), pattern = ".", replacement = "",  -->
-<!--                   fixed = T) -->
-<!-- df$Provenance[df$Provenance == "A\xefte"] <- "Aite" ## As in Table 1 -->
-<!-- df$Provenance[df$Provenance == "Da\xefba"] <- "Daiba" ## As in Table 1 -->
-<!-- head(ddply(df, c("Location", "Block", "Provenance", "Year"), summarise,  -->
-<!--       n = length(Survival))) -->
-<!-- ## As there is no tree-ID provided, it's not clear of how to access  -->
-<!-- ## longitudinal information.  -->
-<!-- ## So better only use first measurement: -->
-<!-- df <- subset(df, Year == 2008) -->
-<!-- ddply(df, c("Location", "Block", "Provenance", "Year"), summarise,  -->
-<!--       n = length(Survival)) -->
-<!-- df$Loc_Pr <- paste0(df$Location, "_", df$Provenance) -->
-<!-- xtabs(~ is.na(Height_m) + Survival, data = df) -->
-<!-- xtabs(~ is.na(Diameter_cm) + Survival, data = df) -->
-<!-- ## 'Helper variable' line: -->
-<!-- df$line <- 1:nrow(df) -->
-<!-- (tmp <- subset(df, is.na(Height_m) & (Survival == 1))) -->
-<!-- df$Survival[tmp$line] <- 0 -->
-<!-- df$Diameter_cm[tmp$line] <- NA -->
-<!-- xtabs(~ is.na(Height_m) + Survival, data = df) -->
-<!-- xtabs(~ is.na(Diameter_cm) + Survival, data = df) -->
-<!-- (tmp <- subset(df, !is.na(Height_m) & (Survival == 0))) -->
-<!-- df$Height_m[tmp$line] <- NA -->
-<!-- df$Diameter_cm[tmp$line] <- NA -->
-<!-- xtabs(~ is.na(Height_m) + Survival, data = df) -->
-<!-- xtabs(~ is.na(Diameter_cm) + Survival, data = df) -->
-<!-- (tmp <- subset(df, is.na(Diameter_cm) & (Survival == 1))) -->
-<!-- df$Survival[tmp$line] <- 0 -->
-<!-- df$Height_m[tmp$line] <- NA -->
-<!-- xtabs(~ is.na(Height_m) + Survival, data = df) -->
-<!-- xtabs(~ is.na(Diameter_cm) + Survival, data = df) -->
-<!-- (tmp <- subset(df, !is.na(Diameter_cm) & (Survival == 0))) -->
-<!-- df$Height_m[tmp$line] <- NA -->
-<!-- df$Diameter_cm[tmp$line] <- NA -->
-<!-- xtabs(~ is.na(Height_m) + Survival, data = df) -->
-<!-- xtabs(~ is.na(Diameter_cm) + Survival, data = df) -->
-<!-- summary(df$Diameter_cm) ## all greater 0 -->
-<!-- summary(df$Height_m) ## all greater 0 -->
-<!-- df$Height_m[which(is.na(df$Height_m))] <- 0 -->
-<!-- df$Diameter_cm[which(is.na(df$Diameter_cm))] <- 0 -->
-<!-- df <- merge(df, tab_1, by = "Provenance") -->
-<!-- ## Centering and scaling of x -->
-<!-- xtabs(~ Block + Loc_Pr, data = df) -->
-<!-- summary(df$WAI0_mm) -->
-<!-- summary(tab_1$WAI0_mm) -->
-<!-- sd(df$WAI0_mm) -->
-<!-- sd(tab_1$WAI0_mm) -->
-<!-- summary(df$Rainfall_mm) -->
-<!-- summary(tab_1$Rainfall_mm) -->
-<!-- sd(df$Rainfall_mm) -->
-<!-- sd(tab_1$Rainfall_mm) -->
-<!-- mean(df$WAI0_mm) -->
-<!-- sd(tab_1$WAI0_mm) -->
-<!-- df$WAI_c <- (df$WAI0_mm - 100) / 75 -->
-<!-- mean(df$Rainfall_mm) -->
-<!-- sd(tab_1$Rainfall_mm) -->
-<!-- df$Rain_c <- (df$Rainfall_mm - 500) / 150 -->
-<!-- ``` -->
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
