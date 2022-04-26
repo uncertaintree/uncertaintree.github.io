@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Uncertaintree: Drought data</title>
+  <meta name="description" content="Uncertaintree: Drought data" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Uncertaintree: Drought data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Uncertaintree: Drought data" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#use-for-statistical-teaching"><i class="fa fa-check"></i><b>1</b> Use for statistical teaching</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#introduction"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path=""><a href="#data-scratching-workflow"><i class="fa fa-check"></i><b>2.1</b> Data scratching workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#long-story-short"><i class="fa fa-check"></i><b>3</b> Long story short …</a><ul>
+<li class="chapter" data-level="3.1" data-path=""><a href="#a-sligtly-extended-data-source"><i class="fa fa-check"></i><b>3.1</b> A sligtly extended data source</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Uncertaintree: Drought data</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Uncertaintree: Drought data</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>April 26, 2022 (Version 0.1)</em></p>
+</div>
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="use-for-statistical-teaching" class="section level1">
+<h1><span class="header-section-number">1</span> Use for statistical teaching</h1>
+<p>Among others, this data can be used for basic plotting in an R course, but also to introduce linear regression on a simple applied example.</p>
+</div>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">2</span> Introduction</h1>
+<p>Under this link <a href="https://uncertaintree.github.io/oer/uncertaintree/Fischer_et_al_2006_Fig_2_5_adapted.pdf">here</a> you can find a figure that looks ugly, but it fits it’s prupose.</p>
+<p>A caption to it might read like this:</p>
+<blockquote>
+<p>Adopted from <span class="citation">Fischer et al. (<a href="#ref-FischerEtAl:2006">2006</a>)</span>, where labeled as <em>Figure 2–5</em>. Light blue and light green crosses and lines were added using <em>R</em> and <em>TikZ</em>. Lines between the added crosses are just a remainder from my workflow - it helps to be able to count through the points on the line when making small adjustments to the data-points - but should not make the impression that observations are time series or correlated in any other form.</p>
+</blockquote>
+<p>As written, this figure is an adaption of <span class="citation">Fischer et al. (<a href="#ref-FischerEtAl:2006">2006</a>)</span> and shows data on tree growth (measured as basal area increment, BAI) in the year 2003 compared to the BAI in 2002 for pure (?) stands with two different tree species, Norway spruce (<em>Picea abies</em>) and common beech (<em>Fagus sylvatica</em>).
+Measurements were taken from several plot across the Alpine region.</p>
+<p>We can describe the values on the y-axis more formally as:
+<span class="math display">\[
+y_i=\dfrac{\text{BAI}_{2003,i}}{\text{BAI}_{2002,i}}
+\]</span>
+The x-axis shows elevation above sea-level in meters.
+In total, measurements for <span class="math inline">\(23\)</span> for Norway spruce stands, and for <span class="math inline">\(11\)</span> common beech stands were given, ie. <span class="math inline">\(i=1,\ldots,34\)</span>.</p>
+<div id="data-scratching-workflow" class="section level2">
+<h2><span class="header-section-number">2.1</span> Data scratching workflow</h2>
+<p>There might exist specified <em>R</em> packages for scratching the observation values out of a scatter plot, but I just took the basic route – this might be higher effort, but it’s easily reproducible and results in what I need, a Figure I can include here – of making a screen shot, saved it as a .png-file, included it into a <em>LaTeX</em> document, and added values using <em>TikZ</em>.</p>
+</div>
+</div>
+<div id="long-story-short" class="section level1">
+<h1><span class="header-section-number">3</span> Long story short …</h1>
+<p>Copy-paste-use:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">bair &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">50.5</span>, <span class="fl">64.8</span>, <span class="fl">52.3</span>, <span class="fl">42.6</span>, <span class="dv">64</span>, <span class="dv">50</span>, <span class="fl">25.7</span>, <span class="fl">86.6</span>, <span class="fl">43.4</span>, <span class="fl">36.8</span>, <span class="dv">54</span>, <span class="fl">92.3</span>, </a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">          <span class="fl">70.2</span>, <span class="fl">61.5</span>, <span class="fl">101.3</span>, <span class="fl">80.7</span>, <span class="fl">26.2</span>, <span class="fl">88.7</span>, <span class="fl">128.1</span>, <span class="fl">112.5</span>, <span class="dv">99</span>, <span class="dv">120</span>, <span class="fl">98.3</span>, </a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">          <span class="fl">69.7</span>, <span class="fl">60.6</span>, <span class="fl">71.8</span>, <span class="dv">48</span>, <span class="fl">82.2</span>, <span class="fl">94.4</span>, <span class="dv">77</span>, <span class="fl">103.6</span>, <span class="dv">123</span>, <span class="dv">68</span>, <span class="fl">98.5</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">elev &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">335</span>, <span class="dv">460</span>, <span class="dv">480</span>, <span class="dv">515</span>, <span class="dv">540</span>, <span class="dv">650</span>, <span class="dv">680</span>, <span class="dv">715</span>, <span class="dv">730</span>, <span class="dv">835</span>, <span class="dv">860</span>, <span class="dv">960</span>, </a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">          <span class="dv">1020</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1150</span>, <span class="dv">1170</span>, <span class="dv">1190</span>, <span class="dv">1350</span>, <span class="dv">1400</span>, <span class="dv">1500</span>, <span class="dv">1540</span>, </a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">          <span class="dv">475</span>, <span class="dv">480</span>, <span class="fl">507.5</span>, <span class="dv">580</span>, <span class="dv">750</span>, <span class="dv">780</span>, <span class="dv">800</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1200</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">species &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, </a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, </a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, </a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, </a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">             <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">drought &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">bair =</span> bair, </a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">                      <span class="dt">elev =</span> elev,</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">                      <span class="dt">species =</span> species, </a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">                      <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">rm</span>(bair, elev, species)</a></code></pre></div>
+<div id="a-sligtly-extended-data-source" class="section level2">
+<h2><span class="header-section-number">3.1</span> A sligtly extended data source</h2>
+<p>The data published by <span class="citation">Fischer et al. (<a href="#ref-FischerEtAl:2006">2006</a>)</span> was also reused and republished in</p>
+<blockquote>
+<p>Matthias Dobbertin, Markus Neumann and Hans-Werner Schroeck (2013): Chapter 10 - Tree Growth Measurements in Long-Term Forest Monitoring in Europe, DOI: <a href="http://dx.doi.org/10.1016/B978-0-08-098222-9.00010-8">DOI: 10.1016/B978-0-08-098222-9.00010-8</a>.</p>
+</blockquote>
+<p>I followed the same data scratching workflow there and found out that there were four additional observations for Norway spruce and two additional data-points for common beech.
+It is not mentioned or explained by the authors where these additional observations come from.
+Further, the regression line for Norway spruce doesn’t reproduce as perfectly as the one shown in the above figure, whereas the line for common beech does.
+So I just stick to the data we got from <span class="citation">Fischer et al. (<a href="#ref-FischerEtAl:2006">2006</a>)</span>.</p>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-FischerEtAl:2006">
+<p>Fischer, R, M Dobbertin, O Granke, K Karoles, M Köhl, P Kraft, P Meyer, et al. 2006. “The Condition of Forests in Europe. 2006 Executive Report.” <em>UNECE, Hamburg</em>.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
