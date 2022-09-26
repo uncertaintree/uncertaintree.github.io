@@ -1,4 +1,4 @@
 # Section title
 
-- [01_uncertain.md](Uncertain)
+- [https://uncertaintree.github.io/oer/puzzlepieces/01_uncertain.md](Uncertain)
 - 
