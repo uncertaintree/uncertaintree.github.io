@@ -17,13 +17,13 @@ $$f:X\rightarrow Y,~x\mapsto y=f\left(x\right).$$
 
 Read: ' $f$ is a function from $X$ to $Y$. $f$ maps $x$ to $y$. '
 
-##### Example (Quadratic function)
+#### Example (Quadratic function)
 The relationship $f(x) = x^{2}$, (Read ' $f$ of $x$ is $x$ squared ', or ' ... $x$ to the power of $2$ '), $x\in\mathbb{R}^{+}$ (Read ' for $x$ from the positive real numbers '), is a function: 
 $$f:\mathbb{R}^{+}\rightarrow \mathbb{R}^{+},~x\mapsto x^{2}=f\left(x\right),$$ 
 because each input $x$ has a single output $x^{2}$: 
 $$f\left(1\right)=1,\quad f\left(3\right)=9,\quad f\left(\sqrt{z^{2}}\right)=z^2.$$
 
-- The *square-root function* $g\left(x\right)=\sqrt{x}=x^{\frac{1}{2}}$ is the *inverse function* of $f(x) = x^{2}$.
+- The *square-root function* $g\left(x\right)=\sqrt{x}=x^{\frac{1}{2}}$ is the **inverse function** of $f(x) = x^{2}$.
 - The common notation for this is $g\left(x\right)=f^{-1}\left(x\right)$. 
 - The relationship between $f\left(x\right)$ and $g\left(x\right)$ is visualized by interchanging the axes.
 
