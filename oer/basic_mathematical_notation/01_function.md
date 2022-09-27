@@ -22,6 +22,7 @@ The relationship $f(x) = x^{2}$, (Read ' $f$ of $x$ is $x$ squared ', or ' ... $
 $$f:\mathbb{R}^{+}\rightarrow \mathbb{R}^{+},~x\mapsto x^{2}=f\left(x\right),$$ 
 because each input $x$ has a single output $x^{2}$: 
 $$f\left(1\right)=1,\quad f\left(3\right)=9,\quad f\left(\sqrt{z^{2}}\right)=z^2.$$
+$f$ is called the *quadratic function*. 
 
 - The *square-root function* $g\left(x\right)=\sqrt{x}=x^{\frac{1}{2}}$ is the **inverse function** of $f(x) = x^{2}$.
 - The common notation for this is $g\left(x\right)=f^{-1}\left(x\right)$. 
