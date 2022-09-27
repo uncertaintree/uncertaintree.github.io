@@ -31,3 +31,5 @@ $f$ is called the *quadratic function*.
 The following figure illustrates the quadratic ('square') and the square-root functions.
 
 <img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/quadratic_squareroot.png">
+
+Back to [Basic Mathematics & Mathematical Notation Overview](https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/00_index.md)
