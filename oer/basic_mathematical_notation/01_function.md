@@ -27,6 +27,10 @@ $$f\left(1\right)=1,\quad f\left(3\right)=9,\quad f\left(\sqrt{z^{2}}\right)=z^2
 - The common notation for this is $g\left(x\right)=f^{-1}\left(x\right)$. 
 - The relationship between $f\left(x\right)$ and $g\left(x\right)$ is visualized by interchanging the axes.
 
+The following figure illustrates the quadratic ('square') and the square-root functions.
+
+<img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/square.png">
+
 ```
 Figure~\ref{fig:quadratic:squareroot:function} on page~ \pageref{fig:quadratic:squareroot:function} illustrates the quadratic and the square-root functions.
 \begin{figure*}
