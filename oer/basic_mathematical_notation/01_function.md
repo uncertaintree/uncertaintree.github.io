@@ -29,14 +29,4 @@ $$f\left(1\right)=1,\quad f\left(3\right)=9,\quad f\left(\sqrt{z^{2}}\right)=z^2
 
 The following figure illustrates the quadratic ('square') and the square-root functions.
 
-<img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/square.png">
-
-```
-Figure~\ref{fig:quadratic:squareroot:function} on page~ \pageref{fig:quadratic:squareroot:function} illustrates the quadratic and the square-root functions.
-\begin{figure*}
-\centering
-\input{tikz/SquareSquarerootFunction}
-\caption[Quadratic and square-root function]{Graphs of the quadratic- (left) and square-root (right) function.}
-\label{fig:quadratic:squareroot:function}
-\end{figure*}
-```
+<img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/quadratic_squareroot.png">
