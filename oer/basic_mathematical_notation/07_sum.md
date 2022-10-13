@@ -12,19 +12,19 @@ $$\sum\limits_{i=1}^{n}x_{i}=x_{1}+x_{2}+x_{3}+\ldots+x_{n-1}+x_{n}.$$
 
 ##### Example (Arithmetic mean)
 
-The *arithmetic mean* -- often simply denoted as *'mean'* -- is a function that maps observed values $x_{i}$, $i=1,\ldots,n$ (or equivalently denoted by $\{ x_{1},x_{2},\ldots,x_{n} \} $) to their central point:
+The *arithmetic mean* -- often simply denoted as *'mean'* -- is a function that maps observed values $x_{i}$, $i=1,\ldots,n$ (or equivalently denoted by $\{x_{1},x_{2},\ldots,x_{n}\}$) to their central point:
 
 $$f\left(x_{1},x_{2},\ldots,x_{n}\right)=\dfrac{1}{n}\cdot\sum\limits_{i=1}^{n}x_{i}=\dfrac{x_{1}+x_{2}+\ldots+x_{n}}{n}.$$
 
 - The arithmetic mean is often denoted by $\bar{x}$.
-- It is the first example within this course for the concept called *statistic} -- which is defined as a single measure of some attribute of a sample --, here for the central point in the observed data $\left\{x_{1},x_{2},\ldots,x_{n}\right\}$.
+- It is an example for the concept called *statistic* -- which is defined as a single measure of some attribute of a sample --, here for the central point in the observed data $\left\{x_{1},x_{2},\ldots,x_{n}\right\}$.
 
 ##### Example (BHD)
 
-We want to calculate the mean of BHD (in meters [m]) in \texttt{dA}\footnote{\textcolor{red}{THIS NEEDS TO BE INTRODUCED: I think this is data-set \texttt{spati} provided by the \texttt{lmfor} R add-on package.}}.  
-The first 30 observed values are given as: 
+We want to calculate the mean of BHD (in meters *m*) in `dA`^[This dataset was not introduced before, I think it is data set `spati` provided by the `lmfor` R add-on package.].  
+The first $30$ observed values are given as: 
 
-$$\left\{x_{1}=0.277,x_{2}=0.283,\ldots,x_{30}=0.133\right\}.$$
+$$\{x_{1}=0.277,x_{2}=0.283,\ldots,x_{30}=0.133\}.$$
 
 ```
 > head(dA$d/100, n = 30)
