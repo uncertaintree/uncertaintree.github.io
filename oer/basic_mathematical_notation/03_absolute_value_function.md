@@ -13,7 +13,7 @@ x,&\text{else.}\end{cases}$$
 - The absolute value function multiplies negative values with $-1$, and keeps positive values unchanged. 
 - It therefore reveals the magnitude of an estimated regression effect, for example. 
 
-The following figure illustrates absolute value function.
+The following figure illustrates the absolute value function.
 
 <img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/absolute_value.png">
 
