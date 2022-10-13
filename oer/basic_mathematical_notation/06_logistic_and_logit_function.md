@@ -16,6 +16,8 @@ The inverse function of the logistic function is the *logit function*:
 
 $$g\left(x\right)=\log\left(\dfrac{x}{1-x}\right)$$
 
+The following figure illustrates the logistic and logit functions.
 
+<img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/logistic_logit.png">
 
 Back to [Basic Mathematical Notation Overview](https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/00_index.md)
