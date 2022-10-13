@@ -17,4 +17,4 @@ The following figure illustrates the absolute value function.
 
 <img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/absolute_value.png">
 
-Back to [Basic Mathematics & Mathematical Notation Overview](https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/00_index.md)
+Back to [Basic Mathematical Notation Overview](https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/00_index.md)
