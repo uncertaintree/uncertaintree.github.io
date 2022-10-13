@@ -37,7 +37,7 @@ where $a$ is any real number.
 
 $$\dfrac{\text{d}}{\text{d}x}\exp\left(x\right) = \exp\left(x\right)$$
 
-$$\dfrac{\text{d}}{\text{d}x}\ln\left(x\right) = \dfrac{1}{x}$$}
+$$\dfrac{\text{d}}{\text{d}x}\ln\left(x\right) = \dfrac{1}{x}$$
 
 **Sum rule**:
 
