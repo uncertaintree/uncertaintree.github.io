@@ -17,15 +17,6 @@ $$\text{sgn}\left(x\right):=f\left(x\right)=
 1,&\text{else.}
 \end{cases}$$
 
-```
-\begin{figure*}
-\centering
-\input{tikz/SignFunction}
-\caption[Sign function]{Graph of the sign function $\text{sgn}\left(x\right)$.}
-\label{fig:sign:function}
-\end{figure*}
-```
-
 Any real number can be expressed as the product of its absolute value and its sign function, ie. elaborate the function $f\left(x\right)=\text{sgn}\left(x\right)\cdot\vert x\vert$.
 
 The following figure illustrates the sign function.
