@@ -14,15 +14,7 @@ $$f(x\,\vert\,a,b)=a+b\cdot x,$$
 $a$ is frequently referred to as the intercept, and $b$ as the slope. 
 In the above example $f(x) = \frac{x}{2}$, we have $a=0$ and $b=0.5$. 
 
-```
-Figure~\ref{fig:linearfunction} on page~\pageref{fig:linearfunction} shows another example of a linear function, with $a=0.8$ and $b=0.6$. 
-\begin{figure*}
-\centering
-\input{tikz/LinearFunction}
-\caption[Linear function]{Graph of a linear function $f\left(x\right)=0.8+0.6\cdot x$.}
-\label{fig:linearfunction}
-\end{figure*}
-```
+
 
 The linear function is a function of a set of variables and parameters that does not contain any powers or cross-products of the quantities. 
 The graph of such a function of one variable $x$ and two parameters $a$, and $b$, is a non-vertical line. 
