@@ -33,3 +33,5 @@ $\rightarrow$ Alternatives $f_{a,b}\left(x\right)$, $f\left(x;a,b\right)$, and $
 - If $x$ is defined on the set of integers $\mathbb{Z}$ (values $0,-1, 1, -2, 2, \ldots$), than $f$ only maps on $\mathbb{Z}$ if $a$ and $b$ are also defined on $\mathbb{Z}$. 
 - Considering the domain of functions will be important to suitably handle discrete and continuously scaled random variables.
 - Often, $a$ and $b$ are notationally simply omitted, e.g. $f\left(x\right)=a+b\cdot x$.
+
+Back to [Basic Mathematical Notation Overview](https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/00_index.md)
