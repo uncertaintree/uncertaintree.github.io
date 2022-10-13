@@ -23,14 +23,9 @@ $$g\left(x\right)=\log\left(x\right)=\exp^{-1}\left(x\right).$$
 
 The inverse function of the exponential function with basis $e$ is also called *natural logarithm* and denoted with $\ln\left(x\right)$. 
 
-```
-\begin{figure*}
-\centering
-\input{tikz/ExpLogFunction}
-\caption[Exponential- and logarithmic function]{Graphs of the exponential (left) and logarithmic (right) function.}
-\label{fig:exp:log:function}
-\end{figure*}
-```
+The following figure illustrates the exponential and logarithmic functions.
+
+<img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/exp_log.png">
 
 ##### Example (Application of the logarithmic function in order to achieve symmetry of ratios)
 
@@ -67,3 +62,4 @@ $$\log\left(\dfrac{a}{b}\right)=\log\left(a\cdot b^{-1}\right)=\log\left(a\right
 
 which is equal to $\log\left(b\right)$ except of the opposite sign.
 
+Back to [Basic Mathematical Notation Overview](https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/00_index.md)
