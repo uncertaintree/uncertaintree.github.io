@@ -27,3 +27,7 @@ $$\text{sgn}\left(x\right):=f\left(x\right)=
 ```
 
 Any real number can be expressed as the product of its absolute value and its sign function, ie. elaborate the function $f\left(x\right)=\text{sgn}\left(x\right)\cdot\vert x\vert$.
+
+The following figure illustrates the sign function.
+
+<img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/sign.png">
