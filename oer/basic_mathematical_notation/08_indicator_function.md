@@ -70,13 +70,19 @@ $$\text{condition up}=\\{x\leq b_{\text{up}}\\}$$
 
 With this:
 
-$$\text{hist}\left(x_{1},\ldots,x_{n}\vert \left(b_{\text{low}},b_{\text{up}}\right]\right)=
-\sum\limits_{i=1}^{n}\mathrm{I}_{\text{condition low and condition up}}\left(x_{i}\right)=
-\sum\limits_{i=1}^{n}\left(\mathrm{I}_{\text{condition low}}\left(x_{i}\right)\cdot\mathrm{I}_{\text{condition up}}\left(x_{i}\right)\right),$$
+$$\text{hist}\left(x_{1},\ldots,x_{n}\vert \left(b_{\text{low}},b_{\text{up}}\right]\right)
+=\sum\limits_{i=1}^{n}\mathrm{I}_{\text{condition low and condition up}}\left(x_i\right)=
+$$
+
+$$\sum\limits_{i=1}^{n}\mathrm{I}_{\text{condition low}}\left(x_i\right)\cdot$$
+
+$$\cdot\mathrm{I}_{\text{condition up}}\left(x_i\right),$$
 
 with
 
-$$\mathrm{I}_{\text{condition low}}\left(x_{i}\right)=\begin{cases}
+$$\mathrm{I}_{\text{condition low}}\left(x_i\right)=$$
+
+$$\begin{cases}
 1,&\text{if }x_{i}>b_{\text{low}},
 \\
 0,&\text{else,}
@@ -84,7 +90,9 @@ $$\mathrm{I}_{\text{condition low}}\left(x_{i}\right)=\begin{cases}
 
 and
 
-$$\mathrm{I}_{\text{condition up}}\left(x_{i}\right)=\begin{cases}
+$$\mathrm{I}_{\text{condition up}}\left(x_i\right)=$$
+
+$$\begin{cases}
 1,&\text{if }x_{i}\leq b_{\text{up}},
 \\
 0,&\text{else.}
