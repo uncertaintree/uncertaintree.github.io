@@ -4,15 +4,13 @@ Licence: [Creative Commons Attribution-Share Alike 4.0 (CC BY-SA 4.0)   <img src
 
 ### Absolute value function
 ##### Definition (Absolute value function)
-One function that plays a central in non-parametric statistics -- but not only there -- is the *absolute value function*:
-$$
-f\left(x\right)=\vert x\vert=
+One function that plays a central in non-parametric statistics - but not only there - is the *absolute value function*:
+\[f\left(x\right)=\vert x\vert=
 \begin{cases}
 -x,&\text{if }x<0,
 \\
 x,&\text{else.}
-\end{cases}
-$$
+\end{cases}\]
 
 ```
 \begin{figure*}
