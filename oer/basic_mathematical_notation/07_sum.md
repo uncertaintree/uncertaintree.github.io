@@ -21,8 +21,10 @@ $$f\left(x_{1},x_{2},\ldots,x_{n}\right)=\dfrac{1}{n}\cdot\sum\limits_{i=1}^{n}x
 
 ##### Example (BHD)
 
-We want to calculate the mean of BHD (in meters *m*) in `dA`.^[This dataset was not introduced before, I think it is data set `spati` provided by the `lmfor` R add-on package]  
+We want to calculate the mean of BHD (in meters *m*) in `dA`[^1]. 
 The first $30$ observed values are given as: 
+
+[^1]: This dataset was not introduced before, I think it is data set `spati` provided by the `lmfor` R add-on package]  
 
 $$\\{x_{1}=0.277,x_{2}=0.283,\ldots,x_{30}=0.133\\}.$$
 
