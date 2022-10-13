@@ -33,7 +33,7 @@ Logarithmic transformations are often applied in order to achieve symmetrical pr
 Logarithms are also important when one wants to obtain symmetry of factors around the value $1$, the neutral element of multiplication and division (we can multiply or divide anything by $1$, it will always stay the same!).
 
 Basal area of a certain stand is acquired for two consecutive $5$ year periods. 
-We get value of 10 $\text{m}^2$ at the beginning of the first period, a value of 20 $\text{m}^2$ at the time between both periods, and a value of again 10 $\text{m}^2$ at the end of the second period. 
+We get value of $10$ $\text{m}^2$ at the beginning of the first period, a value of $20$ $\text{m}^2$ at the time between both periods, and a value of again $10$ $\text{m}^2$ at the end of the second period. 
 Absolute increments are equal in both periods:
 
 $$\vert 10-20\vert=10=\vert 20-10\vert.$$
