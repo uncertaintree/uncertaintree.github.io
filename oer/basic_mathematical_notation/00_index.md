@@ -12,7 +12,7 @@ Licence: [Creative Commons Attribution-Share Alike 4.0 (CC BY-SA 4.0) <img src="
 - 07: [Sum](07_sum.md)
 - 08: [Indicator Function](08_indicator_function.md)
 - 09: [Product](09_product.md)
-- 10: [Derivatives](10_derivatives.md)
-- 11: [Integrals](11_integrals.md)
+- 10: [Derivatives](10_derivative.md)
+- 11: [Integrals](11_integral.md)
 
 Back to [OER Overview](https://uncertaintree.github.io/oer/index.html)
