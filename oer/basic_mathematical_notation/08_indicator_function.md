@@ -32,7 +32,9 @@ with
 
 $$\text{condition histogram}=\\{x>b_{\text{low}}\text{ and }x\leq b_{\text{up}}\\}$$
 
-$$=\sum\limits_{i=1}^{n}\begin{cases}
+And so:
+
+$$\text{hist}\left(x_{1},\ldots,x_{n}\vert \left(b_{\text{low}},b_{\text{up}}\right]\right)=\sum\limits_{i=1}^{n}\begin{cases}
 1,&\text{if }x_{i}>b_{\text{low}}\text{ and }x_{i}\leq b_{\text{up}},
 \\
 0,&\text{else.}
@@ -60,15 +62,21 @@ The height of the bars in the resulting histogram gives the absolute frequency o
 
 For computational convenience, it is often helpful to split up an indicator function into the product of as many indicator functions as needed to have simple conditions:
 
-$$\text{hist}_{\left(b_{\text{low}},b_{\text{up}}\right]}\left(x_{1},\ldots,x_{n}\right)
-\,=\,
-\sum\limits_{i=1}^{n}\mathrm{I}_{\{x>b_{\text{low}}\text{ and }x\leq b_{\text{up}}\}}\left(x_{i}\right)
-\,=\,
-\sum\limits_{i=1}^{n}\left(\mathrm{I}_{\{x>b_{\text{low}}\}}\left(x_{i}\right)\cdot\mathrm{I}_{\{x\leq b_{\text{up}}\}}\left(x_{i}\right)\right),$$
+$$\text{condition low}=\\{x>b_{\text{low}}\\}$$
+
+and
+
+$$\text{condition up}=\\{x\leq b_{\text{up}}\\}$$
+
+With this:
+
+$$\text{hist}\left(x_{1},\ldots,x_{n}\vert \left(b_{\text{low}},b_{\text{up}}\right]\right)=
+\sum\limits_{i=1}^{n}\mathrm{I}_{\text{condition low and condition up}}\left(x_{i}\right)=
+\sum\limits_{i=1}^{n}\left(\mathrm{I}_{\text{condition low}}\left(x_{i}\right)\cdot\mathrm{I}_{\text{condition up}}\left(x_{i}\right)\right),$$
 
 with
 
-$$\mathrm{I}_{\{x>b_{\text{low}}\}}\left(x_{i}\right)=\begin{cases}
+$$\mathrm{I}_{\text{condition low}}\left(x_{i}\right)=\begin{cases}
 1,&\text{if }x_{i}>b_{\text{low}},
 \\
 0,&\text{else,}
@@ -76,7 +84,7 @@ $$\mathrm{I}_{\{x>b_{\text{low}}\}}\left(x_{i}\right)=\begin{cases}
 
 and
 
-$$\mathrm{I}_{\{x\leq b_{\text{up}}\}}\left(x_{i}\right)=\begin{cases}
+$$\mathrm{I}_{\text{condition up}}\left(x_{i}\right)=\begin{cases}
 1,&\text{if }x_{i}\leq b_{\text{up}},
 \\
 0,&\text{else.}
