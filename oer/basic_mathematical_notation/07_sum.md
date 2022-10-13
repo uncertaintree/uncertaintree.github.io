@@ -17,7 +17,7 @@ The *arithmetic mean* -- often simply denoted as *'mean'* -- is a function that 
 $$f\left(x_{1},x_{2},\ldots,x_{n}\right)=\dfrac{1}{n}\cdot\sum\limits_{i=1}^{n}x_{i}=\dfrac{x_{1}+x_{2}+\ldots+x_{n}}{n}.$$
 
 - The arithmetic mean is often denoted by $\bar{x}$.
-- It is an example for the concept called *statistic* -- which is defined as a single measure of some attribute of a sample --, here for the central point in the observed data $\left\{x_{1},x_{2},\ldots,x_{n}\right\}$.
+- It is an example for the concept called *statistic* -- which is defined as a single measure of some attribute of a sample --, here for the central point in the observed data $\{x_{1},x_{2},\ldots,x_{n}\}$.
 
 ##### Example (BHD)
 
