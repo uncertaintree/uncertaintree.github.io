@@ -14,7 +14,9 @@ $$f(x\,\vert\,a,b)=a+b\cdot x,$$
 $a$ is frequently referred to as the intercept, and $b$ as the slope. 
 In the above example $f(x) = \frac{x}{2}$, we have $a=0$ and $b=0.5$. 
 
+The following figure illustrates a linear function.
 
+<img src="https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/basic_mathematical_notation/linear.png">
 
 The linear function is a function of a set of variables and parameters that does not contain any powers or cross-products of the quantities. 
 The graph of such a function of one variable $x$ and two parameters $a$, and $b$, is a non-vertical line. 
