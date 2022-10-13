@@ -15,4 +15,4 @@ Licence: [Creative Commons Attribution-Share Alike 4.0 (CC BY-SA 4.0) <img src="
 - 10: [Derivatives](10_derivatives.md)
 - 11: [Integrals](11_integrals.md)
 
-Back to [OER Overview](https://github.com/uncertaintree/uncertaintree.github.io/blob/master/oer/index.md)
+Back to [OER Overview](https://uncertaintree.github.io/oer/index.html)
