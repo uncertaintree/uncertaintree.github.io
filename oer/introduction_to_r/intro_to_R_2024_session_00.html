@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R: Data</title>
+  <meta name="description" content="Introduction to R: Data" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R: Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R: Data" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#drought"><i class="fa fa-check"></i><b>1</b> Drought</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#frost"><i class="fa fa-check"></i><b>2</b> Frost</a></li>
+<li class="chapter" data-level="3" data-path=""><a href="#df"><i class="fa fa-check"></i><b>3</b> <code>df</code></a></li>
+<li class="chapter" data-level="4" data-path=""><a href="#all-in-one"><i class="fa fa-check"></i><b>4</b> All-in-one</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R: Data</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R: Data</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date"><em>May 14, 2024 (Version 0.2)</em></p>
+</div>
+<!--# About this course{-}
+This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="drought" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Drought</h1>
+<p>Data basis: <span class="citation">Fischer et al. (<a href="#ref-FischerEtAl:2006">2006</a>)</span>.
+For further context information, another source working on and interpreting this data is
+<span class="citation">Dobbertin, Neumann, and Schroeck (<a href="#ref-DobbertinEtl:2013">2013, 202–3</a>)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>bair <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">505</span>, .<span class="dv">648</span>, .<span class="dv">523</span>, .<span class="dv">426</span>, .<span class="dv">64</span>, .<span class="dv">5</span>, .<span class="dv">257</span>, .<span class="dv">866</span>, .<span class="dv">434</span>, .<span class="dv">368</span>, .<span class="dv">54</span>, .<span class="dv">923</span>, .<span class="dv">702</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>          .<span class="dv">615</span>, <span class="fl">1.013</span>, .<span class="dv">807</span>, .<span class="dv">262</span>, .<span class="dv">887</span>, <span class="fl">1.281</span>, <span class="fl">1.125</span>, .<span class="dv">99</span>, <span class="fl">1.2</span>, .<span class="dv">983</span>, .<span class="dv">697</span>, .<span class="dv">606</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>          .<span class="dv">718</span>, .<span class="dv">48</span>, .<span class="dv">822</span>, .<span class="dv">944</span>, .<span class="dv">77</span>, <span class="fl">1.036</span>, <span class="fl">1.23</span>, .<span class="dv">68</span>, .<span class="dv">985</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">335</span>, <span class="dv">460</span>, <span class="dv">480</span>, <span class="dv">515</span>, <span class="dv">540</span>, <span class="dv">650</span>, <span class="dv">680</span>, <span class="dv">715</span>, <span class="dv">730</span>, <span class="dv">835</span>, <span class="dv">860</span>, <span class="dv">960</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>          <span class="dv">1020</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1150</span>, <span class="dv">1170</span>, <span class="dv">1190</span>, <span class="dv">1350</span>, <span class="dv">1400</span>, <span class="dv">1500</span>, <span class="dv">1540</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>          <span class="dv">475</span>, <span class="dv">480</span>, <span class="fl">507.5</span>, <span class="dv">580</span>, <span class="dv">750</span>, <span class="dv">780</span>, <span class="dv">800</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1200</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>             <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>drought <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">bair =</span> bair,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>                      <span class="at">elev =</span> elev,</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>                      <span class="at">species =</span> species)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">rm</span>(bair, elev, species)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">summary</span>(drought)</span></code></pre></div>
+<pre><code>##       bair             elev          species         
+##  Min.   :0.2570   Min.   : 335.0   Length:34         
+##  1st Qu.:0.5272   1st Qu.: 597.5   Class :character  
+##  Median :0.7100   Median : 847.5   Mode  :character  
+##  Mean   :0.7489   Mean   : 888.3                     
+##  3rd Qu.:0.9732   3rd Qu.:1150.0                     
+##  Max.   :1.2810   Max.   :1540.0</code></pre>
+</div>
+<div id="frost" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Frost</h1>
+<!--Datenbasis: Deutscher Wetterdienst, hier dargestellte Werte selbst aus Tageseinzelwerten erzeugt.-->
+<p>Data basis: Deutscher Wetterdienst, values shown here were generated based individual values, code by myself.</p>
+<p>Direct download links for data basis (Stations Id 1691, Goettingen):</p>
+<ul>
+<li><a href="ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/tageswerte_KL_01691_19270101_20231231_hist.zip">historical data</a></li>
+<li><a href="ftp://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_01691_akt.zip">recent data</a></li>
+</ul>
+<p>Some definitions:</p>
+<ul>
+<li>Budburst is estimated based on first day where <span class="math inline">\(\text{dd}&gt;220\)</span> <span class="citation">(<a href="#ref-ThomsonMoncrieff:1982">Thomson and Moncrieff 1982</a>)</span> [degree days <span class="math inline">\(\text{dd}\)</span>, start counting on March, 20].</li>
+<li>End of 1st development stage is estimated based on first day where <span class="math inline">\(\text{dd}&gt;320\)</span> (start counting on March, 20). <em>… I need to re-discover the source stating that 1st dev. stage is about 100 dd</em></li>
+<li>Definition frost event: <span class="math inline">\(\min\left(\text{Temp}_{50\text{cm}}\right) &lt; -1.95^\circ\text{C}\)</span> <span class="citation">(<a href="#ref-Hannerz:1994">Hannerz 1994</a>)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>frost <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="dv">1947</span><span class="sc">:</span><span class="dv">2023</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                    <span class="at">n_frost =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                                <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                                <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                                <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                                <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                    <span class="at">bud_burst =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">19230</span>, <span class="sc">-</span><span class="dv">18867</span>, <span class="sc">-</span><span class="dv">18503</span>, <span class="sc">-</span><span class="dv">18127</span>, <span class="sc">-</span><span class="dv">17758</span>, <span class="sc">-</span><span class="dv">17408</span>, <span class="sc">-</span><span class="dv">17034</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">16661</span>, <span class="sc">-</span><span class="dv">16293</span>, <span class="sc">-</span><span class="dv">15929</span>, <span class="sc">-</span><span class="dv">15566</span>, <span class="sc">-</span><span class="dv">15202</span>, <span class="sc">-</span><span class="dv">14847</span>, <span class="sc">-</span><span class="dv">14475</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">14121</span>, <span class="sc">-</span><span class="dv">13744</span>, <span class="sc">-</span><span class="dv">13384</span>, <span class="sc">-</span><span class="dv">13017</span>, <span class="sc">-</span><span class="dv">12647</span>, <span class="sc">-</span><span class="dv">12291</span>, <span class="sc">-</span><span class="dv">11917</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">11563</span>, <span class="sc">-</span><span class="dv">11191</span>, <span class="sc">-</span><span class="dv">10821</span>, <span class="sc">-</span><span class="dv">10462</span>, <span class="sc">-</span><span class="dv">10092</span>, <span class="sc">-</span><span class="dv">9720</span>, <span class="sc">-</span><span class="dv">9361</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">8997</span>, <span class="sc">-</span><span class="dv">8635</span>, <span class="sc">-</span><span class="dv">8261</span>, <span class="sc">-</span><span class="dv">7896</span>, <span class="sc">-</span><span class="dv">7530</span>, <span class="sc">-</span><span class="dv">7164</span>, <span class="sc">-</span><span class="dv">6808</span>, <span class="sc">-</span><span class="dv">6436</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">6078</span>, <span class="sc">-</span><span class="dv">5705</span>, <span class="sc">-</span><span class="dv">5347</span>, <span class="sc">-</span><span class="dv">4981</span>, <span class="sc">-</span><span class="dv">4619</span>, <span class="sc">-</span><span class="dv">4254</span>, <span class="sc">-</span><span class="dv">3883</span>, <span class="sc">-</span><span class="dv">3524</span>, </span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">3145</span>, <span class="sc">-</span><span class="dv">2788</span>, <span class="sc">-</span><span class="dv">2437</span>, <span class="sc">-</span><span class="dv">2060</span>, <span class="sc">-</span><span class="dv">1694</span>, <span class="sc">-</span><span class="dv">1322</span>, <span class="sc">-</span><span class="dv">958</span>, <span class="sc">-</span><span class="dv">602</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">237</span>, <span class="dv">124</span>, <span class="dv">499</span>, <span class="dv">864</span>, <span class="dv">1222</span>, <span class="dv">1592</span>, <span class="dv">1957</span>, <span class="dv">2321</span>, <span class="dv">2681</span>, <span class="dv">3055</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>                                          <span class="dv">3408</span>, <span class="dv">3789</span>, <span class="dv">4137</span>, <span class="dv">4513</span>, <span class="dv">4877</span>, <span class="dv">5234</span>, <span class="dv">5610</span>, <span class="dv">5976</span>, <span class="dv">6345</span>, </span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>                                          <span class="dv">6691</span>, <span class="dv">7074</span>, <span class="dv">7435</span>, <span class="dv">7812</span>, <span class="dv">8167</span>, <span class="dv">8533</span>), </span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>                                        <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)),</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>                    <span class="at">end_1st_dev_stage =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">19222</span>, <span class="sc">-</span><span class="dv">18859</span>, <span class="sc">-</span><span class="dv">18489</span>, <span class="sc">-</span><span class="dv">18118</span>, <span class="sc">-</span><span class="dv">17746</span>, <span class="sc">-</span><span class="dv">17397</span>, </span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">17026</span>, <span class="sc">-</span><span class="dv">16650</span>, <span class="sc">-</span><span class="dv">16280</span>, <span class="sc">-</span><span class="dv">15921</span>, <span class="sc">-</span><span class="dv">15552</span>, <span class="sc">-</span><span class="dv">15192</span>, </span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">14837</span>, <span class="sc">-</span><span class="dv">14464</span>, <span class="sc">-</span><span class="dv">14104</span>, <span class="sc">-</span><span class="dv">13726</span>, <span class="sc">-</span><span class="dv">13370</span>, <span class="sc">-</span><span class="dv">13006</span>, </span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">12633</span>, <span class="sc">-</span><span class="dv">12281</span>, <span class="sc">-</span><span class="dv">11905</span>, <span class="sc">-</span><span class="dv">11545</span>, <span class="sc">-</span><span class="dv">11180</span>, <span class="sc">-</span><span class="dv">10808</span>, </span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">10455</span>, <span class="sc">-</span><span class="dv">10078</span>, <span class="sc">-</span><span class="dv">9710</span>, <span class="sc">-</span><span class="dv">9349</span>, <span class="sc">-</span><span class="dv">8984</span>, <span class="sc">-</span><span class="dv">8623</span>, <span class="sc">-</span><span class="dv">8248</span>, </span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">7886</span>, <span class="sc">-</span><span class="dv">7521</span>, <span class="sc">-</span><span class="dv">7151</span>, <span class="sc">-</span><span class="dv">6799</span>, <span class="sc">-</span><span class="dv">6427</span>, <span class="sc">-</span><span class="dv">6068</span>, <span class="sc">-</span><span class="dv">5691</span>, </span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">5338</span>, <span class="sc">-</span><span class="dv">4972</span>, <span class="sc">-</span><span class="dv">4601</span>, <span class="sc">-</span><span class="dv">4246</span>, <span class="sc">-</span><span class="dv">3875</span>, <span class="sc">-</span><span class="dv">3513</span>, <span class="sc">-</span><span class="dv">3131</span>, </span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">2780</span>, <span class="sc">-</span><span class="dv">2426</span>, <span class="sc">-</span><span class="dv">2050</span>, <span class="sc">-</span><span class="dv">1679</span>, <span class="sc">-</span><span class="dv">1311</span>, <span class="sc">-</span><span class="dv">944</span>, <span class="sc">-</span><span class="dv">594</span>, </span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">225</span>, <span class="dv">132</span>, <span class="dv">510</span>, <span class="dv">873</span>, <span class="dv">1235</span>, <span class="dv">1608</span>, <span class="dv">1972</span>, <span class="dv">2332</span>, <span class="dv">2694</span>, </span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a>                                                  <span class="dv">3067</span>, <span class="dv">3422</span>, <span class="dv">3802</span>, <span class="dv">4152</span>, <span class="dv">4525</span>, <span class="dv">4891</span>, <span class="dv">5250</span>, <span class="dv">5623</span>, </span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a>                                                  <span class="dv">5988</span>, <span class="dv">6354</span>, <span class="dv">6703</span>, <span class="dv">7086</span>, <span class="dv">7450</span>, <span class="dv">7824</span>, <span class="dv">8175</span>, <span class="dv">8547</span>), </span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a>                                                <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)))</span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a>frost<span class="sc">$</span>may1st <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(frost<span class="sc">$</span>year, <span class="st">&quot;-05-01&quot;</span>))</span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a>frost<span class="sc">$</span>bud_burst_days_since_may1st <span class="ot">&lt;-</span> <span class="fu">julian</span>(frost<span class="sc">$</span>bud_burst, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="sc">-</span> </span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a>  <span class="fu">julian</span>(frost<span class="sc">$</span>may1st, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a>frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st <span class="ot">&lt;-</span> <span class="fu">julian</span>(frost<span class="sc">$</span>end_1st_dev_stage, </span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a>                                                    <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="sc">-</span> </span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a>  <span class="fu">julian</span>(frost<span class="sc">$</span>may1st, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="fu">summary</span>(frost)</span></code></pre></div>
+<pre><code>##       year         n_frost         bud_burst          end_1st_dev_stage   
+##  Min.   :1947   Min.   :0.0000   Min.   :1947-05-09   Min.   :1947-05-17  
+##  1st Qu.:1966   1st Qu.:0.0000   1st Qu.:1966-05-08   1st Qu.:1966-05-18  
+##  Median :1985   Median :0.0000   Median :1985-05-12   Median :1985-05-21  
+##  Mean   :1985   Mean   :0.3117   Mean   :1985-05-12   Mean   :1985-05-24  
+##  3rd Qu.:2004   3rd Qu.:0.0000   3rd Qu.:2004-05-11   3rd Qu.:2004-05-27  
+##  Max.   :2023   Max.   :5.0000   Max.   :2023-05-13   Max.   :2023-05-27  
+##      may1st           bud_burst_days_since_may1st
+##  Min.   :1947-05-01   Min.   :-4.00              
+##  1st Qu.:1966-05-01   1st Qu.: 8.00              
+##  Median :1985-05-01   Median :11.00              
+##  Mean   :1985-04-30   Mean   :11.69              
+##  3rd Qu.:2004-05-01   3rd Qu.:16.00              
+##  Max.   :2023-05-01   Max.   :23.00              
+##  end_1st_dev_stage_days_since_may1st
+##  Min.   : 8.00                      
+##  1st Qu.:20.00                      
+##  Median :24.00                      
+##  Mean   :23.44                      
+##  3rd Qu.:28.00                      
+##  Max.   :36.00</code></pre>
+</div>
+<div id="df" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> <code>df</code></h1>
+<p>This is just re-named <code>spati2</code> that ships with <code>lmfor</code> <span class="citation">(<a href="#ref-Mehtatalo:2019">Mehtatalo 2019</a>)</span>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lmfor&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">data</span>(spati2)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> spati2</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">rm</span>(spati2)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code></pre></div>
+<pre><code>##       plot             d               h                n         
+##  Min.   : 1.00   Min.   : 1.50   Min.   : 1.900   Min.   :  7.00  
+##  1st Qu.:28.00   1st Qu.: 6.20   1st Qu.: 6.000   1st Qu.: 17.00  
+##  Median :56.00   Median :10.20   Median : 8.000   Median : 58.00  
+##  Mean   :45.41   Mean   :11.66   Mean   : 9.566   Mean   : 54.96  
+##  3rd Qu.:61.00   3rd Qu.:14.70   3rd Qu.:11.700   3rd Qu.: 84.00  
+##  Max.   :66.00   Max.   :51.00   Max.   :28.000   Max.   :105.00  
+##       dvar            dmean       
+##  Min.   : 1.867   Min.   : 4.821  
+##  1st Qu.: 2.818   1st Qu.: 6.736  
+##  Median : 3.691   Median :10.879  
+##  Mean   : 4.649   Mean   :11.660  
+##  3rd Qu.: 5.621   3rd Qu.:14.168  
+##  Max.   :15.636   Max.   :29.569</code></pre>
+</div>
+<div id="all-in-one" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> All-in-one</h1>
+<p>… just for convenience, copy-paste only once!</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lmfor&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>bair <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">505</span>, .<span class="dv">648</span>, .<span class="dv">523</span>, .<span class="dv">426</span>, .<span class="dv">64</span>, .<span class="dv">5</span>, .<span class="dv">257</span>, .<span class="dv">866</span>, .<span class="dv">434</span>, .<span class="dv">368</span>, .<span class="dv">54</span>, .<span class="dv">923</span>, .<span class="dv">702</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>          .<span class="dv">615</span>, <span class="fl">1.013</span>, .<span class="dv">807</span>, .<span class="dv">262</span>, .<span class="dv">887</span>, <span class="fl">1.281</span>, <span class="fl">1.125</span>, .<span class="dv">99</span>, <span class="fl">1.2</span>, .<span class="dv">983</span>, .<span class="dv">697</span>, .<span class="dv">606</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>          .<span class="dv">718</span>, .<span class="dv">48</span>, .<span class="dv">822</span>, .<span class="dv">944</span>, .<span class="dv">77</span>, <span class="fl">1.036</span>, <span class="fl">1.23</span>, .<span class="dv">68</span>, .<span class="dv">985</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">335</span>, <span class="dv">460</span>, <span class="dv">480</span>, <span class="dv">515</span>, <span class="dv">540</span>, <span class="dv">650</span>, <span class="dv">680</span>, <span class="dv">715</span>, <span class="dv">730</span>, <span class="dv">835</span>, <span class="dv">860</span>, <span class="dv">960</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>          <span class="dv">1020</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1150</span>, <span class="dv">1170</span>, <span class="dv">1190</span>, <span class="dv">1350</span>, <span class="dv">1400</span>, <span class="dv">1500</span>, <span class="dv">1540</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>          <span class="dv">475</span>, <span class="dv">480</span>, <span class="fl">507.5</span>, <span class="dv">580</span>, <span class="dv">750</span>, <span class="dv">780</span>, <span class="dv">800</span>, <span class="dv">1025</span>, <span class="dv">1100</span>, <span class="dv">1150</span>, <span class="dv">1200</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>             <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>             <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Beech&quot;</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>drought <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">bair =</span> bair,</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>                      <span class="at">elev =</span> elev,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>                      <span class="at">species =</span> species)</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>frost <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="dv">1947</span><span class="sc">:</span><span class="dv">2021</span>, </span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>                    <span class="at">n_frost =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, </span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>                                <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>                                <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>                                <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>                                <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">0</span>), </span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>                    <span class="at">bud_burst =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">19230</span>, <span class="sc">-</span><span class="dv">18867</span>, <span class="sc">-</span><span class="dv">18503</span>, <span class="sc">-</span><span class="dv">18127</span>, <span class="sc">-</span><span class="dv">17758</span>, <span class="sc">-</span><span class="dv">17408</span>, <span class="sc">-</span><span class="dv">17034</span>, </span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">16661</span>, <span class="sc">-</span><span class="dv">16293</span>, <span class="sc">-</span><span class="dv">15929</span>, <span class="sc">-</span><span class="dv">15566</span>, <span class="sc">-</span><span class="dv">15202</span>, <span class="sc">-</span><span class="dv">14847</span>, <span class="sc">-</span><span class="dv">14475</span>, </span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">14121</span>, <span class="sc">-</span><span class="dv">13744</span>, <span class="sc">-</span><span class="dv">13384</span>, <span class="sc">-</span><span class="dv">13017</span>, <span class="sc">-</span><span class="dv">12647</span>, <span class="sc">-</span><span class="dv">12291</span>, <span class="sc">-</span><span class="dv">11917</span>, </span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">11563</span>, <span class="sc">-</span><span class="dv">11191</span>, <span class="sc">-</span><span class="dv">10821</span>, <span class="sc">-</span><span class="dv">10462</span>, <span class="sc">-</span><span class="dv">10092</span>, <span class="sc">-</span><span class="dv">9720</span>, <span class="sc">-</span><span class="dv">9361</span>, </span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">8997</span>, <span class="sc">-</span><span class="dv">8635</span>, <span class="sc">-</span><span class="dv">8261</span>, <span class="sc">-</span><span class="dv">7896</span>, <span class="sc">-</span><span class="dv">7530</span>, <span class="sc">-</span><span class="dv">7164</span>, <span class="sc">-</span><span class="dv">6808</span>, <span class="sc">-</span><span class="dv">6436</span>, </span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">6078</span>, <span class="sc">-</span><span class="dv">5705</span>, <span class="sc">-</span><span class="dv">5347</span>, <span class="sc">-</span><span class="dv">4981</span>, <span class="sc">-</span><span class="dv">4619</span>, <span class="sc">-</span><span class="dv">4254</span>, <span class="sc">-</span><span class="dv">3883</span>, <span class="sc">-</span><span class="dv">3524</span>, </span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">3145</span>, <span class="sc">-</span><span class="dv">2788</span>, <span class="sc">-</span><span class="dv">2437</span>, <span class="sc">-</span><span class="dv">2060</span>, <span class="sc">-</span><span class="dv">1694</span>, <span class="sc">-</span><span class="dv">1322</span>, <span class="sc">-</span><span class="dv">958</span>, <span class="sc">-</span><span class="dv">602</span>, </span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>                                          <span class="sc">-</span><span class="dv">237</span>, <span class="dv">124</span>, <span class="dv">499</span>, <span class="dv">864</span>, <span class="dv">1222</span>, <span class="dv">1592</span>, <span class="dv">1957</span>, <span class="dv">2321</span>, <span class="dv">2681</span>, <span class="dv">3055</span>, </span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>                                          <span class="dv">3408</span>, <span class="dv">3789</span>, <span class="dv">4137</span>, <span class="dv">4513</span>, <span class="dv">4877</span>, <span class="dv">5234</span>, <span class="dv">5610</span>, <span class="dv">5976</span>, <span class="dv">6345</span>, </span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>                                          <span class="dv">6691</span>, <span class="dv">7074</span>, <span class="dv">7435</span>, <span class="dv">7812</span>), </span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>                                        <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)),</span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>                    <span class="at">end_1st_dev_stage =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">19222</span>, <span class="sc">-</span><span class="dv">18859</span>, <span class="sc">-</span><span class="dv">18489</span>, <span class="sc">-</span><span class="dv">18118</span>, <span class="sc">-</span><span class="dv">17746</span>, <span class="sc">-</span><span class="dv">17397</span>, </span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">17026</span>, <span class="sc">-</span><span class="dv">16650</span>, <span class="sc">-</span><span class="dv">16280</span>, <span class="sc">-</span><span class="dv">15921</span>, <span class="sc">-</span><span class="dv">15552</span>, <span class="sc">-</span><span class="dv">15192</span>, </span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">14837</span>, <span class="sc">-</span><span class="dv">14464</span>, <span class="sc">-</span><span class="dv">14104</span>, <span class="sc">-</span><span class="dv">13726</span>, <span class="sc">-</span><span class="dv">13370</span>, <span class="sc">-</span><span class="dv">13006</span>, </span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">12633</span>, <span class="sc">-</span><span class="dv">12281</span>, <span class="sc">-</span><span class="dv">11905</span>, <span class="sc">-</span><span class="dv">11545</span>, <span class="sc">-</span><span class="dv">11180</span>, <span class="sc">-</span><span class="dv">10808</span>, </span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">10455</span>, <span class="sc">-</span><span class="dv">10078</span>, <span class="sc">-</span><span class="dv">9710</span>, <span class="sc">-</span><span class="dv">9349</span>, <span class="sc">-</span><span class="dv">8984</span>, <span class="sc">-</span><span class="dv">8623</span>, <span class="sc">-</span><span class="dv">8248</span>, </span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">7886</span>, <span class="sc">-</span><span class="dv">7521</span>, <span class="sc">-</span><span class="dv">7151</span>, <span class="sc">-</span><span class="dv">6799</span>, <span class="sc">-</span><span class="dv">6427</span>, <span class="sc">-</span><span class="dv">6068</span>, <span class="sc">-</span><span class="dv">5691</span>, </span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">5338</span>, <span class="sc">-</span><span class="dv">4972</span>, <span class="sc">-</span><span class="dv">4601</span>, <span class="sc">-</span><span class="dv">4246</span>, <span class="sc">-</span><span class="dv">3875</span>, <span class="sc">-</span><span class="dv">3513</span>, <span class="sc">-</span><span class="dv">3131</span>, </span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">2780</span>, <span class="sc">-</span><span class="dv">2426</span>, <span class="sc">-</span><span class="dv">2050</span>, <span class="sc">-</span><span class="dv">1679</span>, <span class="sc">-</span><span class="dv">1311</span>, <span class="sc">-</span><span class="dv">944</span>, <span class="sc">-</span><span class="dv">594</span>, </span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a>                                                  <span class="sc">-</span><span class="dv">225</span>, <span class="dv">132</span>, <span class="dv">510</span>, <span class="dv">873</span>, <span class="dv">1235</span>, <span class="dv">1608</span>, <span class="dv">1972</span>, <span class="dv">2332</span>, <span class="dv">2694</span>, </span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a>                                                  <span class="dv">3067</span>, <span class="dv">3422</span>, <span class="dv">3802</span>, <span class="dv">4152</span>, <span class="dv">4525</span>, <span class="dv">4891</span>, <span class="dv">5250</span>, <span class="dv">5623</span>, </span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a>                                                  <span class="dv">5988</span>, <span class="dv">6354</span>, <span class="dv">6703</span>, <span class="dv">7086</span>, <span class="dv">7450</span>, <span class="dv">7824</span>), </span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a>                                                <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)))</span>
+<span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a>frost<span class="sc">$</span>may1st <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(frost<span class="sc">$</span>year, <span class="st">&quot;-05-01&quot;</span>))</span>
+<span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a>frost<span class="sc">$</span>bud_burst_days_since_may1st <span class="ot">&lt;-</span> <span class="fu">julian</span>(frost<span class="sc">$</span>bud_burst, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="sc">-</span> </span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a>  <span class="fu">julian</span>(frost<span class="sc">$</span>may1st, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</span>
+<span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a>frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st <span class="ot">&lt;-</span> <span class="fu">julian</span>(frost<span class="sc">$</span>end_1st_dev_stage, </span>
+<span id="cb7-49"><a href="#cb7-49" tabindex="-1"></a>                                                    <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>)) <span class="sc">-</span> </span>
+<span id="cb7-50"><a href="#cb7-50" tabindex="-1"></a>  <span class="fu">julian</span>(frost<span class="sc">$</span>may1st, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>))</span>
+<span id="cb7-51"><a href="#cb7-51" tabindex="-1"></a><span class="fu">data</span>(spati2)</span>
+<span id="cb7-52"><a href="#cb7-52" tabindex="-1"></a>df <span class="ot">&lt;-</span> spati2</span>
+<span id="cb7-53"><a href="#cb7-53" tabindex="-1"></a><span class="fu">rm</span>(bair, elev, species, spati2)</span>
+<span id="cb7-54"><a href="#cb7-54" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;df&quot;      &quot;drought&quot; &quot;frost&quot;</code></pre>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-DobbertinEtl:2013" class="csl-entry">
+Dobbertin, Matthias, Markus Neumann, and Hans-Werner Schroeck. 2013. <span>“Tree Growth Measurements in Long-Term Forest Monitoring in Europe.”</span> In, 183–204. Elsevier. <a href="https://doi.org/10.1016/b978-0-08-098222-9.00010-8">https://doi.org/10.1016/b978-0-08-098222-9.00010-8</a>.
+</div>
+<div id="ref-FischerEtAl:2006" class="csl-entry">
+Fischer, R, M Dobbertin, O Granke, K Karoles, M Köhl, P Kraft, P Meyer, et al. 2006. <span>“The Condition of Forests in Europe. 2006 Executive Report.”</span> <em>UNECE, Hamburg</em>.
+</div>
+<div id="ref-Hannerz:1994" class="csl-entry">
+Hannerz, Mats. 1994. <span>“Predicting the Risk of Frost Occurrence After Budburst of Norway Spruce in Sweden.”</span> 28 (4). <a href="https://doi.org/10.14214/sf.a9175">https://doi.org/10.14214/sf.a9175</a>.
+</div>
+<div id="ref-Mehtatalo:2019" class="csl-entry">
+Mehtatalo, Lauri. 2019. <em>Lmfor: Functions for Forest Biometrics</em>. <a href="https://CRAN.R-project.org/package=lmfor">https://CRAN.R-project.org/package=lmfor</a>.
+</div>
+<div id="ref-ThomsonMoncrieff:1982" class="csl-entry">
+Thomson, A. J., and S. M. Moncrieff. 1982. <span>“Prediction of Bud Burst in Douglas-Fir by Degree-Day Accumulation”</span> 12 (2): 448–52. <a href="https://doi.org/10.1139/x82-069">https://doi.org/10.1139/x82-069</a>.
+</div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_00.pdf", "PDF"]],
+"search": false,
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
