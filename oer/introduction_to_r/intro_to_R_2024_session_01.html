@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R: Session 01</title>
+  <meta name="description" content="Introduction to R: Session 01" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R: Session 01" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R: Session 01" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#intro"><i class="fa fa-check"></i><b>1</b> (Int)R(o)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#what-is-r"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#why-user"><i class="fa fa-check"></i><b>1.2</b> Why useR?</a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#literature"><i class="fa fa-check"></i><b>1.3</b> Literature</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path=""><a href="#books"><i class="fa fa-check"></i><b>1.3.1</b> Books…</a></li>
+<li class="chapter" data-level="1.3.2" data-path=""><a href="#and-the-wide-web"><i class="fa fa-check"></i><b>1.3.2</b> … and the wide web:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path=""><a href="#r-and-rstudio"><i class="fa fa-check"></i><b>1.4</b> R and RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path=""><a href="#r-is-a-language"><i class="fa fa-check"></i><b>1.5</b> R is a language</a></li>
+<li class="chapter" data-level="1.6" data-path=""><a href="#r-is-an-environment-for-statistical-computing"><i class="fa fa-check"></i><b>1.6</b> R is an environment for statistical computing</a></li>
+<li class="chapter" data-level="1.7" data-path=""><a href="#a-short-history-of-r"><i class="fa fa-check"></i><b>1.7</b> A short history of R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path=""><a href="#basic-vector-types"><i class="fa fa-check"></i><b>2</b> Basic vector types</a></li>
+<li class="chapter" data-level="3" data-path=""><a href="#basic-mathematical-commands"><i class="fa fa-check"></i><b>3</b> Basic mathematical commands</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path=""><a href="#exercises"><i class="fa fa-check"></i><b>3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path=""><a href="#symbols-and-values"><i class="fa fa-check"></i><b>4</b> Symbols and values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path=""><a href="#exercises-1"><i class="fa fa-check"></i><b>4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path=""><a href="#mathematical-functions"><i class="fa fa-check"></i><b>5</b> Mathematical functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path=""><a href="#exercises-2"><i class="fa fa-check"></i><b>5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path=""><a href="#functions-basics"><i class="fa fa-check"></i><b>6</b> Functions basics</a></li>
+<li class="chapter" data-level="7" data-path=""><a href="#documentation"><i class="fa fa-check"></i><b>7</b> Documentation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path=""><a href="#exercises-3"><i class="fa fa-check"></i><b>7.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path=""><a href="#objects"><i class="fa fa-check"></i><b>8</b> Objects</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path=""><a href="#objekt-names"><i class="fa fa-check"></i><b>8.1</b> Objekt names</a></li>
+<li class="chapter" data-level="8.2" data-path=""><a href="#save-and-load"><i class="fa fa-check"></i><b>8.2</b> Save and load</a></li>
+<li class="chapter" data-level="8.3" data-path=""><a href="#litter-service"><i class="fa fa-check"></i><b>8.3</b> Litter service</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path=""><a href="#dataobject-classes"><i class="fa fa-check"></i><b>9</b> Dataobject classes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path=""><a href="#vector"><i class="fa fa-check"></i><b>9.1</b> Vector</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path=""><a href="#basics"><i class="fa fa-check"></i><b>9.1.1</b> Basics</a></li>
+<li class="chapter" data-level="9.1.2" data-path=""><a href="#exercises-4"><i class="fa fa-check"></i><b>9.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path=""><a href="#calculations"><i class="fa fa-check"></i><b>9.2</b> Calculations</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path=""><a href="#exercises-5"><i class="fa fa-check"></i><b>9.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path=""><a href="#matrix"><i class="fa fa-check"></i><b>9.3</b> Matrix</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path=""><a href="#basics-1"><i class="fa fa-check"></i><b>9.3.1</b> Basics</a></li>
+<li class="chapter" data-level="9.3.2" data-path=""><a href="#exercises-6"><i class="fa fa-check"></i><b>9.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path=""><a href="#list"><i class="fa fa-check"></i><b>9.4</b> List</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path=""><a href="#basics-2"><i class="fa fa-check"></i><b>9.4.1</b> Basics</a></li>
+<li class="chapter" data-level="9.4.2" data-path=""><a href="#exercises-7"><i class="fa fa-check"></i><b>9.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path=""><a href="#synthesis-and-indexing"><i class="fa fa-check"></i><b>9.5</b> Synthesis and indexing</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path=""><a href="#exercises-8"><i class="fa fa-check"></i><b>9.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path=""><a href="#dataframe"><i class="fa fa-check"></i><b>9.6</b> Dataframe</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path=""><a href="#exercises-9"><i class="fa fa-check"></i><b>9.6.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path=""><a href="#functions-on-dataframes"><i class="fa fa-check"></i><b>9.7</b> Functions on dataframes</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path=""><a href="#exercises-10"><i class="fa fa-check"></i><b>9.7.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path=""><a href="#functions-for-character-strings"><i class="fa fa-check"></i><b>10</b> Functions for character strings</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#nchar"><i class="fa fa-check"></i><code>nchar</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#tolower-und-toupper"><i class="fa fa-check"></i><code>tolower</code> und <code>toupper</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#gsub"><i class="fa fa-check"></i><code>gsub</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#substring"><i class="fa fa-check"></i><code>substring</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#strsplit"><i class="fa fa-check"></i><code>strsplit</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#paste"><i class="fa fa-check"></i><code>paste</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path=""><a href="#factors"><i class="fa fa-check"></i><b>11</b> Factors</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path=""><a href="#exercises-11"><i class="fa fa-check"></i><b>11.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R: Session 01</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R: Session 01</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date"><em>May 16, 2024 (Version 0.6)</em></p>
+</div>
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> (Int)R(o)</h1>
+<div id="what-is-r" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> What is R?</h2>
+<p><a href="https://doi.org/10.2307/1390807">‘A Language for Data Analysis and Graphics’</a></p>
+<p>A first example: <strong>Scatter plot, data-management and descriptive analysis</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="do">## A scatter-plot ...</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;colorspace&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought, </span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> elev, <span class="at">y =</span> bair, <span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span> </span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1000</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="fu">scale_color_discrete_qualitative</span>(<span class="at">pal =</span> <span class="st">&quot;Dark&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Elevation [m]&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Basal area increment ratio [%]&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_01_files/figure-html/data_drought-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="do">## ... , some datamanagement, ...</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">range</span>(drought<span class="sc">$</span>elev)</span></code></pre></div>
+<pre><code>## [1]  335 1540</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">range</span>(drought<span class="sc">$</span>elev <span class="sc">%/%</span> <span class="dv">250</span>))</span></code></pre></div>
+<pre><code>## [1] 1 6</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>br <span class="ot">&lt;-</span> <span class="fu">seq</span>(tmp[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">250</span>, (tmp[<span class="dv">2</span>] <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">250</span>, <span class="at">by =</span> <span class="dv">250</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>(drought<span class="sc">$</span>elev_cut <span class="ot">&lt;-</span> <span class="fu">cut</span>(drought<span class="sc">$</span>elev, <span class="at">breaks =</span> br))</span></code></pre></div>
+<pre><code>##  [1] (250,500]          (250,500]          (250,500]          (500,750]         
+##  [5] (500,750]          (500,750]          (500,750]          (500,750]         
+##  [9] (500,750]          (750,1e+03]        (750,1e+03]        (750,1e+03]       
+## [13] (1e+03,1.25e+03]   (1e+03,1.25e+03]   (1e+03,1.25e+03]   (1e+03,1.25e+03]  
+## [17] (1e+03,1.25e+03]   (1e+03,1.25e+03]   (1e+03,1.25e+03]   (1.25e+03,1.5e+03]
+## [21] (1.25e+03,1.5e+03] (1.25e+03,1.5e+03] (1.5e+03,1.75e+03] (250,500]         
+## [25] (250,500]          (500,750]          (500,750]          (500,750]         
+## [29] (750,1e+03]        (750,1e+03]        (1e+03,1.25e+03]   (1e+03,1.25e+03]  
+## [33] (1e+03,1.25e+03]   (1e+03,1.25e+03]  
+## 6 Levels: (250,500] (500,750] (750,1e+03] ... (1.5e+03,1.75e+03]</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="do">## ... and then some descriptive statistics:</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;plyr&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">ddply</span>(<span class="at">.data =</span> drought, <span class="at">.variables =</span> <span class="fu">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;elev_cut&quot;</span>), </span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>      summarize, <span class="at">.drop =</span> F,</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>      <span class="at">n =</span> <span class="fu">length</span>(bair),</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>      <span class="at">mean_bair =</span> <span class="fu">mean</span>(bair))</span></code></pre></div>
+<pre><code>##    species           elev_cut n mean_bair
+## 1    Beech          (250,500] 2 0.6515000
+## 2    Beech          (500,750] 3 0.6733333
+## 3    Beech        (750,1e+03] 2 0.8570000
+## 4    Beech   (1e+03,1.25e+03] 4 0.9827500
+## 5    Beech (1.25e+03,1.5e+03] 0       NaN
+## 6    Beech (1.5e+03,1.75e+03] 0       NaN
+## 7   Spruce          (250,500] 3 0.5586667
+## 8   Spruce          (500,750] 6 0.5205000
+## 9   Spruce        (750,1e+03] 3 0.6103333
+## 10  Spruce   (1e+03,1.25e+03] 7 0.7952857
+## 11  Spruce (1.25e+03,1.5e+03] 3 1.1050000
+## 12  Spruce (1.5e+03,1.75e+03] 1 0.9830000</code></pre>
+</div>
+<div id="why-user" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Why useR?</h2>
+<p>Because of packages such as <code>mgcv</code>!
+… and because we can organize our whole working-with-data-process reproducibly (markdown!) in one place!</p>
+<p>(Note: the following figure is much too overloaded!)</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="do">## library(&quot;mgcv&quot;)</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>m <span class="ot">&lt;-</span> mgcv<span class="sc">::</span><span class="fu">gam</span>(bud_burst_days_since_may1st <span class="sc">~</span> <span class="fu">te</span>(year), <span class="at">data =</span> frost)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">seq</span>(<span class="fu">min</span>(frost<span class="sc">$</span>year), <span class="fu">max</span>(frost<span class="sc">$</span>year), <span class="at">by =</span> .<span class="dv">5</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> mgcv<span class="sc">::</span><span class="fu">gam.mh</span>(m, <span class="at">thin =</span> <span class="dv">5</span>, <span class="at">ns =</span> <span class="dv">2000</span>, <span class="at">rw.scale =</span> <span class="dv">2</span>)<span class="sc">$</span>bs</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>coda<span class="sc">::</span><span class="fu">effectiveSize</span>(coda<span class="sc">::</span><span class="fu">as.mcmc</span>(tmp))</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">&quot;lpmatrix&quot;</span>) <span class="sc">%*%</span> <span class="fu">t</span>(tmp)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> tmp, <span class="at">MAR =</span> <span class="dv">1</span> , <span class="at">FUN =</span> quantile, </span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>             <span class="at">probs =</span> <span class="fu">seq</span>(.<span class="dv">01</span>, .<span class="dv">99</span>, <span class="at">by =</span> .<span class="dv">01</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">q =</span> <span class="fu">as.numeric</span>(tmp), </span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>                  <span class="at">year =</span> <span class="fu">rep</span>(nd<span class="sc">$</span>year, <span class="at">each =</span> <span class="fu">nrow</span>(tmp)), </span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>                  <span class="at">p =</span> <span class="fu">rep</span>(<span class="fu">seq</span>(.<span class="dv">01</span>, .<span class="dv">99</span>, <span class="at">by =</span> .<span class="dv">01</span>), <span class="fu">ncol</span>(tmp)))</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggrepel&quot;</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tmp, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> q)) <span class="sc">+</span> </span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> p, <span class="at">color =</span> p)) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>  <span class="fu">scale_color_continuous_sequential</span>(<span class="at">pal =</span> <span class="st">&quot;Light Grays&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> frost, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> bud_burst_days_since_may1st)) <span class="sc">+</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> frost, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> bud_burst_days_since_may1st, </span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>                              <span class="at">label =</span> end_1st_dev_stage <span class="sc">-</span> bud_burst), </span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a>                  <span class="at">min.segment.length =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Bud burst [Days since May, 1st]&quot;</span>, </span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;At least one frost event during 1st dev. stage&quot;</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Labels give time [days] between bud burst and end of 1st development stage&quot;</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Posterior probability of conditional expectation:&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_01_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="literature" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Literature</h2>
+<div id="books" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Books…</h3>
+<ul>
+<li>Everitt, Hothorn (2006): <em>A Handbook of Statistical Analyses using R</em>. Chapman and Hall.</li>
+<li>Ligges (2008): <em>Programmieren mit R</em>. Springer Verlag.</li>
+<li>Venables, Smith (2002): <em>An introduction to R</em>. Network Theory Verlag.</li>
+<li>Verzani (2005): <em>Using R for Introductory Statistics</em>. Chapman and Hall.</li>
+<li>Wickham (2016): <em>Advanced R</em>.</li>
+</ul>
+</div>
+<div id="and-the-wide-web" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> … and the wide web:</h3>
+<ul>
+<li><a href="https://education.rstudio.com/">education.rstudio.com</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf">cran.r-project.org manual R-intro</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.pdf">cran.r-project.org manual R-lang</a>
+<!-- - [Link 3](https://computerfoerster.de/r-skript/R_Skript_201704.pdf)--></li>
+</ul>
+</div>
+</div>
+<div id="r-and-rstudio" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> R and RStudio</h2>
+<p><strong>R</strong>:</p>
+<ul>
+<li><a href="https://r-project.org">https://r-project.org</a></li>
+<li>Freely available</li>
+<li>Supported by all major operating system: Windows, Linux/Unix, Mac OS, …</li>
+</ul>
+<p><strong>RStudio</strong> and others editors for working with R:</p>
+<ul>
+<li><strong>RStudio</strong> for Windows, Mac OS and Linux:</li>
+<li><a href="https://rstudio.org/">RStudio website</a></li>
+<li><a href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">RStudio cheat sheet</a></li>
+<li>Previously, I presented a list of alternatives to RStudio, but in 2024, that doesn’t seem suitable anymore!?</li>
+</ul>
+</div>
+<div id="r-is-a-language" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> R is a language</h2>
+<ul>
+<li><p>‘To understand computations in R, two slogans are helpful: Everything that exists is an object. Everything that happens is a function call.’ (John M. Chambers)</p></li>
+<li><p>Interpreted language: <strong>R</strong> interprets and evaluates your function calls without a compilation step.</p></li>
+<li><p>Simple syntax with clear similarities to mathematical notation.</p></li>
+</ul>
+</div>
+<div id="r-is-an-environment-for-statistical-computing" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> R is an environment for statistical computing</h2>
+<ul>
+<li>Rich toolbox for doing (graphical) statistics with an ever growing list of ever improving ‘add-on’ packages.</li>
+<li>R is freely available for anyone.</li>
+<li>R code is the product: it is transparent and allows you to reproduce any single step of your analysis.</li>
+</ul>
+</div>
+<div id="a-short-history-of-r" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> A short history of R</h2>
+<ul>
+<li>1976: Development of programming language S at Bell Laboratories</li>
+<li>1988: Software S-PLUS released (for purchase)</li>
+<li>1992: Ross Ihaka and Robert Gentleman start project R</li>
+<li>1995: R available for free under GPL</li>
+<li>1998: Comprehensive R archive network (CRAN) is founded</li>
+<li>2000: First ‘complete’ version R-1.0.0 released</li>
+<li>2004: First conference on R (useR!) takes place</li>
+<li>2021: Current version is <strong>R-4.4.0</strong> (May 2024)</li>
+</ul>
+</div>
+</div>
+<div id="basic-vector-types" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Basic vector types</h1>
+<p>In R, there is no such thing as a single number, since in <strong>R</strong>, a single number is just a vector of length 1:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">length</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p><strong>R</strong> works on six basic vector types, of which four are used in our daily work as empirical researchers:</p>
+<ul>
+<li><code>logical</code> (<code>TRUE</code>and <code>FALSE</code>),</li>
+<li><code>integer</code> (numbers we know as …, <code>-1</code>, <code>0</code>, <code>1</code>, <code>2</code>, …; explicitly created in <strong>R</strong> with suffix <code>L</code>),</li>
+<li><code>numeric</code> (extending integers to ‘any’ value such as <code>1/3</code>), and</li>
+<li><code>character</code> (<code>'R'</code>, <code>'Beech'</code>, …).</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">class</span>(<span class="sc">-</span><span class="dv">1</span><span class="dt">L</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">class</span>(<span class="st">&quot;R&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Again, the difference between integer and numeric (<em>real number</em>) is not important for our applied work, so just think of <code>integer</code> and <code>numeric</code> as classes that represent numerical values in a computer.
+The following section introduces some manipulations we can do with them, <code>logical</code> and <code>character</code> will be treated later.</p>
+</div>
+<div id="basic-mathematical-commands" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Basic mathematical commands</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Mathematical operation</th>
+<th align="left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Addition</td>
+<td align="left"><code>+</code></td>
+</tr>
+<tr class="even">
+<td align="left">Subtraction</td>
+<td align="left"><code>-</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Multiplication</td>
+<td align="left"><code>*</code></td>
+</tr>
+<tr class="even">
+<td align="left">Division</td>
+<td align="left"><code>\</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Exponentiation</td>
+<td align="left"><code>^</code></td>
+</tr>
+<tr class="even">
+<td align="left">Rest of integer division (Modulo)</td>
+<td align="left"><code>%%</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Integer division</td>
+<td align="left"><code>%\%</code></td>
+</tr>
+<tr class="even">
+<td align="left">Brackets</td>
+<td align="left"><code>()</code></td>
+</tr>
+</tbody>
+</table>
+<div id="exercises" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Exercises</h2>
+<p>Run the following lines.</p>
+<p><strong>Note:</strong>
+First and third line define objects <code>a</code> and <code>b</code> by using an indexing command on data-object <code>drought</code>. You don’t need to fully understand what this doeas at this point of the course, just think that objects <code>a</code> and <code>b</code> each represent a single number with some applied meaning (Basal area increment ratio at 1st, and 2nd plot, respectively).</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair[<span class="dv">1</span>] <span class="do">## Basal area increment ratio at 1st plot</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>a <span class="do">## ... growth is about a half in 2003 in comparison to growth in 2002</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair[<span class="dv">2</span>] <span class="do">## Basal area increment ratio at 2nd plot</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>b <span class="do">## ... growth is about two thirds in 2003 in comparison to growth in 2002</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>a <span class="sc">-</span> b <span class="do">## Whats the difference of bair?</span></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>a <span class="sc">/</span> b <span class="do">## Whats the ratio of bair?</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>b <span class="sc">%/%</span> a <span class="do">## How often is &#39;b&#39; contained in &#39;a&#39;?</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>b <span class="sc">%%</span> a <span class="do">## If &#39;b&#39; is contained once in &#39;a&#39;, what&#39;s remaining?</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>(a <span class="sc">+</span> b)<span class="sc">/</span><span class="dv">2</span> <span class="do">## Arithmetic mean of &#39;a&#39; and &#39;b&#39;</span></span></code></pre></div>
+<p>Did we just calculate an arithmetic mean ‘by hand’?</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(a, b))</span></code></pre></div>
+<pre><code>## [1] 0.5765</code></pre>
+</div>
+</div>
+<div id="symbols-and-values" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Symbols and values</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Objective</th>
+<th align="left">Call</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Decimal sign</td>
+<td align="left"><code>.</code></td>
+</tr>
+<tr class="even">
+<td align="left">List and seperate objects, arguments, …</td>
+<td align="left"><code>,</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Several <strong>R</strong>-calls in one line (not recommended)</td>
+<td align="left"><code>;</code></td>
+</tr>
+<tr class="even">
+<td align="left">‘from-to’ operator for integer sequences</td>
+<td align="left"><code>:</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Comments and help</td>
+<td align="left"><code>#</code>, <code>?</code></td>
+</tr>
+<tr class="even">
+<td align="left">Number <span class="math inline">\(\pi\)</span></td>
+<td align="left"><code>pi</code></td>
+</tr>
+<tr class="odd">
+<td align="left">A concept called infinity</td>
+<td align="left"><code>Inf</code></td>
+</tr>
+<tr class="even">
+<td align="left">Base 10 exponential notation (eg. <span class="math inline">\(10^{-3}=0.001\)</span>)</td>
+<td align="left"><code>1e-3</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Integer value</td>
+<td align="left"><code>L</code></td>
+</tr>
+<tr class="even">
+<td align="left">Empty object</td>
+<td align="left"><code>NULL</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Missing value (<em>not available</em>)</td>
+<td align="left"><code>NA</code></td>
+</tr>
+<tr class="even">
+<td align="left">Non-defined value (<em>not a number</em>)</td>
+<td align="left"><code>NaN</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Comparison</td>
+<td align="left"><code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>, <code>&lt;=</code>, <code>&lt;</code></td>
+</tr>
+<tr class="even">
+<td align="left">Boolean</td>
+<td align="left"><code>TRUE</code>, <code>T</code>, <code>FALSE</code>, <code>F</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Negation (<em>not</em>)</td>
+<td align="left"><code>!</code></td>
+</tr>
+<tr class="even">
+<td align="left">Conjunction (<em>and</em>)</td>
+<td align="left"><code>&amp;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Disjunction (<em>or</em>)</td>
+<td align="left"><code>|</code></td>
+</tr>
+</tbody>
+</table>
+<p>Remember, everything in <strong>R</strong> is an object or a function, so we even can’t use <code>,</code> without a function call such as:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">c</span>(a, b) <span class="do">## first two bair values in a vector</span></span></code></pre></div>
+<pre><code>## [1] 0.505 0.648</code></pre>
+<div id="exercises-1" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Exercises</h2>
+<p>Run the following lines and ask yourself <em>What is the applied question behind each line?</em>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>pi <span class="do">## Okay, there is no applied meaning here, it&#39;s just a number, an important one, though :)</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>a <span class="sc">/</span> b <span class="sc">==</span> pi</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>a <span class="sc">&gt;</span> b</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>a <span class="sc">&lt;</span> b</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>a <span class="sc">==</span> a <span class="sc">&amp;</span> b <span class="sc">!=</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>a <span class="sc">&gt;</span> b <span class="sc">|</span> b <span class="sc">&lt;</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>a <span class="sc">/</span> <span class="dv">0</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="dv">0</span> <span class="sc">/</span> <span class="dv">0</span> <span class="do">## Let: x = 0 / 0. So: 0 * x = 0, which is true for any number x.</span></span></code></pre></div>
+</div>
+</div>
+<div id="mathematical-functions" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Mathematical functions</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Mathematical function</th>
+<th align="left">Call</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Exponential function with basis <span class="math inline">\(e\)</span></td>
+<td align="left"><code>exp()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Natural logarithm</td>
+<td align="left"><code>log()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Square root</td>
+<td align="left"><code>sqrt()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Absolute value</td>
+<td align="left"><code>abs()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Trigonometric functions</td>
+<td align="left"><code>sin()</code>, <code>cos()</code>, <code>tan()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Sum and product</td>
+<td align="left"><code>sum()</code>, <code>prod()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Round (up and down)</td>
+<td align="left"><code>round()</code> (<code>floor()</code>, <code>ceiling()</code>)</td>
+</tr>
+<tr class="even">
+<td align="left">Maximum and minimum value</td>
+<td align="left"><code>max()</code>, <code>min()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Factorial <span class="math inline">\(n! = 1\cdot 2\cdot 3\cdot\ldots\cdot n\)</span></td>
+<td align="left"><code>factorial()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Binomial coefficient <span class="math inline">\(n \choose k\)</span></td>
+<td align="left"><code>choose()</code></td>
+</tr>
+</tbody>
+</table>
+<p>… for further functions, see <code>?Special</code> and <code>?groupGeneric</code>.</p>
+<p><strong>Also note:</strong> There are only countable many numbers that a computer is able to represent. Therefore, computers can also only represent some real numbers, and as a consequence, ‘rounding’ is more complicated than we might think! <a href="https://stat.ethz.ch/pipermail/r-help/2008-June/164927.html">Here</a> are some explanations why R results in <code>0 2 2 4 4 6 6</code> instead of <code>0 1 2 3 4 5 6</code> when it does <code>round(seq(0.5, 6.5))</code>. Many thanks to Jan Schick for pointing me towards this ‘rounding’ standard in R, as well as providing me this nice example. Session 05 will also briefly touch upon R and computers and the ‘density’ of real numbers.</p>
+<div id="exercises-2" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Exercises</h2>
+<p>Run the following lines.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair[<span class="dv">1</span>]; a; b <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair[<span class="dv">2</span>]; b <span class="do">## Basal are increment ratio values of first two stands</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">exp</span>(<span class="at">x =</span> a)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="at">x =</span> a)</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>a <span class="sc">-</span> b</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="fu">abs</span>(<span class="at">x =</span> a <span class="sc">-</span> b)</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="fu">sum</span>(a, b)</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a><span class="fu">max</span>(a, b)</span></code></pre></div>
+<p><a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">Computers construct real values!</a></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">sin</span>(<span class="at">x =</span> pi)</span></code></pre></div>
+<pre><code>## [1] 1.224647e-16</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sin</span>(pi), <span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">cos</span>(<span class="at">x =</span> pi)</span></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+</div>
+</div>
+<div id="functions-basics" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Functions basics</h1>
+<p>(We will have a more detailed focus on functions in the third session.)</p>
+<p><strong>Basic properties of functions in R:</strong></p>
+<ul>
+<li>Function call of function <code>f</code> using brackets: <code>f()</code></li>
+<li>Documentation (<em>‘help-page’</em>) using preceded question mark (<code>?f</code>), or calling <code>help(f)</code></li>
+<li>Search for documentation of <code>f</code> by: <code>help.search('f')</code></li>
+<li>Syntax:</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">f</span>(<span class="at">arg1 =</span> value1, <span class="at">arg2 =</span> value2, ...) <span class="do">## &#39;...&#39; is for optional further arguments.</span></span></code></pre></div>
+<ul>
+<li>Arguments often have default objects, eg. for <code>pch</code> in <code>plot()</code>:</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> a, <span class="at">y =</span> b, <span class="at">pch =</span> <span class="dv">1</span>) <span class="do">## same!</span></span></code></pre></div>
+<ul>
+<li>Providing argument names is not optional in any case:</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">sin</span>(pi<span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">sin</span>(<span class="at">x =</span> pi<span class="sc">/</span><span class="dv">2</span>) <span class="do">## Same</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">plot</span>(pi, pi, <span class="dv">1</span>) <span class="do">## Error!</span></span></code></pre></div>
+<pre><code>## Error in plot.xy(xy, type, ...): unzulässiger Plottyp &#39;1&#39;</code></pre>
+</div>
+<div id="documentation" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Documentation</h1>
+<p><strong>Structure:</strong></p>
+<ul>
+<li><strong>Description</strong>: In brief, what is this function about?</li>
+<li><strong>Usage</strong>: How to call the function? What are mandatory arguments?</li>
+<li><strong>Arguments</strong>: Explaining each argument</li>
+<li><strong>Details</strong>: Some text about implementation, scope, …</li>
+<li><strong>Value</strong>: Explaining the resulting object</li>
+<li><strong>Authors</strong> and <strong>References</strong> and <strong>See also</strong> and …</li>
+<li><strong>Examples</strong>: Always at the bottom, always scroll down there, you will never be disappointed!</li>
+</ul>
+<div id="exercises-3" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Exercises</h2>
+<p>Go to the documentation for <code>lm</code>.</p>
+<ul>
+<li>What is this function about?</li>
+<li>Copy-paste and run the example.</li>
+</ul>
+</div>
+</div>
+<div id="objects" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Objects</h1>
+<p><strong>Basic Conventions:</strong></p>
+<ul>
+<li>Objects store values, results or algorithms, ie. functions.</li>
+<li>Assignment of contents by <code>&lt;-</code> or <code>=</code> (or very seldomly <code>-&gt;</code>).</li>
+<li>Type of contents is described by object classes.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>(a <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair[<span class="dv">1</span>]); (<span class="at">a =</span> drought<span class="sc">$</span>bair[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] 0.505</code></pre>
+<pre><code>## [1] 0.505</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">log</span>(b <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair[<span class="dv">2</span>]); b</span></code></pre></div>
+<pre><code>## [1] -0.4338646</code></pre>
+<pre><code>## [1] 0.648</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>(a <span class="ot">&lt;-</span> b)</span></code></pre></div>
+<pre><code>## [1] 0.648</code></pre>
+<div id="objekt-names" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Objekt names</h2>
+<p>There are few hard technical restrictions on how to name objects in <strong>R</strong>, and a few soft rules that make life much simpler:</p>
+<ul>
+<li>Object names are requared to begin with a lower or upper case letter, no numbers or any other signs are allowed.</li>
+<li>For any trailing character, numbers and some signs (restrict yourself to underscore <code>_</code> and <code>.</code>) are allowed</li>
+<li>Don’t use <code>?</code>, <code>$</code>, <code>%</code>, <code>^</code>, <code>&amp;</code>, <code>*</code>, <code>(</code>, <code>)</code>, <code>-</code>, <code>#</code>, <code>?</code>,<code>,</code>, <code>&lt;</code>, <code>&gt;</code>, <code>/</code>, <code>|</code>, <code>\</code>, <code>[</code> ,<code>]</code> ,<code>{</code>, and <code>@</code></li>
+<li><strong>As short as possible, as long as needed!</strong></li>
+<li>This trade-off is simple, but (hopefully) still very useful: long object names mean more typing (RStudio weakens this point by auto-complete), but leave less room for questions on content (<em>What was <code>a</code> again?</em>).</li>
+<li>So try to give ‘telling names’, ie. contents (and units!) should be clearly visible from the object’s name: <code>first_bair_measurement</code> is better than <code>a</code>, <code>elev_m</code> is better than <code>elev</code>.</li>
+<li>Ask yourself: Will I be able to immediately recall the content of an object by the object name, even after two weeks no work on this project?</li>
+</ul>
+<p>We get an error message:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="dv">3</span>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Error: &lt;text&gt;:1:2: unerwartetes Symbol
+## 1: 3values
+##      ^</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>three_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span></code></pre></div>
+</div>
+<div id="save-and-load" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Save and load</h2>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">save</span>(frost, <span class="at">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;frost_data.RData&quot;</span>)</span></code></pre></div>
+<p>Where will my files be stored?
+See section <em>Preparatory Work in R</em> in Session 04.</p>
+</div>
+<div id="litter-service" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Litter service</h2>
+<ul>
+<li>Names of objects in current session: <code>ls()</code></li>
+<li>Litter service using <code>rm()</code></li>
+<li><code>dput()</code> comes as a helper</li>
+</ul>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;a&quot;            &quot;b&quot;            &quot;br&quot;           &quot;df&quot;           &quot;drought&quot;     
+##  [6] &quot;frost&quot;        &quot;m&quot;            &quot;nd&quot;           &quot;three_values&quot; &quot;tmp&quot;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="fu">dput</span>(<span class="fu">ls</span>())</span></code></pre></div>
+<pre><code>## c(&quot;a&quot;, &quot;b&quot;, &quot;br&quot;, &quot;df&quot;, &quot;drought&quot;, &quot;frost&quot;, &quot;m&quot;, &quot;nd&quot;, &quot;three_values&quot;, 
+## &quot;tmp&quot;)</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">dput</span>(<span class="fu">ls</span>()[<span class="sc">!</span>(<span class="fu">ls</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;drought&quot;</span>, <span class="st">&quot;frost&quot;</span>, <span class="st">&quot;df&quot;</span>))])</span></code></pre></div>
+<pre><code>## c(&quot;a&quot;, &quot;b&quot;, &quot;br&quot;, &quot;m&quot;, &quot;nd&quot;, &quot;three_values&quot;, &quot;tmp&quot;)</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;br&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;nd&quot;</span>, <span class="st">&quot;three_values&quot;</span>, <span class="st">&quot;tmp&quot;</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;df&quot;      &quot;drought&quot; &quot;frost&quot;</code></pre>
+</div>
+</div>
+<div id="dataobject-classes" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Dataobject classes</h1>
+<div id="vector" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Vector</h2>
+<p>A vector is a one-dimensional combination of length 1 vectors of the same basic vector type.</p>
+<div id="basics" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Basics</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Objective</th>
+<th align="left">Call</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Combination of elements</td>
+<td align="left"><code>c(A, B)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Indexing</td>
+<td align="left"><code>c(A, B)[1]</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Length of vector</td>
+<td align="left"><code>length(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Integer sequence</td>
+<td align="left"><code>A:B</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Flexible sequence</td>
+<td align="left"><code>seq(A, B, length = N)</code>, <code>seq(A, B, by = K)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Repeat</td>
+<td align="left"><code>rep(A, times = N)</code>, <code>rep(c(A, B), each = K)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Sort elements</td>
+<td align="left"><code>sort(c(A, B), decreasing = FALSE)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Order of elements</td>
+<td align="left"><code>order(c(A, B))</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="exercises-4" class="section level3" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Exercises</h3>
+<p>Copy-paste and run each line: describe what it does and what it results in.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> drought<span class="sc">$</span>elev[<span class="dv">1</span>]; b <span class="ot">&lt;-</span> drought<span class="sc">$</span>elev[<span class="dv">2</span>]</span>
+<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(a, b))</span>
+<span id="cb63-3"><a href="#cb63-3" tabindex="-1"></a><span class="fu">c</span>(x, a)</span>
+<span id="cb63-4"><a href="#cb63-4" tabindex="-1"></a><span class="fu">c</span>(x, x)</span>
+<span id="cb63-5"><a href="#cb63-5" tabindex="-1"></a>x[<span class="dv">2</span>] <span class="ot">&lt;-</span> drought<span class="sc">$</span>elev[<span class="dv">3</span>]; x</span>
+<span id="cb63-6"><a href="#cb63-6" tabindex="-1"></a><span class="fu">length</span>(x)</span>
+<span id="cb63-7"><a href="#cb63-7" tabindex="-1"></a>a<span class="sc">:</span>b</span>
+<span id="cb63-8"><a href="#cb63-8" tabindex="-1"></a><span class="fu">seq</span>(a, b, <span class="at">by =</span> .<span class="dv">5</span>)</span>
+<span id="cb63-9"><a href="#cb63-9" tabindex="-1"></a><span class="fu">seq</span>(a, b, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb63-10"><a href="#cb63-10" tabindex="-1"></a><span class="fu">seq</span>(a, b, <span class="at">length =</span> <span class="dv">10</span>) <span class="do">## Sequenz</span></span>
+<span id="cb63-11"><a href="#cb63-11" tabindex="-1"></a><span class="fu">rep</span>(x, <span class="at">times =</span> <span class="dv">3</span>)</span>
+<span id="cb63-12"><a href="#cb63-12" tabindex="-1"></a><span class="fu">rep</span>(x, <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb63-13"><a href="#cb63-13" tabindex="-1"></a><span class="fu">rep</span>(x, <span class="at">length =</span> <span class="dv">7</span>)</span>
+<span id="cb63-14"><a href="#cb63-14" tabindex="-1"></a><span class="fu">sort</span>(x, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb63-15"><a href="#cb63-15" tabindex="-1"></a><span class="fu">order</span>(<span class="fu">c</span>(x, <span class="dv">100</span>))</span>
+<span id="cb63-16"><a href="#cb63-16" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">as.character</span>(drought<span class="sc">$</span>species[<span class="dv">1</span>]); b <span class="ot">&lt;-</span> <span class="fu">as.character</span>(drought<span class="sc">$</span>species[<span class="dv">2</span>])</span>
+<span id="cb63-17"><a href="#cb63-17" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(a, b))</span>
+<span id="cb63-18"><a href="#cb63-18" tabindex="-1"></a><span class="fu">c</span>(x, <span class="st">&quot;Beech&quot;</span>)</span>
+<span id="cb63-19"><a href="#cb63-19" tabindex="-1"></a><span class="fu">c</span>(x, <span class="dv">2</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="calculations" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Calculations</h2>
+<ul>
+<li>Basic calculations operate independently on all elements</li>
+<li>Function calls work (usually) with vectorized arguments</li>
+<li>Summary of the content: <code>summary()</code></li>
+<li>Frequency table: <code>table()</code> (see Session 04 for much more detail)</li>
+</ul>
+<div id="exercises-5" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Exercises</h3>
+<p>Copy-paste and run each line: describe what it does and what it results in.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair</span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a><span class="fu">sin</span>(x)</span>
+<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a><span class="fu">length</span>(x)</span>
+<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a><span class="fu">summary</span>(x)</span>
+<span id="cb64-6"><a href="#cb64-6" tabindex="-1"></a><span class="fu">boxplot</span>(x)</span>
+<span id="cb64-7"><a href="#cb64-7" tabindex="-1"></a><span class="fu">stripchart</span>(x, <span class="at">add =</span> T, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>, <span class="at">vertical =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>species <span class="ot">&lt;-</span> drought<span class="sc">$</span>species</span>
+<span id="cb65-2"><a href="#cb65-2" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> species)</span>
+<span id="cb65-3"><a href="#cb65-3" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> species <span class="sc">+</span> (drought<span class="sc">$</span>elev <span class="sc">&gt;</span> <span class="dv">1000</span>))</span></code></pre></div>
+</div>
+</div>
+<div id="matrix" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Matrix</h2>
+<p>A vector is a two-dimensional combination of single-element objects of the same class.</p>
+<div id="basics-1" class="section level3" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Basics</h3>
+<p><code>P</code><span class="math inline">\(\times\)</span><code>P</code> matrix with content <code>content</code>:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> P, <span class="at">ncol =</span> Q, <span class="at">data =</span> content)</span></code></pre></div>
+<p>Fill matrix column- (default) or line-wise using argument <code>byrow = TRUE</code>:</p>
+<ul>
+<li>Indexing of one element: <code>A[1, 1]</code></li>
+<li>Indexing of first row (result is vector): <code>A[1, ]</code></li>
+<li>Indexing of several rows (result is matrix): <code>A[1:3, ]</code></li>
+<li>Indexing of first column (result is vector): <code>A[, 1]</code></li>
+<li>Indexing of several columns (result is matrix): <code>A[, 1:3]</code></li>
+<li>Indexing of several rows and columns (result is matrix): <code>A[1:3, 1:3]</code></li>
+</ul>
+</div>
+<div id="exercises-6" class="section level3" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Exercises</h3>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> drought<span class="sc">$</span>elev</span>
+<span id="cb67-2"><a href="#cb67-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair</span>
+<span id="cb67-3"><a href="#cb67-3" tabindex="-1"></a><span class="fu">length</span>(a) <span class="sc">==</span> <span class="fu">length</span>(b)</span>
+<span id="cb67-4"><a href="#cb67-4" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="fu">length</span>(a), <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">data =</span> <span class="fu">c</span>(a, b))</span>
+<span id="cb67-5"><a href="#cb67-5" tabindex="-1"></a><span class="fu">all</span>(A[, <span class="dv">1</span>] <span class="sc">==</span> a)</span>
+<span id="cb67-6"><a href="#cb67-6" tabindex="-1"></a>A[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span>
+<span id="cb67-7"><a href="#cb67-7" tabindex="-1"></a>A[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">2</span>]</span>
+<span id="cb67-8"><a href="#cb67-8" tabindex="-1"></a>A[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">29</span>), ]</span>
+<span id="cb67-9"><a href="#cb67-9" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>); B</span>
+<span id="cb67-10"><a href="#cb67-10" tabindex="-1"></a><span class="fu">diag</span>(B)</span>
+<span id="cb67-11"><a href="#cb67-11" tabindex="-1"></a>B <span class="sc">%*%</span> B</span>
+<span id="cb67-12"><a href="#cb67-12" tabindex="-1"></a>B <span class="sc">%*%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb67-13"><a href="#cb67-13" tabindex="-1"></a><span class="fu">rowSums</span>(B)</span>
+<span id="cb67-14"><a href="#cb67-14" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">%*%</span> B</span>
+<span id="cb67-15"><a href="#cb67-15" tabindex="-1"></a><span class="fu">colSums</span>(B)</span></code></pre></div>
+</div>
+</div>
+<div id="list" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> List</h2>
+<p>A list is a general ‘container’ object.</p>
+<div id="basics-2" class="section level3" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Basics</h3>
+<ul>
+<li>Lists may contain elements storing objects of varying classes, lengths, …. (<code>character</code>, <code>numeric</code>, <code>integer</code>, <code>factor</code>, …)</li>
+<li>Construct a list using <code>list(...)</code></li>
+<li>Indexing: <code>x[[1]]</code> or <code>x[['name']]</code> or <code>x$name</code></li>
+<li><code>str</code> gives the structure</li>
+<li>For lists of ‘consistent’ classes (or generic functions):</li>
+</ul>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="fu">lapply</span>(<span class="at">X =</span> mylist, <span class="at">FUN =</span> myfun)</span></code></pre></div>
+</div>
+<div id="exercises-7" class="section level3" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Exercises</h3>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a>beech <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">species =</span> <span class="st">&quot;Fagus&quot;</span>,</span>
+<span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a>              <span class="at">n =</span> <span class="fu">sum</span>(drought<span class="sc">$</span>species <span class="sc">==</span> <span class="st">&quot;Beech&quot;</span>),</span>
+<span id="cb69-3"><a href="#cb69-3" tabindex="-1"></a>              <span class="at">data =</span> <span class="fu">subset</span>(drought, species <span class="sc">==</span> <span class="st">&quot;Beech&quot;</span>))</span>
+<span id="cb69-4"><a href="#cb69-4" tabindex="-1"></a>beech</span>
+<span id="cb69-5"><a href="#cb69-5" tabindex="-1"></a>beech[[<span class="dv">1</span>]]</span>
+<span id="cb69-6"><a href="#cb69-6" tabindex="-1"></a>beech[[<span class="st">&#39;species&#39;</span>]]</span>
+<span id="cb69-7"><a href="#cb69-7" tabindex="-1"></a>beech<span class="sc">$</span>species</span>
+<span id="cb69-8"><a href="#cb69-8" tabindex="-1"></a><span class="fu">str</span>(beech)</span>
+<span id="cb69-9"><a href="#cb69-9" tabindex="-1"></a><span class="fu">lapply</span>(beech, <span class="at">FUN =</span> dim)</span>
+<span id="cb69-10"><a href="#cb69-10" tabindex="-1"></a><span class="fu">lapply</span>(beech, <span class="at">FUN =</span> summary)</span></code></pre></div>
+</div>
+</div>
+<div id="synthesis-and-indexing" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Synthesis and indexing</h2>
+<ul>
+<li>We may provide names for elements of vectors, matrices and lists:</li>
+<li><code>dimnames(A)</code>, <code>rownames(A)</code>, <code>colnames(A)</code> for matrices</li>
+<li>Select a named element by using the <code>$</code> sign</li>
+<li>Select elements by <code>[[]]</code> (for lists), <code>[]</code> (for vectors), and <code>[, ]</code> (for matrices).</li>
+</ul>
+<div id="exercises-8" class="section level3" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Exercises</h3>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="fu">c</span>(<span class="at">one =</span> <span class="dv">1</span>, <span class="at">two =</span> <span class="dv">2</span>, <span class="at">four =</span> <span class="dv">4</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" tabindex="-1"></a>x</span>
+<span id="cb70-4"><a href="#cb70-4" tabindex="-1"></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;four&quot;</span>)</span>
+<span id="cb70-5"><a href="#cb70-5" tabindex="-1"></a>x</span>
+<span id="cb70-6"><a href="#cb70-6" tabindex="-1"></a><span class="fu">names</span>(beech)</span>
+<span id="cb70-7"><a href="#cb70-7" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">10</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">data =</span> <span class="fu">c</span>(drought<span class="sc">$</span>elev[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], drought<span class="sc">$</span>bair[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]))</span>
+<span id="cb70-8"><a href="#cb70-8" tabindex="-1"></a><span class="fu">colnames</span>(A)</span>
+<span id="cb70-9"><a href="#cb70-9" tabindex="-1"></a><span class="fu">colnames</span>(A) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;elev&quot;</span>, <span class="st">&quot;bair&quot;</span>)</span>
+<span id="cb70-10"><a href="#cb70-10" tabindex="-1"></a><span class="fu">colnames</span>(A)</span>
+<span id="cb70-11"><a href="#cb70-11" tabindex="-1"></a><span class="fu">rownames</span>(A)</span>
+<span id="cb70-12"><a href="#cb70-12" tabindex="-1"></a><span class="fu">names</span>(A)</span>
+<span id="cb70-13"><a href="#cb70-13" tabindex="-1"></a><span class="fu">dimnames</span>(A)</span></code></pre></div>
+</div>
+</div>
+<div id="dataframe" class="section level2" number="9.6">
+<h2><span class="header-section-number">9.6</span> Dataframe</h2>
+<p>Based on their object properties, dataframes can be classified between matrices and lists, whereby the columns (the so-called ‘variables’) of the dataframe correspond to the elements of a list:</p>
+<ul>
+<li>Dataframes are more rigid than lists because all columns must have the same length,</li>
+<li>Dataframes are more flexible than matrices, since all columns can contain different contents (numbers, strings, …).</li>
+<li>Dataframes are generated with <code>data.frame ()</code></li>
+<li>Indexing:</li>
+<li>Rows and columns can be indexed in the same way as the elements of a matrix,</li>
+<li>Columns can be indexed in the same way as the elements of a list (we have already used this by <code>drought$elev</code>).</li>
+</ul>
+<div id="exercises-9" class="section level3" number="9.6.1">
+<h3><span class="header-section-number">9.6.1</span> Exercises</h3>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">day =</span> <span class="fu">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>),</span>
+<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a>                      <span class="at">daily_mean_temperature_C =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>),</span>
+<span id="cb71-3"><a href="#cb71-3" tabindex="-1"></a>                      <span class="at">precipitation_sum_mm =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">25</span>),</span>
+<span id="cb71-4"><a href="#cb71-4" tabindex="-1"></a>                      <span class="at">site =</span> <span class="st">&quot;Goettingen&quot;</span>)</span>
+<span id="cb71-5"><a href="#cb71-5" tabindex="-1"></a>weather</span>
+<span id="cb71-6"><a href="#cb71-6" tabindex="-1"></a>weather[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ]</span>
+<span id="cb71-7"><a href="#cb71-7" tabindex="-1"></a>weather<span class="sc">$</span>day[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb71-8"><a href="#cb71-8" tabindex="-1"></a>weather[[<span class="st">&quot;daily_mean_temperature_C&quot;</span>]][<span class="dv">3</span>]</span>
+<span id="cb71-9"><a href="#cb71-9" tabindex="-1"></a>weather[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">&quot;daily_mean_temperature_C&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</span>
+<span id="cb71-10"><a href="#cb71-10" tabindex="-1"></a>weather[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;precipitation_sum_mm&quot;</span>)]</span></code></pre></div>
+</div>
+</div>
+<div id="functions-on-dataframes" class="section level2" number="9.7">
+<h2><span class="header-section-number">9.7</span> Functions on dataframes</h2>
+<ul>
+<li><code>summary</code>: Summary of each of the variables in the dataframe</li>
+<li><code>str</code>: overview of the structure of the dataframe</li>
+<li><code>dim</code>: Dimension of the dataframe (number of rows and columns)</li>
+<li>The first <code>N</code> lines of a dataframe <code>df</code> are extracted with <code>head(df, n = N)</code>, and</li>
+<li>the last <code>N</code> lines of a dataframe <code>df</code> are extracted with <code>tail (d, n = N)</code>.</li>
+</ul>
+<div id="exercises-10" class="section level3" number="9.7.1">
+<h3><span class="header-section-number">9.7.1</span> Exercises</h3>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="fu">summary</span>(weather)</span>
+<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a><span class="fu">str</span>(weather)</span>
+<span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a><span class="fu">head</span>(weather, <span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb72-4"><a href="#cb72-4" tabindex="-1"></a><span class="fu">dim</span>(weather)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="functions-for-character-strings" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Functions for character strings</h1>
+<p>If we want to change character strings (such as variable names of a dataframe), the following functions can be helpful:</p>
+<div id="nchar" class="section level2 unnumbered">
+<h2><code>nchar</code></h2>
+<p>Returns the number of characters of a string:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="fu">nchar</span>(<span class="fu">names</span>(weather))</span></code></pre></div>
+<pre><code>## [1]  3 24 20  4</code></pre>
+</div>
+<div id="tolower-und-toupper" class="section level2 unnumbered">
+<h2><code>tolower</code> und <code>toupper</code></h2>
+<p>Replaces uppercase with lowercase letters (and vice versa).</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="fu">toupper</span>(<span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;BEECH&quot; &quot;BEECH&quot; &quot;BEECH&quot;</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="fu">tolower</span>(<span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;BEech&quot;</span>, <span class="st">&quot;beech&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;beech&quot; &quot;beech&quot; &quot;beech&quot;</code></pre>
+</div>
+<div id="gsub" class="section level2 unnumbered">
+<h2><code>gsub</code></h2>
+<p>Replace a pattern:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="fu">names</span>(weather)</span></code></pre></div>
+<pre><code>## [1] &quot;day&quot;                      &quot;daily_mean_temperature_C&quot;
+## [3] &quot;precipitation_sum_mm&quot;     &quot;site&quot;</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a><span class="fu">names</span>(weather) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="fu">names</span>(weather), <span class="at">pattern =</span> <span class="st">&quot;_mm&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;__mm&quot;</span>, <span class="at">fixed =</span> T)</span>
+<span id="cb81-2"><a href="#cb81-2" tabindex="-1"></a><span class="fu">names</span>(weather) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="fu">names</span>(weather), <span class="at">pattern =</span> <span class="st">&quot;_C&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;__C&quot;</span>, <span class="at">fixed =</span> T)</span>
+<span id="cb81-3"><a href="#cb81-3" tabindex="-1"></a><span class="fu">names</span>(weather)</span></code></pre></div>
+<pre><code>## [1] &quot;day&quot;                       &quot;daily_mean_temperature__C&quot;
+## [3] &quot;precipitation_sum__mm&quot;     &quot;site&quot;</code></pre>
+</div>
+<div id="substring" class="section level2 unnumbered">
+<h2><code>substring</code></h2>
+<p>Substrings from <code>first</code> to <code>last</code>.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a><span class="fu">substring</span>(<span class="fu">names</span>(weather), <span class="at">first =</span> <span class="dv">1</span>, <span class="at">last =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;day&quot;   &quot;daily&quot; &quot;preci&quot; &quot;site&quot;</code></pre>
+</div>
+<div id="strsplit" class="section level2 unnumbered">
+<h2><code>strsplit</code></h2>
+<p>Splits strings according to a certain pattern (<code>strsplit</code> always returns a list).</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a><span class="fu">names</span>(weather) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="fu">names</span>(weather), <span class="at">pattern =</span> <span class="st">&quot;__&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;_&quot;</span>, <span class="at">fixed =</span> T)</span>
+<span id="cb85-2"><a href="#cb85-2" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="fu">names</span>(weather), <span class="at">split =</span> <span class="st">&quot;_&quot;</span>, <span class="at">fixed =</span> T))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;day&quot;
+## 
+## [[2]]
+## [1] &quot;daily&quot;       &quot;mean&quot;        &quot;temperature&quot; &quot;C&quot;          
+## 
+## [[3]]
+## [1] &quot;precipitation&quot; &quot;sum&quot;           &quot;mm&quot;           
+## 
+## [[4]]
+## [1] &quot;site&quot;</code></pre>
+</div>
+<div id="paste" class="section level2 unnumbered">
+<h2><code>paste</code></h2>
+<p>Merges strings (arguments <code>sep</code> or<code>collapse</code>).</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a><span class="fu">sapply</span>(tmp, <span class="at">FUN =</span> <span class="cf">function</span>(x){<span class="fu">paste</span>(x, <span class="at">collapse =</span> <span class="st">&quot;_&quot;</span>)})</span></code></pre></div>
+<pre><code>## [1] &quot;day&quot;                      &quot;daily_mean_temperature_C&quot;
+## [3] &quot;precipitation_sum_mm&quot;     &quot;site&quot;</code></pre>
+</div>
+</div>
+<div id="factors" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Factors</h1>
+<!--
+Für die Analyse qualitativer Merkmale ist es sinnvoll, Variablen mit Zeichenketten als Faktoren zu repräsentieren.
+Dabei weren Faktorstufen (`levels`) erzeugt, die intern nummeriert, aber nach aussen durch die originalen Werte der Zeichenkette dargestellt werden.
+
+Es ist allgemein ratsam einen Datensatz mit dem Argument `stringsAsFactor = FALSE` zu importieren (Falls zu einem späteren Zeitpunkt Teildatensätze gebildet werden sollen ist das Laden mit `stringsAsFactor = FALSE` hilfreich um später keine 'Geisterausprägungen' zu haben; siehe übernächsten Abschnitt).
+
+Praktisches Vorgehen:
+
+- Importe die Daten mit `stringsAsFactor = FALSE`
+- Überprüfe die Struktur des Datensatzes mit Hilfe von `str()`: Sind Variablen überraschenderweise als Zeichenketten (Klasse `chr`) importiert worden? Falls ja, überprüfe mit `unique()` oder `table()` die Ausprägungen dieser Variablen auf fehlerhafte Werte. 
+- Überprüfe mit `unique()` oder `xtabs()` auch die Ausprägungen der Variablen die geplant als `chr` eingelesen wurden: Auch hier können leicht Tippfehler lauern.
+- Nutze `d$var <- as.factor(d$var)` um der/den Variable(n) final die `factor` Klasse zuzuweisen.
+-->
+<p>For the analysis of qualitative characteristics, it makes sense to represent variables with character strings as <strong>factors</strong>.</p>
+<p>A factor comes with three ingredients:</p>
+<ul>
+<li>data vector <code>x</code></li>
+<li><code>levels</code></li>
+<li><code>labels</code></li>
+</ul>
+<p>We can generate a factor without specification of levels and labels:
+In this case, factor levels (<code>levels</code>) are generated (in alphabetical order), numbered internally (see this numeric expression using <code>as.numeric</code>), and represented externally by the original values of the character string.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] Beech  Spruce Beech 
+## Levels: Beech Spruce</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="fu">attributes</span>(tmp)</span></code></pre></div>
+<pre><code>## $levels
+## [1] &quot;Beech&quot;  &quot;Spruce&quot;
+## 
+## $class
+## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a><span class="fu">levels</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] &quot;Beech&quot;  &quot;Spruce&quot;</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a><span class="fu">as.numeric</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] 1 2 1</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a><span class="fu">as.character</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] &quot;Beech&quot;  &quot;Spruce&quot; &quot;Beech&quot;</code></pre>
+<p>We can provide levels, to which the numerical representation will refer to:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>), </span>
+<span id="cb99-2"><a href="#cb99-2" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] Beech  Spruce Beech 
+## Levels: Spruce Beech</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a><span class="fu">attributes</span>(tmp)</span></code></pre></div>
+<pre><code>## $levels
+## [1] &quot;Spruce&quot; &quot;Beech&quot; 
+## 
+## $class
+## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a><span class="fu">levels</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] &quot;Spruce&quot; &quot;Beech&quot;</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a><span class="fu">as.numeric</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] 2 1 2</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a><span class="fu">as.character</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] &quot;Beech&quot;  &quot;Spruce&quot; &quot;Beech&quot;</code></pre>
+<p>Using labels, the values represented externally are the result of the mapping from <code>levels</code> to <code>labels</code></p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>), </span>
+<span id="cb109-2"><a href="#cb109-2" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </span>
+<span id="cb109-3"><a href="#cb109-3" tabindex="-1"></a>               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Fagus sylvatica&quot;</span>, <span class="st">&quot;Picea abies&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] Fagus sylvatica Picea abies     Fagus sylvatica
+## Levels: Fagus sylvatica Picea abies</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="fu">attributes</span>(tmp)</span></code></pre></div>
+<pre><code>## $levels
+## [1] &quot;Fagus sylvatica&quot; &quot;Picea abies&quot;    
+## 
+## $class
+## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="fu">levels</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] &quot;Fagus sylvatica&quot; &quot;Picea abies&quot;</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a><span class="fu">as.numeric</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] 1 2 1</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="fu">as.character</span>(tmp)</span></code></pre></div>
+<pre><code>## [1] &quot;Fagus sylvatica&quot; &quot;Picea abies&quot;     &quot;Fagus sylvatica&quot;</code></pre>
+<div id="exercises-11" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Exercises</h2>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), </span>
+<span id="cb119-2"><a href="#cb119-2" tabindex="-1"></a>              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </span>
+<span id="cb119-3"><a href="#cb119-3" tabindex="-1"></a>              <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Fagus sylvatica&quot;</span>, <span class="st">&quot;Picea abies&quot;</span>))</span>
+<span id="cb119-4"><a href="#cb119-4" tabindex="-1"></a><span class="fu">attributes</span>(tmp)</span>
+<span id="cb119-5"><a href="#cb119-5" tabindex="-1"></a><span class="fu">levels</span>(tmp)</span>
+<span id="cb119-6"><a href="#cb119-6" tabindex="-1"></a><span class="fu">as.numeric</span>(tmp)</span>
+<span id="cb119-7"><a href="#cb119-7" tabindex="-1"></a><span class="fu">as.character</span>(tmp)</span>
+<span id="cb119-8"><a href="#cb119-8" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>, <span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), </span>
+<span id="cb119-9"><a href="#cb119-9" tabindex="-1"></a>              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), </span>
+<span id="cb119-10"><a href="#cb119-10" tabindex="-1"></a>              <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Deciduous&quot;</span>, <span class="st">&quot;Deciduous&quot;</span>, <span class="st">&quot;Conifer&quot;</span>))</span>
+<span id="cb119-11"><a href="#cb119-11" tabindex="-1"></a><span class="fu">attributes</span>(tmp)</span>
+<span id="cb119-12"><a href="#cb119-12" tabindex="-1"></a><span class="fu">levels</span>(tmp)</span>
+<span id="cb119-13"><a href="#cb119-13" tabindex="-1"></a><span class="fu">as.numeric</span>(tmp)</span>
+<span id="cb119-14"><a href="#cb119-14" tabindex="-1"></a><span class="fu">as.character</span>(tmp)</span></code></pre></div>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_01.pdf", "PDF"]],
+"search": false,
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
