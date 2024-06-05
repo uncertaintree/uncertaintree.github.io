@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R: Session 02 (ggplot version)</title>
+  <meta name="description" content="Introduction to R: Session 02 (ggplot version)" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R: Session 02 (ggplot version)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R: Session 02 (ggplot version)" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#data-preparations"><i class="fa fa-check"></i>Data preparations</a></li>
+<li class="chapter" data-level="1" data-path=""><a href="#store-graphics"><i class="fa fa-check"></i><b>1</b> Store graphics</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#ggplot-wickham2016-basics"><i class="fa fa-check"></i><b>2</b> <code>ggplot</code> <span class="citation">(Wickham 2016)</span> basics</a></li>
+<li class="chapter" data-level="3" data-path=""><a href="#most-important-geoms"><i class="fa fa-check"></i><b>3</b> Most important <code>geom</code>s</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path=""><a href="#one-continuous-variable"><i class="fa fa-check"></i><b>3.1</b> One continuous variable</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path=""><a href="#histogram"><i class="fa fa-check"></i><b>3.1.1</b> Histogram</a></li>
+<li class="chapter" data-level="3.1.2" data-path=""><a href="#boxplot"><i class="fa fa-check"></i><b>3.1.2</b> Boxplot</a></li>
+<li class="chapter" data-level="3.1.3" data-path=""><a href="#kernel-density-estimation"><i class="fa fa-check"></i><b>3.1.3</b> Kernel density estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path=""><a href="#one-categorical-variable"><i class="fa fa-check"></i><b>3.2</b> One categorical variable</a></li>
+<li class="chapter" data-level="3.3" data-path=""><a href="#two-continuous-variables"><i class="fa fa-check"></i><b>3.3</b> Two continuous variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path=""><a href="#colors-with-colorspace-staufferetal2009"><i class="fa fa-check"></i><b>4</b> Colors with <code>colorspace</code> <span class="citation">(Stauffer et al. 2009)</span></a></li>
+<li class="chapter" data-level="5" data-path=""><a href="#titles"><i class="fa fa-check"></i><b>5</b> Titles</a></li>
+<li class="chapter" data-level="6" data-path=""><a href="#facetting"><i class="fa fa-check"></i><b>6</b> Facetting</a></li>
+<li class="chapter" data-level="7" data-path=""><a href="#axes"><i class="fa fa-check"></i><b>7</b> Axes</a></li>
+<li class="chapter" data-level="8" data-path=""><a href="#ggrepel-slowikowski2024"><i class="fa fa-check"></i><b>8</b> <code>ggrepel</code> <span class="citation">(Slowikowski 2024)</span></a></li>
+<li class="chapter" data-level="9" data-path=""><a href="#cowplot-wilke2024"><i class="fa fa-check"></i><b>9</b> <code>cowplot</code> <span class="citation">(Wilke 2024)</span></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R: Session 02 (ggplot version)</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R: Session 02 (ggplot version)</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date"><em>June 5, 2024 (Version 0.1)</em></p>
+</div>
+<!--# About this course{-}
+This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="data-preparations" class="section level1 unnumbered">
+<h1>Data preparations</h1>
+<p>We use the <code>ddply</code> function implemented in the <code>plyr</code> <span class="citation">(<a href="#ref-Wickham:2011">Wickham 2011</a>)</span> add-on package (we will introduce <code>ddply</code> and the ‘split-apply-combine’ strategy in a bit more detail in Session 05).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;plyr&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>d_breaks_cut <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df<span class="sc">$</span>d, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.05</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>df<span class="sc">$</span>d_cut <span class="ot">&lt;-</span> <span class="fu">cut</span>(df<span class="sc">$</span>d, <span class="at">breaks =</span> d_breaks_cut, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">ddply</span>(df, <span class="fu">c</span>(<span class="st">&quot;d_cut&quot;</span>), summarise, </span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>            <span class="at">h_mean =</span> <span class="fu">mean</span>(h),</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>            <span class="at">h_q25 =</span> <span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>            <span class="at">h_q75 =</span> <span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fl">0.75</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>dd<span class="sc">$</span>d_lb <span class="ot">&lt;-</span> d_breaks_cut[<span class="sc">-</span><span class="fu">length</span>(d_breaks_cut)]</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>dd<span class="sc">$</span>d_ub <span class="ot">&lt;-</span> d_breaks_cut[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>dd<span class="sc">$</span>d_mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(dd[, <span class="fu">c</span>(<span class="st">&quot;d_lb&quot;</span>, <span class="st">&quot;d_ub&quot;</span>)], <span class="at">MAR =</span> <span class="dv">1</span>, <span class="at">FUN =</span> mean)</span></code></pre></div>
+</div>
+<div id="store-graphics" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Store graphics</h1>
+<p><strong>File format:</strong></p>
+<ul>
+<li><code>pdf()</code>: ‘portable document format’</li>
+<li><code>jpeg()</code>: ‘joint photographic experts group’</li>
+<li><code>tiff()</code>: ‘tagged image file format’</li>
+<li><code>png()</code>: ‘portable network graphics’</li>
+<li>…</li>
+</ul>
+<p><strong>Options:</strong></p>
+<ul>
+<li><code>width</code>: width (for <code>pdf</code> in inches)</li>
+<li><code>height</code>: height (for<code>pdf</code> in inches)</li>
+<li><code>onefile</code>: logical value (should several graphics as separate pages in one file?)</li>
+<li>…</li>
+</ul>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file=</span><span class="st">&#39;&lt;file name&gt;.pdf&#39;</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">width =</span> <span class="dv">9</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>...</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+</div>
+<div id="ggplot-wickham2016-basics" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> <code>ggplot</code> <span class="citation">(<a href="#ref-Wickham:2016">Wickham 2016</a>)</span> basics</h1>
+<p>Books:</p>
+<ul>
+<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis, 3rd edition</a></li>
+<li><a href="https://r-graphics.org/">R Graphics Cookbook, 2nd edition</a></li>
+</ul>
+<p>From <a href="https://r-graphics.org/">R Graphics Cookbook</a>, Section <a href="&#39;https://r-graphics.org/some-terminology-and-theory&#39;">Some terminology and theory</a></p>
+<blockquote>
+<ul>
+<li>“The <em>data</em> is what we want to visualize. It consists of variables, which are stored as columns in a data frame.</li>
+<li><em>Geoms</em> are the geometric objects that are drawn to represent the data, such as bars, lines, and points.</li>
+<li>Aesthetic attributes, or <em>aesthetics</em>, are visual properties of geoms, such as x and y position, line color, point shapes, etc.</li>
+<li>There are mappings from data values to aesthetics.</li>
+<li><em>Scales</em> control the mapping from the values in the data space to values in the aesthetic space. A continuous y scale maps larger numerical values to vertically higher positions in space.</li>
+<li><em>Guides</em> show the viewer how to map the visual properties back to the data space. The most commonly used guides are the tick marks and labels on an axis.”</li>
+</ul>
+</blockquote>
+<p><strong>ggplot2 requirement</strong>: data must be organised in data frames!</p>
+<p>The syntax of the <code>ggplot2</code> package differs from that of base R, and in order to create a visualization of your data using <code>ggplot2</code>, you need to specify three key components:</p>
+<ul>
+<li>data,</li>
+<li>aesthetics, and</li>
+<li>geometry (<code>geom</code>s).</li>
+</ul>
+<p>From <code>?aes</code>:</p>
+<blockquote>
+<p>“Aesthetic mappings describe how variables in the data are mapped to visual properties (aesthetics) of geoms. Aesthetic mappings can be set in ggplot() and in individual layers.”</p>
+</blockquote>
+<p>Visual properties of geoms that are constant are set outside of <code>aes</code> (illustrated later)!</p>
+<p>We always begin with defining a plotting object using a <code>ggplot(data = ...)</code> call:.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>This indicates the (main) data set we will be using.
+Often, you might want to plot two variables (of course, there are is situations where you might want to specify only one, or three, or even more variables), one on the x-axis and one on the y-axis. Such an aim is known as <em>positional aesthetics</em> and added to the <code>ggplot()</code> call using <code>aes(x = var1, y = var2)</code>, where <code>aes()</code> stands for <em>aesthetics</em>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought, <span class="fu">aes</span>(<span class="at">x =</span> elev, <span class="at">y =</span> bair))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>… no data is plotted yet, however the <em>stage is prepared</em>.</p>
+<p>So we need a third key component, which is a geometry short <code>geom</code> …</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought, <span class="fu">aes</span>(<span class="at">x =</span> elev, <span class="at">y =</span> bair)) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>… where we can also shift the aesthetics to:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> elev, <span class="at">y =</span> bair))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><strong>Note</strong>: The data is specified outside of <code>aes()</code>, while the variables that <code>ggplot</code> maps to aesthetics are added inside <code>aes()</code>.</p>
+</div>
+<div id="most-important-geoms" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Most important <code>geom</code>s</h1>
+<div id="one-continuous-variable" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> One continuous variable</h2>
+<div id="histogram" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Histogram</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> d))</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="boxplot" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Boxplot</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> d))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="kernel-density-estimation" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Kernel density estimation</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> d))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>In combination with a histogram:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d)) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density))) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">## Layer by layer (order of geoms matters):</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d)) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)))</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+</div>
+</div>
+<div id="one-categorical-variable" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> One categorical variable</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">y =</span> d_cut)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="two-continuous-variables" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Two continuous variables</h2>
+<p>Try the following:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dd) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> (d_lb <span class="sc">+</span> d_ub)<span class="sc">/</span><span class="dv">2</span>, <span class="at">y =</span> h_mean))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dd) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> (d_lb <span class="sc">+</span> d_ub)<span class="sc">/</span><span class="dv">2</span>, <span class="at">y =</span> h_mean))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dd, <span class="fu">aes</span>(<span class="at">x =</span> (d_lb <span class="sc">+</span> d_ub)<span class="sc">/</span><span class="dv">2</span>, <span class="at">y =</span> h_mean)) <span class="sc">+</span> </span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-4.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-5.png" width="672" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-6.png" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> dd, <span class="do">## 2nd data-set with ...</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> (d_lb <span class="sc">+</span> d_ub)<span class="sc">/</span><span class="dv">2</span>, <span class="at">y =</span> h_mean), <span class="do">## ... different aesthetics</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;aquamarine4&quot;</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="do">## </span></span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-7.png" width="672" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="fu">geom_bin_2d</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;coral1&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-13-8.png" width="672" /></p>
+</div>
+</div>
+<div id="colors-with-colorspace-staufferetal2009" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Colors with <code>colorspace</code> <span class="citation">(<a href="#ref-Stauffer:EtAl:2009">Stauffer et al. 2009</a>)</span></h1>
+<p>Rather then starting somewhere different, start at the <a href="colorspace.r-forge.r-project.org"><code>colorspace</code></a>:</p>
+<ul>
+<li><a href="http://colorspace.r-forge.r-project.org/articles/ggplot2_color_scales.html">colorspace functionality for ggplot2</a></li>
+<li><a href="http://colorspace.r-forge.r-project.org/articles/hcl_palettes.html">palette overview</a></li>
+</ul>
+<p>Remember from <a href="https://r-graphics.org/">R Graphics Cookbook</a>, Section <a href="&#39;https://r-graphics.org/some-terminology-and-theory&#39;">Some terminology and theory</a></p>
+<blockquote>
+<ul>
+<li><em>Scales</em> control the mapping from the values in the data space to values in the aesthetic space. A continuous y scale maps larger numerical values to vertically higher positions in space.</li>
+</ul>
+</blockquote>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;colorspace&quot;</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>  <span class="fu">geom_bin_2d</span>() <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>  <span class="fu">scale_fill_continuous_divergingx</span>(<span class="at">pal =</span> <span class="st">&quot;Earth&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>  <span class="fu">geom_density_2d</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">after_stat</span>(level))) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>  <span class="fu">scale_color_continuous_sequential</span>(<span class="at">pal =</span> <span class="st">&quot;ag_GrnYl&quot;</span>, <span class="at">rev =</span> F)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+</div>
+<div id="titles" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Titles</h1>
+<p>Titles are axis labels, but also main title and subtitle (as well as caption and tag).
+They are configured using function <code>labs</code>:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(plot))) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diameter at breastheight [cm]&quot;</span>, </span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tree height [m]&quot;</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Heights and diameters of Scots pine trees in Ilomantsi, Finland&quot;</span>, </span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Plot symbols show individual tree measurements at 56 plots&quot;</span>, </span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Data from &#39;spati2&#39; dataset shipping with &#39;lmfor&#39;.&quot;</span>, </span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>       <span class="at">tag =</span> <span class="st">&quot;A)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>  <span class="fu">scale_color_discrete_qualitative</span>(<span class="at">pal =</span> <span class="st">&quot;Dark 2&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="facetting" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Facetting</h1>
+<p>Conditional on categorical grouping variable(s), <code>facet_wrap</code> and <code>facet_grid</code> provide functionality to for conditional subplots:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(plot))) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> plot) <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diameter at breastheight [cm]&quot;</span>, </span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tree height [m]&quot;</span>, </span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Heights and diameters of Scots pine trees in Ilomantsi, Finland&quot;</span>, </span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Plot symbols show individual tree measurements at 56 plots&quot;</span>, </span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Data from &#39;spati2&#39; dataset shipping with &#39;lmfor&#39;.&quot;</span>, </span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a>       <span class="at">tag =</span> <span class="st">&quot;A)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a>  <span class="fu">scale_color_discrete_qualitative</span>(<span class="at">pal =</span> <span class="st">&quot;Dark 2&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, (plot <span class="sc">&lt;</span> <span class="dv">6</span>) <span class="sc">&amp;</span> (d <span class="sc">&gt;</span> <span class="dv">15</span>)), </span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span> </span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(plot))) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">row =</span> <span class="fu">vars</span>(plot), <span class="at">cols =</span> <span class="fu">vars</span>(d_cut)) <span class="sc">+</span> </span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diameter at breastheight [cm]&quot;</span>, </span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tree height [m]&quot;</span>, </span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Heights and diameters of Scots pine trees in Ilomantsi, Finland&quot;</span>, </span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Plot symbols show individual tree measurements at 56 plots&quot;</span>, </span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Data from &#39;spati2&#39; dataset shipping with &#39;lmfor&#39;.&quot;</span>, </span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a>       <span class="at">tag =</span> <span class="st">&quot;A)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a>  <span class="fu">scale_color_discrete_qualitative</span>(<span class="at">pal =</span> <span class="st">&quot;Dark 2&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+</div>
+<div id="axes" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Axes</h1>
+<p>Manipulate axis range in three different ways:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 1005 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-17-3.png" width="672" /></p>
+<p>See <code>?scale_continuous</code> for transformations of axis:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="do">## Log-log plot:</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> h)) <span class="sc">+</span> </span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>frost<span class="sc">$</span>bud_burst_doy <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">strftime</span>(<span class="fu">as.Date</span>(frost<span class="sc">$</span>bud_burst), <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>frost<span class="sc">$</span>end_1st_dev_stage_doy <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">strftime</span>(<span class="fu">as.Date</span>(frost<span class="sc">$</span>end_1st_dev_stage), <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(x, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2024-01-01&quot;</span>))</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>  <span class="fu">Sys.setlocale</span>(<span class="at">locale =</span> <span class="st">&quot;en_US.UTF-8&quot;</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>  lab <span class="ot">&lt;-</span> <span class="fu">months</span>(x)</span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>  <span class="fu">Sys.setlocale</span>(<span class="at">locale =</span> <span class="st">&quot;de_DE.UTF-8&quot;</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">paste0</span>(lab, <span class="st">&quot;, 1st&quot;</span>))</span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>}</span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a><span class="do">## Apply function for axis labels:</span></span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> frost, <span class="fu">aes</span>(<span class="at">x =</span> bud_burst_doy, <span class="at">y =</span> end_1st_dev_stage_doy)) <span class="sc">+</span> </span>
+<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> year)) <span class="sc">+</span></span>
+<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="co"># name = &quot;time&quot;,</span></span>
+<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">as.numeric</span>(<span class="fu">strftime</span>(<span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="st">&quot;2024-0&quot;</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>, <span class="st">&quot;-01&quot;</span>)), <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>)),</span>
+<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a>     <span class="at">minor_breaks =</span> <span class="cn">NULL</span>,</span>
+<span id="cb34-16"><a href="#cb34-16" tabindex="-1"></a>     <span class="at">labels =</span> foo, </span>
+<span id="cb34-17"><a href="#cb34-17" tabindex="-1"></a>     <span class="at">limits =</span> <span class="fu">as.numeric</span>(<span class="fu">strftime</span>(<span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="st">&quot;2024-0&quot;</span>, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>), <span class="st">&quot;-01&quot;</span>)), <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb34-18"><a href="#cb34-18" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="co"># name = &quot;time&quot;,</span></span>
+<span id="cb34-19"><a href="#cb34-19" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">as.numeric</span>(<span class="fu">strftime</span>(<span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="st">&quot;2024-0&quot;</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>, <span class="st">&quot;-01&quot;</span>)), <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>)),</span>
+<span id="cb34-20"><a href="#cb34-20" tabindex="-1"></a>     <span class="at">minor_breaks =</span> <span class="cn">NULL</span>,</span>
+<span id="cb34-21"><a href="#cb34-21" tabindex="-1"></a>     <span class="at">labels =</span> foo, </span>
+<span id="cb34-22"><a href="#cb34-22" tabindex="-1"></a>     <span class="at">limits =</span> <span class="fu">as.numeric</span>(<span class="fu">strftime</span>(<span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="st">&quot;2024-0&quot;</span>, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>), <span class="st">&quot;-01&quot;</span>)), <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))) <span class="sc">+</span> </span>
+<span id="cb34-23"><a href="#cb34-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;End of 1st development stage&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Bud burst&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb34-24"><a href="#cb34-24" tabindex="-1"></a>  <span class="fu">scale_color_continuous_sequential</span>(<span class="at">pal =</span> <span class="st">&quot;Rocket&quot;</span>, <span class="at">begin =</span> .<span class="dv">1</span>)</span>
+<span id="cb34-25"><a href="#cb34-25" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+</div>
+<div id="ggrepel-slowikowski2024" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> <code>ggrepel</code> <span class="citation">(<a href="#ref-Slowikowski:2024">Slowikowski 2024</a>)</span></h1>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggrepel&quot;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> frost, <span class="fu">aes</span>(<span class="at">x =</span> bud_burst_doy, <span class="at">y =</span> end_1st_dev_stage_doy)) <span class="sc">+</span> </span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> year)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> year, <span class="at">color =</span> year), <span class="at">min.segment.length =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;End of 1st development stage [day of year]&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Bud burst [day of year]&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>  <span class="fu">scale_color_continuous_sequential</span>(<span class="at">pal =</span> <span class="st">&quot;Rocket&quot;</span>, <span class="at">begin =</span> .<span class="dv">1</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>p2</span></code></pre></div>
+<pre><code>## Warning: ggrepel: 46 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="cowplot-wilke2024" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> <code>cowplot</code> <span class="citation">(<a href="#ref-Wilke:2024">Wilke 2024</a>)</span></h1>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;cowplot&quot;</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>guide_box_top <span class="ot">&lt;-</span> <span class="fu">get_plot_component</span>(p1 <span class="sc">+</span> </span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>                                      <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Year:&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>                                      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;guide-box-top&quot;</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a><span class="fu">plot_grid</span>(guide_box_top, </span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>          <span class="fu">plot_grid</span>(p1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>), p2 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>), <span class="at">ncol =</span> <span class="dv">2</span>), </span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a>          <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">rel_heights =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">9</span>))</span></code></pre></div>
+<pre><code>## Warning: ggrepel: 63 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<p><img src="intro_to_R_2024_session_02_ggplot_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-Slowikowski:2024" class="csl-entry">
+Slowikowski, Kamil. 2024. <em>Ggrepel: Automatically Position Non-Overlapping Text Labels with ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggrepel">https://CRAN.R-project.org/package=ggrepel</a>.
+</div>
+<div id="ref-Stauffer:EtAl:2009" class="csl-entry">
+Stauffer, Reto, Georg J. Mayr, Markus Dabernig, and Achim Zeileis. 2009. <span>“Somewhere over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations.”</span> <em>Bulletin of the American Meteorological Society</em> 96 (2): 203–16. <a href="https://doi.org/10.1175/BAMS-D-13-00155.1">https://doi.org/10.1175/BAMS-D-13-00155.1</a>.
+</div>
+<div id="ref-Wickham:2011" class="csl-entry">
+Wickham, Hadley. 2011. <span>“The Split-Apply-Combine Strategy for Data Analysis.”</span> <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/">http://www.jstatsoft.org/v40/i01/</a>.
+</div>
+<div id="ref-Wickham:2016" class="csl-entry">
+———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-Wilke:2024" class="csl-entry">
+Wilke, Claus O. 2024. <em>Cowplot: Streamlined Plot Theme and Plot Annotations for ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=cowplot">https://CRAN.R-project.org/package=cowplot</a>.
+</div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_02.pdf", "PDF"]],
+"search": false,
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"info": false
+});
+});
+</script>
+
+</body>
+
+</html>
