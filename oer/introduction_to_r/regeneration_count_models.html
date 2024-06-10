@@ -118,19 +118,19 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="2" data-path=""><a href="#verteilungsmodelle"><i class="fa fa-check"></i><b>2</b> Verteilungsmodelle</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path=""><a href="#poisson"><i class="fa fa-check"></i><b>2.1</b> Poisson</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path=""><a href="#negativ-binomial"><i class="fa fa-check"></i><b>3</b> Negativ Binomial</a></li>
-<li class="chapter" data-level="4" data-path=""><a href="#zero-truncated-poisson"><i class="fa fa-check"></i><b>4</b> Zero-Truncated Poisson</a></li>
-<li class="chapter" data-level="5" data-path=""><a href="#zero-truncated-negativ-binomial"><i class="fa fa-check"></i><b>5</b> Zero-Truncated Negativ Binomial</a></li>
-<li class="chapter" data-level="6" data-path=""><a href="#vergleich"><i class="fa fa-check"></i><b>6</b> Vergleich</a></li>
-<li class="chapter" data-level="7" data-path=""><a href="#hurdle-modelle"><i class="fa fa-check"></i><b>7</b> Hurdle-Modelle</a>
+<li class="chapter" data-level="2.2" data-path=""><a href="#negativ-binomial"><i class="fa fa-check"></i><b>2.2</b> Negativ Binomial</a></li>
+<li class="chapter" data-level="2.3" data-path=""><a href="#zero-truncated-poisson"><i class="fa fa-check"></i><b>2.3</b> Zero-Truncated Poisson</a></li>
+<li class="chapter" data-level="2.4" data-path=""><a href="#zero-truncated-negativ-binomial"><i class="fa fa-check"></i><b>2.4</b> Zero-Truncated Negativ Binomial</a></li>
+<li class="chapter" data-level="2.5" data-path=""><a href="#vergleich-bisher"><i class="fa fa-check"></i><b>2.5</b> Vergleich bisher …</a></li>
+<li class="chapter" data-level="2.6" data-path=""><a href="#hurdle-modelle"><i class="fa fa-check"></i><b>2.6</b> Hurdle-Modelle</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path=""><a href="#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial</a></li>
+<li class="chapter" data-level="2.6.1" data-path=""><a href="#binomial"><i class="fa fa-check"></i><b>2.6.1</b> Binomial</a></li>
+<li class="chapter" data-level="2.6.2" data-path=""><a href="#hurdle-poisson"><i class="fa fa-check"></i><b>2.6.2</b> Hurdle Poisson</a></li>
+<li class="chapter" data-level="2.6.3" data-path=""><a href="#hurdle-negative-binomial"><i class="fa fa-check"></i><b>2.6.3</b> Hurdle Negative Binomial</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path=""><a href="#hurdle-poisson"><i class="fa fa-check"></i><b>8</b> Hurdle Poisson</a></li>
-<li class="chapter" data-level="9" data-path=""><a href="#hurdle-negative-binomial"><i class="fa fa-check"></i><b>9</b> Hurdle Negative Binomial</a></li>
-<li class="chapter" data-level="10" data-path=""><a href="#anwendungsbeispiel"><i class="fa fa-check"></i><b>10</b> Anwendungsbeispiel</a></li>
-<li class="chapter" data-level="11" data-path=""><a href="#besonderheit-an-zählgrößen"><i class="fa fa-check"></i><b>11</b> Besonderheit an Zählgrößen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#anwendungsbeispiel"><i class="fa fa-check"></i><b>3</b> Anwendungsbeispiel</a></li>
+<li class="chapter" data-level="4" data-path=""><a href="#lokale-populationsinterpretation"><i class="fa fa-check"></i><b>4</b> Lokale Populationsinterpretation</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -152,7 +152,7 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="header">
 <h1 class="title"><strong>Zähldatenmodelle</strong></h1>
 <p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
-<p class="date"><em>June 7, 2024 (Version 0.1)</em></p>
+<p class="date"><em>10. Juni 2024 (Version 0.1)</em></p>
 </div>
 <!--# About this course{-}
 This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
@@ -192,9 +192,8 @@ Erwartungswert: <span class="math inline">\(\mathsf{E}(\mathrm{Y}) = \lambda\)</
 <!-- The score function is \begin{equation} s(\lambda\,|\,y) = \frac{y}{\lambda} - 1. \end{equation} The hessian is \begin{equation} h(\lambda\,|\,y) = - \frac{y}{\lambda^2}. \end{equation} -->
 <p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
-</div>
-<div id="negativ-binomial" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Negativ Binomial</h1>
+<div id="negativ-binomial" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Negativ Binomial</h2>
 <p>Dichte:
 <span class="math display">\[\begin{equation} f_{NB}(y\,|\,\mu,\theta) = \frac{\Gamma(\theta + y)}{\Gamma({\theta}) \cdot y!} \cdot \frac{\mu^y \cdot \theta^\theta}{(\mu + \theta)^{\theta + y}}, \quad y = 0, 1, 2, \dots \end{equation}\]</span></p>
 <p>Erwartungswert <span class="math inline">\(\mathsf{E}(\mathrm{Y}) = \mu\)</span></p>
@@ -203,8 +202,8 @@ Erwartungswert: <span class="math inline">\(\mathsf{E}(\mathrm{Y}) = \lambda\)</
 <!-- The score functions are: \begin{equation} s_{\mu}(\mu,\theta\,|\,y) = \frac{y}{\mu} - \frac{y + \theta}{\mu + \theta} \end{equation} \begin{equation} s_{\theta}(\mu,\theta\,|\,y) = \psi_0(y + \theta) - \psi_0(\theta) + \log(\theta) + 1 - \log(\mu + \theta) - \frac{y + \theta}{\mu + \theta} \end{equation} where $\psi_0$ is the digamma function. --></p>
 <!-- The elements of the hessian are \begin{equation} h_{\mu\mu}(\mu,\theta\,|\,y) = - \frac{y}{\mu^2} + \frac{y + \theta}{(\mu + \theta)^2} \end{equation} \begin{equation} h_{\theta\theta}(\mu,\theta\,|\,y) = \psi_1(y + \theta) - \psi_1(\theta) + \frac{1}{\theta} - \frac{2}{\mu + \theta} + \frac{y + \theta}{(\mu + \theta)^2} \end{equation} where $\psi_1$ is the trigamma function. \begin{equation} h_{\mu\theta}(\mu,\theta\,|\,y) = \frac{y - \mu}{(\mu + \theta)^2}. \end{equation} -->
 </div>
-<div id="zero-truncated-poisson" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Zero-Truncated Poisson</h1>
+<div id="zero-truncated-poisson" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Zero-Truncated Poisson</h2>
 <p>Dichte
 <span class="math display">\[\begin{equation}
 f_{ZTP}(y\,|\,\lambda) = \frac{f_{Pois}(y\,|\,\lambda)}{1 - f_{Pois}(0\,|\,\lambda)} \quad \text{for} \quad y = 1, 2, \ldots
@@ -215,8 +214,8 @@ wobei <span class="math inline">\(f_{Pois}\)</span> die Dichte der vollen Poisso
 <!-- Within countreg both parameterizations, either with $\lambda$ ("lambda") or $\mu$ ("mean"), are implemented. Thus, the score functions can be calculated either wrt $\lambda$ ("lambda") or $\mu$ ("mean"): \begin{equation} s_{\lambda}(\lambda\,|\,x) = \frac{x}{\lambda} - 1 - \frac{e^{-\lambda}}{1 - e^{-\lambda}} \end{equation} \begin{equation} s_{\mu}(\lambda\,|\,x) = s_{\lambda} \cdot \frac{\lambda}{\mu \cdot (\lambda + 1 - \mu)} \end{equation} The hessian is \begin{equation} h_{\lambda\lambda}(\lambda\,|\,x) = - \frac{x}{\lambda^2} + \frac{e^{-\lambda}}{(1 - e^{-\lambda})^2}. \end{equation} --></p>
 <p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="zero-truncated-negativ-binomial" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Zero-Truncated Negativ Binomial</h1>
+<div id="zero-truncated-negativ-binomial" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Zero-Truncated Negativ Binomial</h2>
 <p>Dichte
 <span class="math display">\[\begin{equation} f_{ZTNB}(y\,|\,\mu,\theta) = \frac{f_{NB}(y\,|\,\mu, \theta)}{1 - f_{NB}(0\,|\,\mu, \theta)}, \quad y = 1, 2, \dots \end{equation}\]</span></p>
 <p>Erwartungswert <span class="math display">\[\begin{equation} \mathsf{E}(\mathrm{Y}) = \frac{\mu}{1 - f_{NB}(0\,|\,\mu,\theta)} = \frac{\mu}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta}, \end{equation}\]</span> wobei <span class="math inline">\(f_{NB}\)</span> die Dichte der vollen Negativ-Binomialverteilung ist.</p>
@@ -224,26 +223,25 @@ wobei <span class="math inline">\(f_{Pois}\)</span> die Dichte der vollen Poisso
 <span class="math display">\[\begin{align} \mathsf{VAR}(\mathrm{Y}) &amp; = \frac{\mu}{1 - f_{NB}(0\,|\,\mu,\theta)} \cdot \left( 1 + \frac{\mu}{\theta} + \mu - \frac{\mu}{1 - f_{NB}(0\,|\,\mu,\theta)} \right) \\ &amp; = \frac{\mu}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( 1 + \frac{\mu}{\theta} + \mu - \frac{\mu}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \right) \end{align}\]</span></p>
 <p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
-<div id="vergleich" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Vergleich</h1>
+<div id="vergleich-bisher" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Vergleich bisher …</h2>
 <p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <!-- The score functions are: \begin{equation} s_{\mu}(\mu,\theta\,|\,y) = \frac{y}{\mu} - \frac{y + \theta}{\mu + \theta} - \frac{\left( \frac{\theta}{\mu + \theta} \right)^{\theta+1}}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \end{equation} -->
 <!-- \begin{equation} s_{\theta}(\mu,\theta\,|\,y) = \psi_0(y + \theta) - \psi_0(\theta) + \log(\theta) + 1 - \log(\mu + \theta) - \frac{y + \theta}{\mu + \theta} + \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( \log\frac{\theta}{\mu + \theta} + 1 - \frac{\theta}{\mu + \theta} \right) \end{equation} -->
 <!-- The elements of the hessian are: \begin{align} h_{\mu\mu}(\mu,\theta\,|\,y) & = \frac{\partial^2 \ell}{\partial \mu^2} + \frac{f(0)}{1 - f(0)} \cdot \frac{\theta \cdot (1 + \theta)}{(\mu + \theta)^2} + \left( \frac{f(0)}{1 - f(0)} \cdot \frac{\theta}{\mu + \theta} \right)^2 \ & = - \frac{y}{\mu^2} + \frac{y + \theta}{(\mu + \theta)^2} + \frac{\left( \frac{\theta}{\mu + \theta} \right)^{\theta+1}}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \frac{1 + \theta}{\mu + \theta} + \left( \frac{\left( \frac{\theta}{\mu + \theta} \right)^{\theta+1}}{ 1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \right)^2, \end{align} \begin{align} h_{\theta\theta}(\mu,\theta\,|\,y) = \psi_1(y + \theta) - \psi_1(\theta) + \frac{1}{\theta} - \frac{2}{\mu + \theta} + \frac{y + \theta}{(\mu + \theta)^2} + \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left{ \frac{1}{\theta} - \frac{2}{\mu + \theta} + \frac{\theta}{(\mu + \theta)^2} + \left( \log\frac{\theta}{\mu + \theta} + 1 - \frac{\theta}{\mu + \theta} \right)^2 \right} + \left( \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( \log\frac{\theta}{\mu + \theta} + 1 - \frac{\theta}{\mu + \theta} \right) \right)^2, \end{align} and \begin{align} h_{\mu\theta}(\mu,\theta\,|\,y) = \frac{y - \mu}{(\mu + \theta)^2} - \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( \frac{\theta}{\mu+\theta}\log\frac{\theta}{\mu+\theta} + \frac{\mu\cdot(\theta+1)}{(\mu+\theta)^2} \right) &- \left( \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \right)^2 \cdot \left( \frac{\theta}{\mu+\theta}\log\frac{\theta}{\mu+\theta} + \frac{\mu\cdot\theta}{(\mu+\theta)^2} \right) \end{align} -->
 </div>
-<div id="hurdle-modelle" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Hurdle-Modelle</h1>
+<div id="hurdle-modelle" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Hurdle-Modelle</h2>
 <p>Hurdle models combine a <em>Bernoulli</em> distribution with a Zero-Truncated (count) distribution.</p>
-<div id="binomial" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Binomial</h2>
+<div id="binomial" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Binomial</h3>
 <p>The binomial distribution with size <span class="math inline">\(= n\)</span> and prob <span class="math inline">\(= \pi\)</span> has the density <span class="math display">\[\begin{equation} f_{Binom}(y\,|\,\pi,n) = {n \choose y} {\pi}^{y} {(1-\pi)}^{n-y}, \quad \text{for} \quad y = 0, \ldots, n, \end{equation}\]</span> with expected value <span class="math inline">\(\mathsf{E}(\mathrm{Y}) = n \cdot \pi\)</span> and variance <span class="math inline">\(\mathsf{VAR}(\mathrm{Y}) = n \cdot \pi \cdot (1 - \pi)\)</span>.</p>
 <p>For <span class="math inline">\(n=1\)</span>, the Binomial is called <em>Bernoulli</em> distribution.</p>
 <!-- The score function is \begin{equation} s(\pi\,|\,y,n) = \frac{y}{\pi} - \frac{n-y}{1-\pi} \end{equation} -->
 <!-- The hessian is \begin{equation} h(\pi\,|\,y,n) = - \frac{y}{\pi^2} - \frac{n-y}{(1-\pi)^2} \end{equation} -->
 </div>
-</div>
-<div id="hurdle-poisson" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Hurdle Poisson</h1>
+<div id="hurdle-poisson" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Hurdle Poisson</h3>
 <p>The hurdle poisson has density
 <span class="math display">\[\begin{equation}
 f(y\,|\,\pi,\lambda) =
@@ -255,8 +253,8 @@ with expected value <span class="math display">\[\begin{equation} \mathsf{E}(\pi
 <!-- The score functions are \begin{equation} s_\pi(\pi, \lambda\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot \frac{1}{\pi} - \mathbf{I}{{0}}(y) \cdot \frac{1}{1 - \pi} \end{equation} and \begin{equation} s_\lambda(\pi, \lambda\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot \left( \frac{x}{\lambda} - 1 - \frac{e^{-\lambda}}{1 - e^{-\lambda}} \right) \end{equation} where $\mathbf{I}{{0}}(y)$ is an indicator function which takes the value one if $y$ equals zero, and zero otherwise. -->
 <!-- The elements of the Hessian are, \begin{equation} h_{\pi\pi}(\pi, \lambda \,|\, y) = (\mathbf{I}{{0}}(y) - 1) \cdot \frac{1}{\pi^2} - \mathbf{I}{{0}}(y) \cdot \frac{1}{(1 - \pi)^2}, \end{equation} \begin{equation} h_{\lambda\lambda}(\pi, \lambda \,|\, y) = (1-\mathbf{I}{{0}}(y)) \cdot \left( - \frac{x}{\lambda^2} + \frac{e^{-\lambda}}{(1 - e^{-\lambda})^2} \right) \end{equation} and \begin{equation} h{\pi\lambda}(\pi, \lambda \,|\, y) = 0. \end{equation} -->
 </div>
-<div id="hurdle-negative-binomial" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> Hurdle Negative Binomial</h1>
+<div id="hurdle-negative-binomial" class="section level3" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> Hurdle Negative Binomial</h3>
 <p>The hurdle negative binomial has density <span class="math display">\[\begin{equation} f(y\,|\,\pi, \mu, \theta) = \begin{cases} 1-\pi &amp; y = 0 \ \pi \cdot \frac{f_{NB}(y\,|\,\mu,\theta)}{1-f_{NB}(0\,|\,\mu,\theta)} &amp; y &gt; 0 \end{cases} \end{equation}\]</span> with expectation <span class="math display">\[\begin{equation} \mathsf{E}(\pi,\mu,\lambda) = \frac{\pi}{1-f_{NB}(0\,|\,\mu,\theta)} \cdot \mu \end{equation}\]</span> and variance <span class="math display">\[\begin{equation} \mathsf{VAR}(\pi,\mu,\lambda) = \frac{\pi\cdot\mu}{1-f_{NB}(0\,|\,\mu,\theta)} \cdot \left(1+\frac{\mu}{\theta}+\mu-\frac{\pi\cdot\mu}{1-f_{NB}(0\,|\,\mu,\theta)}\right)
 
 \end{equation}\]</span>
@@ -267,8 +265,10 @@ with expected value <span class="math display">\[\begin{equation} \mathsf{E}(\pi
 <!-- \begin{equation} h_{\mu\theta}(\pi, \mu, \theta\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot h{\mu\theta,\,NB}(\mu,\theta\,|\,y) \end{equation} -->
 <!-- \begin{equation} h_{\pi\mu}(\pi, \mu, \theta\,|\,y) = h_{\pi\theta}(\pi, \mu, \theta\,|\,y) = 0. \end{equation} -->
 </div>
-<div id="anwendungsbeispiel" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Anwendungsbeispiel</h1>
+</div>
+</div>
+<div id="anwendungsbeispiel" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Anwendungsbeispiel</h1>
 <p>Wir schätzen zur Veranschaulichung nur ein Modell mit quadratischem Bestockungsgrad:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&quot;dgl_seedling_counts.csv&quot;</span>)</span></code></pre></div>
 <p>Deskriptiv exemplarisch nur für die ersten 16 Plots:</p>
@@ -365,8 +365,8 @@ with expected value <span class="math display">\[\begin{equation} \mathsf{E}(\pi
 <span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a>                   <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
-<div id="besonderheit-an-zählgrößen" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Besonderheit an Zählgrößen</h1>
+<div id="lokale-populationsinterpretation" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Lokale Populationsinterpretation</h1>
 <ul>
 <li>Wenn an einem Untersuchungsplot gezählt wird wieviele Pflanzen einer Art vorhanden sind, so wird damit die Population beschrieben.</li>
 <li>Wenn hingegen ein Pflanzenmerkmal wie z.B. der Stammdurchmesser erhoben wird, so beschreibt man dann mit Mittelwerten oder geschätzten Erwartungswerten nur den Teil der Population der überlebt hat: Mortalität in der Population direkt um die gemessenen Pflanzen kann hier negative, neutrale oder positive Effekte haben.</li>
