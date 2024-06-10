@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Zähldatenmodelle</title>
+  <meta name="description" content="Zähldatenmodelle" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Zähldatenmodelle" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Zähldatenmodelle" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#intro"><i class="fa fa-check"></i><b>1</b> Intro</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#verteilungsmodelle"><i class="fa fa-check"></i><b>2</b> Verteilungsmodelle</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path=""><a href="#poisson"><i class="fa fa-check"></i><b>2.1</b> Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#negativ-binomial"><i class="fa fa-check"></i><b>3</b> Negativ Binomial</a></li>
+<li class="chapter" data-level="4" data-path=""><a href="#zero-truncated-poisson"><i class="fa fa-check"></i><b>4</b> Zero-Truncated Poisson</a></li>
+<li class="chapter" data-level="5" data-path=""><a href="#zero-truncated-negativ-binomial"><i class="fa fa-check"></i><b>5</b> Zero-Truncated Negativ Binomial</a></li>
+<li class="chapter" data-level="6" data-path=""><a href="#vergleich"><i class="fa fa-check"></i><b>6</b> Vergleich</a></li>
+<li class="chapter" data-level="7" data-path=""><a href="#hurdle-modelle"><i class="fa fa-check"></i><b>7</b> Hurdle-Modelle</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path=""><a href="#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path=""><a href="#hurdle-poisson"><i class="fa fa-check"></i><b>8</b> Hurdle Poisson</a></li>
+<li class="chapter" data-level="9" data-path=""><a href="#hurdle-negative-binomial"><i class="fa fa-check"></i><b>9</b> Hurdle Negative Binomial</a></li>
+<li class="chapter" data-level="10" data-path=""><a href="#anwendungsbeispiel"><i class="fa fa-check"></i><b>10</b> Anwendungsbeispiel</a></li>
+<li class="chapter" data-level="11" data-path=""><a href="#besonderheit-an-zählgrößen"><i class="fa fa-check"></i><b>11</b> Besonderheit an Zählgrößen</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Zähldatenmodelle</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Zähldatenmodelle</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date"><em>June 7, 2024 (Version 0.1)</em></p>
+</div>
+<!--# About this course{-}
+This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<!-- - Modeling count variables is a common task in many applied disciplines.  -->
+<!-- - The classical Poisson regression model for count data often falls short because empirical count data sets typically exhibit over-dispersion and/or an excess number of zeros.  -->
+<!-- - Over-dispersion can be addressed by extending the basic Poisson regression model in various ways, such as by estimating an additional dispersion parameter in a quasi-Poisson model.  -->
+<!-- - Alternatively, negative binomial (NB) regression can be used for a more formal solution.  -->
+<!-- - These models all belong to the family of generalized linear models (GLMs).  -->
+<!-- - However, while these models can typically capture over-dispersion well, they are often insufficient for modeling excess zeros. -->
+<!-- - There has been growing interest in zero-augmented models that address this issue with a second model component to capture zero counts.  -->
+<!-- - Hurdle models - in their most general form - combine a left-truncated count component with a right-censored hurdle component.  -->
+<!-- - Zero-inflation models take a different approach by combining a count component with a point mass at zero, forming a mixture model.  -->
+<ul>
+<li>Zähldaten <span class="math inline">\(y=0, 1, 2, \ldots\)</span> sind in vielen Verjüngungsaufnahmen von wesentlicher Bedeutung.</li>
+<li>Das klassische Poisson-Regressionsmodell für die Modellierung von Zähldaten ist oft nicht ausreichend, da empirische Zähldatensätze typischerweise Überdispersion (größere Streuung als es der Erwartungswert zulässt) und/oder eine übermäßige Anzahl von Nullwerten aufweisen.</li>
+<li>Überdispersion kann durch die Erweiterung des grundlegenden Poisson-Regressionsmodells auf verschiedene Weise behoben werden, beispielsweise durch die Schätzung eines zusätzlichen Dispersionsparameters in einem Quasi-Poisson-Modell.</li>
+<li>Alternativ kann die Negative Binomialverteilung (NB) als formellere Lösung verwendet werden.</li>
+<li>Beide Alternativen gehören zur Familie der generalisierten linearen Modelle (GLMs).</li>
+<li>Obwohl diese Modelle das Auftreten von Überdispersion gut erfassen können, reichen sie für die Modellierung ‘überschüssiger’ Nullwerte oft nicht aus.
+– Als Lösung wird eine zweite Komponente zur Modellierung dieser Nullwerte angehen.</li>
+<li>Hurdlemodelle – in ihrer allgemeinsten Form – kombinieren eine linkstrunkierte Zählverteilung mit einer rechtszensierten ‘Hurdlekomponente’.</li>
+<li>Zero-Inflation-Modelle verfolgen einen anderen Ansatz, indem sie eine volle Zählverteilung mit einer Punktmasse bei Null kombinieren und so ein Mischungsmodell bilden.</li>
+</ul>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="verteilungsmodelle" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Verteilungsmodelle</h1>
+<div id="poisson" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Poisson</h2>
+<p>Dichte:
+<span class="math display">\[\begin{equation} f_{Pois}(y\,|\,\lambda) = \frac{\lambda^y e^{-\lambda}}{y!}, \quad \text{mit} \quad y = 0, 1, 2, \ldots, \end{equation}\]</span>
+Erwartungswert: <span class="math inline">\(\mathsf{E}(\mathrm{Y}) = \lambda\)</span></p>
+<p>Varianz: <span class="math inline">\(\mathsf{VAR}(\mathrm{Y}) = \lambda\)</span>.</p>
+<!-- The score function is \begin{equation} s(\lambda\,|\,y) = \frac{y}{\lambda} - 1. \end{equation} The hessian is \begin{equation} h(\lambda\,|\,y) = - \frac{y}{\lambda^2}. \end{equation} -->
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+</div>
+<div id="negativ-binomial" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Negativ Binomial</h1>
+<p>Dichte:
+<span class="math display">\[\begin{equation} f_{NB}(y\,|\,\mu,\theta) = \frac{\Gamma(\theta + y)}{\Gamma({\theta}) \cdot y!} \cdot \frac{\mu^y \cdot \theta^\theta}{(\mu + \theta)^{\theta + y}}, \quad y = 0, 1, 2, \dots \end{equation}\]</span></p>
+<p>Erwartungswert <span class="math inline">\(\mathsf{E}(\mathrm{Y}) = \mu\)</span></p>
+<p>Varianz <span class="math inline">\(\mathsf{VAR}(\mathrm{Y}) = \mu + \mu^2 / \theta\)</span>.</p>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<!-- The score functions are: \begin{equation} s_{\mu}(\mu,\theta\,|\,y) = \frac{y}{\mu} - \frac{y + \theta}{\mu + \theta} \end{equation} \begin{equation} s_{\theta}(\mu,\theta\,|\,y) = \psi_0(y + \theta) - \psi_0(\theta) + \log(\theta) + 1 - \log(\mu + \theta) - \frac{y + \theta}{\mu + \theta} \end{equation} where $\psi_0$ is the digamma function. --></p>
+<!-- The elements of the hessian are \begin{equation} h_{\mu\mu}(\mu,\theta\,|\,y) = - \frac{y}{\mu^2} + \frac{y + \theta}{(\mu + \theta)^2} \end{equation} \begin{equation} h_{\theta\theta}(\mu,\theta\,|\,y) = \psi_1(y + \theta) - \psi_1(\theta) + \frac{1}{\theta} - \frac{2}{\mu + \theta} + \frac{y + \theta}{(\mu + \theta)^2} \end{equation} where $\psi_1$ is the trigamma function. \begin{equation} h_{\mu\theta}(\mu,\theta\,|\,y) = \frac{y - \mu}{(\mu + \theta)^2}. \end{equation} -->
+</div>
+<div id="zero-truncated-poisson" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Zero-Truncated Poisson</h1>
+<p>Dichte
+<span class="math display">\[\begin{equation}
+f_{ZTP}(y\,|\,\lambda) = \frac{f_{Pois}(y\,|\,\lambda)}{1 - f_{Pois}(0\,|\,\lambda)} \quad \text{for} \quad y = 1, 2, \ldots
+\end{equation}\]</span>
+wobei <span class="math inline">\(f_{Pois}\)</span> die Dichte der vollen Poissonverteilung ist.</p>
+<p>Erwartungswert <span class="math inline">\(\mathsf{E}(y) = \mu = \lambda / (1 - \exp(-\lambda))\)</span></p>
+<p>Varianz: <span class="math inline">\(\mathsf{VAR}(y) = \mu \cdot (\lambda + 1 - \mu)\)</span>, wobei <span class="math inline">\(\lambda\)</span> der Erwartungswert der vollen Poissonverteilung ist.
+<!-- Within countreg both parameterizations, either with $\lambda$ ("lambda") or $\mu$ ("mean"), are implemented. Thus, the score functions can be calculated either wrt $\lambda$ ("lambda") or $\mu$ ("mean"): \begin{equation} s_{\lambda}(\lambda\,|\,x) = \frac{x}{\lambda} - 1 - \frac{e^{-\lambda}}{1 - e^{-\lambda}} \end{equation} \begin{equation} s_{\mu}(\lambda\,|\,x) = s_{\lambda} \cdot \frac{\lambda}{\mu \cdot (\lambda + 1 - \mu)} \end{equation} The hessian is \begin{equation} h_{\lambda\lambda}(\lambda\,|\,x) = - \frac{x}{\lambda^2} + \frac{e^{-\lambda}}{(1 - e^{-\lambda})^2}. \end{equation} --></p>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="zero-truncated-negativ-binomial" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Zero-Truncated Negativ Binomial</h1>
+<p>Dichte
+<span class="math display">\[\begin{equation} f_{ZTNB}(y\,|\,\mu,\theta) = \frac{f_{NB}(y\,|\,\mu, \theta)}{1 - f_{NB}(0\,|\,\mu, \theta)}, \quad y = 1, 2, \dots \end{equation}\]</span></p>
+<p>Erwartungswert <span class="math display">\[\begin{equation} \mathsf{E}(\mathrm{Y}) = \frac{\mu}{1 - f_{NB}(0\,|\,\mu,\theta)} = \frac{\mu}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta}, \end{equation}\]</span> wobei <span class="math inline">\(f_{NB}\)</span> die Dichte der vollen Negativ-Binomialverteilung ist.</p>
+<p>Varianz:
+<span class="math display">\[\begin{align} \mathsf{VAR}(\mathrm{Y}) &amp; = \frac{\mu}{1 - f_{NB}(0\,|\,\mu,\theta)} \cdot \left( 1 + \frac{\mu}{\theta} + \mu - \frac{\mu}{1 - f_{NB}(0\,|\,\mu,\theta)} \right) \\ &amp; = \frac{\mu}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( 1 + \frac{\mu}{\theta} + \mu - \frac{\mu}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \right) \end{align}\]</span></p>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="vergleich" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Vergleich</h1>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<!-- The score functions are: \begin{equation} s_{\mu}(\mu,\theta\,|\,y) = \frac{y}{\mu} - \frac{y + \theta}{\mu + \theta} - \frac{\left( \frac{\theta}{\mu + \theta} \right)^{\theta+1}}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \end{equation} -->
+<!-- \begin{equation} s_{\theta}(\mu,\theta\,|\,y) = \psi_0(y + \theta) - \psi_0(\theta) + \log(\theta) + 1 - \log(\mu + \theta) - \frac{y + \theta}{\mu + \theta} + \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( \log\frac{\theta}{\mu + \theta} + 1 - \frac{\theta}{\mu + \theta} \right) \end{equation} -->
+<!-- The elements of the hessian are: \begin{align} h_{\mu\mu}(\mu,\theta\,|\,y) & = \frac{\partial^2 \ell}{\partial \mu^2} + \frac{f(0)}{1 - f(0)} \cdot \frac{\theta \cdot (1 + \theta)}{(\mu + \theta)^2} + \left( \frac{f(0)}{1 - f(0)} \cdot \frac{\theta}{\mu + \theta} \right)^2 \ & = - \frac{y}{\mu^2} + \frac{y + \theta}{(\mu + \theta)^2} + \frac{\left( \frac{\theta}{\mu + \theta} \right)^{\theta+1}}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \frac{1 + \theta}{\mu + \theta} + \left( \frac{\left( \frac{\theta}{\mu + \theta} \right)^{\theta+1}}{ 1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \right)^2, \end{align} \begin{align} h_{\theta\theta}(\mu,\theta\,|\,y) = \psi_1(y + \theta) - \psi_1(\theta) + \frac{1}{\theta} - \frac{2}{\mu + \theta} + \frac{y + \theta}{(\mu + \theta)^2} + \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left{ \frac{1}{\theta} - \frac{2}{\mu + \theta} + \frac{\theta}{(\mu + \theta)^2} + \left( \log\frac{\theta}{\mu + \theta} + 1 - \frac{\theta}{\mu + \theta} \right)^2 \right} + \left( \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( \log\frac{\theta}{\mu + \theta} + 1 - \frac{\theta}{\mu + \theta} \right) \right)^2, \end{align} and \begin{align} h_{\mu\theta}(\mu,\theta\,|\,y) = \frac{y - \mu}{(\mu + \theta)^2} - \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \cdot \left( \frac{\theta}{\mu+\theta}\log\frac{\theta}{\mu+\theta} + \frac{\mu\cdot(\theta+1)}{(\mu+\theta)^2} \right) &- \left( \frac{\left( \frac{\theta}{\mu + \theta} \right)^\theta}{1 - \left( \frac{\theta}{\mu + \theta} \right)^\theta} \right)^2 \cdot \left( \frac{\theta}{\mu+\theta}\log\frac{\theta}{\mu+\theta} + \frac{\mu\cdot\theta}{(\mu+\theta)^2} \right) \end{align} -->
+</div>
+<div id="hurdle-modelle" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Hurdle-Modelle</h1>
+<p>Hurdle models combine a <em>Bernoulli</em> distribution with a Zero-Truncated (count) distribution.</p>
+<div id="binomial" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Binomial</h2>
+<p>The binomial distribution with size <span class="math inline">\(= n\)</span> and prob <span class="math inline">\(= \pi\)</span> has the density <span class="math display">\[\begin{equation} f_{Binom}(y\,|\,\pi,n) = {n \choose y} {\pi}^{y} {(1-\pi)}^{n-y}, \quad \text{for} \quad y = 0, \ldots, n, \end{equation}\]</span> with expected value <span class="math inline">\(\mathsf{E}(\mathrm{Y}) = n \cdot \pi\)</span> and variance <span class="math inline">\(\mathsf{VAR}(\mathrm{Y}) = n \cdot \pi \cdot (1 - \pi)\)</span>.</p>
+<p>For <span class="math inline">\(n=1\)</span>, the Binomial is called <em>Bernoulli</em> distribution.</p>
+<!-- The score function is \begin{equation} s(\pi\,|\,y,n) = \frac{y}{\pi} - \frac{n-y}{1-\pi} \end{equation} -->
+<!-- The hessian is \begin{equation} h(\pi\,|\,y,n) = - \frac{y}{\pi^2} - \frac{n-y}{(1-\pi)^2} \end{equation} -->
+</div>
+</div>
+<div id="hurdle-poisson" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Hurdle Poisson</h1>
+<p>The hurdle poisson has density
+<span class="math display">\[\begin{equation}
+f(y\,|\,\pi,\lambda) =
+\begin{cases} 1-\pi &amp; y = 0 \\
+\pi \cdot \frac{f_{Pois}(y\,|\,\lambda)}{1 - f_{Pois}(0\,|\,\lambda)} &amp; y &gt; 0
+\end{cases}
+\end{equation}\]</span>
+with expected value <span class="math display">\[\begin{equation} \mathsf{E}(\pi,\lambda) = \frac{\pi}{1-e^{-\lambda}} \cdot \lambda \end{equation}\]</span> and variance <span class="math display">\[\begin{equation} \mathsf{VAR}(\pi,\lambda) = \frac{\pi\cdot\lambda}{1-e^{-\lambda}} \cdot \left(\lambda + 1 - \frac{\pi\cdot\lambda}{1-e^{-\lambda}}\right). \end{equation}\]</span></p>
+<!-- The score functions are \begin{equation} s_\pi(\pi, \lambda\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot \frac{1}{\pi} - \mathbf{I}{{0}}(y) \cdot \frac{1}{1 - \pi} \end{equation} and \begin{equation} s_\lambda(\pi, \lambda\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot \left( \frac{x}{\lambda} - 1 - \frac{e^{-\lambda}}{1 - e^{-\lambda}} \right) \end{equation} where $\mathbf{I}{{0}}(y)$ is an indicator function which takes the value one if $y$ equals zero, and zero otherwise. -->
+<!-- The elements of the Hessian are, \begin{equation} h_{\pi\pi}(\pi, \lambda \,|\, y) = (\mathbf{I}{{0}}(y) - 1) \cdot \frac{1}{\pi^2} - \mathbf{I}{{0}}(y) \cdot \frac{1}{(1 - \pi)^2}, \end{equation} \begin{equation} h_{\lambda\lambda}(\pi, \lambda \,|\, y) = (1-\mathbf{I}{{0}}(y)) \cdot \left( - \frac{x}{\lambda^2} + \frac{e^{-\lambda}}{(1 - e^{-\lambda})^2} \right) \end{equation} and \begin{equation} h{\pi\lambda}(\pi, \lambda \,|\, y) = 0. \end{equation} -->
+</div>
+<div id="hurdle-negative-binomial" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Hurdle Negative Binomial</h1>
+<p>The hurdle negative binomial has density <span class="math display">\[\begin{equation} f(y\,|\,\pi, \mu, \theta) = \begin{cases} 1-\pi &amp; y = 0 \ \pi \cdot \frac{f_{NB}(y\,|\,\mu,\theta)}{1-f_{NB}(0\,|\,\mu,\theta)} &amp; y &gt; 0 \end{cases} \end{equation}\]</span> with expectation <span class="math display">\[\begin{equation} \mathsf{E}(\pi,\mu,\lambda) = \frac{\pi}{1-f_{NB}(0\,|\,\mu,\theta)} \cdot \mu \end{equation}\]</span> and variance <span class="math display">\[\begin{equation} \mathsf{VAR}(\pi,\mu,\lambda) = \frac{\pi\cdot\mu}{1-f_{NB}(0\,|\,\mu,\theta)} \cdot \left(1+\frac{\mu}{\theta}+\mu-\frac{\pi\cdot\mu}{1-f_{NB}(0\,|\,\mu,\theta)}\right)
+
+\end{equation}\]</span>
+<!-- The score functions are, \begin{equation} s_\pi(\pi, \mu, \theta\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot \frac{1}{\pi} - \mathbf{I}{{0}}(y) \cdot \frac{1}{1 - \pi}, \end{equation} \begin{equation} s_\mu(\pi, \mu, \theta\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot s{\mu,\,NB}(\mu,\theta\,|\,y) \end{equation} and \begin{equation} s_\theta(\pi, \mu, \theta\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot s{\theta,\,NB}(\mu,\theta\,|\,y), \end{equation} where $s_{\star,\,NB}(\cdot)$ are the score functions of the zero-truncated negative binomial. --></p>
+<!-- The elements of the hessian \begin{equation} h_{\pi\pi}(\pi, \mu, \theta\,|\,y) = (\mathbf{I}{{0}}(y) - 1) \cdot \frac{1}{\pi^2} - \mathbf{I}{{0}}(y) \cdot \frac{1}{(1 - \pi)^2}, \end{equation} -->
+<!-- \begin{equation} h_{\mu\mu}(\pi, \mu, \theta\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot h{\mu\mu,\,NB}(\mu,\theta\,|\,y) \end{equation} -->
+<!-- \begin{equation} h_{\theta\theta}(\pi, \mu, \theta\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot h{\theta\theta,\,NB}(\mu,\theta\,|\,y) \end{equation} -->
+<!-- \begin{equation} h_{\mu\theta}(\pi, \mu, \theta\,|\,y) = (1-\mathbf{I}{{0}}(y)) \cdot h{\mu\theta,\,NB}(\mu,\theta\,|\,y) \end{equation} -->
+<!-- \begin{equation} h_{\pi\mu}(\pi, \mu, \theta\,|\,y) = h_{\pi\theta}(\pi, \mu, \theta\,|\,y) = 0. \end{equation} -->
+</div>
+<div id="anwendungsbeispiel" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Anwendungsbeispiel</h1>
+<p>Wir schätzen zur Veranschaulichung nur ein Modell mit quadratischem Bestockungsgrad:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&quot;dgl_seedling_counts.csv&quot;</span>)</span></code></pre></div>
+<p>Deskriptiv exemplarisch nur für die ersten 16 Plots:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>sdf <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stand_ID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;stand01&quot;</span>, <span class="st">&quot;stand02&quot;</span>, <span class="st">&quot;stand03&quot;</span>, <span class="st">&quot;stand04&quot;</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>                                         <span class="st">&quot;stand05&quot;</span>, <span class="st">&quot;stand06&quot;</span>, <span class="st">&quot;stand07&quot;</span>, <span class="st">&quot;stand08&quot;</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                                         <span class="st">&quot;stand09&quot;</span>, <span class="st">&quot;stand10&quot;</span>, <span class="st">&quot;stand11&quot;</span>, <span class="st">&quot;stand12&quot;</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                                         <span class="st">&quot;stand13&quot;</span>, <span class="st">&quot;stand14&quot;</span>, <span class="st">&quot;stand15&quot;</span>, <span class="st">&quot;stand16&quot;</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sdf, <span class="fu">aes</span>(<span class="at">x =</span> count_4m)) <span class="sc">+</span> </span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> stand_ID)</span></code></pre></div>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sdf, </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> count_4m, <span class="at">x =</span> stocking_degree)) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> stand_ID) <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Only first 16 plot_IDs shown.&quot;</span>)</span></code></pre></div>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>Deskriptiv aufgeteilt für die drei Modellkomponenten in der Hurdle-Sicht:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">ddply</span>(df, <span class="fu">c</span>(<span class="st">&quot;stocking_degree&quot;</span>), summarise, </span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>            <span class="at">mean_count =</span> <span class="fu">mean</span>(count_4m), </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>            <span class="at">mean_count_greater_0 =</span> <span class="fu">mean</span>(count_4m[count_4m <span class="sc">&gt;</span> .<span class="dv">5</span>]),</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>            <span class="at">prob_greater_0 =</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(count_4m <span class="sc">&gt;</span> .<span class="dv">5</span>)))</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(<span class="fu">ggplot</span>(<span class="at">data =</span> dd, <span class="fu">aes</span>(<span class="at">x =</span> stocking_degree)) <span class="sc">+</span> </span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> mean_count)) <span class="sc">+</span> </span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                     <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Mittelwert &#39;count_4m&#39;&quot;</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                   <span class="fu">ggplot</span>(<span class="at">data =</span> dd, <span class="fu">aes</span>(<span class="at">x =</span> stocking_degree)) <span class="sc">+</span> </span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> mean_count_greater_0)) <span class="sc">+</span> </span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>                     <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Mittelwert &#39;count_4m&#39; als &#39;zero truncated&#39; (nur Werte &gt; 0)&quot;</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>                   <span class="fu">ggplot</span>(<span class="at">data =</span> dd, <span class="fu">aes</span>(<span class="at">x =</span> stocking_degree)) <span class="sc">+</span> </span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> prob_greater_0)) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>                     <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Anteil größer 0&quot;</span>), <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Modellformel:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>df<span class="sc">$</span>x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(df<span class="sc">$</span>stocking_degree))</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>frmla <span class="ot">&lt;-</span> count_4m <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>‘Alle’ Modelle einmal durch:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>m_pois <span class="ot">&lt;-</span> <span class="fu">glm</span>(frmla, <span class="at">data =</span> df, <span class="at">family =</span> poisson)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>m_qpois <span class="ot">&lt;-</span> <span class="fu">glm</span>(frmla, <span class="at">data =</span> df, <span class="at">family =</span> quasipoisson)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>m_nb <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(frmla, <span class="at">data =</span> df)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>m_hurdle_poisson <span class="ot">&lt;-</span> <span class="fu">hurdle</span>(frmla, <span class="at">data =</span> df, <span class="at">dist =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>m_hurdle_nb <span class="ot">&lt;-</span> <span class="fu">hurdle</span>(frmla, <span class="at">data =</span> df, <span class="at">dist =</span> <span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>m_zeroinfl_poisson <span class="ot">&lt;-</span> <span class="fu">zeroinfl</span>(frmla, <span class="at">data =</span> df, <span class="at">dist =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>m_zeroinfl_nb <span class="ot">&lt;-</span> <span class="fu">zeroinfl</span>(frmla, <span class="at">data =</span> df, <span class="at">dist =</span> <span class="st">&quot;negbin&quot;</span>)</span></code></pre></div>
+<p>Likelihood-Vergleich:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>ml <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;Pois&quot;</span> <span class="ot">=</span> m_pois, </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>           <span class="st">&quot;Quasi-Pois&quot;</span> <span class="ot">=</span> m_qpois, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>           <span class="st">&quot;NB&quot;</span> <span class="ot">=</span> m_nb,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>           <span class="st">&quot;Hurdle-NB&quot;</span> <span class="ot">=</span> m_hurdle_nb, </span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>           <span class="st">&quot;ZI-NB&quot;</span> <span class="ot">=</span> m_zeroinfl_nb, </span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>           <span class="st">&quot;Hurdle-Poisson&quot;</span> <span class="ot">=</span> m_hurdle_poisson, </span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>           <span class="st">&quot;ZI-Poisson&quot;</span> <span class="ot">=</span> m_zeroinfl_poisson)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="fu">rbind</span>(<span class="at">logLik =</span> <span class="fu">sapply</span>(ml, <span class="cf">function</span>(x) <span class="fu">round</span>(<span class="fu">logLik</span>(x), <span class="at">digits =</span> <span class="dv">0</span>)),</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>      <span class="at">Df =</span> <span class="fu">sapply</span>(ml, <span class="cf">function</span>(x) <span class="fu">attr</span>(<span class="fu">logLik</span>(x), <span class="st">&quot;df&quot;</span>)))</span></code></pre></div>
+<pre><code>##         Pois Quasi-Pois    NB Hurdle-NB ZI-NB Hurdle-Poisson ZI-Poisson
+## logLik -4863         NA -3708     -3688 -3688          -4054      -4054
+## Df         3          4     4         7     7              6          6</code></pre>
+<!-- https://stackoverflow.com/questions/66973477/pscl-hurdle-model-count-prediction-response-prediction -->
+<p>Veranschaulichung des Hurdle-Negativ-Binomial-Modells:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">coef</span>(m_hurdle_nb), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##          count_(Intercept) count_poly(x, degree = 2)1 
+##                      1.105                     10.096 
+## count_poly(x, degree = 2)2           zero_(Intercept) 
+##                     -9.612                      0.557 
+##  zero_poly(x, degree = 2)1  zero_poly(x, degree = 2)2 
+##                     10.167                     -9.939</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>x_seq <span class="ot">&lt;-</span> x_seq_plot <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(df<span class="sc">$</span>x), <span class="fu">max</span>(df<span class="sc">$</span>x), <span class="at">length.out =</span> <span class="dv">25</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>x_seq_plot <span class="ot">&lt;-</span> (x_seq_plot <span class="sc">*</span> <span class="fu">sd</span>(df<span class="sc">$</span>stocking_degree)) <span class="sc">+</span> <span class="fu">mean</span>(df<span class="sc">$</span>stocking_degree)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>d_pre <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_seq)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>d_pre<span class="sc">$</span>x <span class="ot">&lt;-</span> x_seq_plot</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="fu">poly</span>(df<span class="sc">$</span>x, <span class="at">degree =</span> <span class="dv">2</span>), x_seq)</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>d_pre<span class="sc">$</span>eta_1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_hurdle_nb)[<span class="st">&quot;count_(Intercept)&quot;</span>] <span class="sc">+</span> </span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>  <span class="fu">coef</span>(m_hurdle_nb)[<span class="st">&quot;count_poly(x, degree = 2)1&quot;</span>] <span class="sc">*</span> X[, <span class="dv">1</span>] <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>  <span class="fu">coef</span>(m_hurdle_nb)[<span class="st">&quot;count_poly(x, degree = 2)2&quot;</span>] <span class="sc">*</span> X[, <span class="dv">2</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>d_pre<span class="sc">$</span>eta_2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_hurdle_nb)[<span class="st">&quot;zero_(Intercept)&quot;</span>] <span class="sc">+</span> </span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>  <span class="fu">coef</span>(m_hurdle_nb)[<span class="st">&quot;zero_poly(x, degree = 2)1&quot;</span>] <span class="sc">*</span> X[, <span class="dv">1</span>] <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>  <span class="fu">coef</span>(m_hurdle_nb)[<span class="st">&quot;zero_poly(x, degree = 2)2&quot;</span>] <span class="sc">*</span> X[, <span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>d_pre<span class="sc">$</span>f0 <span class="ot">&lt;-</span> <span class="fu">pnbinom</span>(<span class="dv">0</span>, <span class="at">mu =</span> <span class="fu">exp</span>(d_pre<span class="sc">$</span>eta_1), <span class="at">size =</span> m_hurdle_nb<span class="sc">$</span>theta)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>d_pre<span class="sc">$</span>estim_E_trunc_0 <span class="ot">&lt;-</span> <span class="fu">exp</span>(d_pre<span class="sc">$</span>eta_1)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">-</span> d_pre<span class="sc">$</span>f0)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="do">## predict(m_hurdle_nb, newdata = d_pre, type = &quot;mean&quot;, model = &quot;full&quot;) ## same as:</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>d_pre<span class="sc">$</span>estim_P_greater_0 <span class="ot">&lt;-</span> <span class="fu">plogis</span>(d_pre<span class="sc">$</span>eta_2)</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>d_pre<span class="sc">$</span>estim_E_full <span class="ot">&lt;-</span> d_pre<span class="sc">$</span>estim_E_trunc_0 <span class="sc">*</span> d_pre<span class="sc">$</span>estim_P_greater_0</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(<span class="fu">ggplot</span>(<span class="at">data =</span> dd, <span class="fu">aes</span>(<span class="at">x =</span> stocking_degree)) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> mean_count)) <span class="sc">+</span> </span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>                     <span class="fu">geom_line</span>(<span class="at">data =</span> d_pre, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> estim_E_full)) <span class="sc">+</span> <span class="do">## eta_count</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>                     <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Mittelwert &#39;count_4m&#39;&quot;</span>),</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>                   <span class="fu">ggplot</span>(<span class="at">data =</span> dd, <span class="fu">aes</span>(<span class="at">x =</span> stocking_degree)) <span class="sc">+</span> </span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> mean_count_greater_0)) <span class="sc">+</span> </span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>                     <span class="fu">geom_line</span>(<span class="at">data =</span> d_pre, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> estim_E_trunc_0)) <span class="sc">+</span> <span class="do">## exp(eta_1)/(1 - f0)</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>                     <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Mittelwert &#39;count_4m&#39; als &#39;zero truncated&#39; (nur Werte &gt; 0)&quot;</span>),</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>                   <span class="fu">ggplot</span>(<span class="at">data =</span> dd, <span class="fu">aes</span>(<span class="at">x =</span> stocking_degree)) <span class="sc">+</span> </span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> prob_greater_0)) <span class="sc">+</span> </span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a>                     <span class="fu">geom_line</span>(<span class="at">data =</span> d_pre, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> estim_P_greater_0)) <span class="sc">+</span> <span class="co"># plogis(eta_2)</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a>                     <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Anteil größer 0&quot;</span>), </span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a>                   <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="regeneration_count_models_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="besonderheit-an-zählgrößen" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Besonderheit an Zählgrößen</h1>
+<ul>
+<li>Wenn an einem Untersuchungsplot gezählt wird wieviele Pflanzen einer Art vorhanden sind, so wird damit die Population beschrieben.</li>
+<li>Wenn hingegen ein Pflanzenmerkmal wie z.B. der Stammdurchmesser erhoben wird, so beschreibt man dann mit Mittelwerten oder geschätzten Erwartungswerten nur den Teil der Population der überlebt hat: Mortalität in der Population direkt um die gemessenen Pflanzen kann hier negative, neutrale oder positive Effekte haben.</li>
+</ul>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_02.pdf", "PDF"]],
+"search": false,
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
