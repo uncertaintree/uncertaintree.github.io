@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,700&display=swap');
 /*colorspace::diverging_hcl(n = 20, pal = "Lisbon")[c(4, 16)]*/
 /*#4E6378, #4C4C35*/
 /*-----Body Links-------*/
@@ -35,7 +36,7 @@ body{
   font-family: 'Ubuntu';
 }
 .book.font-family-1 {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Muli', 'Ubuntu', sans-serif;
 }
 @media screen and (min-width: 48rem) {
   html {
