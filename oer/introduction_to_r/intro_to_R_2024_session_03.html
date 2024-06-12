@@ -490,15 +490,15 @@ If any of those periods covers our current day, than at least a value of <code>1
 <span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="fu">length</span>(post)</span></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">length</span>(prior)</span></code></pre></div>
-<pre><code>## [1] 101341</code></pre>
+<pre><code>## [1] 107145</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">length</span>(post) <span class="sc">/</span> <span class="fu">length</span>(prior)</span></code></pre></div>
-<pre><code>## [1] 0.009867674</code></pre>
+<pre><code>## [1] 0.009333147</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">summary</span>(post)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0588  0.1287  0.1551  0.1581  0.1836  0.2977</code></pre>
+## 0.05909 0.13177 0.16001 0.16135 0.18938 0.29381</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">summary</span>(prior)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.08297 0.49990 0.49983 0.91664 1.00000</code></pre>
+## 0.00000 0.08274 0.50072 0.50018 0.91782 1.00000</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">value =</span> post, </span>
 <span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>                        <span class="at">k =</span> <span class="st">&quot;posterior&quot;</span>),</span>
 <span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>             <span class="fu">data.frame</span>(<span class="at">value =</span> prior, </span>
@@ -888,7 +888,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": [["intro_to_R_session_03.pdf", "PDF"]],
+"download": [["intro_to_R_2024_session_03.pdf", "PDF"]],
 "search": false,
 "toc": {
 "collapse": "subsubsection",
