@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to R: Session 03</title>
+  <meta name="description" content="Introduction to R: Session 03" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to R: Session 03" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to R: Session 03" />
+  
+  
+  
+
+<meta name="author" content="Holger Sennhenn-Reulen, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style_gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#objectives-of-control-structures."><i class="fa fa-check"></i><b>1</b> Objectives of control structures.</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#logical-comparisons."><i class="fa fa-check"></i><b>2</b> Logical comparisons.</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path=""><a href="#exercises"><i class="fa fa-check"></i><b>2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#conditional-execution"><i class="fa fa-check"></i><b>3</b> Conditional execution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path=""><a href="#if-else"><i class="fa fa-check"></i><b>3.1</b> <code>if () { } else { }</code></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path=""><a href="#exercises-1"><i class="fa fa-check"></i><b>3.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path=""><a href="#for-loops"><i class="fa fa-check"></i><b>3.2</b> <code>for</code>-loops</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path=""><a href="#exercises-2"><i class="fa fa-check"></i><b>3.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path=""><a href="#example-of-a-for-loop-with-if"><i class="fa fa-check"></i><b>3.3</b> Example of a <code>for</code> loop with <code>if</code></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path=""><a href="#illustrating-the-loop-index"><i class="fa fa-check"></i><b>3.3.1</b> Illustrating the loop index</a></li>
+<li class="chapter" data-level="3.3.2" data-path=""><a href="#an-iteration-by-hand"><i class="fa fa-check"></i><b>3.3.2</b> An iteration ‘by hand’</a></li>
+<li class="chapter" data-level="3.3.3" data-path=""><a href="#the-full-loop"><i class="fa fa-check"></i><b>3.3.3</b> The ‘full’ loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path=""><a href="#while-loops."><i class="fa fa-check"></i><b>3.4</b> <code>while</code>-loops.</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path=""><a href="#example-1"><i class="fa fa-check"></i><b>3.4.1</b> Example 1</a></li>
+<li class="chapter" data-level="3.4.2" data-path=""><a href="#example-2"><i class="fa fa-check"></i><b>3.4.2</b> Example 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path=""><a href="#apply-commands"><i class="fa fa-check"></i><b>3.5</b> <code>apply</code>-commands</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path=""><a href="#exercises-3"><i class="fa fa-check"></i><b>3.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path=""><a href="#plyrddply-splitapplycombine"><i class="fa fa-check"></i><b>3.6</b> <code>plyr::ddply</code>: ’split–apply–combine</a></li>
+<li class="chapter" data-level="3.7" data-path=""><a href="#pragmatic-programming."><i class="fa fa-check"></i><b>3.7</b> Pragmatic Programming.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path=""><a href="#define-your-own-functions."><i class="fa fa-check"></i><b>4</b> Define your own functions.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path=""><a href="#naming-conventions-for-arguments."><i class="fa fa-check"></i><b>4.1</b> Naming conventions for arguments.</a></li>
+<li class="chapter" data-level="4.2" data-path=""><a href="#content-and-result."><i class="fa fa-check"></i><b>4.2</b> <code>content</code> and <code>result</code>.</a></li>
+<li class="chapter" data-level="4.3" data-path=""><a href="#exercises-4"><i class="fa fa-check"></i><b>4.3</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path=""><a href="#environments-and-scoping"><i class="fa fa-check"></i><b>4.3.1</b> Environments and scoping</a></li>
+<li class="chapter" data-level="4.3.2" data-path=""><a href="#closure"><i class="fa fa-check"></i><b>4.3.2</b> Closure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path=""><a href="#real-world-helpers"><i class="fa fa-check"></i><b>4.4</b> Real-world helpers</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path=""><a href="#drop_ghosts"><i class="fa fa-check"></i><b>4.4.1</b> <code>drop_ghosts</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path=""><a href="#overlap_seq"><i class="fa fa-check"></i><b>4.4.2</b> <code>overlap_seq</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><strong>Introduction to R: Session 03</strong></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><strong>Introduction to R: Session 03</strong></h1>
+<p class="author"><em>Holger Sennhenn-Reulen<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Nordwestdeutsche Forstliche Versuchsanstalt (NW-FVA)</em></p>
+<p class="date"><em>June 12, 2024 (Version 0.4)</em></p>
+</div>
+<!--# About this course{-}
+This course introduces basic R-programming skills needed for applied statistical modeling in R.-->
+<p>All contents are licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+<div id="objectives-of-control-structures." class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Objectives of control structures.</h1>
+<p><strong>‘Automation’ of the repetition of structurally identical commands.</strong></p>
+<ul>
+<li>Repetition of a command – with objects remaining the same, or changing – with a predetermined or flexible number of repetitions.</li>
+<li>Conditional execution of various tasks.</li>
+<li>Generalization of tasks by defining functions.
+<!--- Combination of information in objects.--></li>
+</ul>
+</div>
+<div id="logical-comparisons." class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Logical comparisons.</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left"><code>TRUE</code> if:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>==</code></td>
+<td align="left">Equality</td>
+</tr>
+<tr class="even">
+<td align="left"><code>!=</code></td>
+<td align="left">Inequality</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&gt;</code>, <code>&gt;=</code></td>
+<td align="left">Left side greater than (or equal to) the right side</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&lt;</code>, <code>&lt;=</code></td>
+<td align="left">Left side less than (or equal to) the right side</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>%in%</code></td>
+<td align="left">Is left side included in vector on right side?</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>all()</code> returns <code>TRUE</code> if all elements of the vector are <code>TRUE</code>.</li>
+<li><code>any()</code> returns <code>TRUE</code> if at least one element of the vector is <code>TRUE</code>.</li>
+<li><code>is.na()</code> and <code>is.null()</code> return <code>TRUE</code> if the respective object (e.g. element of a vector) is <code>NA</code> or <code>NULL</code>.</li>
+<li>A logical value can be negated with a preceding <code>!</code> (e.g. <code>!TRUE</code> is <code>FALSE</code>)</li>
+<li><code>which()</code> returns the index set (as an integer vector) if the logical comparison resulted in <code>TRUE</code>.</li>
+</ul>
+<div id="exercises" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Exercises</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">is.na</span>(drought<span class="sc">$</span>bair)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">is.na</span>(drought<span class="sc">$</span>bair))</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>drought<span class="sc">$</span>bair <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">all</span>(drought<span class="sc">$</span>bair <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>drought<span class="sc">$</span>bair <span class="sc">&gt;</span> <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">any</span>(drought<span class="sc">$</span>bair <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">all</span>(drought<span class="sc">$</span>bair <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">which</span>(drought<span class="sc">$</span>bair <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>drought<span class="sc">$</span>bair[<span class="fu">which</span>(drought<span class="sc">$</span>bair <span class="sc">&gt;</span> <span class="dv">1</span>)]</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">round</span>(drought<span class="sc">$</span>bair, <span class="dv">1</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">c</span>(.<span class="dv">8</span>, <span class="fl">1.2</span>) <span class="sc">%in%</span> tmp</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">c</span>(.<span class="dv">8</span>, <span class="fl">1.2</span>) <span class="sc">%in%</span> drought<span class="sc">$</span>bair</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">which</span>(tmp <span class="sc">%in%</span> <span class="fu">c</span>(.<span class="dv">8</span>, <span class="fl">1.2</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>drought<span class="sc">$</span>bair[<span class="fu">which</span>(tmp <span class="sc">%in%</span> <span class="fu">c</span>(.<span class="dv">8</span>, <span class="fl">1.2</span>))]</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">c</span>(drought<span class="sc">$</span>bair[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="cn">NA</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">all</span>(tmp <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">is.na</span>(tmp))</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(tmp))</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">all</span>(tmp[<span class="sc">-</span><span class="fu">which</span>(<span class="fu">is.na</span>(tmp))] <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">mean</span>(tmp)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="fu">mean</span>(tmp, <span class="at">na.rm =</span> T)</span></code></pre></div>
+</div>
+</div>
+<div id="conditional-execution" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Conditional execution</h1>
+<div id="if-else" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> <code>if () { } else { }</code></h2>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  ... <span class="do">## Commands if condition is TRUE</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  ... <span class="do">## Commands if condition is FALSE</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><code>TRUE</code> or <code>FALSE</code> condition necessary.</li>
+<li>‘if-else’-sequences can be nested within one another.</li>
+</ul>
+<p><strong>Applied example together with the next topic.</strong></p>
+<div id="exercises-1" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Exercises</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair[<span class="dv">1</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="cf">if</span> (a <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;a is greater than 1.&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;a is not greater than 1.&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>index <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">nrow</span>(drought))</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="cf">if</span> (drought<span class="sc">$</span>bair[index] <span class="sc">&lt;</span> <span class="dv">1</span>) {</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="st">&quot;bair&lt;1&quot;</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="cf">if</span> (drought<span class="sc">$</span>elev[index] <span class="sc">&lt;</span> <span class="dv">1000</span>) {</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    tmp[index] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;1_&quot;</span>, result, <span class="st">&quot;,elev&lt;1000&quot;</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    tmp[index] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;2_&quot;</span>, result, <span class="st">&quot;,elev&gt;=1000&quot;</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>  }</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="st">&quot;bair&gt;=1&quot;</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>  <span class="cf">if</span> (drought<span class="sc">$</span>elev[index] <span class="sc">&lt;</span> <span class="dv">1000</span>) {</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>    tmp[index] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;3_&quot;</span>, result, <span class="st">&quot;,elev&lt;1000&quot;</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>    tmp[index] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;4_&quot;</span>, result, <span class="st">&quot;,elev&gt;=1000&quot;</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>  }</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>}</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>tmp</span></code></pre></div>
+</div>
+</div>
+<div id="for-loops" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> <code>for</code>-loops</h2>
+<p><code>for</code> loops often offer a simple and pragmatic way to complete steps in data management / preparation.</p>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> vector) {</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  ... index ... <span class="do">## Commands that in some form depend on index.</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>New object <code>index</code> runs all elements in <code>vector</code>.</li>
+<li><code>index</code> remains constant during <code>... index ...</code></li>
+<li><code>index</code> jumps to the next (if available) value of <code>vector</code> after running through <code>... index ...</code>.</li>
+<li><code>index</code> takes each value of <code>vector</code> once.</li>
+<li>The number of iterations of <code>... index ...</code> is determined by the length of <code>vector</code>.</li>
+</ul>
+<div id="exercises-2" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Exercises</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>tmp1 <span class="ot">&lt;-</span> frost<span class="sc">$</span>bud_burst_days_since_may1st</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>tmp2 <span class="ot">&lt;-</span> frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>days_since_may1st <span class="ot">&lt;-</span> <span class="fu">min</span>(tmp1)<span class="sc">:</span><span class="fu">max</span>(tmp2)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">rm</span>(tmp1, tmp2)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> frost, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> bud_burst_days_since_may1st)) <span class="sc">+</span> </span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">range</span>(days_since_may1st))</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(frost)) {</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  tmp_x <span class="ot">&lt;-</span> <span class="fu">rep</span>(frost<span class="sc">$</span>year[index], <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  tmp_y <span class="ot">&lt;-</span> <span class="fu">c</span>(frost<span class="sc">$</span>bud_burst_days_since_may1st[index], </span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>             frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st[index])</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> tmp_x, <span class="at">y =</span> tmp_y), </span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>                     <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y))</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>}</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>p</span></code></pre></div>
+</div>
+</div>
+<div id="example-of-a-for-loop-with-if" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Example of a <code>for</code> loop with <code>if</code></h2>
+<p>The goal of this example is to get to know which day in May is the one at which a young Douglas fir was most often in the first development stage.</p>
+<p>As a preparation, we nee to set up a data-frame as the object that will carry the result:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>tmp1 <span class="ot">&lt;-</span> frost<span class="sc">$</span>bud_burst_days_since_may1st</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>tmp2 <span class="ot">&lt;-</span> frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>days_since_may1st <span class="ot">&lt;-</span> <span class="fu">min</span>(tmp1)<span class="sc">:</span><span class="fu">max</span>(tmp2)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">rm</span>(tmp1, tmp2)</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">days_since_may1st =</span> days_since_may1st, </span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                  <span class="at">n_at_risk =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<div id="illustrating-the-loop-index" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Illustrating the loop index</h3>
+<p>The for-loop will run through our resulting data-frame <code>res</code>, line by line.
+We can try and illustrate this with the following graph, where the x-axis carries the values of the loop-index, and the y-axis the value of the <code>days_since_may1st</code> variable that will be taken in each of the loop’s <code>... index ...</code> circles.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;colorspace&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## Attache Paket: &#39;colorspace&#39;</code></pre>
+<pre><code>## Das folgende Objekt ist maskiert &#39;package:spatstat.geom&#39;:
+## 
+##     coords</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(res), </span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                         <span class="at">y =</span> res<span class="sc">$</span>days_since_may1st), </span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> x)) <span class="sc">+</span> </span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="fu">scale_color_continuous_divergingx</span>(<span class="at">pal =</span> <span class="st">&quot;Zissou&quot;</span>, <span class="at">mid =</span> <span class="fu">nrow</span>(res)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;for-loop index &#39;index&#39;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;res$days_since_may1st at &#39;index&#39;&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_03_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="an-iteration-by-hand" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> An iteration ‘by hand’</h3>
+<p>We can run a first iteration by hand that does what <code>... index ...</code> should do in our loop:
+compare the current – at <code>index = 1</code>– <code>res$days_since_may1st</code> value to each of the first development stage periods that are given by <code>frost$bud_burst_days_since_may1st</code>and <code>frost$end_1st_dev_stage_days_since_may1st</code>.
+If any of those periods covers our current day, than at least a value of <code>1</code> will result for <code>res$n_at_risk[index]</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>index <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># re-use &#39;p&#39; from for-loop exercises</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> res<span class="sc">$</span>days_since_may1st[index], <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="do">## boolean 1 and 2:</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>bool1 <span class="ot">&lt;-</span> frost<span class="sc">$</span>bud_burst_days_since_may1st <span class="sc">&lt;=</span> res<span class="sc">$</span>days_since_may1st[index]</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>bool2 <span class="ot">&lt;-</span> frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st <span class="sc">&gt;=</span> res<span class="sc">$</span>days_since_may1st[index]</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">## if any ... else ...</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">any</span>(bool1 <span class="sc">&amp;</span> bool2)) {</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>  which_true <span class="ot">&lt;-</span> <span class="fu">which</span>(bool1 <span class="sc">&amp;</span> bool2)</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> frost<span class="sc">$</span>year[which_true], </span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>                                        <span class="at">y =</span> <span class="fu">rep</span>(days_since_may1st[index], </span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>                                                <span class="at">times =</span> <span class="fu">length</span>(which_true))),</span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>                      <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> y))<span class="co"># , col = paint[index], pch = 16)</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>  res<span class="sc">$</span>n_at_risk[index] <span class="ot">&lt;-</span> <span class="fu">length</span>(which_true)</span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>  res<span class="sc">$</span>n_at_risk[index] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>}</span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_color_continuous_divergingx</span>(<span class="at">pal =</span> <span class="st">&quot;Zissou&quot;</span>, <span class="at">mid =</span> <span class="fu">nrow</span>(res)<span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_03_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">rm</span>(index)</span></code></pre></div>
+</div>
+<div id="the-full-loop" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> The ‘full’ loop</h3>
+<p>Now we just take what we have implemented before and – by using <code>for (index in 1:nrow(res)) {</code> effortlessly run through all the lines of <code>res</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, .<span class="dv">1</span>, .<span class="dv">1</span>), <span class="at">mgp =</span> <span class="fu">c</span>(<span class="dv">2</span>, .<span class="dv">5</span>, <span class="dv">0</span>), <span class="at">tcl =</span> <span class="sc">-</span>.<span class="dv">3</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">plot</span>(frost<span class="sc">$</span>year, frost<span class="sc">$</span>bud_burst_days_since_may1st, <span class="at">type =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">range</span>(days_since_may1st), <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(frost)) { <span class="do">## here, the uninteresting loop</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  tmp_x <span class="ot">&lt;-</span> <span class="fu">rep</span>(frost<span class="sc">$</span>year[index], <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  tmp_y <span class="ot">&lt;-</span> <span class="fu">c</span>(frost<span class="sc">$</span>bud_burst_days_since_may1st[index], </span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>             frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st[index])</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="at">x =</span> tmp_x, <span class="at">y =</span> tmp_y)</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_03_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(res)) { <span class="do">## let &#39;index&#39; begin here at 2 since index = 1 already perfomr</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> res<span class="sc">$</span>days_since_may1st[index], <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="do">## boolean 1 and 2:</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  bool1 <span class="ot">&lt;-</span> frost<span class="sc">$</span>bud_burst_days_since_may1st <span class="sc">&lt;=</span> res<span class="sc">$</span>days_since_may1st[index]</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  bool2 <span class="ot">&lt;-</span> frost<span class="sc">$</span>end_1st_dev_stage_days_since_may1st <span class="sc">&gt;=</span> res<span class="sc">$</span>days_since_may1st[index]</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="do">## if any ... else ...</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(bool1 <span class="sc">&amp;</span> bool2)) {</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>    which_true <span class="ot">&lt;-</span> <span class="fu">which</span>(bool1 <span class="sc">&amp;</span> bool2)</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> frost<span class="sc">$</span>year[which_true], </span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>                                          <span class="at">y =</span> <span class="fu">rep</span>(days_since_may1st[index], </span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>                                                  <span class="at">times =</span> <span class="fu">length</span>(which_true))),</span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> y))<span class="co"># , col = paint[index], pch = 16)</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>    res<span class="sc">$</span>n_at_risk[index] <span class="ot">&lt;-</span> <span class="fu">length</span>(which_true)</span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>    res<span class="sc">$</span>n_at_risk[index] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>  }</span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>}</span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_color_continuous_divergingx</span>(<span class="at">pal =</span> <span class="st">&quot;Zissou&quot;</span>, <span class="at">mid =</span> <span class="fu">nrow</span>(res)<span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_03_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> res, <span class="fu">aes</span>(<span class="at">x =</span> days_since_may1st, <span class="at">y =</span> n_at_risk)) <span class="sc">+</span> </span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_03_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+<div id="while-loops." class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> <code>while</code>-loops.</h2>
+<p><code>while</code> loops are used less often in data management / preparation, but are more likely to be found in computationally intensive applications (e.g. for optimization).</p>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>index <span class="ot">&lt;-</span> k <span class="do">## &#39;k&#39; here has to be smaller than &#39;K&#39; in next line.</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="cf">while</span> (index <span class="sc">&lt;</span> K){</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  ...</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  index <span class="ot">&lt;-</span> index <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>The commands that ’<code>...</code> stands for, and the following line, are repeated as long as the condition is <code>TRUE</code> (i.e. here as long as <code>k</code><span class="math inline">\(&lt;\)</span><code>K</code>).</li>
+<li>flexible number of repetitions.</li>
+<li>stops immediately after the condition – <code>index &lt; K</code> in the above usage example – is no longer met, ie. is <code>FALSE</code> for the first time.</li>
+</ul>
+<p><em>The following two examples are two applications of a while-loop that came into my mind. They might be a bit too distracting from the goals of ‘Introduction to R’, so feel completely free to skip them …</em></p>
+<div id="example-1" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Example 1</h3>
+<p>This example does Bayesian inference for a simple one parameter model – estimation of an unknown quantity which is a proportion between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> – by filtering the prior proposals that lead to the simulated data that are equal to the data sample – the likelihood works as some sort of sieve here.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>accepted <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> (frost<span class="sc">$</span>n_frost <span class="sc">&gt;</span> .<span class="dv">5</span>))</span></code></pre></div>
+<pre><code>## frost$n_frost &gt; 0.5
+## FALSE  TRUE 
+##    65    12</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>prior <span class="ot">&lt;-</span> post <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="cf">while</span> (accepted <span class="sc">&lt;</span> <span class="dv">1000</span>) {</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">shape1 =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">shape2 =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="do">## http://dx.doi.org/10.1214/11-EJS648</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  prior <span class="ot">&lt;-</span> <span class="fu">c</span>(prior, p)</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>  y_tilde <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="fu">nrow</span>(frost), <span class="at">replace =</span> T, </span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>                    <span class="at">prob =</span> <span class="fu">c</span>(p, <span class="dv">1</span> <span class="sc">-</span> p))</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(y_tilde) <span class="sc">==</span> <span class="fu">sum</span>(frost<span class="sc">$</span>n_frost <span class="sc">&gt;</span> .<span class="dv">5</span>)) {</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>    accepted <span class="ot">&lt;-</span> accepted <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>    post <span class="ot">&lt;-</span> <span class="fu">c</span>(post, p)</span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>  }</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>}</span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="fu">length</span>(post)</span></code></pre></div>
+<pre><code>## [1] 1000</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">length</span>(prior)</span></code></pre></div>
+<pre><code>## [1] 101341</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">length</span>(post) <span class="sc">/</span> <span class="fu">length</span>(prior)</span></code></pre></div>
+<pre><code>## [1] 0.009867674</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">summary</span>(post)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0588  0.1287  0.1551  0.1581  0.1836  0.2977</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">summary</span>(prior)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.08297 0.49990 0.49983 0.91664 1.00000</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">value =</span> post, </span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>                        <span class="at">k =</span> <span class="st">&quot;posterior&quot;</span>),</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>             <span class="fu">data.frame</span>(<span class="at">value =</span> prior, </span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>                        <span class="at">k =</span> <span class="st">&quot;prior&quot;</span>))</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tmp, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">group =</span> k, <span class="at">fill =</span> k)) <span class="sc">+</span> </span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">alpha =</span> .<span class="dv">8</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, </span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>                 <span class="at">binwidth =</span> .<span class="dv">05</span>, <span class="at">center =</span> .<span class="dv">025</span>) <span class="sc">+</span> </span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_qualitative</span>(<span class="at">pal =</span> <span class="st">&quot;Dark 2&quot;</span>, <span class="at">rev =</span> T) <span class="sc">+</span> </span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">sum</span>(frost<span class="sc">$</span>n_frost <span class="sc">&gt;</span> .<span class="dv">5</span>) <span class="sc">/</span> <span class="fu">nrow</span>(frost), <span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(post), <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Probability&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">fill =</span> <span class="cn">NULL</span>, </span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Dashed vertical line is at empirical mean.</span><span class="sc">\n</span><span class="st">Solid vertical line is at posterior median.&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_03_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="example-2" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Example 2</h3>
+<p>This example implements a very primitive <em>component-wise ‘L[2]-loss descent’ boosting</em> (comparable to what add-on package <code>mboost</code> implements for a normally distributed response).</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> drought<span class="sc">$</span>elev <span class="sc">-</span> <span class="fu">mean</span>(drought<span class="sc">$</span>elev)</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(drought), <span class="at">min =</span> <span class="fu">min</span>(x1), <span class="at">max =</span> <span class="fu">max</span>(x1))</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x2 <span class="sc">-</span> <span class="fu">mean</span>(x2)</span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> drought<span class="sc">$</span>bair</span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>f_y_work <span class="ot">&lt;-</span> <span class="cf">function</span>(y, x1, x2, b0, b1, b2){<span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> (<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>y <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>(b0 <span class="sc">+</span> b1<span class="sc">*</span>x1 <span class="sc">+</span> b2<span class="sc">*</span>x2))}</span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb30-10"><a href="#cb30-10" tabindex="-1"></a>crit_diff <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="do">## initialize such that condition is true at beginning</span></span>
+<span id="cb30-11"><a href="#cb30-11" tabindex="-1"></a>crit_old <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">c</span>(y <span class="sc">-</span> (b0 <span class="sc">+</span> b1<span class="sc">*</span>x1 <span class="sc">+</span> b2<span class="sc">*</span>x2))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb30-12"><a href="#cb30-12" tabindex="-1"></a>component <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb30-13"><a href="#cb30-13" tabindex="-1"></a><span class="cf">while</span> (crit_diff <span class="sc">&gt;</span> <span class="fl">0.0001</span>) {</span>
+<span id="cb30-14"><a href="#cb30-14" tabindex="-1"></a>  y_work <span class="ot">&lt;-</span> <span class="fu">f_y_work</span>(<span class="at">y =</span> y, <span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2, </span>
+<span id="cb30-15"><a href="#cb30-15" tabindex="-1"></a>                     <span class="at">b0 =</span> b0[<span class="fu">length</span>(b0)], <span class="at">b1 =</span> b1[<span class="fu">length</span>(b1)], </span>
+<span id="cb30-16"><a href="#cb30-16" tabindex="-1"></a>                     <span class="at">b2 =</span> b2[<span class="fu">length</span>(b2)])</span>
+<span id="cb30-17"><a href="#cb30-17" tabindex="-1"></a>  lm_b0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y_work <span class="sc">~</span> <span class="dv">1</span>)</span>
+<span id="cb30-18"><a href="#cb30-18" tabindex="-1"></a>  lm_b1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y_work <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> x1)</span>
+<span id="cb30-19"><a href="#cb30-19" tabindex="-1"></a>  lm_b2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y_work <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> x2)</span>
+<span id="cb30-20"><a href="#cb30-20" tabindex="-1"></a>  crit_b0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(lm_b0<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb30-21"><a href="#cb30-21" tabindex="-1"></a>  crit_b1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(lm_b1<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb30-22"><a href="#cb30-22" tabindex="-1"></a>  crit_b2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(lm_b2<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb30-23"><a href="#cb30-23" tabindex="-1"></a>  selected <span class="ot">&lt;-</span> <span class="fu">which.min</span>(<span class="fu">c</span>(crit_b0, crit_b1, crit_b2))</span>
+<span id="cb30-24"><a href="#cb30-24" tabindex="-1"></a>  update_weight <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb30-25"><a href="#cb30-25" tabindex="-1"></a>  update_weight[selected] <span class="ot">&lt;-</span> .<span class="dv">01</span></span>
+<span id="cb30-26"><a href="#cb30-26" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> <span class="fu">c</span>(b0, b0[<span class="fu">length</span>(b0)] <span class="sc">+</span> update_weight[<span class="dv">1</span>] <span class="sc">*</span> <span class="fu">coef</span>(lm_b0))</span>
+<span id="cb30-27"><a href="#cb30-27" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> <span class="fu">c</span>(b1, b1[<span class="fu">length</span>(b1)] <span class="sc">+</span> update_weight[<span class="dv">2</span>] <span class="sc">*</span> <span class="fu">coef</span>(lm_b1))</span>
+<span id="cb30-28"><a href="#cb30-28" tabindex="-1"></a>  b2 <span class="ot">&lt;-</span> <span class="fu">c</span>(b2, b2[<span class="fu">length</span>(b2)] <span class="sc">+</span> update_weight[<span class="dv">3</span>] <span class="sc">*</span> <span class="fu">coef</span>(lm_b2))</span>
+<span id="cb30-29"><a href="#cb30-29" tabindex="-1"></a>  component <span class="ot">&lt;-</span> <span class="fu">c</span>(component, selected)</span>
+<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a>  crit_new <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">c</span>(y <span class="sc">-</span> (b0[<span class="fu">length</span>(b0)] <span class="sc">+</span> </span>
+<span id="cb30-31"><a href="#cb30-31" tabindex="-1"></a>                                 b1[<span class="fu">length</span>(b1)] <span class="sc">*</span> x1 <span class="sc">+</span> </span>
+<span id="cb30-32"><a href="#cb30-32" tabindex="-1"></a>                                 b2[<span class="fu">length</span>(b2)] <span class="sc">*</span> x2))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb30-33"><a href="#cb30-33" tabindex="-1"></a>  crit_diff <span class="ot">&lt;-</span> crit_old <span class="sc">-</span> crit_new <span class="do">## Update!</span></span>
+<span id="cb30-34"><a href="#cb30-34" tabindex="-1"></a>  crit_old <span class="ot">&lt;-</span> crit_new</span>
+<span id="cb30-35"><a href="#cb30-35" tabindex="-1"></a>}</span>
+<span id="cb30-36"><a href="#cb30-36" tabindex="-1"></a><span class="fu">table</span>(component)</span></code></pre></div>
+<pre><code>## component
+##   1   2   3 
+## 155  81  10</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>paint <span class="ot">&lt;-</span> colorspace<span class="sc">::</span><span class="fu">divergingx_hcl</span>(<span class="at">n =</span> <span class="fu">length</span>(b0), <span class="at">pal =</span> <span class="st">&quot;Zissou&quot;</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>paint_a <span class="ot">&lt;-</span> colorspace<span class="sc">::</span><span class="fu">divergingx_hcl</span>(<span class="at">n =</span> <span class="fu">length</span>(b0), <span class="at">pal =</span> <span class="st">&quot;Zissou&quot;</span>, <span class="at">alpha =</span> .<span class="dv">1</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> x1, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y))</span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x2 =</span> x2, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x2, <span class="at">y =</span> y))</span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(b0)) {</span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> b0[index], <span class="at">slope =</span> b1[index], <span class="at">color =</span> paint_a[index])</span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a>  p2 <span class="ot">&lt;-</span> p2 <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> b0[index], <span class="at">slope =</span> b2[index], <span class="at">color =</span> paint_a[index])</span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>}</span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(p1, p2, </span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a>                   <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">iteration =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(component),</span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a>                                            <span class="at">component =</span> <span class="fu">as.numeric</span>(<span class="fu">as.factor</span>(component)))) <span class="sc">+</span> </span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> iteration, <span class="at">y =</span> component)) <span class="sc">+</span> </span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a>                     <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">minor_breaks =</span> <span class="cn">NULL</span>), </span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a>                   <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="intro_to_R_2024_session_03_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+<div id="apply-commands" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> <code>apply</code>-commands</h2>
+<p>An <code>apply</code>-command applies the same function to each of the elements of a data object.
+This is usually done for taking the sum or calculating the arithmetic mean, or quantiles, of the columns or rows of a matrix.
+There are different - but actually very similar – versions of <code>appyly</code>.</p>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">apply</span>(X, MARGIN, FUN, ...) <span class="do">## For matrix X: Result is a list.</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">lapply</span>(X, FUN, ...) <span class="do">## For list X: Result is a list.</span></span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a><span class="fu">sapply</span>(X, FUN, ...) <span class="do">## For list X: Result is a vector or another </span></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a><span class="do">## Data object that the result might be &#39;simplified&#39; to.</span></span></code></pre></div>
+<ul>
+<li><code>apply</code> applies function (specified by <code>FUN</code>) to each element of the respective dimension (defined with argument <code>MARGIN</code>) of <code>X</code>.</li>
+<li><code>MARGIN</code> equals <code>1</code> for line-by-line, and <code>2</code> for column-wise execution.</li>
+<li><code>...</code> for further arguments to <code>FUNCTION</code> (same for every element of<code>X</code>!).</li>
+<li>For lists <code>X</code>, <code>MARGIN</code> cannot be selected because lists only have one dimension.</li>
+</ul>
+<div id="exercises-3" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Exercises</h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">nrow =</span> <span class="dv">10</span>, <span class="at">data =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>(B <span class="ot">&lt;-</span> <span class="fu">apply</span>(A, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> mean))</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="fu">class</span>(B)</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="fu">colSums</span>(A)<span class="sc">/</span><span class="fu">nrow</span>(A)</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a><span class="fu">apply</span>(A, <span class="at">MAR =</span> <span class="dv">2</span>, <span class="at">FUN =</span> sd)</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>(B <span class="ot">&lt;-</span> <span class="fu">apply</span>(A, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> summary))</span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a><span class="fu">class</span>(B)</span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a><span class="fu">dimnames</span>(B)</span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a><span class="fu">apply</span>(drought, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x){<span class="fu">sum</span>(<span class="fu">is.na</span>(x))})</span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a><span class="fu">apply</span>(drought[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> mean)</span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a><span class="fu">apply</span>(drought[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> mean)</span>
+<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a><span class="fu">apply</span>(frost, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x){<span class="fu">sum</span>(<span class="fu">is.na</span>(x))})</span>
+<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a><span class="fu">apply</span>(frost[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> mean)</span>
+<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a><span class="fu">lapply</span>(frost[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">FUN =</span> mean)</span>
+<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a><span class="fu">sapply</span>(frost[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">FUN =</span> mean)</span></code></pre></div>
+</div>
+</div>
+<div id="plyrddply-splitapplycombine" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> <code>plyr::ddply</code>: ’split–apply–combine</h2>
+<p>‘split–apply–combine’ refers to a sequence of actions that is often needed for analyzing data:</p>
+<ul>
+<li><em>split</em>: Split the data set according to the characteristics of one or a combination of several categorical variables,</li>
+<li><em>apply</em>: Apply statistical methods (or functions like <code>mean()</code>, <code>length()</code>, …) to each of these partial data sets,</li>
+<li><em>combine</em>: Manage all results in a common result object.</li>
+</ul>
+<p>‘split–apply–combine’ with the function <code>ddply</code> from the package <code>plyr</code> <span class="citation">(<a href="#ref-Wickham:2011">Wickham 2011</a>)</span>:</p>
+<ul>
+<li>takes a dataframe (one of the <code>d</code>s in the functions name)</li>
+<li>returns a dataframe (the second <code>d</code> in the functions name)</li>
+</ul>
+<p>Alternative: base R <em>aggregate</em>.</p>
+<p><strong>Usage:</strong></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;plyr&quot;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">ddply</span>(data, </span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>      <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;variable(s) to split data frame by&quot;</span>), </span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>      summarise, </span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>      <span class="at">output_variable1 =</span> <span class="fu">function1</span>(input_variable1),</span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>      <span class="at">output_variable2 =</span> <span class="fu">function2</span>(input_variable2),</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>      ...)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;plyr&quot;</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>d_breaks_cut <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df<span class="sc">$</span>d, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.05</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>df<span class="sc">$</span>d_cut <span class="ot">&lt;-</span> <span class="fu">cut</span>(df<span class="sc">$</span>d, <span class="at">breaks =</span> d_breaks_cut, <span class="at">include.lowest =</span> T)</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">ddply</span>(df, <span class="fu">c</span>(<span class="st">&quot;d_cut&quot;</span>), summarise, </span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">length</span>(h),</span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>            <span class="at">h_min =</span> <span class="fu">min</span>(h),</span>
+<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>            <span class="at">h_q25 =</span> <span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a>            <span class="at">h_mean =</span> <span class="fu">mean</span>(h),</span>
+<span id="cb36-9"><a href="#cb36-9" tabindex="-1"></a>            <span class="at">h_q75 =</span> <span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fl">0.75</span>),</span>
+<span id="cb36-10"><a href="#cb36-10" tabindex="-1"></a>            <span class="at">h_max =</span> <span class="fu">max</span>(h))</span>
+<span id="cb36-11"><a href="#cb36-11" tabindex="-1"></a><span class="fu">head</span>(dd)</span></code></pre></div>
+<pre><code>##       d_cut  n h_min h_q25   h_mean h_q75 h_max
+## 1 [1.5,3.1] 86   1.9 2.900 3.389535 3.800   6.8
+## 2   (3.1,4] 91   2.1 3.600 4.410989 5.050   7.5
+## 3   (4,4.8] 86   3.2 4.200 4.995349 5.800   7.9
+## 4 (4.8,5.4] 79   3.1 4.550 5.401266 6.050  10.1
+## 5 (5.4,6.2] 93   3.4 5.200 6.311828 7.100  15.5
+## 6 (6.2,6.9] 74   3.8 5.125 6.532432 7.775   9.8</code></pre>
+</div>
+<div id="pragmatic-programming." class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Pragmatic Programming.</h2>
+<p><strong>The primary aim of your R Code is that it does what you need it to do – without errors!</strong></p>
+<p><strong>Faulty conclusions in your data analysis as a consequence of data handling errors are one of the worst things that can happen to you as a researcher.</strong></p>
+<p><strong>Copy-paste sequences such as:</strong></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>df[, <span class="dv">1</span>] <span class="ot">&lt;-</span> df[, <span class="dv">1</span>] <span class="sc">-</span> <span class="fu">mean</span>(df[, <span class="dv">1</span>]) <span class="sc">/</span> <span class="fu">sd</span>(df[, <span class="dv">1</span>])</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>df[, <span class="dv">2</span>] <span class="ot">&lt;-</span> df[, <span class="dv">2</span>] <span class="sc">-</span> <span class="fu">mean</span>(df[, <span class="dv">2</span>]) <span class="sc">/</span> <span class="fu">sd</span>(df[, <span class="dv">2</span>])</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>df[, <span class="dv">3</span>] <span class="ot">&lt;-</span> df[, <span class="dv">3</span>] <span class="sc">-</span> <span class="fu">mean</span>(df[, <span class="dv">3</span>]) <span class="sc">/</span> <span class="fu">sd</span>(df[, <span class="dv">3</span>])</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>df[, <span class="dv">5</span>] <span class="ot">&lt;-</span> df[, <span class="dv">5</span>] <span class="sc">-</span> <span class="fu">mean</span>(df[, <span class="dv">5</span>]) <span class="sc">/</span> <span class="fu">sd</span>(df[, <span class="dv">1</span>])</span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>df[, <span class="dv">6</span>] <span class="ot">&lt;-</span> df[, <span class="dv">6</span>] <span class="sc">-</span> <span class="fu">mean</span>(df[, <span class="dv">6</span>]) <span class="sc">/</span> <span class="fu">sd</span>(df[, <span class="dv">6</span>])</span></code></pre></div>
+<p><strong>are one of the main error source for R users / ‘beginners’ that don’t rely on ‘programming techniques’.</strong></p>
+<p><strong>Loops are somehow ill-reputed, but whatever way of programming you find that get’s you towards errorless handling of your data, is perfect!</strong></p>
+<p>Therefore:</p>
+<ul>
+<li>Use loops as often as possible (‘upwards’: wherever you can replace long copy-paste chains with an errorless loop), but avoid loops as often as necessary (‘downwards’), because – very roughly said – loops read and write to the main memory in each iteration <span class="math inline">\(\rightarrow\)</span> Vectorized programming reads and writes only once: many functions take vectors as arguments and are therefore (often) faster.</li>
+<li>Use an <code>apply</code> command if you want the function to do the same on every element.</li>
+<li>But: Loops are simple and pragmatic and whoever masters them is already a king: It is better if R-Code gets something done slowly, but correct, than quickly, but wrong!</li>
+<li>Loops cannot be avoided in an iterative processes – but this is something you will rarely need!</li>
+</ul>
+</div>
+</div>
+<div id="define-your-own-functions." class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Define your own functions.</h1>
+<p><strong>Why should I be able to define my own functions?</strong></p>
+<ul>
+<li>Functions generalize command sequences and make it easier and easier to try something out under many different argument values / dates / ….</li>
+<li>Functions keep the workspace clean (see next section on environments).</li>
+<li>Functions facilitate the reproducibility of analyzes.</li>
+<li>Functions make it easier for other users to access your work.</li>
+<li>As can be seen from the <code>apply()</code> examples, it is very often necessary to be able to write your own little helper functions.
+Also for your own <strong>orientation</strong>: Always comment on the processes and steps in your code and in your functions to make it easier to understand the motivation and ideas behind it later.</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2, <span class="at">arg3 =</span> <span class="cn">TRUE</span>, <span class="at">arg4 =</span> <span class="dv">2</span>, ...){</span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>  content</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>The general rules for naming objects also apply to function arguments.</li>
+<li>Arguments can have preset values (here <code>arg3</code> and<code>arg4</code>)</li>
+<li>The last argument <code>...</code> (optional) is a special argument and can be used to pass unspecified arguments to function calls.</li>
+<li>Arguments changed by <code>content</code> and objects created are in their own local environment.</li>
+<li>The result is returned to the global environment with <code>return(result)</code>.</li>
+</ul>
+<div id="naming-conventions-for-arguments." class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Naming conventions for arguments.</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Argument name</th>
+<th align="left">Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data</code></td>
+<td align="left">Dataframe</td>
+</tr>
+<tr class="even">
+<td align="left"><code>x</code>, <code>y</code>, <code>z</code></td>
+<td align="left">Vectors (most often with numerical elements)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>n</code></td>
+<td align="left">Sample size</td>
+</tr>
+<tr class="even">
+<td align="left"><code>formula</code></td>
+<td align="left">Formula object</td>
+</tr>
+<tr class="odd">
+<td align="left">…</td>
+<td align="left">…</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Use function and argument names that are based on existing R functions.</li>
+<li>Make arguments as self-explanatory as possible by name.</li>
+</ul>
+</div>
+<div id="content-and-result." class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> <code>content</code> and <code>result</code>.</h2>
+<p><strong>The <code>content</code> block:</strong></p>
+<ul>
+<li>Should make it possible to carry out many similar – but different – calculations and therefore define as few objects as possible to ‘fixed values’: alternatively, always try to define arguments with default values.</li>
+<li>Falls back on the higher-level environment (or environments, if necessary) if it cannot find an object in the local environment (this is known as <em>scoping</em>).</li>
+</ul>
+<p><strong>The <code>result</code> object:</strong></p>
+<ul>
+<li>Can be of any possible R object class (vector, list, data set, function (a function that itself returns a function is called <em>closure</em>), …).</li>
+<li>Is generated by calling the function and stored in the global environment.</li>
+<li>All other objects are no longer ‘visible’ from the global environment.</li>
+</ul>
+</div>
+<div id="exercises-4" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Exercises</h2>
+<div id="environments-and-scoping" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Environments and scoping</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">ls</span>())</span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a>  y <span class="ot">&lt;-</span> y <span class="sc">+</span> z <span class="do">## f will search for z in the parent (global, here) environment.</span></span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">ls</span>())</span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a>}</span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span>; z <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a><span class="fu">f</span>(<span class="at">x =</span> x) <span class="do">## f will find z:</span></span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a><span class="do">## -&gt; although we don&#39;t explicitly use it as an argument in the local environment</span></span>
+<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a><span class="do">##    passed to f.</span></span>
+<span id="cb40-14"><a href="#cb40-14" tabindex="-1"></a>y <span class="do">## We cannot fall back on y from the higher-level environment.</span></span></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): Objekt &#39;y&#39; nicht gefunden</code></pre>
+</div>
+<div id="closure" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Closure</h3>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="cf">function</span>(exponent){</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cf">function</span>(x){</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">^</span> exponent)})</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>}</span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="fu">power</span>(<span class="dv">2</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a><span class="fu">square</span>(<span class="dv">2</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a><span class="fu">square</span>(<span class="dv">4</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>cube <span class="ot">&lt;-</span> <span class="fu">power</span>(<span class="dv">3</span>)</span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a><span class="fu">cube</span>(<span class="dv">2</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a><span class="fu">cube</span>(<span class="dv">4</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="real-world-helpers" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Real-world helpers</h2>
+<div id="drop_ghosts" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> <code>drop_ghosts</code></h3>
+<p>This function drops ghosts, ie. it removes levels of a factor variable for which the absolute frequency in the data is <span class="math inline">\(0\)</span>.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>drop_ghosts <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">lev =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(lev)) {</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>    <span class="fu">as.factor</span>(<span class="fu">as.character</span>(x))  </span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">unique</span>(x)) <span class="sc">!=</span> <span class="fu">length</span>(lev)) {</span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">&quot;Please provide levels of correct length!&quot;</span>)  </span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a>    }</span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a>    <span class="fu">factor</span>(<span class="fu">as.character</span>(x), <span class="at">levels =</span> lev)</span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a>  }</span>
+<span id="cb43-10"><a href="#cb43-10" tabindex="-1"></a>}</span></code></pre></div>
+<p>Validation:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">species =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Spruce&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>)))</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>tmp<span class="sc">$</span>species</span></code></pre></div>
+<pre><code>##  [1] Beech  Beech  Beech  Beech  Beech  Spruce Spruce Spruce Spruce Spruce
+## Levels: Beech Spruce</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(tmp, species <span class="sc">==</span> <span class="st">&quot;Beech&quot;</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>sub<span class="sc">$</span>species</span></code></pre></div>
+<pre><code>## [1] Beech Beech Beech Beech Beech
+## Levels: Beech Spruce</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">drop_ghosts</span>(<span class="at">x =</span> sub<span class="sc">$</span>species)</span></code></pre></div>
+<pre><code>## [1] Beech Beech Beech Beech Beech
+## Levels: Beech</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">drop_ghosts</span>(<span class="at">x =</span> sub<span class="sc">$</span>species, <span class="at">lev =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>))</span></code></pre></div>
+<pre><code>## Error in drop_ghosts(x = sub$species, lev = c(&quot;Beech&quot;, &quot;Oak&quot;)): Please provide levels of correct length!</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Spruce&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] Beech Oak  
+## Levels: Beech Oak Spruce</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">drop_ghosts</span>(<span class="at">x =</span> tmp, <span class="at">lev =</span> <span class="fu">c</span>(<span class="st">&quot;Beech&quot;</span>, <span class="st">&quot;Oak&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] Beech Oak  
+## Levels: Beech Oak</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">drop_ghosts</span>(<span class="at">x =</span> tmp, <span class="at">lev =</span> <span class="fu">c</span>(<span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Beech&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] Beech Oak  
+## Levels: Oak Beech</code></pre>
+</div>
+<div id="overlap_seq" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> <code>overlap_seq</code></h3>
+<p>This function generates an overlapping sequence, ie. it takes a numeric variable <code>x</code> and a numeric step-length <code>delta</code> and calculates a sequence at multiples of <code>delta</code> that has a minimum below or just at the minumum of <code>x</code>, and a maximum beyond or just at the maximum of <code>x</code>.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>overlap_seq <span class="ot">&lt;-</span> <span class="cf">function</span>(x, delta) {</span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> x <span class="sc">%/%</span> delta</span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>  tmp2 <span class="ot">&lt;-</span> x <span class="sc">%%</span> delta</span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a>  <span class="cf">if</span> (tmp2[<span class="fu">which.max</span>(x)] <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1"></a>    result <span class="ot">&lt;-</span> delta <span class="sc">*</span> (<span class="fu">min</span>(tmp, <span class="at">na.rm =</span> T)<span class="sc">:</span><span class="fu">max</span>(tmp, <span class="at">na.rm =</span> T))</span>
+<span id="cb58-6"><a href="#cb58-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb58-7"><a href="#cb58-7" tabindex="-1"></a>    result <span class="ot">&lt;-</span> delta <span class="sc">*</span> (<span class="fu">min</span>(tmp, <span class="at">na.rm =</span> T)<span class="sc">:</span>(<span class="fu">max</span>(tmp, <span class="at">na.rm =</span> T) <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb58-8"><a href="#cb58-8" tabindex="-1"></a>  }</span>
+<span id="cb58-9"><a href="#cb58-9" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb58-10"><a href="#cb58-10" tabindex="-1"></a>}</span></code></pre></div>
+<p>Validation:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">overlap_seq</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">120</span>, <span class="dv">290</span>), <span class="at">delta =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1]   0 100 200 300</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">overlap_seq</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">120</span>, <span class="dv">300</span>), <span class="at">delta =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1]   0 100 200 300</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="fu">overlap_seq</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>, <span class="dv">300</span>), <span class="at">delta =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1]   0 100 200 300</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a><span class="fu">overlap_seq</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">120</span>, <span class="dv">301</span>), <span class="at">delta =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] -100    0  100  200  300  400</code></pre>
+</div>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-Wickham:2011" class="csl-entry">
+Wickham, Hadley. 2011. <span>“The Split-Apply-Combine Strategy for Data Analysis.”</span> <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/">http://www.jstatsoft.org/v40/i01/</a>.
+</div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Private webpage: <a href="https://uncertaintree.github.io">uncertaintree.github.io</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": false,
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["intro_to_R_session_03.pdf", "PDF"]],
+"search": false,
+"toc": {
+"collapse": "subsubsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
