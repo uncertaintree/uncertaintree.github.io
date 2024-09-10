@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Probability and Probabilistic Modeling</title>
-	<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-	<style>
-		.math {
-			display: block;
-			margin: 1em 0;
-		}
-	</style>
+<title>Probability and Probabilistic Modeling</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+.math {
+display: block;
+margin: 1em 0;
+}
+</style>
 </head>
 <body>
-	<h1>Probability and Probabilistic Modeling</h1>
-	<p>Probability is a fundamental concept in statistics and probabilistic modeling that allows us to quantify the uncertainty associated with random events. It's a measure of the likelihood of an event occurring, and it's a crucial tool for making predictions and decisions in a wide range of fields, from finance and economics to medicine and environmental science.</p>
-	<h2>The Fundamentals of Probability</h2>
-	<p>Probability is a mathematical concept that's based on the idea of assigning a numerical value to the likelihood of an event occurring. This numerical value, known as the probability, is typically expressed as a number between 0 and 1, where 0 represents an impossible event and 1 represents a certain event.</p>
-	<div class="math">
-		$$P(A) = \frac{1}{2}$$
-	</div>
-	<p>One of the key aspects of probability is that it's a measure of uncertainty. When we're dealing with a random event, we can't know for certain what the outcome will be. Instead, we can only assign a probability to the event based on our knowledge of the underlying factors that influence the outcome.</p>
-	<h2>Probability Mass and Density</h2>
-	<p>Probability can be represented in two ways: as a probability mass or as a probability density. A probability mass is a discrete probability distribution that assigns a probability to each possible outcome of an event.</p>
+<h1>Probability and Probabilistic Modeling</h1>
+
+Probability is a fundamental concept in statistics and probabilistic modeling that allows us to quantify the uncertainty associated with random events. 
+Application of probability is a tool for making predictions and decisions in a wide range of fields, among which is ecology, forest and environmental science.
+
+<h2>Fundamentals of Probability</h2>
+
+Most of us know that probability is a measure of the likelihood of a random event occurring, but fewer that it can also be used for the quantification of uncertainty / evidence in empirical studies. 
+	
+At its core, probability is a mathematical concept that's based on the idea of assigning a numerical value to the likelihood of an event occurring. 
+This numerical value, known as the probability, is typically expressed as a number between $0$ and $1$, where $0$ represents an impossible event and $1$ represents a certain event. 
+
+As an example suppose we have an event denoted $A$ and we know that whatever that outcome can be that is not included in - or equal to - $A$, is equally likely to be seen than $A$ itself, than this knowledge is quantifiable as:
+<div class="math">
+$$P(A) = \frac{1}{2}$$
+</div>
+	
+As mentioned above, one of the key aspects of probability is that it's also a measure of epistemic uncertainty. 
+We will never know whether $A=$'the next summer will include a drought - according to some fixed definition' will happen until the next summer is over. 
+We will also never be able to relate such an event $A$ to a repeatable random variable. 
+But we can nevertheless use probability to quantify our uncertainty about $A$. 
+	
+Classically, we are used to assign probabilities to a repeatable random variable. 
+When we're dealing with such a random event, we can't know for certain what the outcome will be. 
+Instead, we can only assign a probability to the event based on our knowledge of the underlying factors that influence the outcome. 
+This is where probability comes in – it allows us to quantify the uncertainty associated with the event. 
+And moreover, it allows us to make informed decisions based on this quantification of uncertainty.
+
+<h2>Probability Mass and Density</h2>
+<p>
+Probability can be represented in two ways: as a probability mass or as a probability density. 
+A probability mass is a discrete probability distribution that assigns a probability to each possible outcome of an event.
+</p>
 	<div class="math">
 		$$P(X = x) = \frac{1}{2}$$
 	</div>
