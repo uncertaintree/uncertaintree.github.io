@@ -3,12 +3,12 @@
 <head>
 <title>Probability and Probabilistic Modeling</title>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$']],
-      processEscapes: true
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ["\\(", "\\)"]],
+      processEscapes: true,
     }
-  });
+  }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
@@ -58,7 +58,8 @@ Probability can be represented in two ways: as a probability mass or as a probab
 $$P(X = x) = \frac{1}{2}$$
 </div>
 
-A probability density is a function that assigns a probability - a number between 0 and 1 - to an interval with positive length in the domain of a continuous random variable.
+A probability density for a random variable $X$ is a function where for each value of $X$ on the x-axis, the relative likelihood of observing a value "close" to x is on the y-axis. 
+In the "interval perspective", a probability density is a function that assigns a probability - a number between 0 and 1 - to an interval with positive length in the domain of a continuous random variable.
 
 <div class="math">
 $$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
