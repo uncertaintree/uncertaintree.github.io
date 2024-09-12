@@ -28,6 +28,31 @@ Probability is a fundamental concept in statistics and probabilistic modeling th
 <h2>Fundamentals of Probability</h2>
 
 Most of us know that probability is a measure of the likelihood of a random event occurring, but fewer that it can also be used for the quantification of uncertainty / evidence in empirical studies. 
+
+<h3>Interpretations</h3>
+
+Before we go into the technical details of probability, let us ask ourselves for a moment:
+	What is probability?
+	We are all familiar with the simple coin toss, a picture in our mind of the probability distribution of a random variable, where there are exactly two possible outcomes - heads or tails - both of which are exactly equally likely.
+	So we are familiar with the statement that the probability of seeing the event "tails" after tossing the coin is \(0.5\). 
+	But what does this actually mean?
+	To understand probabilities, we need to know that there are at least two different ways to think about probability.
+	
+	One of them is called the frequentist interpretation.
+	In this view, probabilities are seen as long-term frequencies of events.
+	Let's imagine that in the planning phase of a study we want to randomly select trees from a mixed forest.
+	The mixed forest is half deciduous trees and the other half coniferous trees.
+	For the first tree, we get either a deciduous tree or a coniferous tree.
+	If we note this first selection, but forget the individual tree and select a new first tree from the entire mixed forest, and then repeat this very often, we can expect that the relative proportion of selected deciduous trees will become more and more stable around a value of 0.5 the more first trees we select.
+	The probability that the first tree could then be a deciduous tree is the limit of this "long-term" relative frequency.
+	
+	The other interpretation is called Bayesian probability interpretation.
+	In this view, probability is used as a measure with which we can quantify our uncertainty about something.
+	This interpretation is fundamentally linked to the concept of information, and not to repeated attempts (Jaynes 2003).
+	In the Bayesian view, the above statement translates the information "The mixed forest is half deciduous and half coniferous" into a quantification of our uncertainty about the type of the first tree:
+	we believe that the first tree we select is equally likely to be a deciduous or a coniferous tree.
+	
+<h3>Mathematical definiton</h3>
 	
 At its core, probability is a mathematical concept that's based on the idea of assigning a numerical value to the likelihood of an event occurring. 
 	This numerical value, known as the probability, is typically expressed as a number between \(0\) and \(1\), where \(0\) represents an impossible event and \(1\) represents a certain event. 
