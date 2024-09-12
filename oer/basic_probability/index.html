@@ -39,39 +39,44 @@ Before we go into the technical details of probability, let us ask ourselves for
 	To understand probabilities, we need to know that there are at least two different ways to think about probability.
 
 <h4>Frequentist Interpretation</h4>
-	In the frequentist view, probabilities are seen as long-term frequencies of events.
+<p>
+In the frequentist view, probabilities are seen as long-term frequencies of events.
 	Let's imagine that in the planning phase of a study we want to randomly select trees from a mixed forest.
 	The mixed forest is half deciduous trees and the other half coniferous trees.
 	For the first tree, we get either a deciduous tree or a coniferous tree.
 	If we note this first selection, but forget the individual tree and select a new first tree from the entire mixed forest, and then repeat this very often, we can expect that the relative proportion of selected deciduous trees will become more and more stable around a value of 0.5 the more first trees we select.
 	The probability that the first tree could then be a deciduous tree is the limit of this "long-term" relative frequency.
-
+	</p>
 <h4>Bayesian Interpretation</h4>
-	In the Bayesian probability interpretation, probability is used as a measure with which we can quantify our uncertainty about unknowns.
+<p>
+In the Bayesian probability interpretation, probability is used as a measure with which we can quantify our uncertainty about unknowns.
 	This interpretation is fundamentally linked to the concept of information, and not to repeated trials (Jaynes 2003).
 	In the Bayesian view, we translate the information "The mixed forest is half deciduous and half coniferous" into a direct quantification of our uncertainty about the type of the first tree:
 	we believe that the first tree we select is equally likely to be a deciduous or a coniferous tree.
 	One big advantage of the Bayesian interpretation is that it can be used to model our uncertainty about events that do not have long term frequencies, such as "Will a drought - according to some definition - happen in this area during the next summer?"
-<br>
+	</p>
+<p>
 As mentioned above, one of the key aspects of probability is that it's also a measure of epistemic uncertainty. 
 	We will never know whether \(A=\)'a drought will happen in this area during the next summer' is a true statement until the next summer is over. 
 	\(A\) will happen zero or one times, but it cannot happen repeatedly - by definition of the event. 
 	And so we will also never be able to relate such an event \(A\) to a repeatable random variable. 
 	But we can nevertheless use probability to quantify our uncertainty about \(A\). 
-<br>
+	</p>
+<p>
 By our education, we are used to the frequentist perspective and assign probabilities to a repeatable random variables. 
 	When we're dealing with such a random event, we can't know for certain what the outcome will be. 
 	Instead, we can only assign a probability to the event based on our knowledge of the underlying factors that influence the outcome. 
 	This is where probability comes in – it allows us to quantify the uncertainty associated with the event. 
 	And moreover, it allows us to make informed decisions based on this quantification of uncertainty.
-	
+	</p>
 <h3>Mathematical definiton</h3>
-	
+<p>
 At its core, probability is a mathematical concept that's based on the idea of assigning a numerical value to the likelihood of an event occurring. 
 	This numerical value, known as the probability, is typically expressed as a number between \(0\) and \(1\), where \(0\) represents an impossible event and \(1\) represents a certain event. 
-
+</p>
+<p>
 As an example suppose we have an event denoted $A$ and we know that whatever that outcome can be that is not included in - or equal to - \(A\), is equally likely to be seen than \(A\) itself, than this knowledge is quantifiable as:
-	
+</p>	
 <div class="math">
 $$P(A) = \frac{1}{2}$$
 </div>
