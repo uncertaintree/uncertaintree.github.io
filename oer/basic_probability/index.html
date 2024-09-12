@@ -37,20 +37,21 @@ Before we go into the technical details of probability, let us ask ourselves for
 	So we are familiar with the statement that the probability of seeing the event "tails" after tossing the coin is \(0.5\). 
 	But what does this actually mean?
 	To understand probabilities, we need to know that there are at least two different ways to think about probability.
-	
-	One of them is called the frequentist interpretation.
-	In this view, probabilities are seen as long-term frequencies of events.
+
+<h4>Frequentist Interpretation</h4>
+	In the frequentist view, probabilities are seen as long-term frequencies of events.
 	Let's imagine that in the planning phase of a study we want to randomly select trees from a mixed forest.
 	The mixed forest is half deciduous trees and the other half coniferous trees.
 	For the first tree, we get either a deciduous tree or a coniferous tree.
 	If we note this first selection, but forget the individual tree and select a new first tree from the entire mixed forest, and then repeat this very often, we can expect that the relative proportion of selected deciduous trees will become more and more stable around a value of 0.5 the more first trees we select.
 	The probability that the first tree could then be a deciduous tree is the limit of this "long-term" relative frequency.
-	
-	The other interpretation is called Bayesian probability interpretation.
-	In this view, probability is used as a measure with which we can quantify our uncertainty about something.
-	This interpretation is fundamentally linked to the concept of information, and not to repeated attempts (Jaynes 2003).
-	In the Bayesian view, the above statement translates the information "The mixed forest is half deciduous and half coniferous" into a quantification of our uncertainty about the type of the first tree:
+
+<h4>Bayesian Interpretation</h4>
+	In the Bayesian probability interpretation, probability is used as a measure with which we can quantify our uncertainty about unknowns.
+	This interpretation is fundamentally linked to the concept of information, and not to repeated trials (Jaynes 2003).
+	In the Bayesian view, we translate the information "The mixed forest is half deciduous and half coniferous" into a direct quantification of our uncertainty about the type of the first tree:
 	we believe that the first tree we select is equally likely to be a deciduous or a coniferous tree.
+	One big advantage of the Bayesian interpretation is that it can be used to model our uncertainty about events that do not have long term frequencies, such as "Will a drought - according to some definition - happen in this area during the next summer?"
 	
 <h3>Mathematical definiton</h3>
 	
@@ -64,11 +65,11 @@ $$P(A) = \frac{1}{2}$$
 </div>
 	
 As mentioned above, one of the key aspects of probability is that it's also a measure of epistemic uncertainty. 
-	We will never know whether \(A=\)'the next summer will include a drought - according to some fixed definition' will happen until the next summer is over. 
+	We will never know whether \(A=\)'a drought will happen in this area during the next summer' is a true statement until the next summer is over. 
 	We will also never be able to relate such an event \(A\) to a repeatable random variable. 
 	But we can nevertheless use probability to quantify our uncertainty about \(A\). 
 	
-Classically, we are used to assign probabilities to a repeatable random variable. 
+Classically, we are used to the frequentist perspective and assign probabilities to a repeatable random variable. 
 	When we're dealing with such a random event, we can't know for certain what the outcome will be. 
 	Instead, we can only assign a probability to the event based on our knowledge of the underlying factors that influence the outcome. 
 	This is where probability comes in – it allows us to quantify the uncertainty associated with the event. 
