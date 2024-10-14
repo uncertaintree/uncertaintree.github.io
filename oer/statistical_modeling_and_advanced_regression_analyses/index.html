@@ -237,7 +237,7 @@ window.Quarto = {
 <!-- ``` -->
 <section id="software" class="level1">
 <h1>Software</h1>
-<p>We use the statistical software environment <em>R</em> <span class="citation" data-cites="RCoreTeam2024">(<a href="#ref-RCoreTeam2024" role="doc-biblioref">R Core Team, 2024</a>)</span>, and R add-on packages <em>ggplot2</em> <span class="citation" data-cites="Wickham2016">(<a href="#ref-Wickham2016" role="doc-biblioref">Wickham, 2016</a>)</span>, and <em>arm</em> <span class="citation" data-cites="GelmanSu2024">(<a href="#ref-GelmanSu2024" role="doc-biblioref">Gelman &amp; Su, 2024</a>)</span>.</p>
+<p>We use the statistical software environment <em>R</em> <span class="citation" data-cites="RCoreTeam2024">(<a href="#ref-RCoreTeam2024" role="doc-biblioref">R Core Team, 2024</a>)</span>, and R add-on packages <em>ggplot2</em> <span class="citation" data-cites="Wickham2016">(<a href="#ref-Wickham2016" role="doc-biblioref">Wickham, 2016</a>)</span>.</p>
 <!-- and *plyr* [@Wickham2011].  -->
 <!-- *colorspace* [@StaufferEtAl2009] -->
 <!-- **cowplot** [@Wilke2023] -->
@@ -1099,7 +1099,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
