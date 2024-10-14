@@ -266,7 +266,22 @@
   <ul class="collapse">
   <li><a href="#organize-r-session" id="toc-organize-r-session" class="nav-link" data-scroll-target="#organize-r-session">Organize R Session</a></li>
   </ul></li>
-  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link" data-scroll-target="#linear-regression-model">Linear Regression Model</a></li>
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link" data-scroll-target="#linear-regression-model">Linear Regression Model</a>
+  <ul class="collapse">
+  <li><a href="#data-simulation" id="toc-data-simulation" class="nav-link" data-scroll-target="#data-simulation">Data Simulation</a>
+  <ul class="collapse">
+  <li><a href="#visualisations" id="toc-visualisations" class="nav-link" data-scroll-target="#visualisations">Visualisations</a></li>
+  </ul></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a>
+  <ul class="collapse">
+  <li><a href="#visualisations-1" id="toc-visualisations-1" class="nav-link" data-scroll-target="#visualisations-1">Visualisations</a></li>
+  </ul></li>
+  <li><a href="#add-ons" id="toc-add-ons" class="nav-link" data-scroll-target="#add-ons">Add-Ons</a>
+  <ul class="collapse">
+  <li><a href="#add-on-linear-model-a-stancode" id="toc-add-on-linear-model-a-stancode" class="nav-link" data-scroll-target="#add-on-linear-model-a-stancode">Add-On Linear Model: A) Stancode</a></li>
+  <li><a href="#add-on-linear-model-b-posterior-predictive-check-an-introduction-by-hand" id="toc-add-on-linear-model-b-posterior-predictive-check-an-introduction-by-hand" class="nav-link" data-scroll-target="#add-on-linear-model-b-posterior-predictive-check-an-introduction-by-hand">Add-On Linear Model: B) Posterior predictive check: an introduction ‘by hand’</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -298,6 +313,8 @@
 </section>
 <section id="linear-regression-model" class="level1">
 <h1>Linear Regression Model</h1>
+<section id="data-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="data-simulation">Data Simulation</h2>
 <p>Data are simulated according to the equations given in the lecture slides<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -323,28 +340,406 @@
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>mu <span class="ot">&lt;-</span> beta_0 <span class="sc">+</span> beta_x_1 <span class="sc">*</span> df<span class="sc">$</span>x_1 <span class="sc">+</span> beta_x_2 <span class="sc">*</span> df<span class="sc">$</span>x_2</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>mu <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> N, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-fig-plotA" class="cell">
+<section id="visualisations" class="level3">
+<h3 class="anchored" data-anchor-id="visualisations">Visualisations</h3>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-fig-plotlmsimA" class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> x_2)) <span class="sc">+</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plotA" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotlmsimA" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-plotA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="sm_ara_R_files/figure-html/fig-plotA-1.png" class="img-fluid figure-img" width="672"></a>
+<div aria-describedby="fig-plotlmsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each from the uniform distribution between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.
 </figcaption>
 </figure>
 </div>
 </div>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-plotlmsimB" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> mu, <span class="at">color =</span> x_2)) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimB" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-plotlmsimC" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_2, <span class="at">y =</span> mu, <span class="at">color =</span> x_1)) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimC" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Scatterplot of covariate <code>x_2</code> with response <code>y</code> - each individual observation is coloured according to the first covariate <code>x_1</code>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-fig-plotlmsimD" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> x_2, <span class="at">color =</span> mu)) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimD" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the underlying true conditional expectation <code>mu</code>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-plotlmsimE" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> x_2, <span class="at">color =</span> y)) <span class="sc">+</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimE" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the response <code>y</code>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="modeling" class="level2">
+<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
+<p>The basic R command for (frequentist) estimation of the parameters of a linear regression model is a call to the function <code>lm</code>:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> x_2, <span class="at">data =</span> df)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x_1 + x_2, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.82082 -0.19805  0.00329  0.19051  0.81138 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.91291    0.03448  26.476  &lt; 2e-16 ***
+x_1          0.91533    0.04668  19.610  &lt; 2e-16 ***
+x_2         -0.36218    0.04566  -7.933 1.43e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2963 on 497 degrees of freedom
+Multiple R-squared:  0.4674,    Adjusted R-squared:  0.4652 
+F-statistic:   218 on 2 and 497 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div></div>
+<section id="visualisations-1" class="level3">
+<h3 class="anchored" data-anchor-id="visualisations-1">Visualisations</h3>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-plotlmsimF" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x_1 =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>), </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">x_2 =</span> .<span class="dv">5</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>mu <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> mu, <span class="at">color =</span> x_2)) <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> mu, <span class="at">color =</span> x_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimF" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-fig-plotlmsimG" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">expand.grid</span>(<span class="st">'x_1'</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>), </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                             <span class="st">'x_2'</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>)))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>mu <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> mu, <span class="at">color =</span> x_2)) <span class="sc">+</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> mu, <span class="at">color =</span> x_2, <span class="at">group =</span> x_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimG" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimG-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimG-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The lines give the point estimation for the conditional expectation with the second covariate <code>x_2</code> taking on values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> (at steps of <span class="math inline">\(0.1\)</span>).
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="add-ons" class="level2">
+<h2 class="anchored" data-anchor-id="add-ons">Add-Ons</h2>
+<section id="add-on-linear-model-a-stancode" class="level3">
+<h3 class="anchored" data-anchor-id="add-on-linear-model-a-stancode">Add-On Linear Model: A) Stancode</h3>
+<section id="stan-users-guide" class="level4">
+<h4 class="anchored" data-anchor-id="stan-users-guide">Stan Users Guide</h4>
+<p><em>Probabilistic Programming Languages</em> such as <em>Stan</em> <span class="citation" data-cites="CarpenterEtAl2017">(<a href="#ref-CarpenterEtAl2017" role="doc-biblioref">Carpenter et al., 2017</a>)</span> allow to <code>plug together</code> the single parts of a statistical regression model<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
+<p>The following Stan-code is published <a href="https://mc-stan.org/docs/stan-users-guide/regression.html">here</a> in the <a href="https://mc-stan.org/docs/stan-users-guide/index.html">Stan users guide</a>:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">readLines</span>(<span class="st">"lm.stan"</span>), <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb21"><pre class="sourceCode stan code-with-copy"><code class="sourceCode stan"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N;</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] x;</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] y;</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> alpha;</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> beta;</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma;</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  y ~ normal(alpha + beta * x, sigma);</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</section>
+<section id="stancode-generated-by-calling-brmsbrm" class="level4">
+<h4 class="anchored" data-anchor-id="stancode-generated-by-calling-brmsbrm">Stancode generated by calling <code>brms::brm</code></h4>
+<p>The R add-on package <em>brms</em> <span class="citation" data-cites="Buerkner2017 Buerkner2018">(<a href="#ref-Buerkner2017" role="doc-biblioref">Bürkner, 2017</a>, <a href="#ref-Buerkner2018" role="doc-biblioref">2018</a>)</span> allows to implent advanced regression models without being an expert in ‘Stan-programming’.</p>
+<p>Here is the Stan-code that is implemented by ‘brms’ for our linear regression model example:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">make_stancode</span>(brms<span class="sc">::</span><span class="fu">bf</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> x_2, <span class="at">center =</span> F), <span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">readLines</span>(<span class="st">"lm_brms.stan"</span>), <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb24"><pre class="sourceCode stan code-with-copy"><code class="sourceCode stan"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">// generated with brms 2.21.0</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">functions</span> {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N;  <span class="co">// total number of observations</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] Y;  <span class="co">// response variable</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; K;  <span class="co">// number of population-level effects</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">matrix</span>[N, K] X;  <span class="co">// population-level design matrix</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> prior_only;  <span class="co">// should the likelihood be ignored?</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="kw">transformed data</span> {</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[K] b;  <span class="co">// regression coefficients</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma;  <span class="co">// dispersion parameter</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="kw">transformed parameters</span> {</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> lprior = <span class="dv">0</span>;  <span class="co">// prior contributions to the log posterior</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  lprior += student_t_lpdf(sigma | <span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">2.5</span>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    - <span class="dv">1</span> * student_t_lccdf(<span class="dv">0</span> | <span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">2.5</span>);</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">// likelihood including constants</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (!prior_only) {</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">target +=</span> normal_id_glm_lpdf(Y | X, <span class="dv">0</span>, b, sigma);</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">// priors including constants</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  <span class="kw">target +=</span> lprior;</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="kw">generated quantities</span> {</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="add-on-linear-model-b-posterior-predictive-check-an-introduction-by-hand" class="level3">
+<h3 class="anchored" data-anchor-id="add-on-linear-model-b-posterior-predictive-check-an-introduction-by-hand">Add-On Linear Model: B) Posterior predictive check: an introduction ‘by hand’</h3>
+<p>Having an <code>lm</code> object already, it is rather straightforward to get posterior samples by using function <code>sim</code> from the <em>arm</em> <span class="citation" data-cites="GelmanSu2024">(<a href="#ref-GelmanSu2024" role="doc-biblioref">Gelman &amp; Su, 2024</a>)</span> package:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"arm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lade nötiges Paket: MASS</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lade nötiges Paket: Matrix</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lade nötiges Paket: lme4</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+arm (Version 1.14-4, built: 2024-4-1)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Working directory is /home/hsennhenn/Dropbox/teaching/Statistical_Modeling_and_Advanced_Regression_Analyses</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">sim</span>(m)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Formal class 'sim' [package "arm"] with 2 slots
+  ..@ coef : num [1:100, 1:3] 0.882 1.014 0.904 0.978 0.958 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ : NULL
+  .. .. ..$ : chr [1:3] "(Intercept)" "x_1" "x_2"
+  ..@ sigma: num [1:100] 0.323 0.303 0.292 0.309 0.29 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">cbind</span>(S<span class="sc">@</span>coef, <span class="st">'sigma'</span> <span class="ot">=</span> S<span class="sc">@</span>sigma)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept)       x_1        x_2     sigma
+[1,]   0.8816414 0.9245094 -0.3362733 0.3227662
+[2,]   1.0139849 0.7317948 -0.3398411 0.3033703
+[3,]   0.9037042 0.9155575 -0.3506924 0.2922883
+[4,]   0.9776909 0.8392790 -0.3845609 0.3090220
+[5,]   0.9579213 0.8977625 -0.4284596 0.2900632
+[6,]   0.9549211 0.8478278 -0.3937226 0.3094227</code></pre>
+</div>
+</div></div>
+<p>Predict the response for the covariate data as provided by the original data-frame <code>df</code> - here only by using the first posterior sample:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="cell-fig-plotlmsimH" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>S[s, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)         x_1         x_2       sigma 
+  0.8816414   0.9245094  -0.3362733   0.3227662 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mu_s <span class="ot">&lt;-</span> S[s, <span class="st">'(Intercept)'</span>] <span class="sc">+</span> S[s, <span class="st">'x_1'</span>] <span class="sc">*</span> df<span class="sc">$</span>x_1 <span class="sc">+</span> S[s, <span class="st">'x_2'</span>] <span class="sc">*</span> df<span class="sc">$</span>x_2</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>y_s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">nrow</span>(df), <span class="at">mean =</span> mu_s, <span class="at">sd =</span> S[s, <span class="st">'sigma'</span>])</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">y =</span> df<span class="sc">$</span>y, <span class="at">source =</span> <span class="st">"original"</span>, <span class="at">s =</span> s), </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">data.frame</span>(<span class="at">y =</span> y_s, <span class="at">source =</span> <span class="st">"predicted"</span>, <span class="at">s =</span> s))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">fill =</span> source)) <span class="sc">+</span> </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">position =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimH" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Histogram of the original and the posterior predicted response sample.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<p>Now let’s repeat the same for 9 different posterior samples:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div id="cell-fig-plotlmsimI" class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (s <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>) {</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  mu_s <span class="ot">&lt;-</span> S[s, <span class="st">'(Intercept)'</span>] <span class="sc">+</span> S[s, <span class="st">'x_1'</span>] <span class="sc">*</span> df<span class="sc">$</span>x_1 <span class="sc">+</span> S[s, <span class="st">'x_2'</span>] <span class="sc">*</span> df<span class="sc">$</span>x_2</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  y_s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">nrow</span>(df), <span class="at">mean =</span> mu_s, <span class="at">sd =</span> S[s, <span class="st">'sigma'</span>])</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  pp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pp, </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">data.frame</span>(<span class="at">y =</span> df<span class="sc">$</span>y, <span class="at">source =</span> <span class="st">"original"</span>, <span class="at">s =</span> s), </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>              <span class="fu">data.frame</span>(<span class="at">y =</span> y_s, <span class="at">source =</span> <span class="st">"predicted"</span>, <span class="at">s =</span> s))</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">fill =</span> source)) <span class="sc">+</span> </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimI" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Histogram of the original and the posterior predicted response sample.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div id="cell-fig-plotlmsimJ" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">fill =</span> source)) <span class="sc">+</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimJ" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimJ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimJ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a>, but now using kernel density visualisations.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div id="cell-fig-plotlmsimK" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">colour =</span> source)) <span class="sc">+</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>() <span class="sc">+</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimK" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a> or <a href="#fig-plotlmsimJ" class="quarto-xref">Figure&nbsp;10</a>, but now using empirical cumulative density function visualisations.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div id="cell-fig-plotlmsimL" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">subset</span>(pp, source <span class="sc">==</span> <span class="st">"predicted"</span>),</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">group =</span> s)) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">colour =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">data =</span> <span class="fu">subset</span>(pp, source <span class="sc">==</span> <span class="st">"original"</span> <span class="sc">&amp;</span> s <span class="sc">==</span> <span class="dv">1</span>), </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> y), <span class="at">linewidth =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plotlmsimL" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotlmsimL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: The same as in <a href="#fig-plotlmsimL" class="quarto-xref">Figure&nbsp;12</a>, but now within one plotting window: This visualisation is what <code>brms::pp_check</code> will produce if applied on a <code>brm</code> object.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+</section>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-AllaireEtAl2024" class="csl-entry" role="listitem">
 Allaire, J. J., Teague, C., Scheidegger, C., Xie, Y., &amp; Dervieux, C. (2024). <em>Quarto <span>(Version 1.4.553)</span></em>. <a href="https://doi.org/10.5281/zenodo.5960048">https://doi.org/10.5281/zenodo.5960048</a>
+</div>
+<div id="ref-Buerkner2017" class="csl-entry" role="listitem">
+Bürkner, P.-C. (2017). Brms: <span>An R Package</span> for <span>Bayesian Multilevel Models Using Stan</span>. <em>Journal of Statistical Software</em>, <em>80</em>, 1–28. <a href="https://doi.org/10.18637/jss.v080.i01">https://doi.org/10.18637/jss.v080.i01</a>
+</div>
+<div id="ref-Buerkner2018" class="csl-entry" role="listitem">
+Bürkner, P.-C. (2018). Advanced <span>Bayesian Multilevel Modeling</span> with the <span>R Package</span> brms. <em>The R Journal</em>, <em>10</em>(1), 395–411.
+</div>
+<div id="ref-CarpenterEtAl2017" class="csl-entry" role="listitem">
+Carpenter, B., Gelman, A., Hoffman, M. D., Lee, D., Goodrich, B., Betancourt, M., Brubaker, M., Guo, J., Li, P., &amp; Riddell, A. (2017). Stan: <span>A Probabilistic Programming Language</span>. <em>Journal of Statistical Software</em>, <em>76</em>, 1–32. <a href="https://doi.org/10.18637/jss.v076.i01">https://doi.org/10.18637/jss.v076.i01</a>
 </div>
 <div id="ref-GelmanSu2024" class="csl-entry" role="listitem">
 Gelman, A., &amp; Su, Y.-S. (2024). <em>Arm: Data analysis using regression and multilevel/hierarchical models</em>. <a href="https://CRAN.R-project.org/package=arm">https://CRAN.R-project.org/package=arm</a>
@@ -358,12 +753,24 @@ Wickham, H. (2016). <em>ggplot2: Elegant graphics for data analysis</em>. Spring
 </div>
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">Figure&nbsp;1: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each from the uniform distribution between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;2: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;3: Scatterplot of covariate <code>x_2</code> with response <code>y</code> - each individual observation is coloured according to the first covariate <code>x_1</code>.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;4: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the underlying true conditional expectation <code>mu</code>.</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;5: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the response <code>y</code>.</span>
+<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;6: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.</span>
+<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;7: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The lines give the point estimation for the conditional expectation with the second covariate <code>x_2</code> taking on values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> (at steps of <span class="math inline">\(0.1\)</span>).</span>
+<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;8: Histogram of the original and the posterior predicted response sample.</span>
+<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;9: Histogram of the original and the posterior predicted response sample.</span>
+<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;10: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a>, but now using kernel density visualisations.</span>
+<span class="glightbox-desc lightbox-desc-11">Figure&nbsp;11: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a> or <a href="#fig-plotlmsimJ" class="quarto-xref">Figure&nbsp;10</a>, but now using empirical cumulative density function visualisations.</span>
+<span class="glightbox-desc lightbox-desc-12">Figure&nbsp;12: The same as in <a href="#fig-plotlmsimL" class="quarto-xref">Figure&nbsp;12</a>, but now within one plotting window: This visualisation is what <code>brms::pp_check</code> will produce if applied on a <code>brm</code> object.</span>
 </div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>For two covariates <code>x_1</code> and <code>x_2</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Which is actually pretty ‘readable’ if you get used to the structure for a simple model such the linear regression model.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
      </main>
@@ -775,7 +1182,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
+</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
