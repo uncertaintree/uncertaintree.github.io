@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Holger Sennhenn-Reulen ">
-<meta name="dcterms.date" content="2024-11-20">
+<meta name="dcterms.date" content="2024-12-04">
 
 <title>Statictical Modeling and Advanced Regression Analyses</title>
 <style>
@@ -125,10 +125,10 @@ window.Quarto = {
 
 <meta name="citation_title" content="Statictical Modeling and Advanced Regression Analyses">
 <meta name="citation_author" content="Holger Sennhenn-Reulen\textsuperscript{\orcidlink{0000-0002-4782-4387}} \linebreak \textsuperscript{Northwest German Forest Research Institute (NW-FVA), Germany.}">
-<meta name="citation_publication_date" content="2024-11-20">
-<meta name="citation_cover_date" content="2024-11-20">
+<meta name="citation_publication_date" content="2024-12-04">
+<meta name="citation_cover_date" content="2024-12-04">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-11-20">
+<meta name="citation_online_date" content="2024-12-04">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=arm: Data Analysis Using Regression and Multilevel/Hierarchical Models;,citation_author=Andrew Gelman;,citation_author=Yu-Sung Su;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://CRAN.R-project.org/package=arm;">
 <meta name="citation_reference" content="citation_title=The Split-Apply-Combine Strategy for Data Analysis;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_fulltext_html_url=https://www.jstatsoft.org/v40/i01/;,citation_issue=1;,citation_volume=40;,citation_journal_title=Journal of Statistical Software;">
@@ -175,7 +175,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">November 20, 2024</p>
+              <p class="date">December 4, 2024</p>
             </div>
           </div>
           
@@ -237,6 +237,20 @@ window.Quarto = {
   <li><a href="#modeling-2" id="toc-modeling-2" class="nav-link" data-scroll-target="#modeling-2">Modeling</a>
   <ul class="collapse">
   <li><a href="#estimated-expected-value-1" id="toc-estimated-expected-value-1" class="nav-link" data-scroll-target="#estimated-expected-value-1">Estimated Expected Value</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#mixed-models" id="toc-mixed-models" class="nav-link" data-scroll-target="#mixed-models">Mixed models</a>
+  <ul class="collapse">
+  <li><a href="#data-simulation-function-f_sim_data" id="toc-data-simulation-function-f_sim_data" class="nav-link" data-scroll-target="#data-simulation-function-f_sim_data">Data Simulation Function <code>f_sim_data</code></a></li>
+  <li><a href="#random-intercept-model" id="toc-random-intercept-model" class="nav-link" data-scroll-target="#random-intercept-model">Random Intercept Model</a>
+  <ul class="collapse">
+  <li><a href="#small-simulation-study" id="toc-small-simulation-study" class="nav-link" data-scroll-target="#small-simulation-study">… small simulation study</a></li>
+  <li><a href="#small-simulation-study-1" id="toc-small-simulation-study-1" class="nav-link" data-scroll-target="#small-simulation-study-1">… small simulation study</a></li>
+  </ul></li>
+  <li><a href="#random-intercept-with-random-slope-model" id="toc-random-intercept-with-random-slope-model" class="nav-link" data-scroll-target="#random-intercept-with-random-slope-model">Random Intercept with Random Slope Model</a></li>
+  <li><a href="#nested-model" id="toc-nested-model" class="nav-link" data-scroll-target="#nested-model">Nested Model</a>
+  <ul class="collapse">
+  <li><a href="#add-covariate-z-as-constant-within-2nd-level" id="toc-add-covariate-z-as-constant-within-2nd-level" class="nav-link" data-scroll-target="#add-covariate-z-as-constant-within-2nd-level">… add covariate ‘z’ as constant within 2nd level</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -311,7 +325,7 @@ window.Quarto = {
 <div id="fig-plotlmsimA" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each from the uniform distribution between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.
@@ -327,7 +341,7 @@ Figure&nbsp;1: Scatterplot of the two simulated covariates <code>x_1</code> and 
 <div id="fig-plotlmsimB" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>.
@@ -343,7 +357,7 @@ Figure&nbsp;2: Scatterplot of covariate <code>x_1</code> with response <code>y</
 <div id="fig-plotlmsimC" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Scatterplot of covariate <code>x_2</code> with response <code>y</code> - each individual observation is coloured according to the first covariate <code>x_1</code>.
@@ -359,7 +373,7 @@ Figure&nbsp;3: Scatterplot of covariate <code>x_2</code> with response <code>y</
 <div id="fig-plotlmsimD" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the underlying true conditional expectation <code>mu</code>.
@@ -375,7 +389,7 @@ Figure&nbsp;4: Scatterplot of the two simulated covariates <code>x_1</code> and 
 <div id="fig-plotlmsimE" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the response <code>y</code>.
@@ -425,7 +439,7 @@ F-statistic:   218 on 2 and 497 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="fig-plotlmsimF" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -445,7 +459,7 @@ Figure&nbsp;6: Scatterplot of covariate <code>x_1</code> with the true condition
 <div id="fig-plotlmsimG" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimG-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimG-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The lines give the point estimation for the conditional expectation with the second covariate <code>x_2</code> taking on values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> (at steps of <span class="math inline">\(0.1\)</span>).
@@ -571,7 +585,7 @@ Figure&nbsp;7: Scatterplot of covariate <code>x_1</code> with the true condition
 <div id="fig-plotlmsimH" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8: Histogram of the original and the posterior predicted response sample.
@@ -597,7 +611,7 @@ Figure&nbsp;8: Histogram of the original and the posterior predicted response sa
 <div id="fig-plotlmsimI" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9: Histogram of the original and the posterior predicted response sample.
@@ -614,7 +628,7 @@ Figure&nbsp;9: Histogram of the original and the posterior predicted response sa
 <div id="fig-plotlmsimJ" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimJ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-10" data-gallery="quarto-lightbox-gallery-10"><img src="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimJ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a>, but now using kernel density visualisations.
@@ -631,7 +645,7 @@ Figure&nbsp;10: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Fig
 <div id="fig-plotlmsimK" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-11" data-gallery="quarto-lightbox-gallery-11"><img src="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a> or <a href="#fig-plotlmsimJ" class="quarto-xref">Figure&nbsp;10</a>, but now using empirical cumulative density function visualisations.
@@ -650,7 +664,7 @@ Figure&nbsp;11: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Fig
 <div id="fig-plotlmsimL" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-12" data-gallery="quarto-lightbox-gallery-12"><img src="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12: The same as in <a href="#fig-plotlmsimL" class="quarto-xref">Figure&nbsp;12</a>, but now within one plotting window: This visualisation is what <code>brms::pp_check</code> will produce if applied on a <code>brm</code> object.
@@ -719,7 +733,7 @@ Figure&nbsp;12: The same as in <a href="#fig-plotlmsimL" class="quarto-xref">Fig
 <div id="fig-plotbinomsimA" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-13" data-gallery="quarto-lightbox-gallery-13"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" data-glightbox="description: .lightbox-desc-13"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>, and additionally ‘jittered’ in vertical direction.
@@ -795,7 +809,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div id="fig-plotbinomsimB" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-14" data-gallery="quarto-lightbox-gallery-14"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" data-glightbox="description: .lightbox-desc-14"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14: Scatterplot of covariate <code>x_1</code> with the true linear predictor <code>eta</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -826,7 +840,7 @@ Figure&nbsp;14: Scatterplot of covariate <code>x_1</code> with the true linear p
 <div id="fig-plotbinomsimC" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-15" data-gallery="quarto-lightbox-gallery-15"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" data-glightbox="description: .lightbox-desc-15"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>p</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -842,11 +856,9 @@ Figure&nbsp;15: Scatterplot of covariate <code>x_1</code> with the true conditio
 <ul>
 <li><strong>Fit the model</strong>: Obtain the maximum likelihood estimate for the model’s coefficients (<code>coef</code>) along with their variance-covariance matrix (<code>vcov</code>).</li>
 <li><strong>Simulate coefficients</strong>: Perform an ‘informal’ Bayesian posterior simulation using the multivariate normal distribution, based on the <em>Bernstein-von Mises theorem</em>.</li>
-<li><strong>Convert simulated coefficients</strong>: Apply an appropriate transformation to the simulated coefficients to compute the <em>simulated quantity of interest</em>. This quantity typically depends on the values of all explanatory variables, and researchers may:
-<ul>
+<li><strong>Convert simulated coefficients</strong>: Apply an appropriate transformation to the simulated coefficients to compute the <em>simulated quantity of interest</em>. This quantity typically depends on the values of all explanatory variables, and researchers may:</li>
 <li>Focus on a specific observation (usually an ‘average’), or</li>
 <li>Average across all sample observations.</li>
-</ul></li>
 </ul>
 <p>In both cases, the applied transformation incorporates the researcher’s specific choice.</p>
 <div id="cell-fig-plotbinomsimD" class="cell">
@@ -912,7 +924,7 @@ x_2         -0.04702804 -0.004560743  0.098439583</code></pre>
 <div id="fig-plotbinomsimD" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-16" data-gallery="quarto-lightbox-gallery-16"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" data-glightbox="description: .lightbox-desc-16"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -967,8 +979,8 @@ Figure&nbsp;16: Scatterplot of covariate <code>x_1</code> with the true conditio
 <span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>                                    df_p_A<span class="sc">$</span>x_1_c <span class="sc">+</span> .<span class="dv">05</span>)))</span>
 <span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>df_p_B <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">'x_1'</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">01</span>), </span>
 <span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'mu'</span> <span class="ot">=</span> <span class="fu">exp</span>(beta_0 <span class="sc">+</span> </span>
-<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>                                beta_x_1 <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">01</span>) <span class="sc">+</span> </span>
-<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>                                beta_x_2 <span class="sc">*</span> .<span class="dv">5</span>))</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>                                  beta_x_1 <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">01</span>) <span class="sc">+</span> </span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>                                  beta_x_2 <span class="sc">*</span> .<span class="dv">5</span>))</span>
 <span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
 <span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
 <span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> x_2), <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
@@ -978,7 +990,7 @@ Figure&nbsp;16: Scatterplot of covariate <code>x_1</code> with the true conditio
 <div id="fig-plotpoissimB" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotpoissimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-17" data-gallery="quarto-lightbox-gallery-17"><img src="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" data-glightbox="description: .lightbox-desc-17"><img src="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotpoissimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>.
@@ -1073,8 +1085,8 @@ x_2         -0.008328358 -0.0008112633  0.0192505213</code></pre>
 <span id="cb87-11"><a href="#cb87-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">mu_upr_75 =</span> <span class="fu">quantile</span>(mu, <span class="at">prob =</span> .<span class="dv">875</span>))</span>
 <span id="cb87-12"><a href="#cb87-12" aria-hidden="true" tabindex="-1"></a>df_p_B <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">'x_1'</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">01</span>), </span>
 <span id="cb87-13"><a href="#cb87-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'mu'</span> <span class="ot">=</span> <span class="fu">exp</span>(<span class="fu">coef</span>(m)[<span class="dv">1</span>] <span class="sc">+</span> </span>
-<span id="cb87-14"><a href="#cb87-14" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">coef</span>(m)[<span class="dv">2</span>] <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">01</span>) <span class="sc">+</span> </span>
-<span id="cb87-15"><a href="#cb87-15" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">coef</span>(m)[<span class="dv">3</span>] <span class="sc">*</span> .<span class="dv">5</span>))</span>
+<span id="cb87-14"><a href="#cb87-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">coef</span>(m)[<span class="dv">2</span>] <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">01</span>) <span class="sc">+</span> </span>
+<span id="cb87-15"><a href="#cb87-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">coef</span>(m)[<span class="dv">3</span>] <span class="sc">*</span> .<span class="dv">5</span>))</span>
 <span id="cb87-16"><a href="#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
 <span id="cb87-17"><a href="#cb87-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x_1)) <span class="sc">+</span> </span>
 <span id="cb87-18"><a href="#cb87-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">y =</span> y, <span class="at">color =</span> x_2), <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
@@ -1090,10 +1102,485 @@ x_2         -0.008328358 -0.0008112633  0.0192505213</code></pre>
 <div id="fig-plotpoissimC" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotpoissimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-18" data-gallery="quarto-lightbox-gallery-18"><img src="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" data-glightbox="description: .lightbox-desc-18"><img src="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotpoissimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18: Scatterplot of covariate <code>x_1</code> with the response observations <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>, the coloured intervals give point-wise central 75%, 90%, and 95% credible intervals for the conditional expectation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="mixed-models" class="level1">
+<h1>Mixed models</h1>
+<p>… a.k.a. <em>hierarchical model</em>, <em>multilevel model</em>, …</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"plyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-simulation-function-f_sim_data" class="level2">
+<h2 class="anchored" data-anchor-id="data-simulation-function-f_sim_data">Data Simulation Function <code>f_sim_data</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>f_sim_data <span class="ot">&lt;-</span> <span class="cf">function</span>(seed, type) {</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed) <span class="co"># Set seed for reproducibility</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="do">## Global intercept: </span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"beta_0"</span> <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> .<span class="dv">1</span>),</span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Global slope of 'x':</span></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"beta_x"</span> <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="fl">1.5</span>, <span class="at">sd =</span> .<span class="dv">1</span>),</span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Standard deviation of residuals:</span></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sigma"</span> <span class="ot">=</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">1</span>, </span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sd =</span> .<span class="dv">1</span>)))</span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (type <span class="sc">==</span> <span class="st">"Random_Intercept"</span>) {</span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Standard deviation of random intercept parameters:</span></span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'sigma_u'</span> <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> .<span class="dv">1</span>))</span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of groups: </span></span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'G'</span> <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of observations per group:</span></span>
+<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'n_per_g'</span> <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a>    g <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>parameters<span class="sc">$</span><span class="st">'G'</span>, <span class="at">each =</span> parameters<span class="sc">$</span><span class="st">'n_per_g'</span>)</span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> parameters<span class="sc">$</span><span class="st">'G'</span> <span class="sc">*</span> parameters<span class="sc">$</span><span class="st">'n_per_g'</span>, </span>
+<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">'x'</span> <span class="ot">=</span> x, </span>
+<span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'g'</span> <span class="ot">=</span> g)</span>
+<span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> parameters<span class="sc">$</span><span class="st">'G'</span>, <span class="at">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sd =</span> parameters<span class="sc">$</span><span class="st">'sigma_u'</span>)[df<span class="sc">$</span>g]</span>
+<span id="cb89-24"><a href="#cb89-24" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mu <span class="ot">&lt;-</span> parameters<span class="sc">$</span><span class="st">'beta_0'</span> <span class="sc">+</span> </span>
+<span id="cb89-25"><a href="#cb89-25" aria-hidden="true" tabindex="-1"></a>      parameters<span class="sc">$</span><span class="st">'beta_x'</span> <span class="sc">*</span> df<span class="sc">$</span>x <span class="sc">+</span> df<span class="sc">$</span>u</span>
+<span id="cb89-26"><a href="#cb89-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">attributes</span>(df)<span class="sc">$</span><span class="st">'type'</span> <span class="ot">&lt;-</span> type </span>
+<span id="cb89-27"><a href="#cb89-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">attributes</span>(df)<span class="sc">$</span><span class="st">'parameters'</span> <span class="ot">&lt;-</span> parameters</span>
+<span id="cb89-28"><a href="#cb89-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb89-29"><a href="#cb89-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (type <span class="sc">==</span> <span class="st">"Nested"</span>) {</span>
+<span id="cb89-30"><a href="#cb89-30" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Standard deviation of random intercept parameters:</span></span>
+<span id="cb89-31"><a href="#cb89-31" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'sigma_u_a'</span> <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> .<span class="dv">1</span>))</span>
+<span id="cb89-32"><a href="#cb89-32" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'sigma_u_b'</span> <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> .<span class="dv">1</span>))</span>
+<span id="cb89-33"><a href="#cb89-33" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of groups in 1st level:</span></span>
+<span id="cb89-34"><a href="#cb89-34" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'G_a'</span> <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb89-35"><a href="#cb89-35" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of observations per group:</span></span>
+<span id="cb89-36"><a href="#cb89-36" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'n_per_g_a'</span> <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb89-37"><a href="#cb89-37" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of groups in 2nd level:</span></span>
+<span id="cb89-38"><a href="#cb89-38" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'G_b'</span> <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb89-39"><a href="#cb89-39" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Number of observations per group:</span></span>
+<span id="cb89-40"><a href="#cb89-40" aria-hidden="true" tabindex="-1"></a>    parameters<span class="sc">$</span><span class="st">'n_per_g_b'</span> <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb89-41"><a href="#cb89-41" aria-hidden="true" tabindex="-1"></a>    gr <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">expand.grid</span>(<span class="st">'g_a'</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>parameters<span class="sc">$</span><span class="st">'G_a'</span>, </span>
+<span id="cb89-42"><a href="#cb89-42" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'g_b'</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>parameters<span class="sc">$</span><span class="st">'G_b'</span>))</span>
+<span id="cb89-43"><a href="#cb89-43" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> gr[<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(gr), <span class="at">each =</span> parameters<span class="sc">$</span><span class="st">'n_per_g_b'</span>), ]</span>
+<span id="cb89-44"><a href="#cb89-44" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df[<span class="fu">order</span>(df<span class="sc">$</span>g_a, df<span class="sc">$</span>g_b), ]</span>
+<span id="cb89-45"><a href="#cb89-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(df) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb89-46"><a href="#cb89-46" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>g_ab <span class="ot">&lt;-</span> <span class="fu">paste0</span>(df<span class="sc">$</span>g_a, <span class="st">"_"</span>, df<span class="sc">$</span>g_b)</span>
+<span id="cb89-47"><a href="#cb89-47" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> parameters<span class="sc">$</span><span class="st">'G_a'</span> <span class="sc">*</span> parameters<span class="sc">$</span><span class="st">'n_per_g_a'</span>, </span>
+<span id="cb89-48"><a href="#cb89-48" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb89-49"><a href="#cb89-49" aria-hidden="true" tabindex="-1"></a>    u_a <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> parameters<span class="sc">$</span><span class="st">'G_a'</span>, <span class="at">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb89-50"><a href="#cb89-50" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sd =</span> parameters<span class="sc">$</span><span class="st">'sigma_u_a'</span>)</span>
+<span id="cb89-51"><a href="#cb89-51" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>u_a <span class="ot">&lt;-</span> u_a[df<span class="sc">$</span>g_a]</span>
+<span id="cb89-52"><a href="#cb89-52" aria-hidden="true" tabindex="-1"></a>    u_b <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">length</span>(<span class="fu">unique</span>(df<span class="sc">$</span>g_ab)), <span class="at">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb89-53"><a href="#cb89-53" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sd =</span> parameters<span class="sc">$</span><span class="st">'sigma_u_b'</span>)</span>
+<span id="cb89-54"><a href="#cb89-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(u_b) <span class="ot">&lt;-</span> <span class="fu">unique</span>(df<span class="sc">$</span>g_ab)</span>
+<span id="cb89-55"><a href="#cb89-55" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>u_b <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(u_b[df<span class="sc">$</span>g_ab])</span>
+<span id="cb89-56"><a href="#cb89-56" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mu <span class="ot">&lt;-</span> parameters<span class="sc">$</span><span class="st">'beta_0'</span> <span class="sc">+</span> parameters<span class="sc">$</span><span class="st">'beta_x'</span> <span class="sc">*</span> df<span class="sc">$</span>x <span class="sc">+</span> </span>
+<span id="cb89-57"><a href="#cb89-57" aria-hidden="true" tabindex="-1"></a>      df<span class="sc">$</span>u_a <span class="sc">+</span> df<span class="sc">$</span>u_b</span>
+<span id="cb89-58"><a href="#cb89-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">attributes</span>(df)<span class="sc">$</span><span class="st">'type'</span> <span class="ot">&lt;-</span> type </span>
+<span id="cb89-59"><a href="#cb89-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">attributes</span>(df)<span class="sc">$</span><span class="st">'parameters'</span> <span class="ot">&lt;-</span> parameters</span>
+<span id="cb89-60"><a href="#cb89-60" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb89-61"><a href="#cb89-61" aria-hidden="true" tabindex="-1"></a>  epsilon <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">nrow</span>(df), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> parameters<span class="sc">$</span><span class="st">'sigma'</span>)</span>
+<span id="cb89-62"><a href="#cb89-62" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>mu <span class="sc">+</span> epsilon</span>
+<span id="cb89-63"><a href="#cb89-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb89-64"><a href="#cb89-64" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="random-intercept-model" class="level2">
+<h2 class="anchored" data-anchor-id="random-intercept-model">Random Intercept Model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">f_sim_data</span>(<span class="at">seed =</span> <span class="dv">0</span>, <span class="at">type =</span> <span class="st">"Random_Intercept"</span>)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           x g         u          mu          y
+1  0.3215956 1 -1.095936  1.50226149  2.9095988
+2  0.2582281 1 -1.095936  1.40927751  2.1118975
+3 -0.8764275 1 -1.095936 -0.25568956 -0.1425014
+4 -0.5880509 1 -1.095936  0.16746754  2.2155593
+5 -0.6468865 1 -1.095936  0.08113349 -1.6210895
+6  0.3740457 1 -1.095936  1.57922556  1.9028505</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unlist</span>(<span class="fu">attributes</span>(df)<span class="sc">$</span>parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   beta_0    beta_x     sigma   sigma_u         G   n_per_g 
+ 2.126295  1.467377  1.132980  1.127243 30.000000 30.000000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lmer</span>(y <span class="sc">~</span> x <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> g), <span class="at">data =</span> df)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: y ~ x + (1 | g)
+   Data: df
+
+REML criterion at convergence: 2889.6
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.10483 -0.67888 -0.01549  0.67941  2.97945 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ g        (Intercept) 1.421    1.192   
+ Residual             1.287    1.134   
+Number of obs: 900, groups:  g, 30
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  2.00545    0.22090   9.078
+x            1.51171    0.06674  22.652
+
+Correlation of Fixed Effects:
+  (Intr)
+x 0.000 </code></pre>
+</div>
+</div>
+<section id="small-simulation-study" class="level3">
+<h3 class="anchored" data-anchor-id="small-simulation-study">… small simulation study</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>ci_df <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>R) {</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Simulate data:</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">f_sim_data</span>(<span class="at">seed =</span> r, <span class="at">type =</span> <span class="st">"Random_Intercept"</span>)</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Estimate models:</span></span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a>  lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a>  lmer_model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(y <span class="sc">~</span> x <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> g), <span class="at">data =</span> df)</span>
+<span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Extract confidence intervals:</span></span>
+<span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a>  lm_ci <span class="ot">&lt;-</span> <span class="fu">confint</span>(lm_model, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb96-11"><a href="#cb96-11" aria-hidden="true" tabindex="-1"></a>  lmer_ci <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">confint</span>(lmer_model, <span class="at">level =</span> <span class="fl">0.95</span>))</span>
+<span id="cb96-12"><a href="#cb96-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Store results:</span></span>
+<span id="cb96-13"><a href="#cb96-13" aria-hidden="true" tabindex="-1"></a>  par_name <span class="ot">&lt;-</span> <span class="st">"sigma"</span></span>
+<span id="cb96-14"><a href="#cb96-14" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">r =</span> r,</span>
+<span id="cb96-15"><a href="#cb96-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">par_name =</span> par_name,</span>
+<span id="cb96-16"><a href="#cb96-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Value =</span> <span class="fu">rep</span>(<span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>sigma, </span>
+<span id="cb96-17"><a href="#cb96-17" aria-hidden="true" tabindex="-1"></a>                                <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb96-18"><a href="#cb96-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"lm"</span>, <span class="st">"lmer"</span>),</span>
+<span id="cb96-19"><a href="#cb96-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Estimate =</span> <span class="fu">c</span>(<span class="fu">summary</span>(lm_model)<span class="sc">$</span>sigma, </span>
+<span id="cb96-20"><a href="#cb96-20" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">summary</span>(lmer_model)<span class="sc">$</span>sigma),</span>
+<span id="cb96-21"><a href="#cb96-21" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CI_Low =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">2</span>),</span>
+<span id="cb96-22"><a href="#cb96-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CI_High =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>))</span>
+<span id="cb96-23"><a href="#cb96-23" aria-hidden="true" tabindex="-1"></a>  ci_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ci_df, tmp)</span>
+<span id="cb96-24"><a href="#cb96-24" aria-hidden="true" tabindex="-1"></a>  par_name <span class="ot">&lt;-</span> <span class="st">"x"</span></span>
+<span id="cb96-25"><a href="#cb96-25" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">r =</span> r,</span>
+<span id="cb96-26"><a href="#cb96-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">par_name =</span> par_name,</span>
+<span id="cb96-27"><a href="#cb96-27" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Value =</span> <span class="fu">rep</span>(<span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>beta_x, </span>
+<span id="cb96-28"><a href="#cb96-28" aria-hidden="true" tabindex="-1"></a>                                <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb96-29"><a href="#cb96-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"lm"</span>, <span class="st">"lmer"</span>),</span>
+<span id="cb96-30"><a href="#cb96-30" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Estimate =</span> <span class="fu">c</span>(<span class="fu">coef</span>(lm_model)[par_name], </span>
+<span id="cb96-31"><a href="#cb96-31" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">fixef</span>(lmer_model)[par_name]),</span>
+<span id="cb96-32"><a href="#cb96-32" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CI_Low =</span> <span class="fu">c</span>(lm_ci[par_name, <span class="dv">1</span>], </span>
+<span id="cb96-33"><a href="#cb96-33" aria-hidden="true" tabindex="-1"></a>                               lmer_ci[par_name, <span class="dv">1</span>]),</span>
+<span id="cb96-34"><a href="#cb96-34" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CI_High =</span> <span class="fu">c</span>(lm_ci[par_name, <span class="dv">2</span>], </span>
+<span id="cb96-35"><a href="#cb96-35" aria-hidden="true" tabindex="-1"></a>                                lmer_ci[par_name, <span class="dv">2</span>]))</span>
+<span id="cb96-36"><a href="#cb96-36" aria-hidden="true" tabindex="-1"></a>  ci_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ci_df, tmp)</span>
+<span id="cb96-37"><a href="#cb96-37" aria-hidden="true" tabindex="-1"></a>  par_name <span class="ot">&lt;-</span> <span class="st">"(Intercept)"</span></span>
+<span id="cb96-38"><a href="#cb96-38" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">r =</span> r,</span>
+<span id="cb96-39"><a href="#cb96-39" aria-hidden="true" tabindex="-1"></a>                    <span class="at">par_name =</span> par_name,</span>
+<span id="cb96-40"><a href="#cb96-40" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Value =</span> <span class="fu">rep</span>(<span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>beta_0, </span>
+<span id="cb96-41"><a href="#cb96-41" aria-hidden="true" tabindex="-1"></a>                                <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb96-42"><a href="#cb96-42" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"lm"</span>, <span class="st">"lmer"</span>),</span>
+<span id="cb96-43"><a href="#cb96-43" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Estimate =</span> <span class="fu">c</span>(<span class="fu">coef</span>(lm_model)[par_name], </span>
+<span id="cb96-44"><a href="#cb96-44" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">fixef</span>(lmer_model)[par_name]),</span>
+<span id="cb96-45"><a href="#cb96-45" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CI_Low =</span> <span class="fu">c</span>(lm_ci[par_name, <span class="dv">1</span>], </span>
+<span id="cb96-46"><a href="#cb96-46" aria-hidden="true" tabindex="-1"></a>                               lmer_ci[par_name, <span class="dv">1</span>]),</span>
+<span id="cb96-47"><a href="#cb96-47" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CI_High =</span> <span class="fu">c</span>(lm_ci[par_name, <span class="dv">2</span>], </span>
+<span id="cb96-48"><a href="#cb96-48" aria-hidden="true" tabindex="-1"></a>                                lmer_ci[par_name, <span class="dv">2</span>]))</span>
+<span id="cb96-49"><a href="#cb96-49" aria-hidden="true" tabindex="-1"></a>  ci_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ci_df, tmp)</span>
+<span id="cb96-50"><a href="#cb96-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"."</span>)</span>
+<span id="cb96-51"><a href="#cb96-51" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb96-52"><a href="#cb96-52" aria-hidden="true" tabindex="-1"></a>ci_df<span class="sc">$</span>par_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(ci_df<span class="sc">$</span>par_name, </span>
+<span id="cb96-53"><a href="#cb96-53" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>, <span class="st">"x"</span>, <span class="st">"sigma"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="small-simulation-study-1" class="level3">
+<h3 class="anchored" data-anchor-id="small-simulation-study-1">… small simulation study</h3>
+<div id="cell-fig-mixedmodelA" class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ci_df, <span class="fu">aes</span>(<span class="at">x =</span> r)) <span class="sc">+</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">y =</span> Estimate, <span class="at">ymin =</span> CI_Low, </span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ymax =</span> CI_High)) <span class="sc">+</span></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> Value), <span class="at">color =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Parameter estimate &amp; interval"</span>,</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Simulation run"</span>) <span class="sc">+</span></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Model), <span class="at">rows =</span> <span class="fu">vars</span>(par_name), </span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mixedmodelA" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mixedmodelA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" data-glightbox="description: .lightbox-desc-19"><img src="sm_ara_R_files/figure-html/fig-mixedmodelA-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: Simulation study results: Red dots show true underlying values.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="random-intercept-with-random-slope-model" class="level2">
+<h2 class="anchored" data-anchor-id="random-intercept-with-random-slope-model">Random Intercept with Random Slope Model</h2>
+<div id="cell-fig-mixedmodelB" class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>f_add_random_slope <span class="ot">&lt;-</span> <span class="cf">function</span>(df, x_lab, g_lab) {</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## assign(paste0("sigma_u_", x_label, "_", g_label), 1)</span></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  sigma_u_slope <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> .<span class="dv">1</span>))</span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>  u_slope <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(<span class="fu">unique</span>(df[, g_lab])), <span class="at">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sd =</span> sigma_u_slope)</span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>u_slope <span class="ot">&lt;-</span> u_slope[df[, g_lab]]</span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>y <span class="sc">+</span> df[, x_lab] <span class="sc">*</span> df<span class="sc">$</span>u_slope</span>
+<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">attributes</span>(df)<span class="sc">$</span>parameters[[<span class="fu">paste0</span>(<span class="st">"sigma_u_"</span>, x_lab, <span class="st">"_"</span>, g_lab)]] <span class="ot">&lt;-</span> </span>
+<span id="cb98-9"><a href="#cb98-9" aria-hidden="true" tabindex="-1"></a>    sigma_u_slope</span>
+<span id="cb98-10"><a href="#cb98-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb98-11"><a href="#cb98-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb98-12"><a href="#cb98-12" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">f_sim_data</span>(<span class="at">seed =</span> <span class="dv">0</span>, <span class="at">type =</span> <span class="st">"Random_Intercept"</span>)</span>
+<span id="cb98-13"><a href="#cb98-13" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">f_add_random_slope</span>(<span class="at">df =</span> df, <span class="at">x_lab =</span> <span class="st">"x"</span>, <span class="at">g_lab =</span> <span class="st">"g"</span>)</span>
+<span id="cb98-14"><a href="#cb98-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           x g         u          mu          y   u_slope
+1  0.3215956 1 -1.095936  1.50226149  2.4603313 -1.396995
+2  0.2582281 1 -1.095936  1.40927751  1.7511541 -1.396995
+3 -0.8764275 1 -1.095936 -0.25568956  1.0818636 -1.396995
+4 -0.5880509 1 -1.095936  0.16746754  3.0370635 -1.396995
+5 -0.6468865 1 -1.095936  0.08113349 -0.7173922 -1.396995
+6  0.3740457 1 -1.095936  1.57922556  1.3803104 -1.396995</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="st">'x'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'g'</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>G)</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">ddply</span>(df, <span class="fu">c</span>(<span class="st">"g"</span>), summarise,</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">'intercept'</span> <span class="ot">=</span> u[<span class="dv">1</span>],</span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">'slope'</span> <span class="ot">=</span> u_slope[<span class="dv">1</span>])</span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>gr<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>beta_0 <span class="sc">+</span> dd<span class="sc">$</span>intercept[gr<span class="sc">$</span>g] <span class="sc">+</span> </span>
+<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a>  gr<span class="sc">$</span>x <span class="sc">*</span> (<span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>beta_x <span class="sc">+</span> dd<span class="sc">$</span>slope[gr<span class="sc">$</span>g])</span>
+<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), </span>
+<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>beta_0 <span class="sc">+</span> </span>
+<span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> </span>
+<span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">attributes</span>(df)<span class="sc">$</span>parameters<span class="sc">$</span>beta_x)) <span class="sc">+</span> </span>
+<span id="cb100-13"><a href="#cb100-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb100-14"><a href="#cb100-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> gr, <span class="fu">aes</span>(<span class="at">group =</span> g), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb100-15"><a href="#cb100-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> g)</span>
+<span id="cb100-16"><a href="#cb100-16" aria-hidden="true" tabindex="-1"></a><span class="fu">unlist</span>(<span class="fu">attributes</span>(df)<span class="sc">$</span>parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     beta_0      beta_x       sigma     sigma_u           G     n_per_g 
+   2.126295    1.467377    1.132980    1.127243   30.000000   30.000000 
+sigma_u_x_g 
+   1.066731 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lmer</span>(y <span class="sc">~</span> x <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> x<span class="sc">|</span>g), <span class="at">data =</span> df)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: y ~ x + (1 + x | g)
+   Data: df
+
+REML criterion at convergence: 2969.4
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.73036 -0.66985 -0.01614  0.65063  2.87938 
+
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr
+ g        (Intercept) 1.410    1.187        
+          x           1.488    1.220    0.03
+ Residual             1.299    1.140        
+Number of obs: 900, groups:  g, 30
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   2.0000     0.2202   9.084
+x             1.3435     0.2328   5.772
+
+Correlation of Fixed Effects:
+  (Intr)
+x 0.024 </code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-mixedmodelB" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mixedmodelB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" data-glightbox="description: .lightbox-desc-20"><img src="sm_ara_R_files/figure-html/fig-mixedmodelB-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20: Scatterplot for simulated data with random intercept und randon slope: Dashed lines shows the underlying group specific conditional expectation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="nested-model" class="level2">
+<h2 class="anchored" data-anchor-id="nested-model">Nested Model</h2>
+<div id="cell-fig-mixedmodelC" class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">f_sim_data</span>(<span class="at">seed =</span> <span class="dv">0</span>, <span class="at">type =</span> <span class="st">"Nested"</span>)</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  g_a g_b g_ab          x       u_a       u_b          mu          y
+1   1   1  1_1 -0.8764275 -1.936757 0.6458663 -0.45064437 -0.8523900
+2   1   1  1_1 -0.5880509 -1.936757 0.6458663 -0.02748727  0.1857836
+3   1   1  1_1 -0.6468865 -1.936757 0.6458663 -0.11382132  0.9328256
+4   1   1  1_1  0.3740457 -1.936757 0.6458663  1.38427075  3.8232376
+5   1   1  1_1 -0.2317926 -1.936757 0.6458663  0.49527783 -0.7620346
+6   1   1  1_1  0.5396828 -1.936757 0.6458663  1.62732283  2.7937350</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ... two alternatives:</span></span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(y <span class="sc">~</span> x <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>g_a<span class="sc">/</span>g_b), <span class="at">data =</span> df)</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(y <span class="sc">~</span> x <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>g_a) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>g_ab), <span class="at">data =</span> df)</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">unlist</span>(<span class="fu">attributes</span>(df)<span class="sc">$</span>parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   beta_0    beta_x     sigma sigma_u_a sigma_u_b       G_a n_per_g_a       G_b 
+ 2.126295  1.467377  1.132980  1.127243  1.041464 30.000000 30.000000 10.000000 
+n_per_g_b 
+ 6.000000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: y ~ x + (1 | g_a/g_b)
+   Data: df
+
+REML criterion at convergence: 6235.4
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.06066 -0.65621  0.02234  0.63566  2.79567 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ g_b:g_a  (Intercept) 0.8489   0.9214  
+ g_a      (Intercept) 1.4214   1.1922  
+ Residual             1.3809   1.1751  
+Number of obs: 1800, groups:  g_b:g_a, 300; g_a, 30
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  2.10415    0.22578   9.319
+x            1.41589    0.05253  26.954
+
+Correlation of Fixed Effects:
+  (Intr)
+x 0.001 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: y ~ x + (1 | g_a) + (1 | g_ab)
+   Data: df
+
+REML criterion at convergence: 6235.4
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.06066 -0.65621  0.02234  0.63566  2.79567 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ g_ab     (Intercept) 0.8489   0.9214  
+ g_a      (Intercept) 1.4214   1.1922  
+ Residual             1.3809   1.1751  
+Number of obs: 1800, groups:  g_ab, 300; g_a, 30
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  2.10415    0.22578   9.319
+x            1.41589    0.05253  26.954
+
+Correlation of Fixed Effects:
+  (Intr)
+x 0.001 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">ranef</span>(m1)<span class="sc">$</span><span class="st">'g_a'</span>[, <span class="dv">1</span>], </span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> <span class="fu">ranef</span>(m2)<span class="sc">$</span><span class="st">'g_a'</span>[, <span class="dv">1</span>])) <span class="sc">+</span> </span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"ranef(m1)$'g_a'[, 1]"</span>, <span class="at">y =</span> <span class="st">"ranef(m2)$'g_a'[, 1]"</span>), </span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">sort</span>(<span class="fu">ranef</span>(m1)<span class="sc">$</span><span class="st">'g_b:g_a'</span>[, <span class="dv">1</span>]), </span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> <span class="fu">sort</span>(<span class="fu">ranef</span>(m2)<span class="sc">$</span><span class="st">'g_ab'</span>[, <span class="dv">1</span>]))) <span class="sc">+</span> </span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"sort(ranef(m1)$'g_b:g_a'[, 1])"</span>, </span>
+<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"sort(ranef(m2)$'g_ab'[, 1])"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mixedmodelC" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mixedmodelC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" data-glightbox="description: .lightbox-desc-21"><img src="sm_ara_R_files/figure-html/fig-mixedmodelC-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21: Visual check of equality of coefficient values.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="add-covariate-z-as-constant-within-2nd-level" class="level3">
+<h3 class="anchored" data-anchor-id="add-covariate-z-as-constant-within-2nd-level">… add covariate ‘z’ as constant within 2nd level</h3>
+<div id="cell-fig-mixedmodelD" class="cell">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>f_add_covariate_constant_within_b <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">attributes</span>(df)<span class="sc">$</span><span class="st">'parameters'</span><span class="sc">$</span><span class="st">'beta_z'</span> <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="fl">1.5</span>, </span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">sd =</span> .<span class="dv">1</span>)</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">attributes</span>(df)<span class="sc">$</span>type <span class="sc">!=</span> <span class="st">"Nested"</span>) {</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Use type 'Nested' to generate 'df'."</span>)</span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="fu">length</span>(<span class="fu">unique</span>(df<span class="sc">$</span>g_ab)), <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(z) <span class="ot">&lt;-</span> <span class="fu">unique</span>(df<span class="sc">$</span>g_ab)</span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>z <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(z[df<span class="sc">$</span>g_ab])</span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>y <span class="sc">+</span> df<span class="sc">$</span>z <span class="sc">*</span> <span class="fu">attributes</span>(df)<span class="sc">$</span><span class="st">'parameters'</span><span class="sc">$</span><span class="st">'beta_z'</span></span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">f_sim_data</span>(<span class="at">seed =</span> <span class="dv">0</span>, <span class="at">type =</span> <span class="st">"Nested"</span>)</span>
+<span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">f_add_covariate_constant_within_b</span>(<span class="at">df =</span> df)</span>
+<span id="cb113-15"><a href="#cb113-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">colour =</span> z)) <span class="sc">+</span> </span>
+<span id="cb113-16"><a href="#cb113-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> g_a) <span class="sc">+</span> </span>
+<span id="cb113-18"><a href="#cb113-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'top'</span>)</span>
+<span id="cb113-19"><a href="#cb113-19" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lmer</span>(y <span class="sc">~</span> x <span class="sc">+</span> z <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> g_a <span class="sc">/</span> g_b), <span class="at">data =</span> df)</span>
+<span id="cb113-20"><a href="#cb113-20" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: y ~ x + z + (1 | g_a/g_b)
+   Data: df
+
+REML criterion at convergence: 6236.8
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.05900 -0.66108  0.02254  0.63115  2.78727 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ g_b:g_a  (Intercept) 0.848    0.9209  
+ g_a      (Intercept) 1.429    1.1955  
+ Residual             1.381    1.1751  
+Number of obs: 1800, groups:  g_b:g_a, 300; g_a, 30
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  2.09644    0.22647   9.257
+x            1.41538    0.05253  26.943
+z            1.72034    0.11487  14.976
+
+Correlation of Fixed Effects:
+  (Intr) x     
+x  0.001       
+z -0.033 -0.009</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-mixedmodelD" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mixedmodelD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" data-glightbox="description: .lightbox-desc-22"><img src="sm_ara_R_files/figure-html/fig-mixedmodelD-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22: Scatterplot of two-level grouped data with constant covariate for 2nd level.
 </figcaption>
 </figure>
 </div>
@@ -1146,6 +1633,10 @@ Wickham, H. (2016). <em>ggplot2: Elegant graphics for data analysis</em>. Spring
 <span class="glightbox-desc lightbox-desc-16">Figure&nbsp;16: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.</span>
 <span class="glightbox-desc lightbox-desc-17">Figure&nbsp;17: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>.</span>
 <span class="glightbox-desc lightbox-desc-18">Figure&nbsp;18: Scatterplot of covariate <code>x_1</code> with the response observations <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>, the coloured intervals give point-wise central 75%, 90%, and 95% credible intervals for the conditional expectation.</span>
+<span class="glightbox-desc lightbox-desc-19">Figure&nbsp;19: Simulation study results: Red dots show true underlying values.</span>
+<span class="glightbox-desc lightbox-desc-20">Figure&nbsp;20: Scatterplot for simulated data with random intercept und randon slope: Dashed lines shows the underlying group specific conditional expectation.</span>
+<span class="glightbox-desc lightbox-desc-21">Figure&nbsp;21: Visual check of equality of coefficient values.</span>
+<span class="glightbox-desc lightbox-desc-22">Figure&nbsp;22: Scatterplot of two-level grouped data with constant covariate for 2nd level.</span>
 </div>
 </section>
 
@@ -1568,7 +2059,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
