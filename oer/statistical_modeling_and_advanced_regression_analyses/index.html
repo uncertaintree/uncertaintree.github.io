@@ -245,7 +245,6 @@ window.Quarto = {
   <li><a href="#random-intercept-model" id="toc-random-intercept-model" class="nav-link" data-scroll-target="#random-intercept-model">Random Intercept Model</a>
   <ul class="collapse">
   <li><a href="#small-simulation-study" id="toc-small-simulation-study" class="nav-link" data-scroll-target="#small-simulation-study">… small simulation study</a></li>
-  <li><a href="#small-simulation-study-1" id="toc-small-simulation-study-1" class="nav-link" data-scroll-target="#small-simulation-study-1">… small simulation study</a></li>
   </ul></li>
   <li><a href="#random-intercept-with-random-slope-model" id="toc-random-intercept-with-random-slope-model" class="nav-link" data-scroll-target="#random-intercept-with-random-slope-model">Random Intercept with Random Slope Model</a></li>
   <li><a href="#nested-model" id="toc-nested-model" class="nav-link" data-scroll-target="#nested-model">Nested Model</a>
@@ -1297,9 +1296,6 @@ x 0.000 </code></pre>
 <span id="cb96-52"><a href="#cb96-52" aria-hidden="true" tabindex="-1"></a>ci_df<span class="sc">$</span>par_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(ci_df<span class="sc">$</span>par_name, </span>
 <span id="cb96-53"><a href="#cb96-53" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>, <span class="st">"x"</span>, <span class="st">"sigma"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="small-simulation-study-1" class="level3">
-<h3 class="anchored" data-anchor-id="small-simulation-study-1">… small simulation study</h3>
 <div id="cell-fig-mixedmodelA" class="cell">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ci_df, <span class="fu">aes</span>(<span class="at">x =</span> r)) <span class="sc">+</span></span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">y =</span> Estimate, <span class="at">ymin =</span> CI_Low, </span>
@@ -2059,7 +2055,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

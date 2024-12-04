@@ -718,8 +718,6 @@ ci_df$par_name <- factor(ci_df$par_name,
 load(file = "mixed_models_ci_df.RData")
 ```
 
-### ... small simulation study
-
 ```{r}
 #| eval: true
 #| echo: true
