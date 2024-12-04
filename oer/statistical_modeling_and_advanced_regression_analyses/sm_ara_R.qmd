@@ -1,5 +1,5 @@
 ---
-title: "Statictical Modeling and Advanced Regression Analyses"
+title: "Statistical Modeling and Advanced Regression Analyses"
 subtitle: "R Tutorials"
 date: now
 theme:
