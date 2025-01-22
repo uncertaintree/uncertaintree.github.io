@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
     <meta name="author" content="Holger Sennhenn-Reulen ">
-    <meta name="dcterms.date" content="2024-12-04">
+    <meta name="dcterms.date" content="2025-01-22">
 
     <title>Statistical Modeling and Advanced Regression Analyses</title>
     <style>
@@ -184,10 +184,10 @@
       <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
       <meta name="citation_title" content="Statistical Modeling and Advanced Regression Analyses">
 <meta name="citation_author" content="Holger Sennhenn-Reulen\textsuperscript{\orcidlink{0000-0002-4782-4387}} \linebreak \textsuperscript{Northwest German Forest Research Institute (NW-FVA), Germany.}">
-<meta name="citation_publication_date" content="2024-12-04">
-<meta name="citation_cover_date" content="2024-12-04">
-<meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-12-04">
+<meta name="citation_publication_date" content="2025-01-22">
+<meta name="citation_cover_date" content="2025-01-22">
+<meta name="citation_year" content="2025">
+<meta name="citation_online_date" content="2025-01-22">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=arm: Data Analysis Using Regression and Multilevel/Hierarchical Models;,citation_author=Andrew Gelman;,citation_author=Yu-Sung Su;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://CRAN.R-project.org/package=arm;">
 <meta name="citation_reference" content="citation_title=The Split-Apply-Combine Strategy for Data Analysis;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_fulltext_html_url=https://www.jstatsoft.org/v40/i01/;,citation_issue=1;,citation_volume=40;,citation_journal_title=Journal of Statistical Software;">
@@ -241,7 +241,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">December 4, 2024</p>
+              <p class="date">January 22, 2025</p>
             </div>
           </div>
           
@@ -318,6 +318,17 @@
   <li><a href="#add-covariate-z-as-constant-within-2nd-level" id="toc-add-covariate-z-as-constant-within-2nd-level" class="nav-link" data-scroll-target="#add-covariate-z-as-constant-within-2nd-level">… add covariate ‘z’ as constant within 2nd level</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#flexible-models" id="toc-flexible-models" class="nav-link" data-scroll-target="#flexible-models">Flexible Models</a>
+  <ul class="collapse">
+  <li><a href="#a-simple-gam" id="toc-a-simple-gam" class="nav-link" data-scroll-target="#a-simple-gam">A ‘simple’ GAM</a></li>
+  <li><a href="#gam-with-bivariate-effect-surface" id="toc-gam-with-bivariate-effect-surface" class="nav-link" data-scroll-target="#gam-with-bivariate-effect-surface">GAM with bivariate effect surface</a></li>
+  <li><a href="#meet-the-ocat-family" id="toc-meet-the-ocat-family" class="nav-link" data-scroll-target="#meet-the-ocat-family">Meet the <code>ocat</code> family …</a></li>
+  <li><a href="#distributional-regression-in-mgcv" id="toc-distributional-regression-in-mgcv" class="nav-link" data-scroll-target="#distributional-regression-in-mgcv">Distributional regression in <code>mgcv</code></a>
+  <ul class="collapse">
+  <li><a href="#gaulss" id="toc-gaulss" class="nav-link" data-scroll-target="#gaulss"><code>gaulss</code></a></li>
+  <li><a href="#ziplss" id="toc-ziplss" class="nav-link" data-scroll-target="#ziplss"><code>ziplss</code></a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -385,7 +396,7 @@
 <div id="fig-plotlmsimA" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="sm_ara_R_files/figure-html/fig-plotlmsimA-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each from the uniform distribution between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.
@@ -401,7 +412,7 @@ Figure&nbsp;1: Scatterplot of the two simulated covariates <code>x_1</code> and 
 <div id="fig-plotlmsimB" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="sm_ara_R_files/figure-html/fig-plotlmsimB-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>.
@@ -417,7 +428,7 @@ Figure&nbsp;2: Scatterplot of covariate <code>x_1</code> with response <code>y</
 <div id="fig-plotlmsimC" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="sm_ara_R_files/figure-html/fig-plotlmsimC-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Scatterplot of covariate <code>x_2</code> with response <code>y</code> - each individual observation is coloured according to the first covariate <code>x_1</code>.
@@ -433,7 +444,7 @@ Figure&nbsp;3: Scatterplot of covariate <code>x_2</code> with response <code>y</
 <div id="fig-plotlmsimD" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="sm_ara_R_files/figure-html/fig-plotlmsimD-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the underlying true conditional expectation <code>mu</code>.
@@ -449,7 +460,7 @@ Figure&nbsp;4: Scatterplot of the two simulated covariates <code>x_1</code> and 
 <div id="fig-plotlmsimE" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="sm_ara_R_files/figure-html/fig-plotlmsimE-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: Scatterplot of the two simulated covariates <code>x_1</code> and <code>x_2</code> - each individual observation is coloured according to the response <code>y</code>.
@@ -501,7 +512,7 @@ F-statistic:   218 on 2 and 497 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="fig-plotlmsimF" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="sm_ara_R_files/figure-html/fig-plotlmsimF-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -521,7 +532,7 @@ Figure&nbsp;6: Scatterplot of covariate <code>x_1</code> with the true condition
 <div id="fig-plotlmsimG" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimG-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="sm_ara_R_files/figure-html/fig-plotlmsimG-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimG-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The lines give the point estimation for the conditional expectation with the second covariate <code>x_2</code> taking on values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> (at steps of <span class="math inline">\(0.1\)</span>).
@@ -668,7 +679,7 @@ arm (Version 1.14-4, built: 2024-4-1)</code></pre>
 <div id="fig-plotlmsimH" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="sm_ara_R_files/figure-html/fig-plotlmsimH-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimH-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8: Histogram of the original and the posterior predicted response sample.
@@ -697,7 +708,7 @@ Figure&nbsp;8: Histogram of the original and the posterior predicted response sa
 <div id="fig-plotlmsimI" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="sm_ara_R_files/figure-html/fig-plotlmsimI-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9: Histogram of the original and the posterior predicted response sample.
@@ -714,7 +725,7 @@ Figure&nbsp;9: Histogram of the original and the posterior predicted response sa
 <div id="fig-plotlmsimJ" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimJ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-10" data-gallery="quarto-lightbox-gallery-10"><img src="sm_ara_R_files/figure-html/fig-plotlmsimJ-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimJ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a>, but now using kernel density visualisations.
@@ -731,7 +742,7 @@ Figure&nbsp;10: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Fig
 <div id="fig-plotlmsimK" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-11" data-gallery="quarto-lightbox-gallery-11"><img src="sm_ara_R_files/figure-html/fig-plotlmsimK-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Figure&nbsp;9</a> or <a href="#fig-plotlmsimJ" class="quarto-xref">Figure&nbsp;10</a>, but now using empirical cumulative density function visualisations.
@@ -750,7 +761,7 @@ Figure&nbsp;11: The same as in <a href="#fig-plotlmsimI" class="quarto-xref">Fig
 <div id="fig-plotlmsimL" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotlmsimL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-12" data-gallery="quarto-lightbox-gallery-12"><img src="sm_ara_R_files/figure-html/fig-plotlmsimL-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotlmsimL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12: The same as in <a href="#fig-plotlmsimL" class="quarto-xref">Figure&nbsp;12</a>, but now within one plotting window: This visualisation is what <code>brms::pp_check</code> will produce if applied on a <code>brm</code> object.
@@ -819,7 +830,7 @@ Figure&nbsp;12: The same as in <a href="#fig-plotlmsimL" class="quarto-xref">Fig
 <div id="fig-plotbinomsimA" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" data-glightbox="description: .lightbox-desc-13"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-13" data-gallery="quarto-lightbox-gallery-13"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimA-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>, and additionally ‘jittered’ in vertical direction.
@@ -895,7 +906,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div id="fig-plotbinomsimB" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" data-glightbox="description: .lightbox-desc-14"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-14" data-gallery="quarto-lightbox-gallery-14"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimB-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14: Scatterplot of covariate <code>x_1</code> with the true linear predictor <code>eta</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -926,7 +937,7 @@ Figure&nbsp;14: Scatterplot of covariate <code>x_1</code> with the true linear p
 <div id="fig-plotbinomsimC" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" data-glightbox="description: .lightbox-desc-15"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-15" data-gallery="quarto-lightbox-gallery-15"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimC-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>p</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -1010,7 +1021,7 @@ x_2         -0.04702804 -0.004560743  0.098439583</code></pre>
 <div id="fig-plotbinomsimD" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotbinomsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" data-glightbox="description: .lightbox-desc-16"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-16" data-gallery="quarto-lightbox-gallery-16"><img src="sm_ara_R_files/figure-html/fig-plotbinomsimD-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotbinomsimD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16: Scatterplot of covariate <code>x_1</code> with the true conditional expectation <code>mu</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>.
@@ -1076,7 +1087,7 @@ Figure&nbsp;16: Scatterplot of covariate <code>x_1</code> with the true conditio
 <div id="fig-plotpoissimB" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotpoissimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" data-glightbox="description: .lightbox-desc-17"><img src="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-17" data-gallery="quarto-lightbox-gallery-17"><img src="sm_ara_R_files/figure-html/fig-plotpoissimB-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotpoissimB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17: Scatterplot of covariate <code>x_1</code> with response <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>.
@@ -1188,7 +1199,7 @@ x_2         -0.008328358 -0.0008112633  0.0192505213</code></pre>
 <div id="fig-plotpoissimC" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotpoissimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" data-glightbox="description: .lightbox-desc-18"><img src="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-18" data-gallery="quarto-lightbox-gallery-18"><img src="sm_ara_R_files/figure-html/fig-plotpoissimC-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotpoissimC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18: Scatterplot of covariate <code>x_1</code> with the response observations <code>y</code> - each individual observation is coloured according to the second covariate <code>x_2</code>. The line gives the point estimation for the conditional expectation with the second covariate <code>x_2</code> fixed to <span class="math inline">\(0.5\)</span>, the coloured intervals give point-wise central 75%, 90%, and 95% credible intervals for the conditional expectation.
@@ -1407,7 +1418,7 @@ Removed 50 rows containing missing values or values outside the scale range
 <div id="fig-mixedmodelA" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mixedmodelA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-mixedmodelA-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" data-glightbox="description: .lightbox-desc-19"><img src="sm_ara_R_files/figure-html/fig-mixedmodelA-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelA-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-19" data-gallery="quarto-lightbox-gallery-19"><img src="sm_ara_R_files/figure-html/fig-mixedmodelA-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;19: Simulation study results: Red dots show true underlying values.
@@ -1499,7 +1510,7 @@ x 0.024 </code></pre>
 <div id="fig-mixedmodelB" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mixedmodelB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-mixedmodelB-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" data-glightbox="description: .lightbox-desc-20"><img src="sm_ara_R_files/figure-html/fig-mixedmodelB-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelB-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-20" data-gallery="quarto-lightbox-gallery-20"><img src="sm_ara_R_files/figure-html/fig-mixedmodelB-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;20: Scatterplot for simulated data with random intercept und randon slope: Dashed lines shows the underlying group specific conditional expectation.
@@ -1605,7 +1616,7 @@ x 0.001 </code></pre>
 <div id="fig-mixedmodelC" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mixedmodelC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-mixedmodelC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" data-glightbox="description: .lightbox-desc-21"><img src="sm_ara_R_files/figure-html/fig-mixedmodelC-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-21" data-gallery="quarto-lightbox-gallery-21"><img src="sm_ara_R_files/figure-html/fig-mixedmodelC-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;21: Visual check of equality of coefficient values.
@@ -1670,11 +1681,770 @@ z -0.033 -0.009</code></pre>
 <div id="fig-mixedmodelD" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mixedmodelD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="sm_ara_R_files/figure-html/fig-mixedmodelD-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" data-glightbox="description: .lightbox-desc-22"><img src="sm_ara_R_files/figure-html/fig-mixedmodelD-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="sm_ara_R_files/figure-html/fig-mixedmodelD-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-22" data-gallery="quarto-lightbox-gallery-22"><img src="sm_ara_R_files/figure-html/fig-mixedmodelD-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixedmodelD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22: Scatterplot of two-level grouped data with constant covariate for 2nd level.
 </figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+</section>
+</section>
+<section id="flexible-models" class="level1">
+<h1>Flexible Models</h1>
+<p>… a.k.a. <em>GAMs</em> …</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [41]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"mgcv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lade nötiges Paket: nlme</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attache Paket: 'nlme'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Das folgende Objekt ist maskiert 'package:lme4':
+
+    lmList</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This is mgcv 1.9-1. For overview type 'help("mgcv-package")'.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"plyr"</span>)</span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"colorspace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<section id="a-simple-gam" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-gam">A ‘simple’ GAM</h2>
+<p>… to see what’s going on ‘under the hood’ …</p>
+<p>We begin with simulating data by using an underlying effect function for the single covariate <code>x</code> which is rather non-linear:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [42]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> pi))</span>
+<span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(df<span class="sc">$</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> pi) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> .<span class="dv">25</span>)</span>
+<span id="cb133-5"><a href="#cb133-5" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, pi, <span class="at">length.out =</span> <span class="dv">50</span>))</span>
+<span id="cb133-6"><a href="#cb133-6" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>mu <span class="ot">&lt;-</span> <span class="fu">sin</span>(nd<span class="sc">$</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> pi)</span>
+<span id="cb133-7"><a href="#cb133-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb133-8"><a href="#cb133-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb133-9"><a href="#cb133-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> mu), <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-42-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="sm_ara_R_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>A suitable model can be implemented using the function <code>mgcv::gam</code>, with in especially usage of the function <code>mgcv:s()</code>:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [43]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">gam</span>(y <span class="sc">~</span> <span class="fu">s</span>(x), <span class="at">data =</span> df)</span>
+<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-43-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="sm_ara_R_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>pre <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd)</span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> mu), <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb135-5"><a href="#cb135-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> pre))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-43-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="sm_ara_R_files/figure-html/unnamed-chunk-43-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>What does <code>s()</code> do?</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [44]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"lpmatrix"</span>)</span>
+<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  (Intercept)    s(x).1     s(x).2   s(x).3     s(x).4    s(x).5     s(x).6
+1           1 -1.110390 -0.7863538 1.327113 -1.0156741 -1.389606 -0.5755292
+2           1 -1.112745 -0.7620022 1.330739 -0.9857403 -1.394499 -0.5443745
+3           1 -1.114827 -0.7374878 1.332975 -0.9534962 -1.395550 -0.5091587
+4           1 -1.116216 -0.7124827 1.331685 -0.9156141 -1.387345 -0.4648478
+5           1 -1.116234 -0.6862777 1.323491 -0.8674136 -1.362650 -0.4065304
+6           1 -1.114115 -0.6580194 1.304598 -0.8038132 -1.313750 -0.3295964
+     s(x).7     s(x).8    s(x).9
+1 -1.841987 -0.6428615 -1.758172
+2 -1.836490 -0.5718634 -1.686202
+3 -1.820364 -0.5005500 -1.614233
+4 -1.780468 -0.4285334 -1.542263
+5 -1.704336 -0.3554311 -1.470294
+6 -1.580454 -0.2808812 -1.398324</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>Xd <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(X)</span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Xd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Var1        Var2 value
+1    1 (Intercept)     1
+2    2 (Intercept)     1
+3    3 (Intercept)     1
+4    4 (Intercept)     1
+5    5 (Intercept)     1
+6    6 (Intercept)     1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>Xd<span class="sc">$</span>x <span class="ot">&lt;-</span> nd<span class="sc">$</span>x[Xd<span class="sc">$</span>Var1]</span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Xd, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> value, <span class="at">group =</span> Var2, <span class="at">color =</span> Var2)) <span class="sc">+</span> </span>
+<span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb140-4"><a href="#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete_qualitative</span>(<span class="at">pal =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb140-5"><a href="#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Basis function:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-44-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="sm_ara_R_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">coef</span>(m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)      s(x).1      s(x).2      s(x).3      s(x).4      s(x).5 
+ -0.2883327   0.1328587   3.3990351   2.6033203   3.3949996  -1.9450739 
+     s(x).6      s(x).7      s(x).8      s(x).9 
+  2.6219341  -0.1327275  -6.4627018   1.3564139 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>eta_hat <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(b <span class="sc">%*%</span> <span class="fu">t</span>(X))</span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> pre)) <span class="sc">+</span></span>
+<span id="cb143-4"><a href="#cb143-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> eta_hat), <span class="at">color =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-44-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="sm_ara_R_files/figure-html/unnamed-chunk-44-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>How does <code>mgcv</code> quantify uncertainty and how can we interpret this uncertainty?</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [45]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rmvn</span>(<span class="dv">50</span>, <span class="fu">coef</span>(m), <span class="fu">vcov</span>(m))</span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept)      s(x).1   s(x).2   s(x).3   s(x).4    s(x).5   s(x).6
+[1,]  -0.2969723  0.14827346 2.845380 2.472228 2.986735 -2.025393 2.321902
+[2,]  -0.2798226  0.45813882 2.791453 2.539675 2.988796 -1.225334 1.925825
+[3,]  -0.2989047  0.02970708 3.627493 2.644463 3.434373 -1.716172 2.719180
+[4,]  -0.2998487 -0.16155372 4.105077 2.831955 3.863112 -2.421325 3.100904
+[5,]  -0.3156754  0.32549077 3.244017 2.692452 3.153326 -1.978761 2.526919
+[6,]  -0.2895788  0.11326272 1.954769 2.364647 2.358708 -1.651279 1.594067
+          s(x).7    s(x).8    s(x).9
+[1,] -0.10699650 -5.629549 1.6480470
+[2,] -0.15590646 -5.349300 0.8544413
+[3,] -0.32639388 -6.690499 1.3949870
+[4,] -0.30574994 -7.587330 1.9507888
+[5,]  0.07690747 -6.235893 1.2065182
+[6,] -0.05222090 -4.137128 1.8122858</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">t</span>(X <span class="sc">%*%</span> <span class="fu">t</span>(B))</span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>Ed <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(E)</span>
+<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Ed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Var1 Var2       value
+1    1    1 -0.05497982
+2    2    1  0.16933401
+3    3    1  0.10640081
+4    4    1  0.07715345
+5    5    1  0.18366364
+6    6    1 -0.26333221</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>Ed<span class="sc">$</span>x <span class="ot">&lt;-</span> nd<span class="sc">$</span>x[Ed<span class="sc">$</span>Var2]</span>
+<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Ed, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> value, <span class="at">group =</span> Var1)) <span class="sc">+</span> </span>
+<span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> .<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-45-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="sm_ara_R_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rmvn</span>(<span class="dv">1000</span>, <span class="fu">coef</span>(m), <span class="fu">vcov</span>(m))</span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">t</span>(X <span class="sc">%*%</span> <span class="fu">t</span>(B))</span>
+<span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a>Ed <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(E)</span>
+<span id="cb150-4"><a href="#cb150-4" aria-hidden="true" tabindex="-1"></a>Ed<span class="sc">$</span>x <span class="ot">&lt;-</span> nd<span class="sc">$</span>x[Ed<span class="sc">$</span>Var2]</span>
+<span id="cb150-5"><a href="#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">fitted</span>(m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.2883327</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">ddply</span>(Ed, <span class="fu">c</span>(<span class="st">"x"</span>), summarise, </span>
+<span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">m =</span> <span class="fu">mean</span>(value),</span>
+<span id="cb152-3"><a href="#cb152-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwr =</span> <span class="fu">quantile</span>(value, <span class="at">prob =</span> .<span class="dv">025</span>),</span>
+<span id="cb152-4"><a href="#cb152-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">upr =</span> <span class="fu">quantile</span>(value, <span class="at">prob =</span> .<span class="dv">975</span>))</span>
+<span id="cb152-5"><a href="#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m)</span>
+<span id="cb152-6"><a href="#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dd<span class="sc">$</span>x, dd<span class="sc">$</span>lwr <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">fitted</span>(m)), <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb152-7"><a href="#cb152-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dd<span class="sc">$</span>x, dd<span class="sc">$</span>upr <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">fitted</span>(m)), <span class="at">col =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-45-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="sm_ara_R_files/figure-html/unnamed-chunk-45-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="gam-with-bivariate-effect-surface" class="level2">
+<h2 class="anchored" data-anchor-id="gam-with-bivariate-effect-surface">GAM with bivariate effect surface</h2>
+<p>Let’s see how a ‘spatial’ effect is estimated?</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [46]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> pi),</span>
+<span id="cb153-4"><a href="#cb153-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">x2 =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> pi))</span>
+<span id="cb153-5"><a href="#cb153-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(df<span class="sc">$</span>x1 <span class="sc">*</span> df<span class="sc">$</span>x2 <span class="sc">-</span> pi) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> .<span class="dv">25</span>)</span>
+<span id="cb153-6"><a href="#cb153-6" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="st">'x1'</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, pi, <span class="at">length.out =</span> <span class="dv">50</span>),</span>
+<span id="cb153-7"><a href="#cb153-7" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'x2'</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, pi, <span class="at">length.out =</span> <span class="dv">50</span>))</span>
+<span id="cb153-8"><a href="#cb153-8" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>mu <span class="ot">&lt;-</span> <span class="fu">sin</span>(nd<span class="sc">$</span>x1 <span class="sc">*</span> nd<span class="sc">$</span>x2 <span class="sc">-</span> pi)</span>
+<span id="cb153-9"><a href="#cb153-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2)) <span class="sc">+</span> </span>
+<span id="cb153-10"><a href="#cb153-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour_filled</span>(<span class="fu">aes</span>(<span class="at">z =</span> mu)) <span class="sc">+</span></span>
+<span id="cb153-11"><a href="#cb153-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df) <span class="sc">+</span> </span>
+<span id="cb153-12"><a href="#cb153-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_divergingx</span>(<span class="at">pal =</span> <span class="st">"Zissou"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-46-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="sm_ara_R_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>m_s <span class="ot">&lt;-</span> <span class="fu">gam</span>(y <span class="sc">~</span> <span class="fu">s</span>(x1, x2), <span class="at">data =</span> df)</span>
+<span id="cb154-2"><a href="#cb154-2" aria-hidden="true" tabindex="-1"></a>m_t2 <span class="ot">&lt;-</span> <span class="fu">gam</span>(y <span class="sc">~</span> <span class="fu">t2</span>(x1, x2), <span class="at">data =</span> df)</span>
+<span id="cb154-3"><a href="#cb154-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(m, scheme = 3)</span></span>
+<span id="cb154-4"><a href="#cb154-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(m, scheme = 3)</span></span>
+<span id="cb154-5"><a href="#cb154-5" aria-hidden="true" tabindex="-1"></a>nd_all <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">rep</span>(nd<span class="sc">$</span>x1, <span class="dv">3</span>), </span>
+<span id="cb154-6"><a href="#cb154-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x2 =</span> <span class="fu">rep</span>(nd<span class="sc">$</span>x2, <span class="dv">3</span>),</span>
+<span id="cb154-7"><a href="#cb154-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">value =</span> <span class="fu">c</span>(nd<span class="sc">$</span>mu, </span>
+<span id="cb154-8"><a href="#cb154-8" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">predict</span>(m_s, <span class="at">newdata =</span> nd),</span>
+<span id="cb154-9"><a href="#cb154-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">predict</span>(m_t2, <span class="at">newdata =</span> nd)),</span>
+<span id="cb154-10"><a href="#cb154-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"mu"</span>, <span class="st">"gam(y ~ s(x1, x2), ...)"</span>, </span>
+<span id="cb154-11"><a href="#cb154-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"gam(y ~ t2(x1, x2), ...)"</span>), <span class="at">each =</span> <span class="fu">nrow</span>(nd)), </span>
+<span id="cb154-12"><a href="#cb154-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"mu"</span>, <span class="st">"gam(y ~ s(x1, x2), ...)"</span>, </span>
+<span id="cb154-13"><a href="#cb154-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"gam(y ~ t2(x1, x2), ...)"</span>)))</span>
+<span id="cb154-14"><a href="#cb154-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nd_all, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2)) <span class="sc">+</span> </span>
+<span id="cb154-15"><a href="#cb154-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour_filled</span>(<span class="fu">aes</span>(<span class="at">z =</span> value)) <span class="sc">+</span></span>
+<span id="cb154-16"><a href="#cb154-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> type) <span class="sc">+</span> </span>
+<span id="cb154-17"><a href="#cb154-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span> </span>
+<span id="cb154-18"><a href="#cb154-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Value:"</span>) <span class="sc">+</span> </span>
+<span id="cb154-19"><a href="#cb154-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_divergingx</span>(<span class="at">pal =</span> <span class="st">"Zissou"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-46-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="sm_ara_R_files/figure-html/unnamed-chunk-46-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [47]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_s, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"lpmatrix"</span>)</span>
+<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  (Intercept) s(x1,x2).1 s(x1,x2).2 s(x1,x2).3  s(x1,x2).4  s(x1,x2).5
+1           1   1.976689 0.03371151  0.3304568 -0.00259226  0.17111069
+2           1   1.953387 0.12968114  0.3370067  0.03879382  0.10776499
+3           1   1.924786 0.22810439  0.3459613  0.08379769  0.03947457
+4           1   1.890669 0.32877303  0.3576584  0.13285743 -0.03302845
+5           1   1.850898 0.43139923  0.3722188  0.18626423 -0.10880938
+6           1   1.805536 0.53566289  0.3894894  0.24424418 -0.18664853
+  s(x1,x2).6 s(x1,x2).7 s(x1,x2).8 s(x1,x2).9 s(x1,x2).10 s(x1,x2).11
+1 -0.5733509  0.8731026  -2.546673 0.08897994  -0.4737068  0.09007722
+2 -0.5875089  0.9045996  -2.406345 0.20978069  -0.4791941  0.15745018
+3 -0.6019473  0.9322257  -2.247393 0.34624806  -0.4797606  0.24512764
+4 -0.6168661  0.9548019  -2.071011 0.49751798  -0.4743269  0.35294021
+5 -0.6322095  0.9713239  -1.879590 0.66173468  -0.4617458  0.47919667
+6 -0.6478180  0.9808658  -1.677758 0.83608598  -0.4410087  0.61933769
+   s(x1,x2).12 s(x1,x2).13 s(x1,x2).14 s(x1,x2).15 s(x1,x2).16 s(x1,x2).17
+1 -0.133159173   0.3158998  0.57525679  -0.1031087   0.5078509    2.222795
+2 -0.064956212   0.3701460  0.48745809  -0.2523885   0.4790495    2.247128
+3 -0.009115991   0.4244009  0.38551631  -0.4190865   0.4564703    2.258474
+4  0.033048128   0.4778276  0.26922983  -0.5988628   0.4397291    2.253921
+5  0.060832282   0.5293748  0.13932143  -0.7855388   0.4280232    2.231165
+6  0.075409006   0.5777002 -0.00269943  -0.9703603   0.4190936    2.189777
+  s(x1,x2).18 s(x1,x2).19 s(x1,x2).20 s(x1,x2).21 s(x1,x2).22 s(x1,x2).23
+1 -0.18884460  -0.6125473  1.09973055   1.8396779  -0.0333665  -0.9116247
+2 -0.16806566  -0.6704053  0.91084502   1.6182853  -0.2572698  -0.9223023
+3 -0.14436797  -0.7255835  0.69258252   1.3446765  -0.5065067  -0.9603384
+4 -0.11731578  -0.7754304  0.44852400   1.0302451  -0.7734789  -1.0253060
+5 -0.08652054  -0.8171072  0.18547182   0.6908278  -1.0478943  -1.1150764
+6 -0.05265184  -0.8476338 -0.08790494   0.3518045  -1.3176351  -1.2227076
+  s(x1,x2).24 s(x1,x2).25 s(x1,x2).26 s(x1,x2).27 s(x1,x2).28 s(x1,x2).29
+1 -0.22749543  -0.3291015  0.24309550   -1.116626   -1.743114     -1.7187
+2 -0.18306547  -0.3293340  0.13345644   -1.112899   -1.671289     -1.7187
+3 -0.13372568  -0.3219909 -0.01411312   -1.110753   -1.599464     -1.7187
+4 -0.07912184  -0.3039526 -0.19647388   -1.108954   -1.527639     -1.7187
+5 -0.01949693  -0.2731051 -0.40588347   -1.106313   -1.455814     -1.7187
+6  0.04461223  -0.2291873 -0.63085090   -1.101163   -1.383989     -1.7187</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>Xd <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(X)</span>
+<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Xd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Var1        Var2 value
+1    1 (Intercept)     1
+2    2 (Intercept)     1
+3    3 (Intercept)     1
+4    4 (Intercept)     1
+5    5 (Intercept)     1
+6    6 (Intercept)     1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a>Xd<span class="sc">$</span>x1 <span class="ot">&lt;-</span> nd<span class="sc">$</span>x1[Xd<span class="sc">$</span>Var1]</span>
+<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a>Xd<span class="sc">$</span>x2 <span class="ot">&lt;-</span> nd<span class="sc">$</span>x2[Xd<span class="sc">$</span>Var1]</span>
+<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Xd, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2)) <span class="sc">+</span> </span>
+<span id="cb159-4"><a href="#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour_filled</span>(<span class="fu">aes</span>(<span class="at">z =</span> value)) <span class="sc">+</span></span>
+<span id="cb159-5"><a href="#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Var2) <span class="sc">+</span> </span>
+<span id="cb159-6"><a href="#cb159-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span> </span>
+<span id="cb159-7"><a href="#cb159-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Value:"</span>) <span class="sc">+</span> </span>
+<span id="cb159-8"><a href="#cb159-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_divergingx</span>(<span class="at">pal =</span> <span class="st">"Zissou"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-47-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="sm_ara_R_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [48]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_t2, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"lpmatrix"</span>)</span>
+<span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a>Xd <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(X)</span>
+<span id="cb160-3"><a href="#cb160-3" aria-hidden="true" tabindex="-1"></a>Xd<span class="sc">$</span>x1 <span class="ot">&lt;-</span> nd<span class="sc">$</span>x1[Xd<span class="sc">$</span>Var1]</span>
+<span id="cb160-4"><a href="#cb160-4" aria-hidden="true" tabindex="-1"></a>Xd<span class="sc">$</span>x2 <span class="ot">&lt;-</span> nd<span class="sc">$</span>x2[Xd<span class="sc">$</span>Var1]</span>
+<span id="cb160-5"><a href="#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Xd, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2)) <span class="sc">+</span> </span>
+<span id="cb160-6"><a href="#cb160-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour_filled</span>(<span class="fu">aes</span>(<span class="at">z =</span> value)) <span class="sc">+</span></span>
+<span id="cb160-7"><a href="#cb160-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Var2) <span class="sc">+</span> </span>
+<span id="cb160-8"><a href="#cb160-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span> </span>
+<span id="cb160-9"><a href="#cb160-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Value:"</span>) <span class="sc">+</span> </span>
+<span id="cb160-10"><a href="#cb160-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_divergingx</span>(<span class="at">pal =</span> <span class="st">"Zissou"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-48-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="sm_ara_R_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="meet-the-ocat-family" class="level2">
+<h2 class="anchored" data-anchor-id="meet-the-ocat-family">Meet the <code>ocat</code> family …</h2>
+<p>In order to specifiy an orderled logistic regression in <code>mgcv</code>, we need to specify the <code>family</code> attribute as <code>ocat</code>:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [49]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb161-2"><a href="#cb161-2" aria-hidden="true" tabindex="-1"></a>get_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(lp, theta) {</span>
+<span id="cb161-3"><a href="#cb161-3" aria-hidden="true" tabindex="-1"></a>  R <span class="ot">&lt;-</span> <span class="fu">length</span>(theta)</span>
+<span id="cb161-4"><a href="#cb161-4" aria-hidden="true" tabindex="-1"></a>  prob <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="fu">length</span>(lp), R <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb161-5"><a href="#cb161-5" aria-hidden="true" tabindex="-1"></a>  prob[, R <span class="sc">+</span> <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb161-6"><a href="#cb161-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>R) {</span>
+<span id="cb161-7"><a href="#cb161-7" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> theta[i] <span class="sc">-</span> lp</span>
+<span id="cb161-8"><a href="#cb161-8" aria-hidden="true" tabindex="-1"></a>    ind <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb161-9"><a href="#cb161-9" aria-hidden="true" tabindex="-1"></a>    prob[ind, i <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>x[ind]))</span>
+<span id="cb161-10"><a href="#cb161-10" aria-hidden="true" tabindex="-1"></a>    ex <span class="ot">&lt;-</span> <span class="fu">exp</span>(x[<span class="sc">!</span>ind])</span>
+<span id="cb161-11"><a href="#cb161-11" aria-hidden="true" tabindex="-1"></a>    prob[<span class="sc">!</span>ind, i <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> ex<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> ex)</span>
+<span id="cb161-12"><a href="#cb161-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb161-13"><a href="#cb161-13" aria-hidden="true" tabindex="-1"></a>  prob <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">diff</span>(<span class="fu">t</span>(prob)))</span>
+<span id="cb161-14"><a href="#cb161-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(prob)</span>
+<span id="cb161-15"><a href="#cb161-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb161-16"><a href="#cb161-16" aria-hidden="true" tabindex="-1"></a>get_y <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha, eta) {</span>
+<span id="cb161-17"><a href="#cb161-17" aria-hidden="true" tabindex="-1"></a>  R <span class="ot">&lt;-</span> <span class="fu">length</span>(alpha) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb161-18"><a href="#cb161-18" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(eta)</span>
+<span id="cb161-19"><a href="#cb161-19" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n)</span>
+<span id="cb161-20"><a href="#cb161-20" aria-hidden="true" tabindex="-1"></a>  u <span class="ot">&lt;-</span> eta <span class="sc">+</span> <span class="fu">qlogis</span>(<span class="fu">runif</span>(n)) <span class="do">## df$mu + log(u/(1-u))</span></span>
+<span id="cb161-21"><a href="#cb161-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>R) {</span>
+<span id="cb161-22"><a href="#cb161-22" aria-hidden="true" tabindex="-1"></a>    y[(u <span class="sc">&gt;</span> alpha[i]) <span class="sc">&amp;</span> (u <span class="sc">&lt;=</span> alpha[i <span class="sc">+</span> <span class="dv">1</span>])] <span class="ot">&lt;-</span> i</span>
+<span id="cb161-23"><a href="#cb161-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb161-24"><a href="#cb161-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb161-25"><a href="#cb161-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb161-26"><a href="#cb161-26" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb161-27"><a href="#cb161-27" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb161-28"><a href="#cb161-28" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">max =</span> <span class="dv">2</span>)</span>
+<span id="cb161-29"><a href="#cb161-29" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, </span>
+<span id="cb161-30"><a href="#cb161-30" aria-hidden="true" tabindex="-1"></a>                 <span class="at">eta =</span> x)</span>
+<span id="cb161-31"><a href="#cb161-31" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="cn">Inf</span>)</span>
+<span id="cb161-32"><a href="#cb161-32" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">get_y</span>(alpha, df<span class="sc">$</span>eta)</span>
+<span id="cb161-33"><a href="#cb161-33" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>xc <span class="ot">&lt;-</span> <span class="fu">cut</span>(df<span class="sc">$</span>x, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">by =</span> .<span class="dv">25</span>), <span class="at">include.lowest =</span> T)</span>
+<span id="cb161-34"><a href="#cb161-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> xc, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb161-35"><a href="#cb161-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">after_stat</span>(n)), <span class="at">size =</span> <span class="dv">10</span>) <span class="sc">+</span> </span>
+<span id="cb161-36"><a href="#cb161-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous_divergingx</span>(<span class="at">pal =</span> <span class="st">"Zissou"</span>, <span class="at">mid =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-49-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="sm_ara_R_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [50]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>(tmp <span class="ot">&lt;-</span> <span class="fu">addmargins</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> y <span class="sc">+</span> xc, <span class="at">data =</span> df), <span class="at">mar =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     xc
+y     [-2,-1.75] (-1.75,-1.5] (-1.5,-1.25] (-1.25,-1] (-1,-0.75] (-0.75,-0.5]
+  1           50           40           35         24         28           23
+  2           11           19           22         26         28           31
+  3            2            3            7          5          7           12
+  4            1            0            2          0          2            2
+  Sum         64           62           66         55         65           68
+     xc
+y     (-0.5,-0.25] (-0.25,0] (0,0.25] (0.25,0.5] (0.5,0.75] (0.75,1] (1,1.25]
+  1             28        16       16         16         13        7        8
+  2             25        31       33         31         34       15       29
+  3             11        11        8          9         17       35       22
+  4              3         2        3          2          3        3       10
+  Sum           67        60       60         58         67       60       69
+     xc
+y     (1.25,1.5] (1.5,1.75] (1.75,2]
+  1            7          6        6
+  2           20         12       14
+  3           23         28       25
+  4            8         13       17
+  Sum         58         59       62</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> tmp[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, ] <span class="sc">/</span> tmp[<span class="dv">5</span>, ]</span>
+<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a>dfp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">as.ordered</span>(<span class="fu">rep</span>(<span class="fu">as.numeric</span>(<span class="fu">rownames</span>(tmp)), <span class="fu">ncol</span>(tmp))),</span>
+<span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x =</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">1.875</span>, <span class="fl">1.875</span>, <span class="at">by =</span> .<span class="dv">25</span>), <span class="at">each =</span> <span class="fu">nrow</span>(tmp)),</span>
+<span id="cb164-4"><a href="#cb164-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p =</span> <span class="fu">as.numeric</span>(tmp))</span>
+<span id="cb164-5"><a href="#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dfp, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> p, <span class="at">group =</span> y, <span class="at">color =</span> y)) <span class="sc">+</span> </span>
+<span id="cb164-6"><a href="#cb164-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb164-7"><a href="#cb164-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete_diverging</span>() <span class="sc">+</span> </span>
+<span id="cb164-8"><a href="#cb164-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-50-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="sm_ara_R_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [51]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">gam</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">ocat</span>(<span class="at">R =</span> <span class="dv">4</span>), <span class="at">data =</span> df)</span>
+<span id="cb165-2"><a href="#cb165-2" aria-hidden="true" tabindex="-1"></a>m<span class="sc">$</span>family<span class="sc">$</span><span class="fu">getTheta</span>(<span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.000000  1.016038  2.978357</code></pre>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [52]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">by =</span> .<span class="dv">25</span>))</span>
+<span id="cb167-2"><a href="#cb167-2" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb167-3"><a href="#cb167-3" aria-hidden="true" tabindex="-1"></a>pre_here <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb167-4"><a href="#cb167-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pre_here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       [,1]      [,2]       [,3]        [,4]
+1 0.7185518 0.2318687 0.04230184 0.007277626
+2 0.6683642 0.2696485 0.05278585 0.009201425
+3 0.6140344 0.3087177 0.06562008 0.011627813
+4 0.5567073 0.3474112 0.08119694 0.014684548
+5 0.4978290 0.3837381 0.09990317 0.018529778
+6 0.4390108 0.4155539 0.12207729 0.023358032</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a>pre_here <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pre_here)</span>
+<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a>pre_here<span class="sc">$</span>x <span class="ot">&lt;-</span> nd<span class="sc">$</span>x</span>
+<span id="cb169-3"><a href="#cb169-3" aria-hidden="true" tabindex="-1"></a>pre_here <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(pre_here<span class="sc">$</span>x), </span>
+<span id="cb169-4"><a href="#cb169-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="fu">nrow</span>(pre_here)),</span>
+<span id="cb169-5"><a href="#cb169-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">pre =</span> <span class="fu">c</span>(pre_here<span class="sc">$</span>V1, pre_here<span class="sc">$</span>V2, </span>
+<span id="cb169-6"><a href="#cb169-6" aria-hidden="true" tabindex="-1"></a>                               pre_here<span class="sc">$</span>V3, pre_here<span class="sc">$</span>V4))</span>
+<span id="cb169-7"><a href="#cb169-7" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pre, pre_here)</span>
+<span id="cb169-8"><a href="#cb169-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dfp, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> p)) <span class="sc">+</span> </span>
+<span id="cb169-9"><a href="#cb169-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> y)) <span class="sc">+</span> </span>
+<span id="cb169-10"><a href="#cb169-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> pre, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pre, <span class="at">group =</span> y, <span class="at">color =</span> <span class="fu">factor</span>(y))) <span class="sc">+</span> </span>
+<span id="cb169-11"><a href="#cb169-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete_diverging</span>() <span class="sc">+</span> </span>
+<span id="cb169-12"><a href="#cb169-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-52-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="sm_ara_R_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [53]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"lpmatrix"</span>)</span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="do">## simulate directly from Gaussian approximate posterior...</span></span>
+<span id="cb170-3"><a href="#cb170-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rmvn</span>(<span class="dv">1000</span>, <span class="fu">coef</span>(m), <span class="fu">vcov</span>(m))</span>
+<span id="cb170-4"><a href="#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      (Intercept)         x
+[1,] -0.105028632 0.8930572
+[2,] -0.046419889 0.9389411
+[3,] -0.198145365 1.0089490
+[4,] -0.030374057 1.0747553
+[5,] -0.004272592 0.9200827
+[6,]  0.122328585 1.0898455</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Alternatively use MH sampling...</span></span>
+<span id="cb172-2"><a href="#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="co"># B &lt;- gam.mh(m,thin=2,ns=2000,rw.scale=.15)</span></span>
+<span id="cb172-3"><a href="#cb172-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">t</span>(X <span class="sc">%*%</span> <span class="fu">t</span>(B))</span>
+<span id="cb172-4"><a href="#cb172-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(E)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000   17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> m<span class="sc">$</span>family<span class="sc">$</span><span class="fu">getTheta</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb174-2"><a href="#cb174-2" aria-hidden="true" tabindex="-1"></a>Ps <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> E, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> get_prob, </span>
+<span id="cb174-3"><a href="#cb174-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">theta =</span> m<span class="sc">$</span>family<span class="sc">$</span><span class="fu">getTheta</span>(<span class="cn">TRUE</span>))</span>
+<span id="cb174-4"><a href="#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Ps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   68 1000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a>Pa <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">dim =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(nd), <span class="dv">4</span>, <span class="fu">nrow</span>(Ps)), <span class="at">data =</span> Ps)</span>
+<span id="cb176-2"><a href="#cb176-2" aria-hidden="true" tabindex="-1"></a>Pa[, , <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            [,1]      [,2]       [,3]        [,4]
+ [1,] 0.70912598 0.2390743 0.04418099 0.007618715
+ [2,] 0.66102799 0.2750429 0.05442265 0.009506425
+ [3,] 0.60935799 0.3119790 0.06680675 0.011856272
+ [4,] 0.55511268 0.3484444 0.08166458 0.014778299
+ [5,] 0.49952145 0.3827506 0.09932088 0.018407057
+ [6,] 0.44394205 0.4130906 0.12006121 0.022906127
+ [7,] 0.38973107 0.4377095 0.14408647 0.028472967
+ [8,] 0.33811470 0.4550866 0.17145492 0.035343769
+ [9,] 0.29008498 0.4641016 0.20201561 0.043797817
+[10,] 0.24633870 0.4641590 0.23534177 0.054160495
+[11,] 0.20726350 0.4552551 0.27067766 0.066803717
+[12,] 0.17296407 0.4379780 0.30691584 0.082142052
+[13,] 0.14331460 0.4134422 0.34262085 0.100622384
+[14,] 0.11802234 0.3831640 0.37610903 0.122704596
+[15,] 0.09668989 0.3488968 0.40558240 0.148830948
+[16,] 0.07886846 0.3124477 0.42930113 0.179382695
+[17,] 0.06409872 0.2755080 0.44576865 0.214624646</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb178"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a>nd_all <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb178-2"><a href="#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb178-3"><a href="#cb178-3" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> nd<span class="sc">$</span>x, </span>
+<span id="cb178-4"><a href="#cb178-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> k,</span>
+<span id="cb178-5"><a href="#cb178-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">p_mean =</span> <span class="fu">apply</span>(<span class="at">X =</span> Pa, <span class="at">MAR =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">FUN =</span> mean)[, k],</span>
+<span id="cb178-6"><a href="#cb178-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">p_lwr =</span> <span class="fu">apply</span>(<span class="at">X =</span> Pa, <span class="at">MAR =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">FUN =</span> quantile, <span class="at">prob =</span> .<span class="dv">025</span>)[, k],</span>
+<span id="cb178-7"><a href="#cb178-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">p_upr =</span> <span class="fu">apply</span>(<span class="at">X =</span> Pa, <span class="at">MAR =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">FUN =</span> quantile, <span class="at">prob =</span> .<span class="dv">975</span>)[, k])</span>
+<span id="cb178-8"><a href="#cb178-8" aria-hidden="true" tabindex="-1"></a>  nd_all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(nd_all, tmp)</span>
+<span id="cb178-9"><a href="#cb178-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb178-10"><a href="#cb178-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nd_all, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">color =</span> y, <span class="at">group =</span> y)) <span class="sc">+</span> </span>
+<span id="cb178-11"><a href="#cb178-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> p_lwr, <span class="at">ymax =</span> p_upr, <span class="at">fill =</span> y), <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb178-12"><a href="#cb178-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> p_mean)) <span class="sc">+</span> </span>
+<span id="cb178-13"><a href="#cb178-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-53-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37"><img src="sm_ara_R_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>… add a ‘smooth’ …</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [54]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">gam</span>(y <span class="sc">~</span> <span class="fu">s</span>(x), <span class="at">family =</span> <span class="fu">ocat</span>(<span class="at">R =</span> <span class="dv">4</span>), <span class="at">data =</span> df)</span>
+<span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-54-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38"><img src="sm_ara_R_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb180"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a>m<span class="sc">$</span>family<span class="sc">$</span><span class="fu">getTheta</span>(<span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.000000  1.015276  2.997751</code></pre>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [55]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb182"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">by =</span> .<span class="dv">25</span>))</span>
+<span id="cb182-2"><a href="#cb182-2" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb182-3"><a href="#cb182-3" aria-hidden="true" tabindex="-1"></a>pre_here <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb182-4"><a href="#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pre_here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       [,1]      [,2]       [,3]        [,4]
+1 0.7528150 0.2052566 0.03593709 0.005991324
+2 0.6828033 0.2588899 0.04985119 0.008455591
+3 0.6057981 0.3143940 0.06800380 0.011804091
+4 0.5306624 0.3638872 0.08947424 0.015976125
+5 0.4655438 0.4017491 0.11206784 0.020639208
+6 0.4126987 0.4278687 0.13397439 0.025458164</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb184"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>pre_here <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pre_here)</span>
+<span id="cb184-2"><a href="#cb184-2" aria-hidden="true" tabindex="-1"></a>pre_here<span class="sc">$</span>x <span class="ot">&lt;-</span> nd<span class="sc">$</span>x</span>
+<span id="cb184-3"><a href="#cb184-3" aria-hidden="true" tabindex="-1"></a>pre_here <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rep</span>(pre_here<span class="sc">$</span>x), </span>
+<span id="cb184-4"><a href="#cb184-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="fu">nrow</span>(pre_here)),</span>
+<span id="cb184-5"><a href="#cb184-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">pre =</span> <span class="fu">c</span>(pre_here<span class="sc">$</span>V1, pre_here<span class="sc">$</span>V2, </span>
+<span id="cb184-6"><a href="#cb184-6" aria-hidden="true" tabindex="-1"></a>                               pre_here<span class="sc">$</span>V3, pre_here<span class="sc">$</span>V4))</span>
+<span id="cb184-7"><a href="#cb184-7" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pre, pre_here)</span>
+<span id="cb184-8"><a href="#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dfp, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> p)) <span class="sc">+</span> </span>
+<span id="cb184-9"><a href="#cb184-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> y)) <span class="sc">+</span> </span>
+<span id="cb184-10"><a href="#cb184-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> pre, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pre, <span class="at">group =</span> y, <span class="at">color =</span> <span class="fu">factor</span>(y))) <span class="sc">+</span> </span>
+<span id="cb184-11"><a href="#cb184-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete_diverging</span>() <span class="sc">+</span> </span>
+<span id="cb184-12"><a href="#cb184-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-55-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39"><img src="sm_ara_R_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [56]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb185"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"lpmatrix"</span>)</span>
+<span id="cb185-2"><a href="#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="do">## simulate directly from Gaussian approximate posterior...</span></span>
+<span id="cb185-3"><a href="#cb185-3" aria-hidden="true" tabindex="-1"></a><span class="co">#B &lt;- rmvn(1000, coef(m), vcov(m))</span></span>
+<span id="cb185-4"><a href="#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="co">#head(B)</span></span>
+<span id="cb185-5"><a href="#cb185-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Alternatively use MH sampling...</span></span>
+<span id="cb185-6"><a href="#cb185-6" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">gam.mh</span>(m, <span class="at">thin =</span> <span class="dv">2</span>,<span class="at">ns=</span><span class="dv">2000</span>,<span class="at">rw.scale=</span>.<span class="dv">15</span>)<span class="sc">$</span>bs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [57]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save(B, file = "B_m_ocat_smooth.RData")</span></span>
+<span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">"B_m_ocat_smooth.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [58]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb187"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">t</span>(X <span class="sc">%*%</span> <span class="fu">t</span>(B))</span>
+<span id="cb187-2"><a href="#cb187-2" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> m<span class="sc">$</span>family<span class="sc">$</span><span class="fu">getTheta</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb187-3"><a href="#cb187-3" aria-hidden="true" tabindex="-1"></a>Ps <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> E, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> get_prob, </span>
+<span id="cb187-4"><a href="#cb187-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">theta =</span> m<span class="sc">$</span>family<span class="sc">$</span><span class="fu">getTheta</span>(<span class="cn">TRUE</span>))</span>
+<span id="cb187-5"><a href="#cb187-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Ps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   68 1000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb189"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a>Pa <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">dim =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(nd), <span class="dv">4</span>, <span class="fu">nrow</span>(Ps)), <span class="at">data =</span> Ps)</span>
+<span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a>Pa[, , <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            [,1]      [,2]       [,3]        [,4]
+ [1,] 0.75047723 0.2070884 0.03636801 0.006066369
+ [2,] 0.65301954 0.2808443 0.05647650 0.009659665
+ [3,] 0.55385477 0.3491910 0.08238272 0.014571499
+ [4,] 0.47461187 0.3968153 0.10865680 0.019916072
+ [5,] 0.41787029 0.4255307 0.13166394 0.024935069
+ [6,] 0.37742610 0.4423437 0.15083999 0.029390192
+ [7,] 0.34812836 0.4521444 0.16649619 0.033231056
+ [8,] 0.32106312 0.4590603 0.18250871 0.037367850
+ [9,] 0.28404220 0.4644860 0.20724768 0.044224139
+[10,] 0.23356921 0.4621532 0.24746382 0.056813764
+[11,] 0.18044007 0.4424674 0.30013219 0.076960322
+[12,] 0.13832609 0.4080436 0.35101412 0.102616177
+[13,] 0.11098421 0.3726589 0.38816306 0.128193799
+[14,] 0.09265203 0.3411394 0.41383132 0.152377306
+[15,] 0.07525918 0.3038575 0.43683783 0.184045515
+[16,] 0.05628693 0.2528658 0.45550573 0.235341571
+[17,] 0.03977246 0.1973141 0.45582264 0.307090775</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb191"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>nd_all <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> nd<span class="sc">$</span>x, </span>
+<span id="cb191-4"><a href="#cb191-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> k,</span>
+<span id="cb191-5"><a href="#cb191-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">p_mean =</span> <span class="fu">apply</span>(<span class="at">X =</span> Pa, <span class="at">MAR =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">FUN =</span> mean)[, k],</span>
+<span id="cb191-6"><a href="#cb191-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">p_lwr =</span> <span class="fu">apply</span>(<span class="at">X =</span> Pa, <span class="at">MAR =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">FUN =</span> quantile, </span>
+<span id="cb191-7"><a href="#cb191-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">prob =</span> .<span class="dv">025</span>)[, k],</span>
+<span id="cb191-8"><a href="#cb191-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">p_upr =</span> <span class="fu">apply</span>(<span class="at">X =</span> Pa, <span class="at">MAR =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">FUN =</span> quantile, </span>
+<span id="cb191-9"><a href="#cb191-9" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">prob =</span> .<span class="dv">975</span>)[, k])</span>
+<span id="cb191-10"><a href="#cb191-10" aria-hidden="true" tabindex="-1"></a>  nd_all <span class="ot">&lt;-</span> <span class="fu">rbind</span>(nd_all, tmp)</span>
+<span id="cb191-11"><a href="#cb191-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb191-12"><a href="#cb191-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nd_all, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">color =</span> y, <span class="at">group =</span> y)) <span class="sc">+</span> </span>
+<span id="cb191-13"><a href="#cb191-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> p_lwr, <span class="at">ymax =</span> p_upr, <span class="at">fill =</span> y), <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb191-14"><a href="#cb191-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> p_mean)) <span class="sc">+</span> </span>
+<span id="cb191-15"><a href="#cb191-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="sm_ara_R_files/figure-html/unnamed-chunk-58-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40"><img src="sm_ara_R_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="distributional-regression-in-mgcv" class="level2">
+<h2 class="anchored" data-anchor-id="distributional-regression-in-mgcv">Distributional regression in <code>mgcv</code></h2>
+<p><code>?family.mgcv</code></p>
+<section id="gaulss" class="level3">
+<h3 class="anchored" data-anchor-id="gaulss"><code>gaulss</code></h3>
+<div class="cell-container"><div class="cell-decorator"><pre>In [59]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb192"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb192-2"><a href="#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb192-3"><a href="#cb192-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">runif</span>(n))</span>
+<span id="cb192-4"><a href="#cb192-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> x, <span class="at">sd =</span> .<span class="dv">1</span> <span class="sc">*</span> <span class="fu">exp</span>(x))</span>
+<span id="cb192-5"><a href="#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb192-6"><a href="#cb192-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-59-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41"><img src="sm_ara_R_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb193"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">gam</span>(<span class="fu">list</span>(y <span class="sc">~</span> <span class="fu">s</span>(x), <span class="sc">~</span> <span class="fu">s</span>(x)), </span>
+<span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">gaulss</span>())</span>
+<span id="cb193-3"><a href="#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m, <span class="at">pages =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-59-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42"><img src="sm_ara_R_files/figure-html/unnamed-chunk-59-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb194"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>))</span>
+<span id="cb194-2"><a href="#cb194-2" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>mu <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"link"</span>)[, <span class="dv">1</span>]</span>
+<span id="cb194-3"><a href="#cb194-3" aria-hidden="true" tabindex="-1"></a>nd<span class="sc">$</span>sigma <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">predict</span>(m, <span class="at">newdata =</span> nd, <span class="at">type =</span> <span class="st">"link"</span>)[, <span class="dv">2</span>]) <span class="sc">+</span> .<span class="dv">01</span></span>
+<span id="cb194-4"><a href="#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb194-5"><a href="#cb194-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb194-6"><a href="#cb194-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> mu)) <span class="sc">+</span></span>
+<span id="cb194-7"><a href="#cb194-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">qnorm</span>(<span class="at">p =</span> .<span class="dv">1</span>, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)), <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb194-8"><a href="#cb194-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> nd, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">qnorm</span>(<span class="at">p =</span> .<span class="dv">9</span>, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)), <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-59-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43"><img src="sm_ara_R_files/figure-html/unnamed-chunk-59-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ziplss" class="level3">
+<h3 class="anchored" data-anchor-id="ziplss"><code>ziplss</code></h3>
+<p><code>?ziplss</code></p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [60]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb195"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb195-3"><a href="#cb195-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb195-4"><a href="#cb195-4" aria-hidden="true" tabindex="-1"></a>eta1 <span class="ot">&lt;-</span> x</span>
+<span id="cb195-5"><a href="#cb195-5" aria-hidden="true" tabindex="-1"></a>eta2 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>x</span>
+<span id="cb195-6"><a href="#cb195-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="fu">exp</span>(eta1)) <span class="do">## cloglog link</span></span>
+<span id="cb195-7"><a href="#cb195-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">runif</span>(n)<span class="sc">&lt;</span>p) <span class="do">## 1 for presence, 0 for absence</span></span>
+<span id="cb195-8"><a href="#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-60-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-44"><img src="sm_ara_R_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb196"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>y
+  0   1 
+191 809 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb198"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> y <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb198-2"><a href="#cb198-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ppois</span>(<span class="at">q =</span> <span class="dv">0</span>, <span class="at">lambda =</span> <span class="fu">exp</span>(eta2[ind]))</span>
+<span id="cb198-3"><a href="#cb198-3" aria-hidden="true" tabindex="-1"></a>y[ind] <span class="ot">&lt;-</span> <span class="fu">qpois</span>(<span class="at">p =</span> <span class="fu">runif</span>(<span class="fu">sum</span>(ind), p, <span class="dv">1</span>), <span class="at">lambda =</span> <span class="fu">exp</span>(eta2[ind]))</span>
+<span id="cb198-4"><a href="#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(y[ind])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  1   2   3   4   5   6   7   8   9  10  11  12  14 
+170 167 149 106  62  54  39  21  17  14   6   1   3 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb200"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-60-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-45"><img src="sm_ara_R_files/figure-html/unnamed-chunk-60-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb201"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">gam</span>(<span class="fu">list</span>(y <span class="sc">~</span> x, <span class="sc">~</span> x), <span class="at">family =</span> <span class="fu">ziplss</span>())</span>
+<span id="cb201-2"><a href="#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(b, <span class="at">pages =</span> <span class="dv">1</span>, <span class="at">all.terms =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sm_ara_R_files/figure-html/unnamed-chunk-60-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-46"><img src="sm_ara_R_files/figure-html/unnamed-chunk-60-3.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -2148,7 +2918,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});
+</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
